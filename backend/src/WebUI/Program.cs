@@ -1,26 +1,53 @@
+using System.Reflection;
 using backend.Infrastructure.Persistence;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddApplicationServices();
-builder.Services.AddInfrastructureServices(builder.Configuration);
+
+//builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebUIServices();
 
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Employee API",
+        Version = "v1",
+        Description = "An API to perform Employee operations",
+        TermsOfService = new Uri("https://example.com/terms"),
+        Contact = new OpenApiContact
+        {
+            Name = "John Walkner",
+            Email = "John.Walkner@gmail.com",
+            Url = new Uri("https://twitter.com/jwalkner"),
+        },
+        License = new OpenApiLicense
+        {
+            Name = "Employee API LICX",
+            Url = new Uri("https://example.com/license"),
+        }
+    });
+    // Set the comments path for the Swagger JSON and UI.
+   
+});
+builder.Services.AddControllers();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseMigrationsEndPoint();
 
-    // Initialise and seed database
-    using (var scope = app.Services.CreateScope())
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
     {
-        var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitialiser>();
-        await initialiser.InitialiseAsync();
-        await initialiser.SeedAsync();
-    }
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    });
+    // Initialise and seed database
+
 }
 else
 {
@@ -32,24 +59,22 @@ app.UseHealthChecks("/health");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseSwaggerUi3(settings =>
-{
-    settings.Path = "/api";
-    settings.DocumentPath = "/api/specification.json";
-});
+//app.UseSwaggerUi3(settings =>
+//{
+//    settings.Path = "/api";
+//    settings.DocumentPath = "/api/specification.json";
+//});
 
 app.UseRouting();
 
 app.UseAuthentication();
-app.UseIdentityServer();
+
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
+app.MapControllers();
 
-app.MapRazorPages();
 
-app.MapFallbackToFile("index.html"); ;
+
+
 
 app.Run();

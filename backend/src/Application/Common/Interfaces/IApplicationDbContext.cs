@@ -1,13 +1,12 @@
-﻿using backend.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace backend.Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {
-    DbSet<TodoList> TodoLists { get; }
+    //DbSet<TodoList> TodoLists { get; }
 
-    DbSet<TodoItem> TodoItems { get; }
+    //DbSet<TodoItem> TodoItems { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }
