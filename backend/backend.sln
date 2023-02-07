@@ -24,9 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application.Core", "Applica
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{A7FD27C8-8513-42DE-B06B-ED576BCA8F41}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{8AD7E90E-1A1F-4E47-BCBA-67B2AD6E6D6D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{1B68DA0C-1990-4D66-9372-0595108422C3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{8AD7E90E-1A1F-4E47-BCBA-67B2AD6E6D6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,10 +48,6 @@ Global
 		{22454EE9-16B3-4B7A-8352-37E59B858155}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22454EE9-16B3-4B7A-8352-37E59B858155}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22454EE9-16B3-4B7A-8352-37E59B858155}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1B68DA0C-1990-4D66-9372-0595108422C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B68DA0C-1990-4D66-9372-0595108422C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B68DA0C-1990-4D66-9372-0595108422C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1B68DA0C-1990-4D66-9372-0595108422C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
