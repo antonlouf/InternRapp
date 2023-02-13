@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace backend.Domain.Entities;
-public class UnitSuperVisor
+public class SubDepartment
 {
     public int Id { get; set; }
-    public string EmailAdress { get; set; }
+    public string Name { get; set; }
 }

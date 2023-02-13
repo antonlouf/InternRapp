@@ -8,13 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace backend.Infrastructure.Persistence.Configurations;
-public class UnitSupervisorConfiguration : IEntityTypeConfiguration<UnitSuperVisor>
+public class SubDepartmentConfiguration : IEntityTypeConfiguration<SubDepartment>
 {
-    public void Configure(EntityTypeBuilder<UnitSuperVisor> builder)
+    public void Configure(EntityTypeBuilder<SubDepartment> builder)
     {
         builder.HasKey(x => x.Id);
-        builder.Property(x => x.EmailAdress)
-                                          .HasMaxLength(50)
-                                          .IsRequired();
+        builder.Property(x=>x.Name).IsRequired().HasMaxLength(90);
     }
 }
