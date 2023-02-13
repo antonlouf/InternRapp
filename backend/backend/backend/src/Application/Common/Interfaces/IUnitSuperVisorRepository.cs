@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 using backend.Domain.Entities;
 
 namespace backend.Application.Common.Interfaces;
-public interface IUnitSuperVisor:IGenericRepository<UnitSuperVisor>
+public interface IUnitSuperVisorRepository:IGenericRepository<UnitSuperVisor>
 {
 }

@@ -12,16 +12,8 @@ namespace backend.Infrastructure.Persistence.Repositories;
 public class UnitRepository : GenericRepository<Unit>, IUnitRepository
 {
     
-    public UnitRepository(ApplicationDbContext context) : base(context)
-    {
-       
-    }
+    public UnitRepository(ApplicationDbContext context) 
+        : base(context){}
 
-    public List<Unit> GetByFilter(Expression<Func<Unit, bool>> predicate)
-    {
-        var queryable = _dataSet.AsQueryable();
-        queryable = queryable.Where(predicate);
-        return queryable.ToList();
 
-    }
 }

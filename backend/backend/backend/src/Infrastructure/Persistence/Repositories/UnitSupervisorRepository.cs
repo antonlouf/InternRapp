@@ -7,7 +7,7 @@ using backend.Application.Common.Interfaces;
 using backend.Domain.Entities;
 
 namespace backend.Infrastructure.Persistence.Repositories;
-public class UnitSupervisorRepository : GenericRepository<UnitSuperVisor>, IUnitSuperVisor
+public class UnitSupervisorRepository : GenericRepository<UnitSuperVisor>, IUnitSuperVisorRepository
 {
     public UnitSupervisorRepository(ApplicationDbContext context) 
                     : base(context){}

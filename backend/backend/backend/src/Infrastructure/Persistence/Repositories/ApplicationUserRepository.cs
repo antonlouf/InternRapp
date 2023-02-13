@@ -11,14 +11,8 @@ namespace backend.Infrastructure.Persistence.Repositories;
 public class ApplicationUserRepository : GenericRepository<ApplicationUser>, IApplicationUserRepistory
 {
 
-    public ApplicationUserRepository(ApplicationDbContext context) : base(context)
-    {
-    }
+    public ApplicationUserRepository(ApplicationDbContext context) 
+                : base(context){}
 
-    public List<ApplicationUser> GetByFilter(Expression<Func<ApplicationUser, bool>> predicate)
-    {
-        var queryable = _dataSet.AsQueryable();
-        queryable = queryable.Where(predicate);
-        return queryable.ToList();
-    }
+  
 }
