@@ -1,11 +1,12 @@
 ﻿using System.Reflection;
 using backend.Application.Common.Interfaces;
-
+using backend.Domain.Entities;
 using Duende.IdentityServer.EntityFramework.Options;
 using MediatR;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Unit = backend.Domain.Entities.Unit;
 
 namespace backend.Infrastructure.Persistence;
 public class ApplicationDbContext : DbContext
@@ -21,7 +22,7 @@ public class ApplicationDbContext : DbContext
     {
         _mediator = mediator;
     }
-
+    public DbSet<Unit> Units { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
