@@ -53,10 +53,6 @@ namespace backend.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Comments")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<int>("RequiredTrainingType")
                         .HasColumnType("int");
 
@@ -66,11 +62,6 @@ namespace backend.Infrastructure.Migrations
 
                     b.Property<int?>("SubDepartmentId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal?>("UnitId")
                         .HasColumnType("decimal(20,0)");
@@ -84,6 +75,26 @@ namespace backend.Infrastructure.Migrations
                     b.HasIndex("UnitId");
 
                     b.ToTable("InternShips");
+                });
+
+            modelBuilder.Entity("backend.Domain.Entities.Language", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasAlternateKey("Name");
+
+                    b.ToTable("Language");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.SubDepartment", b =>
@@ -102,6 +113,64 @@ namespace backend.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SubDepartments");
+                });
+
+            modelBuilder.Entity("backend.Domain.Entities.Translation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(350)
+                        .HasColumnType("nvarchar(350)");
+
+                    b.Property<int?>("InternShipId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("KnowledgeToDevelop")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<int?>("LanguageId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("NeededKnowledge")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("TitleContent")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InternShipId");
+
+                    b.HasIndex("LanguageId");
+
+                    b.ToTable("Translation");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Unit", b =>
@@ -160,6 +229,21 @@ namespace backend.Infrastructure.Migrations
                     b.Navigation("SubDepartment");
 
                     b.Navigation("Unit");
+                });
+
+            modelBuilder.Entity("backend.Domain.Entities.Translation", b =>
+                {
+                    b.HasOne("backend.Domain.Entities.InternShip", "InternShip")
+                        .WithMany()
+                        .HasForeignKey("InternShipId");
+
+                    b.HasOne("backend.Domain.Entities.Language", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageId");
+
+                    b.Navigation("InternShip");
+
+                    b.Navigation("Language");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Unit", b =>

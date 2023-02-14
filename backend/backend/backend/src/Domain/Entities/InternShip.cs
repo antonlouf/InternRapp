@@ -12,7 +12,6 @@ public class InternShip
     public Unit Unit { get; set; }
     public SubDepartment SubDepartment { get; set; }
     public string SchoolYear { get; set; }
-    public string Title { get; set; }
+
     public TrainingType RequiredTrainingType { get; set; }
-    public string Comments { get; set; }
 }

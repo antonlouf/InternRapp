@@ -26,6 +26,20 @@ namespace backend.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Language",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Language", x => x.Id);
+                    table.UniqueConstraint("AK_Language_Name", x => x.Name);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SubDepartments",
                 columns: table => new
                 {
@@ -79,9 +93,7 @@ namespace backend.Infrastructure.Migrations
                     UnitId = table.Column<decimal>(type: "decimal(20,0)", nullable: true),
                     SubDepartmentId = table.Column<int>(type: "int", nullable: true),
                     SchoolYear = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    RequiredTrainingType = table.Column<int>(type: "int", nullable: false),
-                    Comments = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true)
+                    RequiredTrainingType = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -95,6 +107,37 @@ namespace backend.Infrastructure.Migrations
                         name: "FK_InternShips_Units_UnitId",
                         column: x => x.UnitId,
                         principalTable: "Units",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Translation",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TitleContent = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(350)", maxLength: 350, nullable: false),
+                    KnowledgeToDevelop = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    NeededKnowledge = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Comment = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    InternShipId = table.Column<int>(type: "int", nullable: true),
+                    LanguageId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Translation", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Translation_InternShips_InternShipId",
+                        column: x => x.InternShipId,
+                        principalTable: "InternShips",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Translation_Language_LanguageId",
+                        column: x => x.LanguageId,
+                        principalTable: "Language",
                         principalColumn: "Id");
                 });
 
@@ -114,6 +157,16 @@ namespace backend.Infrastructure.Migrations
                 column: "UnitId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Translation_InternShipId",
+                table: "Translation",
+                column: "InternShipId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Translation_LanguageId",
+                table: "Translation",
+                column: "LanguageId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Units_Name",
                 table: "Units",
                 column: "Name");
@@ -131,7 +184,13 @@ namespace backend.Infrastructure.Migrations
                 name: "ApplicationUsers");
 
             migrationBuilder.DropTable(
+                name: "Translation");
+
+            migrationBuilder.DropTable(
                 name: "InternShips");
+
+            migrationBuilder.DropTable(
+                name: "Language");
 
             migrationBuilder.DropTable(
                 name: "SubDepartments");
