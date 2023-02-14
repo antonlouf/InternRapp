@@ -9,20 +9,28 @@ using Microsoft.Extensions.Options;
 using Unit = backend.Domain.Entities.Unit;
 
 namespace backend.Infrastructure.Persistence;
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : DbContext,IApplicationDbContext
 {
     private readonly IMediator _mediator;
 
     public ApplicationDbContext(
         DbContextOptions<ApplicationDbContext> options,
         IOptions<OperationalStoreOptions> operationalStoreOptions,
-        IMediator mediator
-        )
+        IMediator mediator)
         : base(options)
     {
         _mediator = mediator;
+    
     }
-    public DbSet<Unit> Units { get; set; }
+    public DbSet<Unit> Units =>Set<Unit>(); 
+
+    public DbSet<InternShip> InternShips =>Set<InternShip>();   
+
+    public DbSet<ApplicationUser> ApplicationUsers =>Set<ApplicationUser>();    
+
+    public DbSet<SubDepartment> SubDepartments =>Set<SubDepartment>();  
+
+    public DbSet<UnitSuperVisor> UnitSuperVisors=>Set<UnitSuperVisor>();    
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

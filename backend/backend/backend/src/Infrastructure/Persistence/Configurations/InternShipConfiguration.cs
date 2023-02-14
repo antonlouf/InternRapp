@@ -14,6 +14,8 @@ public class InternShipConfiguration : IEntityTypeConfiguration<InternShip>
     {
         builder.HasKey(x => x.Id);
         builder.Property(x=>x.RequiredTrainingType).IsRequired();
+        builder.HasIndex(x => new {x.SchoolYear});
+
         builder.Property(x=>x.SchoolYear).IsRequired();
         builder.Property(x=>x.Comments).HasMaxLength(100);
         builder.HasOne(x => x.Unit);
