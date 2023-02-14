@@ -1,105 +1,170 @@
-using Microsoft.AspNetCore.Authentication;
+using backend_for_frontend.Configuration;
+using backend_for_frontend.Middelware.BFF;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.CookiePolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using ProxyKit;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-
-builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-.AddMicrosoftIdentityWebApp(options => builder.Configuration.GetSection("AzureAdB2C").Bind(options), options =>
+builder.Services.AddCors(options =>
 {
-    
-    options.Cookie.Name = "bff";
-    options.Cookie.SameSite = SameSiteMode.None;
-    options.Cookie.HttpOnly = Convert.ToBoolean(HttpOnlyPolicy.None);
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.AddDefaultPolicy(policies =>
+    {
+        string[]? allowedOrigins = builder.Configuration.GetSection("Cors").GetValue<string>("AllowedOrigins")?.Split(';').Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToArray() ?? Array.Empty<string>();
+
+        _=policies
+            .WithOrigins(allowedOrigins)
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+string[]? timeslotsApiScopes = builder.Configuration.GetValue<string>("Api:Scopes").Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+//services.AddScoped<CustomCookieAuthenticationEvents>();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
 })
-.EnableTokenAcquisitionToCallDownstreamApi()
-//.AddDownstreamWebApi("T", builder.Configuration.GetSection("T"))
-.AddDistributedTokenCaches();
+.AddMicrosoftIdentityWebApp(options =>
+{
+    builder.Configuration.Bind("AzureAdB2C", options);
+
+    options.SaveTokens = true;
+
+    options.Scope.Clear();
+
+    // api scopes
+    foreach (string? scope in timeslotsApiScopes)
+    {
+        options.Scope.Add(scope);
+    }
+
+    options.Scope.Add("openid");
+
+    // requests a refresh token
+    options.Scope.Add("offline_access");
+
+    // Use the authorization code flow
+    options.ResponseType = Microsoft.IdentityModel.Protocols.OpenIdConnect.OpenIdConnectResponseType.CodeIdToken;
+    options.AuthenticationMethod = OpenIdConnectRedirectBehavior.FormPost;
+    options.UsePkce = true;
+
+}, options =>
+{
+    options.Cookie.Name = "__Host-bff";
+    options.Cookie.SameSite = SameSiteMode.None;
+    options.Cookie.HttpOnly = true;
+    options.Cookie.SecurePolicy = builder.Environment.IsDevelopment() ? CookieSecurePolicy.SameAsRequest : CookieSecurePolicy.Always;
+    //options.EventsType = typeof(CustomCookieAuthenticationEvents);
+})
+.EnableTokenAcquisitionToCallDownstreamApi(timeslotsApiScopes)
+.AddInMemoryTokenCaches(); // TODO : add redis
+
+
+builder.Services.AddRazorPages()
+    .AddMvcOptions(options =>
+    {
+        AuthorizationPolicy? policy = new AuthorizationPolicyBuilder()
+                        .RequireAuthenticatedUser()
+                        .Build();
+        options.Filters.Add(new AuthorizeFilter(policy));
+    })
+    .AddMicrosoftIdentityUI();
+
+builder.Services.AddProxy();
+
 //builder.Services.AddStackExchangeRedisCache(options =>
 //{
 //    options.Configuration = builder.Configuration.GetConnectionString("Redis");
 //    options.InstanceName = "t";
 //});
 
+if (!builder.Environment.IsDevelopment())
+{
+    // In production, the Angular files will be served from this directory
+    builder.Services.AddSpaStaticFiles(configuration =>
+    {
+        configuration.RootPath = "ClientApp/dist";
+    });
+}
 
-builder.Services.AddControllers(options =>
-{
-    var policy = new AuthorizationPolicyBuilder()
-    .RequireAuthenticatedUser()
-    .Build();
-    options.Filters.Add(new AuthorizeFilter(policy));
-  
-    //options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-}).AddMicrosoftIdentityUI();
-builder.Services.AddSpaStaticFiles(configuration =>
-{
-    configuration.RootPath = "ClientApp/dist";
-});
-builder.Services.AddCors();
 builder.Services.AddHealthChecks();
-// In production, the Angular files will be served from this directory
 
-var app = builder.Build();
-app.UseStaticFiles();
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+WebApplication? app = builder.Build();
+
+if (builder.Environment.IsDevelopment())
 {
-
-    
-    app.UseSpaStaticFiles();
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    //TODO
+    //app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseRouting();
-app.UseCors(builder =>
-{
-    builder.WithOrigins(
-        "https://migrationtestb2c.b2clogin.com/migrationtestb2c.onmicrosoft.com/b2c_1_singup_signin/oauth2/v2.0/authorize?client_id=f448d875-975b-4506-a82a-fb0b1f928ce8&redirect_uri=https%3A%2F%2Flocalhost%3A44403%2Fsignin-oidc&response_type=code&scope=openid%20profile%20offline_access&code_challenge=x0fWCW2IXrFpxp4_ogot0l1IIrXyu5R8g4tAdWE1Gk0&code_challenge_method=S256&response_mode=form_post&nonce=638114586990749715.M2JkNDJkYTctMDcxZC00NTFhLThmNTctOTUxYmY2YzEwYjU5ZjgzN2QyYWQtOTA1YS00NGI0LWJiMWYtZGZiZmNhZTljNTZl&client_info=1&x-client-brkrver=IDWeb.1.26.0.0&state=CfDJ8OlMY_vgTpdLtuRQAp_mmROW9DCkUN6NxC_Cjo3jlQCCGwzaQVvmDp1aGPr8Df9XaxufIkf7r_2opIW8AUYH93JDIQg62KTIrNoiuY1_DYnwiWc6CnDldk5mQF3FFzb-Umdgr41r9Bqk3NlLWQP7xHtJUbibodlbA4UQplGHTJkIr7LjfcKgFl2HUnodsvdtOQf-9aurNEVMn909chyOJyTDPCt_2pk0HtAv415f9KC3rTCj35-byM3HN0RC_c2NwPdk_ljWy8yLyO_Vz_VLv4GEz3ZgEZZiIpCs69FhUvHxPvemhnbr0qX20tIO0WMhluP-w1HpHNZh8lEPLLt03V2y3Md70558kf1i5dEi5hUqkHgdcF3N-toFNPegY5qF_EV_eZZ_ZHKYDsDm2joJqUU&x-client-SKU=ID_NET6_0&x-client-ver=6.25.1.0",
-        "https://localhost:44403").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
-});
+
+app.UseCors();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
+app.UseRewriter(new RewriteOptions().AddRedirect("/MicrosoftIdentity/Account/SignOut", "/"));
 
+app.UseBffAuthentication();
 
-app.Use(async (context, next) =>
+app.UseEndpoints(endpoints =>
 {
+    endpoints.MapControllers();
+    endpoints.MapRazorPages();
+    endpoints.MapHealthChecks("/health");
+});
 
-    if (context.User.Identity == null)
+app.UseProxy(builder.Configuration);
+
+app.UseStaticFiles();
+
+if (!builder.Environment.IsDevelopment())
+{
+    app.UseSpaStaticFiles();
+}
+
+app.UseSpa(spa =>
+{
+    spa.Options.SourcePath = "ClientApp";
+
+    if (builder.Environment.IsDevelopment())
     {
-        await context.ChallengeAsync(OpenIdConnectDefaults.AuthenticationScheme);
-
+        spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
     }
-    await next();
-});
 
-app.UseWhen(x => x.User!=null&&x.User.Identity!=null&&x.User.Identity.IsAuthenticated, builder =>
-{
-    app.UseSpa(spa =>
+    spa.Options.DefaultPageStaticFileOptions = new StaticFileOptions
     {
-        spa.Options.SourcePath = "ClientApp/dist";
-
-        
-    });
-    
+        OnPrepareResponse = ctx =>
+        {
+            // don't cache index.html
+            Microsoft.AspNetCore.Http.Headers.ResponseHeaders? headers = ctx.Context.Response.GetTypedHeaders();
+            headers.CacheControl = new Microsoft.Net.Http.Headers.CacheControlHeaderValue
+            {
+                NoCache = true,
+                NoStore = true,
+                MustRevalidate = true,
+                MaxAge = TimeSpan.Zero
+            };
+        }
+    };
 });
-
-
 
 app.Run();

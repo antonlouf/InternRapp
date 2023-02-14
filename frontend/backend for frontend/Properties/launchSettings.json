@@ -8,14 +8,14 @@
     }
   },
   "profiles": {
-    "backend_for_frontend": {
+    "InternRApp.Bff": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7171;http://localhost:5128",
+      "applicationUrl": "http://localhost:5128",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
-      }
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true
     },
     "IIS Express": {
       "commandName": "IISExpress",
