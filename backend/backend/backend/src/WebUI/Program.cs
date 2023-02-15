@@ -1,4 +1,4 @@
-using backend.Infrastructure.Persistence;
+using backend.Application.Common.Exceptions;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +29,23 @@ else
 
 app.UseHealthChecks("/health");
 app.UseHttpsRedirection();
+
+app.Use(async (context, next) =>
+{
+    try
+    {
+        await next();
+    }
+    catch (ValidationException ex)
+    {
+
+        var errorsAsArray = ex.Errors.Values.ToArray();
+        var error = errorsAsArray[0][1];
+        await context.Response.WriteAsJsonAsync(error);
+
+
+    }
+});
 app.UseStaticFiles();
 
 app.UseSwagger();
