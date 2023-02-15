@@ -1,4 +1,5 @@
 ﻿using backend.Application.Units.Commands.CreateUnit;
+using backend.Application.Units.Queries.GetAllUnits;
 using backend.Application.Units.Queries.GetUnitById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -14,16 +15,22 @@ public class UnitController : ControllerBase
         _mediator= mediator;    
     }
     //later to be adjusted dependent on what the situation should be see createunitcommand for more details!!
-    [HttpGet]
-    public async Task<IActionResult> Create()
-    {
-        await _mediator.Send(new CreateUnitCommand() { Name = "HR", SuperVisorId = 1 });
-        return Ok();
-    }
+    //[HttpGet]
+    //public async Task<IActionResult> Create()
+    //{
+    //    await _mediator.Send(new CreateUnitCommand() { Name = "HR", SuperVisorId = 1 });
+    //    return Ok();
+    //}
     [HttpGet("{id:int}")]
     
     public async Task<IActionResult> GetById(int id)
     {
        return Ok(await _mediator.Send(new GetByIdQuery() { Id=id}));
+    }
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var result = await _mediator.Send(new GetAllQuery());
+        return Ok(result);
     }
 }

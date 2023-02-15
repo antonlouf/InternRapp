@@ -69,7 +69,7 @@ namespace backend.Infrastructure.Migrations
                 name: "Units",
                 columns: table => new
                 {
-                    Id = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     SupervisorId = table.Column<int>(type: "int", nullable: false)
@@ -91,7 +91,7 @@ namespace backend.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UnitId = table.Column<decimal>(type: "decimal(20,0)", nullable: true),
+                    UnitId = table.Column<int>(type: "int", nullable: true),
                     SubDepartmentId = table.Column<int>(type: "int", nullable: true),
                     SchoolYear = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     RequiredTrainingType = table.Column<int>(type: "int", nullable: false)
