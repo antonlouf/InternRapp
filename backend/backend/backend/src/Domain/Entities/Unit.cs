@@ -10,5 +10,6 @@ public class Unit
     public ulong Id { get; set; }
     public string Name { get; set; }
     public UnitSuperVisor Supervisor { get; set; }
+    public int SupervisorId { get; set; }
 
 }
