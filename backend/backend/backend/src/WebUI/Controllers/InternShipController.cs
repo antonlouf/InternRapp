@@ -1,4 +1,5 @@
 ﻿using backend.Application.InternShips.Commands.CreateInternShip;
+using backend.Application.InternShips.Queries.GetAllInternShips;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,4 +19,11 @@ public class InternShipController : ControllerBase
         await _mediator.Send(dto);  
         return Ok();
     }
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var result=await _mediator.Send(new GetAllQuery());
+        return Ok(result);
+    }
+
 }
