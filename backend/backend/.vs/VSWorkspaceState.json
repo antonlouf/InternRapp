@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\backend",
+    "\\backend\\src",
+    "\\backend\\src\\Application",
+    "\\backend\\src\\Application\\Units",
+    "\\backend\\src\\Application\\Units\\Commands",
+    "\\backend\\src\\Application\\Units\\Commands\\DeleteUnit",
+    "\\backend\\src\\Application\\Units\\Common",
+    "\\backend\\src\\Application\\Units\\Queries",
+    "\\backend\\src\\Application\\Units\\Queries\\GetAllUnits"
+  ],
+  "SelectedNode": "\\backend\\src\\WebUI\\Controllers\\UnitController.cs",
+  "PreviewInSolutionExplorer": false
+}

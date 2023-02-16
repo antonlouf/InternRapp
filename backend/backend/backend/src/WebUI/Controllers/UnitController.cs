@@ -1,4 +1,6 @@
 ﻿using backend.Application.Units.Commands.CreateUnit;
+using backend.Application.Units.Commands.DeleteUnit;
+using backend.Application.Units.Commands.UpdateUnit;
 using backend.Application.Units.Queries.GetAllUnits;
 using backend.Application.Units.Queries.GetUnitById;
 using MediatR;
@@ -32,5 +34,19 @@ public class UnitController : ControllerBase
     {
         var result = await _mediator.Send(new GetAllQuery());
         return Ok(result);
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> Update(UnitListDto dto)
+    {
+         await _mediator.Send(new UpdateUnitCommand() { Unit=dto});
+        return Ok("successfully updated");
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> Delete(int id)
+    {
+        await _mediator.Send(new DeleteUnitCommand() { Id=id});
+        return Ok("successfully deleted");
     }
 }

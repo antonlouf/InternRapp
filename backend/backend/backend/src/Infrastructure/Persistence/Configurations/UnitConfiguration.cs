@@ -19,5 +19,6 @@ public class UnitConfiguration : IEntityTypeConfiguration<Unit>
         builder.HasIndex(x => x.Name);
 
         builder.HasOne(x => x.Supervisor);
+        
     }
 }
