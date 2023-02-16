@@ -9,7 +9,7 @@ public class Unit
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public UnitSuperVisor Supervisor { get; set; }
-    public int SupervisorId { get; set; }
+    public ApplicationUser ApplicationUser { get; set; }
+    public int ApplicationUserId { get; set; }
 
 }

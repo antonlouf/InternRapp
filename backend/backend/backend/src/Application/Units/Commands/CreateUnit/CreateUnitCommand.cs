@@ -24,7 +24,7 @@ public class CreateUnitCommandHandler : AsyncRequestHandler<CreateUnitCommand>
         //Dependent of the situation this is true , if by creating a new unit we are going to make the assumption that
         // the supervisor already exists 
         //otherwise we should check if it exists and if not create it before inserting this record
-        await _dbContext.Units.AddAsync(new() { Name = request.Name, SupervisorId = request.SuperVisorId}) ;
+        await _dbContext.Units.AddAsync(new() { Name = request.Name, ApplicationUserId = request.SuperVisorId}) ;
         await _dbContext.SaveChangesAsync(cancellationToken);
     }
 }

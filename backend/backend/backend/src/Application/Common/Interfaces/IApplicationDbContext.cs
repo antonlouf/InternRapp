@@ -12,9 +12,7 @@ public interface IApplicationDbContext
     DbSet<InternShip> InternShips { get; }
 
     DbSet<ApplicationUser> ApplicationUsers { get; }
-    DbSet<SubDepartment> SubDepartments { get; }
     DbSet<Unit> Units { get; }
-    DbSet<UnitSuperVisor> UnitSuperVisors { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

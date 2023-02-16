@@ -18,7 +18,7 @@ public class UnitConfiguration : IEntityTypeConfiguration<Unit>
                                     .IsRequired();
         builder.HasIndex(x => x.Name);
 
-        builder.HasOne(x => x.Supervisor);
+        builder.HasOne(x => x.ApplicationUser);
         
     }
 }

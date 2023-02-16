@@ -28,9 +28,7 @@ public class ApplicationDbContext : DbContext,IApplicationDbContext
 
     public DbSet<ApplicationUser> ApplicationUsers =>Set<ApplicationUser>();    
 
-    public DbSet<SubDepartment> SubDepartments =>Set<SubDepartment>();  
-
-    public DbSet<UnitSuperVisor> UnitSuperVisors=>Set<UnitSuperVisor>();    
+  
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
