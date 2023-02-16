@@ -17,7 +17,7 @@ public class UnitConfiguration : IEntityTypeConfiguration<Unit>
                                     .HasMaxLength(100)
                                     .IsRequired();
         builder.HasIndex(x => x.Name);
-
+        
         builder.HasOne(x => x.ApplicationUser);
         
     }

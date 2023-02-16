@@ -40,47 +40,21 @@ namespace backend.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SubDepartments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(90)", maxLength: 90, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SubDepartments", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UnitSuperVisors",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EmailAdress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UnitSuperVisors", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Units",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    SupervisorId = table.Column<int>(type: "int", nullable: false)
+                    ApplicationUserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Units", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Units_UnitSuperVisors_SupervisorId",
-                        column: x => x.SupervisorId,
-                        principalTable: "UnitSuperVisors",
+                        name: "FK_Units_ApplicationUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "ApplicationUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -92,18 +66,14 @@ namespace backend.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UnitId = table.Column<int>(type: "int", nullable: true),
-                    SubDepartmentId = table.Column<int>(type: "int", nullable: true),
                     SchoolYear = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    MaxStudents = table.Column<short>(type: "smallint", nullable: false),
+                    CurrentCountOfStudents = table.Column<short>(type: "smallint", nullable: false),
                     RequiredTrainingType = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_InternShips", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_InternShips_SubDepartments_SubDepartmentId",
-                        column: x => x.SubDepartmentId,
-                        principalTable: "SubDepartments",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_InternShips_Units_UnitId",
                         column: x => x.UnitId,
@@ -148,11 +118,6 @@ namespace backend.Infrastructure.Migrations
                 column: "SchoolYear");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InternShips_SubDepartmentId",
-                table: "InternShips",
-                column: "SubDepartmentId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_InternShips_UnitId",
                 table: "InternShips",
                 column: "UnitId");
@@ -168,22 +133,19 @@ namespace backend.Infrastructure.Migrations
                 column: "LanguageId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Units_ApplicationUserId",
+                table: "Units",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Units_Name",
                 table: "Units",
                 column: "Name");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Units_SupervisorId",
-                table: "Units",
-                column: "SupervisorId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "ApplicationUsers");
-
             migrationBuilder.DropTable(
                 name: "Translation");
 
@@ -194,13 +156,10 @@ namespace backend.Infrastructure.Migrations
                 name: "Language");
 
             migrationBuilder.DropTable(
-                name: "SubDepartments");
-
-            migrationBuilder.DropTable(
                 name: "Units");
 
             migrationBuilder.DropTable(
-                name: "UnitSuperVisors");
+                name: "ApplicationUsers");
         }
     }
 }

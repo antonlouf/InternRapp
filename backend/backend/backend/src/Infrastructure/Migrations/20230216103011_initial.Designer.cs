@@ -12,7 +12,7 @@ using backend.Infrastructure.Persistence;
 namespace backend.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230215141244_initial")]
+    [Migration("20230216103011_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -56,6 +56,12 @@ namespace backend.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<short>("CurrentCountOfStudents")
+                        .HasColumnType("smallint");
+
+                    b.Property<short>("MaxStudents")
+                        .HasColumnType("smallint");
+
                     b.Property<int>("RequiredTrainingType")
                         .HasColumnType("int");
 
@@ -63,17 +69,12 @@ namespace backend.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("SubDepartmentId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("UnitId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("SchoolYear");
-
-                    b.HasIndex("SubDepartmentId");
 
                     b.HasIndex("UnitId");
 
@@ -98,24 +99,6 @@ namespace backend.Infrastructure.Migrations
                     b.HasAlternateKey("Name");
 
                     b.ToTable("Language");
-                });
-
-            modelBuilder.Entity("backend.Domain.Entities.SubDepartment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(90)
-                        .HasColumnType("nvarchar(90)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SubDepartments");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Translation", b =>
@@ -184,52 +167,28 @@ namespace backend.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ApplicationUserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("SupervisorId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("Name");
+                    b.HasIndex("ApplicationUserId");
 
-                    b.HasIndex("SupervisorId");
+                    b.HasIndex("Name");
 
                     b.ToTable("Units");
                 });
 
-            modelBuilder.Entity("backend.Domain.Entities.UnitSuperVisor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("EmailAdress")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UnitSuperVisors");
-                });
-
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
                 {
-                    b.HasOne("backend.Domain.Entities.SubDepartment", "SubDepartment")
-                        .WithMany()
-                        .HasForeignKey("SubDepartmentId");
-
                     b.HasOne("backend.Domain.Entities.Unit", "Unit")
                         .WithMany()
                         .HasForeignKey("UnitId");
-
-                    b.Navigation("SubDepartment");
 
                     b.Navigation("Unit");
                 });
@@ -251,13 +210,13 @@ namespace backend.Infrastructure.Migrations
 
             modelBuilder.Entity("backend.Domain.Entities.Unit", b =>
                 {
-                    b.HasOne("backend.Domain.Entities.UnitSuperVisor", "Supervisor")
+                    b.HasOne("backend.Domain.Entities.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("SupervisorId")
+                        .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Supervisor");
+                    b.Navigation("ApplicationUser");
                 });
 #pragma warning restore 612, 618
         }
