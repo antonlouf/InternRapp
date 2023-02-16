@@ -10,8 +10,11 @@ public class InternShip
 {
     public int Id { get; set; }
     public Unit Unit { get; set; }
+    public int UnitId { get; set; }
     public string SchoolYear { get; set; }
-    public sbyte MaxStudents  { get; set; }
-    public sbyte CurrentCountOfStudents { get; set; }
+    public byte MaxStudents  { get; set; }
+    public Location Location { get; set; }
+    public int LocationId { get; set; }
+    public byte CurrentCountOfStudents { get; set; }
     public TrainingType RequiredTrainingType { get; set; }
 }

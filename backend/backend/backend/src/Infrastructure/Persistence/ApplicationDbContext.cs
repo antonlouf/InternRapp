@@ -22,13 +22,17 @@ public class ApplicationDbContext : DbContext,IApplicationDbContext
         _mediator = mediator;
     
     }
-    public DbSet<Unit> Units =>Set<Unit>(); 
+    public DbSet<Unit> Units =>Set<Unit>();
+    public DbSet<Location> Locations => Set<Location>();
+
 
     public DbSet<InternShip> InternShips =>Set<InternShip>();   
 
-    public DbSet<ApplicationUser> ApplicationUsers =>Set<ApplicationUser>();    
+    public DbSet<ApplicationUser> ApplicationUsers =>Set<ApplicationUser>();
 
-  
+    public DbSet<Language> Languages => Set<Language>();
+
+    public DbSet<Translation> Translations=>Set<Translation>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

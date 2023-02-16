@@ -16,17 +16,22 @@ public class CreateUnitValidator:AbstractValidator<CreateUnitCommand>
     public CreateUnitValidator(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext; 
-        RuleFor(x => x.SuperVisorId).NotEmpty().NotNull().GreaterThan(0).MustAsync(ValidSupervisorId).WithMessage("Make sure you are giving an valid id");
+        RuleFor(x => x.SuperVisorIds).NotEmpty().NotNull().MustAsync(ValidSupervisorId).WithMessage("Make sure you are giving an valid id");
         RuleFor(x => x.Name).NotEmpty().NotNull().MaximumLength(100).Must(CheckDepartmentName).WithMessage("Make sure you are giving a valid unit name");
     }
 
     private bool CheckDepartmentName(string arg) => arg.IsStringWithoutSpecialChars();
   
-    private async Task<bool> ValidSupervisorId(int id, CancellationToken arg2)
+    private async Task<bool> ValidSupervisorId(List<int> ids, CancellationToken arg2)
     {
         //this should later be replaced with mediator so the responsible handler is going call it instead this validator
-        var validator = new CommonValidationFunctions(_dbContext);
-       return await validator.CheckIfIdExists(id);
+        for (int i = 0; i < ids.Count; i++)
+        {
+            var validator = new CommonValidationFunctions(_dbContext);
+            var result=await validator.CheckIfIdExists(ids[i]);
+            if (!result) return false;
+        }
+        return true;
 
     }
 }

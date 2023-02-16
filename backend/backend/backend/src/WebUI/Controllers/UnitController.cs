@@ -17,12 +17,12 @@ public class UnitController : ControllerBase
         _mediator= mediator;    
     }
     //later to be adjusted dependent on what the situation should be see createunitcommand for more details!!
-    //[HttpGet]
-    //public async Task<IActionResult> Create()
-    //{
-    //    await _mediator.Send(new CreateUnitCommand() { Name = "HR", SuperVisorId = 1 });
-    //    return Ok();
-    //}
+    [HttpPost]
+    public async Task<IActionResult> Create(CreateUnitCommand command)
+    {
+        await _mediator.Send(command);
+        return Ok();
+    }
     [HttpGet("{id:int}")]
     
     public async Task<IActionResult> GetById(int id)

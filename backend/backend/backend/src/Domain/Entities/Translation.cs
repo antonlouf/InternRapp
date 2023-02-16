@@ -16,5 +16,7 @@ public class Translation
     public string Comment { get; set; }
     public string Content { get; set; }
     public InternShip InternShip { get; set; }
+    public int InternShipId { get; set; }
     public Language Language { get; set; }
+    public int LanguageId { get; set; }
 }

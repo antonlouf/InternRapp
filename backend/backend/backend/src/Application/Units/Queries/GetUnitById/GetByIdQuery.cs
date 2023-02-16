@@ -26,7 +26,8 @@ public class GetByIdQueryHandler : IRequestHandler<GetByIdQuery, UnitDetailsDto>
     }
     public async Task<UnitDetailsDto> Handle(GetByIdQuery request, CancellationToken cancellationToken)
     {
-        return await _dbContext.Units.Where(x => x.ApplicationUserId == request.Id).ProjectTo<UnitDetailsDto>(_iMapper.ConfigurationProvider).FirstOrDefaultAsync(cancellationToken);
+        return await Task.Run(() => { return new UnitDetailsDto(); }) ;    
+       // return await _dbContext.Units.Where(x => x.ApplicationUserId == request.Id).ProjectTo<UnitDetailsDto>(_iMapper.ConfigurationProvider).FirstOrDefaultAsync(cancellationToken);
     }
 }
 

@@ -12,6 +12,6 @@ public class UnitDetailsDto:IMapFrom<Unit>
 
     public void Mapping(Profile profile)
     {
-        profile.CreateMap<Unit, UnitDetailsDto>().ForMember(dest=>dest.Id,opt=>opt.MapFrom(src=>src.ApplicationUserId));
+        profile.CreateMap<Unit, UnitDetailsDto>();
     }
 }

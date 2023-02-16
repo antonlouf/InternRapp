@@ -8,5 +8,6 @@ namespace backend.Domain.Enums;
 public enum Role
 {
     Admin,
-    NormalUsere
+    UnitWorker,
+    Manager
 }

@@ -21,6 +21,7 @@
 
     <ItemGroup>
       <Folder Include="Common\Security\" />
+      <Folder Include="InternShips\Queries\" />
     </ItemGroup>
 
 </Project>

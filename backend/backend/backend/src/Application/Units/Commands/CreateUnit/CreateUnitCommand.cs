@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using backend.Application.Common.Interfaces;
+using backend.Domain.Entities;
 using MediatR;
-
+using Unit= backend.Domain.Entities.Unit;
 namespace backend.Application.Units.Commands.CreateUnit;
 public class CreateUnitCommand:IRequest
 {
     public string Name { get; set; }
-    public int SuperVisorId { get; set; }
+    public List<int> SuperVisorIds { get; set; }
 }
 public class CreateUnitCommandHandler : AsyncRequestHandler<CreateUnitCommand>
 {
@@ -21,10 +22,17 @@ public class CreateUnitCommandHandler : AsyncRequestHandler<CreateUnitCommand>
     }
     protected async override Task Handle(CreateUnitCommand request, CancellationToken cancellationToken)
     {
-        //Dependent of the situation this is true , if by creating a new unit we are going to make the assumption that
-        // the supervisor already exists 
-        //otherwise we should check if it exists and if not create it before inserting this record
-        await _dbContext.Units.AddAsync(new() { Name = request.Name, ApplicationUserId = request.SuperVisorId}) ;
+        var entityTobeAdded = new Unit() { Name = request.Name};
+        entityTobeAdded.ApplicationUser = new();
+        // get all users with this id and add to tobeadded
+        var queryable=_dbContext.ApplicationUsers.AsQueryable();
+        foreach(var id in request.SuperVisorIds) 
+        {
+            queryable=queryable.Where(x => x.Id == id);
+        }
+        var result=queryable.ToList();
+        entityTobeAdded.ApplicationUser.AddRange(result);
+        await _dbContext.Units.AddAsync(entityTobeAdded) ;
         await _dbContext.SaveChangesAsync(cancellationToken);
     }
 }

@@ -14,5 +14,13 @@ public interface IApplicationDbContext
     DbSet<ApplicationUser> ApplicationUsers { get; }
     DbSet<Unit> Units { get; }
 
+    DbSet<Location> Locations { get; }
+    DbSet<Language> Languages { get; }
+    DbSet<Translation> Translations { get; }
+
+
+
+
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }
