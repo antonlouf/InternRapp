@@ -4,13 +4,13 @@
     "\\backend",
     "\\backend\\src",
     "\\backend\\src\\Application",
-    "\\backend\\src\\Application\\Units",
-    "\\backend\\src\\Application\\Units\\Commands",
-    "\\backend\\src\\Application\\Units\\Commands\\DeleteUnit",
-    "\\backend\\src\\Application\\Units\\Common",
-    "\\backend\\src\\Application\\Units\\Queries",
-    "\\backend\\src\\Application\\Units\\Queries\\GetAllUnits"
+    "\\backend\\src\\Application\\InternShips",
+    "\\backend\\src\\Application\\InternShips\\Commands",
+    "\\backend\\src\\Application\\InternShips\\Commands\\CreateInternShip",
+    "\\backend\\src\\Application\\InternShips\\Common",
+    "\\backend\\src\\Domain",
+    "\\backend\\src\\Domain\\Entities"
   ],
-  "SelectedNode": "\\backend\\src\\WebUI\\Controllers\\UnitController.cs",
+  "SelectedNode": "\\backend\\src\\Application\\Common\\ValidationFunctions\\ValidationFunctionIdChecking.cs",
   "PreviewInSolutionExplorer": false
 }
