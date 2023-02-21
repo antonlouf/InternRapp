@@ -55,14 +55,12 @@ public class ValidationFunctionIdChecking
 
     public async Task<bool> CheckIfUnitIdExists(int arg1, CancellationToken arg2)
     {
-        //var result = await _mediator.Send(new Units.Queries.GetUnitById.GetByIdQuery() { Id = arg1 });
-        var result = await _dbContext.Units.FirstOrDefaultAsync(x => x.Id == arg1);
+        var result = await _mediator.Send(new Units.Queries.GetUnitById.GetByIdQuery() { Id = arg1 });
         return result != null;
     }
     public async Task<bool> CheckIfInternShipIdExists(int arg1, CancellationToken arg2)
     {
-        //var result = await _mediator.Send(new InternShips.Queries.GetInternShipById.GetByIdQuery() { Id = arg1 });
-        var result=await _dbContext.InternShips.FirstOrDefaultAsync(x => x.Id == arg1);
+        var result = await _mediator.Send(new InternShips.Queries.GetInternShipById.GetByIdQuery() { Id = arg1 });
         return result != null;
     }
     public async Task<bool> CheckIfTranslationIdExists(int arg1, CancellationToken arg2)

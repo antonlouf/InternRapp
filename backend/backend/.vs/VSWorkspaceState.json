@@ -5,12 +5,13 @@
     "\\backend\\src",
     "\\backend\\src\\Application",
     "\\backend\\src\\Application\\InternShips",
-    "\\backend\\src\\Application\\InternShips\\Commands",
-    "\\backend\\src\\Application\\InternShips\\Commands\\CreateInternShip",
     "\\backend\\src\\Application\\InternShips\\Common",
     "\\backend\\src\\Domain",
-    "\\backend\\src\\Domain\\Entities"
+    "\\backend\\src\\Domain\\Entities",
+    "\\backend\\src\\Infrastructure",
+    "\\backend\\src\\Infrastructure\\Persistence",
+    "\\backend\\src\\Infrastructure\\Persistence\\Configurations"
   ],
-  "SelectedNode": "\\backend\\src\\Application\\Common\\ValidationFunctions\\ValidationFunctionIdChecking.cs",
+  "SelectedNode": "\\backend\\src\\Infrastructure\\Persistence\\Configurations\\UnitConfiguration.cs",
   "PreviewInSolutionExplorer": false
 }

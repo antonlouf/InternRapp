@@ -20,8 +20,12 @@ public class GetByIdQueryValidator:AbstractValidator<GetByIdQuery>
         _dbContext = dbContext;
         _mediator = mediator;
         var validator = new ValidationFunctionIdChecking(_mediator,_dbContext);
-        RuleFor(x => x.Id).NotEmpty().NotNull().GreaterThan(0).MustAsync(validator.CheckIfUnitIdExists).WithMessage("Make sure you are giving an existing ID!(also greater than 0)");
+        RuleFor(x => x.Id).NotEmpty().NotNull().GreaterThan(0).MustAsync(CheckUnitIdExists).WithMessage("Make sure you are giving an existing ID!(also greater than 0)");
     }
 
-  
+    private async Task<bool> CheckUnitIdExists(int arg1, CancellationToken arg2)
+    {
+        var result= await _dbContext.Units.FirstOrDefaultAsync(x=>x.Id== arg1);
+        return result!=null;
+    }
 }

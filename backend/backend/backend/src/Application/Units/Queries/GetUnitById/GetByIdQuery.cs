@@ -17,8 +17,8 @@ public class GetByIdQuery:IRequest<UnitDetailsDto>
 }
 public class GetByIdQueryHandler : IRequestHandler<GetByIdQuery, UnitDetailsDto>
 {
-    private IApplicationDbContext _dbContext;
-    private IMapper _iMapper;
+    private readonly IApplicationDbContext _dbContext;
+    private readonly IMapper _iMapper;
     public GetByIdQueryHandler(IApplicationDbContext applicationDbContext,IMapper mapper)
     {
         _dbContext= applicationDbContext;
