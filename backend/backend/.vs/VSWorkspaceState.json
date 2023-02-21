@@ -4,14 +4,13 @@
     "\\backend",
     "\\backend\\src",
     "\\backend\\src\\Application",
+    "\\backend\\src\\Application\\ApplicationUsers",
+    "\\backend\\src\\Application\\ApplicationUsers\\Queries",
+    "\\backend\\src\\Application\\ApplicationUsers\\Queries\\GetApplicationUserById",
     "\\backend\\src\\Application\\InternShips",
-    "\\backend\\src\\Application\\InternShips\\Common",
-    "\\backend\\src\\Domain",
-    "\\backend\\src\\Domain\\Entities",
-    "\\backend\\src\\Infrastructure",
-    "\\backend\\src\\Infrastructure\\Persistence",
-    "\\backend\\src\\Infrastructure\\Persistence\\Configurations"
+    "\\backend\\src\\Application\\InternShips\\Queries",
+    "\\backend\\src\\Application\\InternShips\\Queries\\GetInternShipById"
   ],
-  "SelectedNode": "\\backend\\src\\Infrastructure\\Persistence\\Configurations\\UnitConfiguration.cs",
+  "SelectedNode": "\\backend\\src\\Application\\Common\\ValidationFunctions\\ValidationFunctionIdChecking.cs",
   "PreviewInSolutionExplorer": false
 }

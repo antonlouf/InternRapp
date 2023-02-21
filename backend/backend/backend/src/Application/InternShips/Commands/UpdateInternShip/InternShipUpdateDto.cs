@@ -14,6 +14,7 @@ public class InternShipUpdateDto
     public int UnitId { get; set; }
     public byte MaxCountOfStudents { get; set; }
     public TrainingType TrainingType { get; set; }
+    public byte CurrentCountOfStudents { get; set; }
 
 
     public int LocationId { get; set; }

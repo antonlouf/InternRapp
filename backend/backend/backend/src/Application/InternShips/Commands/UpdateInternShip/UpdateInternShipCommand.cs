@@ -25,6 +25,7 @@ public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternSh
         internShip.RequiredTrainingType = request.Dto.TrainingType;
         internShip.LocationId = request.Dto.LocationId;
         internShip.UnitId = request.Dto.UnitId;
+        internShip.CurrentCountOfStudents= request.Dto.CurrentCountOfStudents;
 
 
 

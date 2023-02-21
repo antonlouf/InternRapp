@@ -40,8 +40,12 @@ app.Use(async (context, next) =>
     {
 
         var errorsAsArray = ex.Errors.Values.ToArray();
-        var error = errorsAsArray[0][1];
+        string error = "";
+        var result = errorsAsArray[0].Length;
+        error = errorsAsArray[0][0];
+        context.Response.StatusCode = 422;
         await context.Response.WriteAsJsonAsync(error);
+
 
 
     }
