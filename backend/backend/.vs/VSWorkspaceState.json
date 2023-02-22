@@ -4,13 +4,15 @@
     "\\backend",
     "\\backend\\src",
     "\\backend\\src\\Application",
-    "\\backend\\src\\Application\\ApplicationUsers",
-    "\\backend\\src\\Application\\ApplicationUsers\\Queries",
-    "\\backend\\src\\Application\\ApplicationUsers\\Queries\\GetApplicationUserById",
-    "\\backend\\src\\Application\\InternShips",
-    "\\backend\\src\\Application\\InternShips\\Queries",
-    "\\backend\\src\\Application\\InternShips\\Queries\\GetInternShipById"
+    "\\backend\\src\\Application\\Units",
+    "\\backend\\src\\Application\\Units\\Queries",
+    "\\backend\\src\\Application\\Units\\Queries\\GetUnitById",
+    "\\backend\\src\\Infrastructure",
+    "\\backend\\src\\Infrastructure\\Persistence",
+    "\\backend\\src\\Infrastructure\\Persistence\\Configurations",
+    "\\backend\\src\\WebUI",
+    "\\backend\\src\\WebUI\\Controllers"
   ],
-  "SelectedNode": "\\backend\\src\\Application\\Common\\ValidationFunctions\\ValidationFunctionIdChecking.cs",
+  "SelectedNode": "\\backend\\src\\WebUI\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

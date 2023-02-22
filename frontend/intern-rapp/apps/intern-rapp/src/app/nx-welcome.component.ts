@@ -1,9 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 /* eslint-disable */
 
 @Component({
   selector: 'intern-rapp-nx-welcome',
+  standalone: true,
+  imports: [CommonModule],
   template: `
     <!--
      * * * * * * * * * * * * * * * * * * * * * * * * * * * *

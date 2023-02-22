@@ -14,7 +14,7 @@
           "test",
           "e2e"
         ],
-        "accessToken": "ZDczMGY4MWItMzU2Yi00M2M5LWI2YmYtZjJhNThkZjFiZDI4fHJlYWQtd3JpdGU="
+        "accessToken": "ZTFiNjU4M2ItNGUxMi00ZjgzLWI5MWItN2ExNTVjMTViNmQ0fHJlYWQtd3JpdGU="
       }
     }
   },
@@ -44,7 +44,8 @@
     "lint": {
       "inputs": [
         "default",
-        "{workspaceRoot}/.eslintrc.json"
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintignore"
       ]
     }
   },
@@ -76,6 +77,5 @@
     "@nrwl/angular:component": {
       "style": "scss"
     }
-  },
-  "defaultProject": "intern-rapp"
+  }
 }
