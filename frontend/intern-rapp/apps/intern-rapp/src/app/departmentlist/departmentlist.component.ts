@@ -14,10 +14,12 @@ import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { ComponentType } from '@angular/cdk/portal';
 
 import { UpdatepopupComponent } from '../updatepopup/updatepopup.component';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCheckboxChange, MatCheckboxModule} from '@angular/material/checkbox';
 import { User } from '../entities/user';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionSelectionChange } from '@angular/material/core';
 const users=[
   {Id:1,Name: "matthias@realdolmen.com"},
   {Id:2,Name: "Niels@realdolmen.com"},
@@ -38,13 +40,14 @@ const ELEMENT_DATA: Department[] = [
 @Component({
   selector: 'intern-rapp-departmentlist',
   standalone: true,
-  imports: [CommonModule,MatTableModule,MatFormFieldModule,MatPaginatorModule,MatInputModule,MatSortModule,MatDialogModule,PopupComponent,DeletePopupComponent,FormsModule,MatCheckboxModule,MatButtonModule],
+  imports: [CommonModule,MatTableModule,MatFormFieldModule,MatPaginatorModule,MatInputModule,MatSortModule,MatDialogModule,PopupComponent,DeletePopupComponent,FormsModule,MatCheckboxModule,MatButtonModule,ReactiveFormsModule,MatSelectModule],
   templateUrl: './departmentlist.component.html',
   styleUrls: ['./departmentlist.component.scss'],
 })
 export class DepartmentlistComponent implements AfterViewInit{
   @ViewChild('updateTemplate') updateTemplate!: TemplateRef<any>;
   @ViewChild('addTemplate') addTemplate!: TemplateRef<any>;
+ selectedItem=[{Id:-2}];
   displayedColumns: string[] = ['Name','actions'];
   dataToDisplay = [...ELEMENT_DATA];
   dataSource: MatTableDataSource<Department>;
@@ -135,8 +138,8 @@ userss :any;
     this.tempmanagers=[];
   });
   }
-  checkboxChange(event :MatCheckboxChange){
-    if(event.checked){
+  checkboxChange(event :MatOptionSelectionChange<string>){
+    if(!event.source.disabled){
       this.tempmanagers.push(users[parseInt(event.source.value)-1])
     }
     else{
@@ -144,7 +147,10 @@ userss :any;
     }
  
   }
-  checkIsSelectedManager(user : User){
+  checkIsSelectedManager(event: matselect){
+
+    this.selectedItem.push({Id:parseInt(event.source.value)})
+
     let isChecked=false;
     this.updatingItem.managers.forEach(x=>{
       if(x.Id===user.Id)isChecked=true;
@@ -175,17 +181,36 @@ userss :any;
     this.itemToBeAdded.managers.forEach(x=>{
       if(x.Id===user.Id)isChecked=true;
     });
-
     return isChecked; 
   }
-  checkboxChangeByAdding(event: MatCheckboxChange){
-    if(event.checked){
+  checkboxChangeByAdding(event: MatOptionSelectionChange<string>){
+    if(!event.source.disabled){
       this.itemToBeAdded.managers.push(users[parseInt(event.source.value)-1])
+      this.selectedItem.push({Id:parseInt(event.source.value)})
     }
     else{
       this.itemToBeAdded.managers=this.itemToBeAdded.managers.filter(x=>x.Id!=parseInt(event.source.value))
+      this.selectedItem=this.selectedItem.filter(x=>x.Id.toString()==event.source.value)
+    
     }
   }
+
+
+
+
+
+
+  // checkIsSelectedManager(user : User){
+
+  //   this.selectedItem.push({Id:parseInt(event.source.value)})
+
+  //   let isChecked=false;
+  //   this.updatingItem.managers.forEach(x=>{
+  //     if(x.Id===user.Id)isChecked=true;
+  //   });
+
+  //   return isChecked;
+  // }
 }
 
 

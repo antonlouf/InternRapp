@@ -8,7 +8,7 @@ using Unit = MediatR.Unit;
 namespace backend.Application.ApplicationUsers.Commands.CreateApplicationUserCommand;
 public class CreateApplicationUserCommand : IRequest
 {
-    public Role Role { get; set; }
+  
     public string Email { get; set; }
 }
 public class CreateApplicationUserCommandHandler : AsyncRequestHandler<CreateApplicationUserCommand>
@@ -25,7 +25,7 @@ public class CreateApplicationUserCommandHandler : AsyncRequestHandler<CreateApp
 
     protected override async Task Handle(CreateApplicationUserCommand request, CancellationToken cancellationToken)
     {
-        await _dbContext.ApplicationUsers.AddAsync(new() { Email = request.Email, Role = request.Role });
+        await _dbContext.ApplicationUsers.AddAsync(new() { Email = request.Email });
         await _dbContext.SaveChangesAsync(cancellationToken);
     }
 

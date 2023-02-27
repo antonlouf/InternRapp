@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace backend.Infrastructure.Persistence.Configurations;
-public class TranslationConfiguration : IEntityTypeConfiguration<Translation>
+public class InternShipContentTranslationConfiguration : IEntityTypeConfiguration<InternShipContentTranslation>
 {
-    public void Configure(EntityTypeBuilder<Translation> builder)
+    public void Configure(EntityTypeBuilder<InternShipContentTranslation> builder)
     {
         builder.HasKey(x=>x.Id);
         builder.Property(x => x.TitleContent).IsRequired().HasMaxLength(40);

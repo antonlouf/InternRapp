@@ -16,7 +16,7 @@ public interface IApplicationDbContext
 
     DbSet<Location> Locations { get; }
     DbSet<Language> Languages { get; }
-    DbSet<Translation> Translations { get; }
+    DbSet<InternShipContentTranslation> Translations { get; }
 
 
 

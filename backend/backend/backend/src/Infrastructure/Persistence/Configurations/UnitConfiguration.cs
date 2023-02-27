@@ -18,7 +18,7 @@ public class UnitConfiguration : IEntityTypeConfiguration<Unit>
                                     .IsRequired();
         builder.HasIndex(x => x.Name);
         
-        builder.HasMany(x => x.ApplicationUser);
+        builder.Property(x=>x.ManagerEmails).UsePropertyAccessMode(PropertyAccessMode.PreferProperty).HasConversion(v=>string.Join(',',v),x=>x.Split(',',StringSplitOptions.RemoveEmptyEntries).ToList());
         
     }
 }

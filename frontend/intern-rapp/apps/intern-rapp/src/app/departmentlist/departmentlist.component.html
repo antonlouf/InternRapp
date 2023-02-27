@@ -61,22 +61,60 @@ Update
     <div>
 
     </div>
-    <mat-checkbox (change)="checkboxChange($event)"  checked="{{checkIsSelectedManager(item)}}" *ngFor="let item of userss" class="example-margin" value="{{item.Id}}">{{item.Name}}
+    <!-- <mat-checkbox (change)="checkboxChange($event)"  checked="{{checkIsSelectedManager(item)}}" *ngFor="let item of userss" class="example-margin" value="{{item.Id}}">{{item.Name}}
 
-    </mat-checkbox>
-
+    </mat-checkbox> -->
+    <mat-form-field>
+      <mat-label>select manager(s)</mat-label>
+      <mat-select multiple >
+      
+      <mat-option [(ngModel)]="selectedItem" *ngFor="let item of userss" (onSelectionChange)="checkboxChange($event)"   class="example-margin" value="{{item.Id}}">
+        <!-- <mat-checkbox formControlName="" (change)="checkboxChangeByAdding($event)"   checked="{{checkIsSelectedManager(item)}}"  class="example-margin" value="{{item.Id}}">{{item.Name}}
+      
+        </mat-checkbox> -->
+      {{item.Name}}
+      </mat-option>
+        </mat-select>
+      </mat-form-field>
   </ng-template>
 
   <ng-template #addTemplate>
+
+<!-- <form [formGroup]="profileForm">
+
+  <mat-form-field appearance="fill">
+    <mat-label>The name of the department</mat-label>
+    <input formControlName="Name" [(ngModel)]="this.itemToBeAdded.Name" matInput   placeholder="Ex. Java competence center">
+  </mat-form-field>
+  <mat-checkbox formControlName="" (change)="checkboxChangeByAdding($event)"  checked="{{checkIsSelectedManager(item)}}" *ngFor="let item of userss" class="example-margin" value="{{item.Id}}">{{item.Name}}
+
+  </mat-checkbox>
+</form> -->
+
     <mat-form-field appearance="fill">
       <mat-label>The name of the department</mat-label>
       <input [(ngModel)]="this.itemToBeAdded.Name" matInput   placeholder="Ex. Java competence center">
     </mat-form-field>
-    <div>
+    <mat-form-field>
+      <mat-label>select manager(s)</mat-label>
+    <mat-select multiple >
+     
+   
+<mat-option *ngFor="let item of userss" (onSelectionChange)="checkboxChangeByAdding($event)"      class="example-margin" value="{{item.Id}}">
+  <!-- <mat-checkbox formControlName="" (change)="checkboxChangeByAdding($event)"   checked="{{checkIsSelectedManager(item)}}"  class="example-margin" value="{{item.Id}}">{{item.Name}}
 
-    </div>
-    <mat-checkbox (change)="checkboxChangeByAdding($event)"  checked="{{checkIsSelectedManager(item)}}" *ngFor="let item of userss" class="example-margin" value="{{item.Id}}">{{item.Name}}
+  </mat-checkbox> -->
+{{item.Name}}
+</mat-option>
+    </mat-select>
+     
+  </mat-form-field>
+    
+    
+ 
+    <!-- <mat-checkbox formControlName="" (change)="checkboxChangeByAdding($event)"  checked="{{checkIsSelectedManager(item)}}" *ngFor="let item of userss" class="example-margin" value="{{item.Id}}">{{item.Name}}
 
-    </mat-checkbox>
+    </mat-checkbox> -->
+ 
 
   </ng-template>

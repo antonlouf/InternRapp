@@ -32,7 +32,7 @@ public class ApplicationDbContext : DbContext,IApplicationDbContext
 
     public DbSet<Language> Languages => Set<Language>();
 
-    public DbSet<Translation> Translations=>Set<Translation>();
+    public DbSet<InternShipContentTranslation> Translations=>Set<InternShipContentTranslation>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

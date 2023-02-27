@@ -15,8 +15,8 @@ public class CreateUnitValidator:AbstractValidator<CreateUnitCommand>
     private readonly IApplicationDbContext _dbContext;
     public CreateUnitValidator(IApplicationDbContext dbContext)
     {
-        _dbContext = dbContext; 
-        RuleFor(x => x.SuperVisorIds).NotEmpty().NotNull().MustAsync(ValidSupervisorId).WithMessage("Make sure you are giving an valid id");
+        _dbContext = dbContext;
+        RuleFor(x => x.SuperVisorEmails).NotEmpty().NotNull();
         RuleFor(x => x.Name).NotEmpty().NotNull().MaximumLength(100).Must(CheckDepartmentName).WithMessage("Make sure you are giving a valid unit name");
     }
 

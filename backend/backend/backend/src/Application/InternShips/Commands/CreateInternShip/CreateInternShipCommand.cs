@@ -29,7 +29,7 @@ public class CreateInternShipCommandHandler : AsyncRequestHandler<CreateInternSh
        var result= await _dbContext.InternShips.AddAsync(new() { MaxStudents = request.Dto.MaxCountOfStudents, RequiredTrainingType = request.Dto.TrainingType, SchoolYear = request.Dto.SchoolYear, UnitId = request.Dto.UnitId,LocationId=request.Dto.LocationId });
         // also add command for translationss!! (for english etc) for loop for each language
         await _dbContext.SaveChangesAsync(cancellationToken);
-        var list = new List<Translation>();
+        var list = new List<InternShipContentTranslation>();
         for (int i = 0; i < request.Dto.Versions.Count; i++)
         {
             list.Add(new()

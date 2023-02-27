@@ -9,7 +9,7 @@ using backend.Application.Units.Queries.GetAllUnits;
 using backend.Domain.Entities;
 
 namespace backend.Application.InternShips.Queries.GetAllInternShips;
-public class TranslationDto : IMapFrom<Translation>
+public class TranslationDto : IMapFrom<InternShipContentTranslation>
 {
     public int Id { get; set; }
     public string TitleContent { get; set; }
@@ -23,7 +23,7 @@ public class TranslationDto : IMapFrom<Translation>
     public int InternShipId { get; set; }
     public void Mapping(Profile profile)
     {
-        profile.CreateMap<Translation, TranslationDto>();
+        profile.CreateMap<InternShipContentTranslation, TranslationDto>();
 
     }
 }

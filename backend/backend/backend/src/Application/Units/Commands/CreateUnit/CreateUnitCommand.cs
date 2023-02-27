@@ -11,7 +11,7 @@ namespace backend.Application.Units.Commands.CreateUnit;
 public class CreateUnitCommand:IRequest
 {
     public string Name { get; set; }
-    public List<int> SuperVisorIds { get; set; }
+    public List<string> SuperVisorEmails { get; set; }
 }
 public class CreateUnitCommandHandler : AsyncRequestHandler<CreateUnitCommand>
 {
@@ -22,16 +22,10 @@ public class CreateUnitCommandHandler : AsyncRequestHandler<CreateUnitCommand>
     }
     protected async override Task Handle(CreateUnitCommand request, CancellationToken cancellationToken)
     {
-        var entityTobeAdded = new Unit() { Name = request.Name};
-        entityTobeAdded.ApplicationUser = new();
+        var entityTobeAdded = new Unit() { Name = request.Name,ManagerEmails=request.SuperVisorEmails};
         // get all users with this id and add to tobeadded
-        var queryable=_dbContext.ApplicationUsers.AsQueryable();
-        foreach(var id in request.SuperVisorIds) 
-        {
-            queryable=queryable.Where(x => x.Id == id);
-        }
-        var result=queryable.ToList();
-        entityTobeAdded.ApplicationUser.AddRange(result);
+        
+        
         await _dbContext.Units.AddAsync(entityTobeAdded) ;
         await _dbContext.SaveChangesAsync(cancellationToken);
     }

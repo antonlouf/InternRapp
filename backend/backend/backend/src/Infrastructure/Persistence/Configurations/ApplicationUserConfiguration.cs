@@ -15,6 +15,7 @@ public class ApplicationUserConfiguration : IEntityTypeConfiguration<Application
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Email).IsRequired().HasMaxLength(100);
         builder.HasAlternateKey(x => x.Email);
-        builder.Property(x=>x.Role).IsRequired();
+        builder.Property(x=>x.ObjectIdentifier).IsRequired();
+        builder.HasIndex(x => x.ObjectIdentifier);
     }
 }

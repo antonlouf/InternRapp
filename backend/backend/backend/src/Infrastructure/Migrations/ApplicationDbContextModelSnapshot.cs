@@ -35,17 +35,14 @@ namespace backend.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UnitId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ObjectIdentifier")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasAlternateKey("Email");
 
-                    b.HasIndex("UnitId");
+                    b.HasIndex("ObjectIdentifier");
 
                     b.ToTable("ApplicationUsers");
                 });
@@ -88,45 +85,7 @@ namespace backend.Infrastructure.Migrations
                     b.ToTable("InternShips");
                 });
 
-            modelBuilder.Entity("backend.Domain.Entities.Language", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.HasAlternateKey("Name");
-
-                    b.ToTable("Languages");
-                });
-
-            modelBuilder.Entity("backend.Domain.Entities.Location", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Locations");
-                });
-
-            modelBuilder.Entity("backend.Domain.Entities.Translation", b =>
+            modelBuilder.Entity("backend.Domain.Entities.InternShipContentTranslation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -184,7 +143,7 @@ namespace backend.Infrastructure.Migrations
                     b.ToTable("Translations");
                 });
 
-            modelBuilder.Entity("backend.Domain.Entities.Unit", b =>
+            modelBuilder.Entity("backend.Domain.Entities.Language", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -199,18 +158,63 @@ namespace backend.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasAlternateKey("Name");
+
+                    b.ToTable("Languages");
+                });
+
+            modelBuilder.Entity("backend.Domain.Entities.Location", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("HouseNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StreetName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Locations");
+                });
+
+            modelBuilder.Entity("backend.Domain.Entities.Unit", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ManagerEmails")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
                     b.HasIndex("Name");
 
                     b.ToTable("Units");
-                });
-
-            modelBuilder.Entity("backend.Domain.Entities.ApplicationUser", b =>
-                {
-                    b.HasOne("backend.Domain.Entities.Unit", "Unit")
-                        .WithMany("ApplicationUser")
-                        .HasForeignKey("UnitId");
-
-                    b.Navigation("Unit");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
@@ -232,7 +236,7 @@ namespace backend.Infrastructure.Migrations
                     b.Navigation("Unit");
                 });
 
-            modelBuilder.Entity("backend.Domain.Entities.Translation", b =>
+            modelBuilder.Entity("backend.Domain.Entities.InternShipContentTranslation", b =>
                 {
                     b.HasOne("backend.Domain.Entities.InternShip", "InternShip")
                         .WithMany()
@@ -249,11 +253,6 @@ namespace backend.Infrastructure.Migrations
                     b.Navigation("InternShip");
 
                     b.Navigation("Language");
-                });
-
-            modelBuilder.Entity("backend.Domain.Entities.Unit", b =>
-                {
-                    b.Navigation("ApplicationUser");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -10,6 +11,21 @@ namespace backend.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "ApplicationUsers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ObjectIdentifier = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ApplicationUsers", x => x.Id);
+                    table.UniqueConstraint("AK_ApplicationUsers_Email", x => x.Email);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Languages",
                 columns: table => new
@@ -30,7 +46,10 @@ namespace backend.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    City = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    StreetName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    HouseNumber = table.Column<int>(type: "int", nullable: false),
+                    ZipCode = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,32 +62,12 @@ namespace backend.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ManagerEmails = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Units", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ApplicationUsers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Role = table.Column<int>(type: "int", nullable: false),
-                    UnitId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ApplicationUsers", x => x.Id);
-                    table.UniqueConstraint("AK_ApplicationUsers_Email", x => x.Email);
-                    table.ForeignKey(
-                        name: "FK_ApplicationUsers_Units_UnitId",
-                        column: x => x.UnitId,
-                        principalTable: "Units",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -135,9 +134,9 @@ namespace backend.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ApplicationUsers_UnitId",
+                name: "IX_ApplicationUsers_ObjectIdentifier",
                 table: "ApplicationUsers",
-                column: "UnitId");
+                column: "ObjectIdentifier");
 
             migrationBuilder.CreateIndex(
                 name: "IX_InternShips_LocationId",

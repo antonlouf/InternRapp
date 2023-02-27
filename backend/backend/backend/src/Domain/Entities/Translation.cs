@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace backend.Domain.Entities;
-public class Translation
+public class InternShipContentTranslation
 {
     public int Id { get; set; }
     public string TitleContent { get; set; }

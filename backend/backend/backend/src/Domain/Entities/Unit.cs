@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,8 +10,11 @@ public class Unit
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public List<ApplicationUser> ApplicationUser { get; set; }
-    
+    private string _managerEmails;
 
-
+    public List<string> ManagerEmails
+    {
+        get { return _managerEmails.Split(',').ToList(); }
+        set { _managerEmails = string.Join(',',value); }
+    }
 }
