@@ -1,0 +1,31 @@
+
+
+<intern-rapp-popup >
+    <div heading  >
+        Confirm Delete
+    
+    </div>
+    <div content> 
+        Are you sure to delete {{this.deletedItem}}?
+    </div>
+    <div actions>
+        <div style="display: flex;flex-direction: row; gap: 15px;">
+            <div>
+                <button mat-button  (click)="delete()">
+                    <i class="fa fa-trash" aria-hidden="true"></i> 
+                    &nbsp;
+                    Delete
+                </button>
+            </div>
+        <div>
+            <button mat-button (click)="cancel()">
+                Cancel
+            </button> 
+        </div>
+        </div>
+       
+    </div>
+</intern-rapp-popup> 
+
+
+

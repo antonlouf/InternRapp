@@ -19,9 +19,7 @@
           "apps/intern-rapp/src/favicon.ico",
           "apps/intern-rapp/src/assets"
         ],
-        "styles": ["apps/intern-rapp/src/styles.scss"
-              
-      ],
+        "styles": ["apps/intern-rapp/src/styles.scss"],
         "scripts": []
       },
       "configurations": {
