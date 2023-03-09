@@ -16,7 +16,7 @@ public  class CommonValidationFunctions
     }
     public async  Task<bool> CheckIfIdExists(int id)
     {
-        return (await _dbContext.ApplicationUsers.Where(x => x.Id == id).FirstOrDefaultAsync() != null);
+        return (await _dbContext.Units.Where(x => x.Id == id).FirstOrDefaultAsync() != null);
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using backend.Application.ApplicationUsers.Commands.CreateApplicationUserCommand;
+﻿using backend.Application.ApplicationUsers.Commands.CreateApplicationUser;
+using backend.Application.ApplicationUsers.Queries.GetApplicationUserByEmailContaining;
 using backend.Application.InternShips.Commands.CreateInternShip;
 using backend.Application.InternShips.Commands.UpdateInternShip;
 using MediatR;
@@ -19,6 +20,12 @@ public class ApplicationUserController : ControllerBase
     {
         await _mediator.Send(dto);
         return Ok();
+    }
+    [HttpGet]
+    public async Task<IActionResult> GetAllEmailsContaining(string filterValue)
+    {
+        var result = await _mediator.Send(new GetByEmailContainingQuery() { EmailAdress=filterValue});
+        return Ok(result);
     }
     //[HttpGet]
     //public async Task<IActionResult> GetAll()

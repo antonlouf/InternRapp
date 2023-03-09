@@ -1,3 +1,4 @@
+using backend.Application;
 using backend.Application.Common.Exceptions;
 
 
@@ -11,7 +12,15 @@ builder.Services.AddWebUIServices();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "cors",
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:4200"
+                                              ).AllowCredentials().AllowAnyMethod().AllowAnyHeader();
+                      });
+});
 
 var app = builder.Build();
 
@@ -60,7 +69,7 @@ app.UseSwaggerUI(options =>
     options.RoutePrefix = string.Empty;
 });
 app.UseRouting();
-
+app.UseCors("cors");
 app.UseAuthentication();
 app.UseAuthorization();
 

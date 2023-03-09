@@ -1,31 +1,45 @@
+<div  >
 
-
-<intern-rapp-popup >
-    <div heading  >
-        Confirm Delete
+    <div   style=" margin-left: 1%;margin-top: 2%;justify-content: center;text-align: center;">
+        <div mat-dialog-title 
+        >
+            Delete  {{title}}
+        </div>
+    </div>
     
     </div>
-    <div content> 
-        Are you sure to delete {{this.deletedItem}}?
-    </div>
-    <div actions>
-        <div style="display: flex;flex-direction: row; gap: 15px;">
-            <div>
-                <button mat-button  (click)="delete()">
-                    <i class="fa fa-trash" aria-hidden="true"></i> 
-                    &nbsp;
-                    Delete
-                </button>
-            </div>
+    
+    <mat-divider></mat-divider>
+    
+    <mat-dialog-content class="mat-typography">
+ 
+        are you sure to delete a {{title}}?
+    
+  
+    
+    
+    </mat-dialog-content>
+    
+    
+    <mat-dialog-actions align="center">
+       <div class="flex-row">
         <div>
-            <button mat-button (click)="cancel()">
-                Cancel
-            </button> 
+            <button (click)="closeDialog(true)"  class="cancel-button flex-row-cancel-save-update" >
+                
+            <div><mat-icon>delete</mat-icon></div>
+            <div>Delete</div>
+            </button>
         </div>
+        <div>
+            <button (click)="closeDialog(false)" class="cancel-button flex-row-cancel-save-update"   mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                <div>
+                    <mat-icon>cancel</mat-icon> 
+                </div>        
+                    <div>
+                        Cancel
+                    </div>
+                       </button>
         </div>
-       
-    </div>
-</intern-rapp-popup> 
-
-
-
+       </div>
+    </mat-dialog-actions>
+    

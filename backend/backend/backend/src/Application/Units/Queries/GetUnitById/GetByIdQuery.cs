@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using backend.Application.ApplicationUsers.Queries.GetById;
 using backend.Application.Common.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

@@ -5,10 +5,10 @@ using backend.Domain.Enums;
 using MediatR;
 using Unit = MediatR.Unit;
 
-namespace backend.Application.ApplicationUsers.Commands.CreateApplicationUserCommand;
+namespace backend.Application.ApplicationUsers.Commands.CreateApplicationUser;
 public class CreateApplicationUserCommand : IRequest
 {
-  
+
     public string Email { get; set; }
 }
 public class CreateApplicationUserCommandHandler : AsyncRequestHandler<CreateApplicationUserCommand>

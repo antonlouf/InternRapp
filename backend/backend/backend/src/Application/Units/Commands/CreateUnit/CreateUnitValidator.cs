@@ -21,17 +21,4 @@ public class CreateUnitValidator:AbstractValidator<CreateUnitCommand>
     }
 
     private bool CheckDepartmentName(string arg) => arg.IsStringWithoutSpecialChars();
-  
-    private async Task<bool> ValidSupervisorId(List<int> ids, CancellationToken arg2)
-    {
-        //this should later be replaced with mediator so the responsible handler is going call it instead this validator
-        for (int i = 0; i < ids.Count; i++)
-        {
-            var validator = new CommonValidationFunctions(_dbContext);
-            var result=await validator.CheckIfIdExists(ids[i]);
-            if (!result) return false;
-        }
-        return true;
-
-    }
 }

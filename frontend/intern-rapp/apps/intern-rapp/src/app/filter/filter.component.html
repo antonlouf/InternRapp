@@ -1,0 +1,19 @@
+<form [formGroup]="filterForm" class="example-form">
+<div class="flex-row">
+<div class="flex-start" *ngFor="let filter of filters">
+<mat-form-field [ngSwitch]="filter.type">
+        <mat-label >{{filter.label}}</mat-label>
+        <input  matInput *ngSwitchCase="filtertype.Text"  formControlName="{{filter.name}}">
+        <input  matInput *ngSwitchCase="filtertype.Dropdown"  formControlName="{{filter.name}}"> 
+
+</mat-form-field>
+</div>
+<div class="flex-end"> 
+<button (click)="filter()" class="flex-row ">
+                <mat-icon>search</mat-icon> 
+</button>
+</div>
+</div>
+</form>
+  
+  

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using backend.Application.ApplicationUsers.Queries.GetById;
 using backend.Application.Common.Mappings;
 using backend.Domain.Entities;
 

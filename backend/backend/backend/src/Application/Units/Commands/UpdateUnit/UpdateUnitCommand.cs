@@ -30,7 +30,8 @@ public class UpdateUnitCommandHandler : AsyncRequestHandler<UpdateUnitCommand>
     {
         //add control to the validator to check there is an existing item with this id!!
         var unit = await _dbContext.Units.Where(x => x.Id == request.Unit.Id).FirstOrDefaultAsync();
-        unit.Name= request.Unit.Name;   
+        unit.Name= request.Unit.Name; 
+        unit.ManagerEmails=request.Unit.ManagerEmails;
         _dbContext.Units.Update(unit);
        await _dbContext.SaveChangesAsync(cancellationToken);
     }

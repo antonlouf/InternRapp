@@ -1,0 +1,48 @@
+
+
+    <intern-rapp-baselist  
+    [result$]="listData$"
+    [filters]="filters"
+    (filtered)="filterUpdating($event)"
+    (pagingUpdated)="pagingUpdated($event)"
+    >
+
+    <ng-template
+    internRappItemsTmpl let-items 
+    >
+    <button (click)="addDepartment()" class="align-right save-button-above-list"  >
+      <div class="flex-row center-flex-items" >
+        <div>    <mat-icon>add</mat-icon></div>
+        <div>add</div>
+      </div>
+    </button>
+      <mat-list >
+  
+        <mat-list-item  *ngFor="let item of items">
+         
+          <div class="flex-row" >
+            <div class="flex-begin">{{item.name}}:department name managers:{{item.managerEmails}}</div>
+            <div class="flex-end">
+              <div class="flex-row ">
+                <div >     
+                   <button (click)="delete(item.id)"   class="cancel-button"   mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+                <div>
+                  <button (click)="updateDepartment(item)" class="save-button" color="primary" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <mat-divider></mat-divider>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </ng-template>
+
+    </intern-rapp-baselist> 

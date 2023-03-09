@@ -20,6 +20,7 @@ public class DeleteUnitCommandValidator:AbstractValidator<DeleteUnitCommand>
     private async Task<bool> CheckIfIdExists(int id, CancellationToken arg2)
     {
         var validator = new CommonValidationFunctions(_dbContext);
-        return await validator.CheckIfIdExists(id);
+       return await validator.CheckIfIdExists(id);
+      
     }
 }
