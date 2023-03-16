@@ -26,8 +26,8 @@ public class DeleteUnitCommandHandler : AsyncRequestHandler<DeleteUnitCommand>
   
     protected async override Task Handle(DeleteUnitCommand request, CancellationToken cancellationToken)
     {
-        var entityTobeDeleted=await _dbContext.Units.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
-        _dbContext.Units.Remove(entityTobeDeleted);
+        var entityTobeDeleted=await _dbContext.Departments.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+        _dbContext.Departments.Remove(entityTobeDeleted);
         await _dbContext.SaveChangesAsync(cancellationToken);
         
     }

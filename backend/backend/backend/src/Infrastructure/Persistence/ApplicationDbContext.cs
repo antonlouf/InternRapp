@@ -6,7 +6,7 @@ using MediatR;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Unit = backend.Domain.Entities.Unit;
+using Department = backend.Domain.Entities.Department;
 
 namespace backend.Infrastructure.Persistence;
 public class ApplicationDbContext : DbContext,IApplicationDbContext
@@ -22,7 +22,7 @@ public class ApplicationDbContext : DbContext,IApplicationDbContext
         _mediator = mediator;
     
     }
-    public DbSet<Unit> Units =>Set<Unit>();
+    public DbSet<Department> Departments =>Set<Department>();
     public DbSet<Location> Locations => Set<Location>();
 
 

@@ -12,7 +12,7 @@ public interface IApplicationDbContext
     DbSet<InternShip> InternShips { get; }
 
     DbSet<ApplicationUser> ApplicationUsers { get; }
-    DbSet<Unit> Units { get; }
+    DbSet<Department> Departments { get; }
 
     DbSet<Location> Locations { get; }
     DbSet<Language> Languages { get; }

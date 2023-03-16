@@ -42,7 +42,7 @@ TestResult.xml
 [Dd]ebugPS/
 [Rr]eleasePS/
 dlldata.c
-
+*.vsidx
 *_i.c
 *_p.c
 *_i.h

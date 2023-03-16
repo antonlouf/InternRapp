@@ -8,9 +8,9 @@ using backend.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace backend.Infrastructure.Persistence.Configurations;
-public class UnitConfiguration : IEntityTypeConfiguration<Unit>
+public class UnitConfiguration : IEntityTypeConfiguration<Department>
 {
-    public void Configure(EntityTypeBuilder<Unit> builder)
+    public void Configure(EntityTypeBuilder<Department> builder)
     {
        builder.HasKey(x => x.Id);
        builder.Property(x => x.Name)

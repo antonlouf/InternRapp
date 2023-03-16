@@ -47,6 +47,29 @@ namespace backend.Infrastructure.Migrations
                     b.ToTable("ApplicationUsers");
                 });
 
+            modelBuilder.Entity("backend.Domain.Entities.Department", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ManagerEmails")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name");
+
+                    b.ToTable("Departments");
+                });
+
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
                 {
                     b.Property<int>("Id")
@@ -194,29 +217,6 @@ namespace backend.Infrastructure.Migrations
                     b.ToTable("Locations");
                 });
 
-            modelBuilder.Entity("backend.Domain.Entities.Unit", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ManagerEmails")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Name");
-
-                    b.ToTable("Units");
-                });
-
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
                 {
                     b.HasOne("backend.Domain.Entities.Location", "Location")
@@ -225,7 +225,7 @@ namespace backend.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("backend.Domain.Entities.Unit", "Unit")
+                    b.HasOne("backend.Domain.Entities.Department", "Unit")
                         .WithMany()
                         .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -239,7 +239,7 @@ namespace backend.Infrastructure.Migrations
             modelBuilder.Entity("backend.Domain.Entities.InternShipContentTranslation", b =>
                 {
                     b.HasOne("backend.Domain.Entities.InternShip", "InternShip")
-                        .WithMany()
+                        .WithMany("Translations")
                         .HasForeignKey("InternShipId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -253,6 +253,11 @@ namespace backend.Infrastructure.Migrations
                     b.Navigation("InternShip");
 
                     b.Navigation("Language");
+                });
+
+            modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
+                {
+                    b.Navigation("Translations");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Unit= backend.Domain.Entities.Unit;
+using Unit= backend.Domain.Entities.Department;
 using MediatR;
 using backend.Application.Common.Interfaces;
 using backend.Application.Units.Queries.GetUnitById;
@@ -29,10 +29,10 @@ public class UpdateUnitCommandHandler : AsyncRequestHandler<UpdateUnitCommand>
     protected async override Task Handle(UpdateUnitCommand request, CancellationToken cancellationToken)
     {
         //add control to the validator to check there is an existing item with this id!!
-        var unit = await _dbContext.Units.Where(x => x.Id == request.Unit.Id).FirstOrDefaultAsync();
+        var unit = await _dbContext.Departments.Where(x => x.Id == request.Unit.Id).FirstOrDefaultAsync();
         unit.Name= request.Unit.Name; 
         unit.ManagerEmails=request.Unit.ManagerEmails;
-        _dbContext.Units.Update(unit);
+        _dbContext.Departments.Update(unit);
        await _dbContext.SaveChangesAsync(cancellationToken);
     }
 }

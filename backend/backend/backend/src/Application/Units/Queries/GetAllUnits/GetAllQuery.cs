@@ -1,15 +1,16 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using backend.Application.Common.Interfaces;
 using backend.Application.Common.Paging;
 using MediatR;
-using Unit = backend.Domain.Entities.Unit;
+using Department = backend.Domain.Entities.Department;
 
 namespace backend.Application.Units.Queries.GetAllUnits;
-public class GetAllQuery : IRequest<UnitFilterAndPaginationResponseDto<Unit>>
+public class GetAllQuery : IRequest<PagedList<UnitListDto>>
 {
     public UnitFilterAndPaginationRequestDto Dto { get; set; }
 }
-public class GetAllQueryHandler : IRequestHandler<GetAllQuery, UnitFilterAndPaginationResponseDto<Unit>>
+public class GetAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<UnitListDto>>
 {
     private readonly IApplicationDbContext _dbContext;
     private IMapper _iMapper;
@@ -20,10 +21,14 @@ public class GetAllQueryHandler : IRequestHandler<GetAllQuery, UnitFilterAndPagi
         _iMapper = mapper;
     }
 
-    public async Task<UnitFilterAndPaginationResponseDto<Unit>> Handle(GetAllQuery request, CancellationToken cancellationToken)
+    public async Task<PagedList<UnitListDto>> Handle(GetAllQuery request, CancellationToken cancellationToken)
     {
-        var result = await PagedList<Unit>.ToPagedList(_dbContext.Units.Where(x => x.Name.Contains(request.Dto.Filter)), request.Dto.PageIndex, request.Dto.PageSize);
+        var splittedFilter = request.Dto.Filter.Split(':');
+        if (splittedFilter.Length > 1)
+        {
+            request.Dto.Filter = splittedFilter[1];
+        }
+        return  await PagedList<UnitListDto>.ToPagedList(_dbContext.Departments.Where(x => x.Name.Contains(request.Dto.Filter)).ProjectTo<UnitListDto>(_iMapper.ConfigurationProvider), request.Dto.PageIndex, request.Dto.PageSize);
         
-        return new() { TotalCount=result.TotalCount,Items=result};
     }
 }

@@ -6,7 +6,7 @@ using backend.Domain.Entities;
 
 namespace backend.Application.Units.Queries.GetAllUnits;
 
-public class UnitListDto : IMapFrom<Unit>
+public class UnitListDto : IMapFrom<Department>
 {
     
     public int Id { get; set; }
@@ -14,7 +14,7 @@ public class UnitListDto : IMapFrom<Unit>
     public List<string> ManagerEmails { get; set; }
     public void Mapping(Profile profile)
     {
-        profile.CreateMap<Unit, UnitListDto>();
+        profile.CreateMap<Department, UnitListDto>();
 
     }
 }

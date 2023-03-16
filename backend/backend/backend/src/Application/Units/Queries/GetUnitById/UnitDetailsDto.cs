@@ -4,13 +4,13 @@ using backend.Domain.Entities;
 
 namespace backend.Application.Units.Queries.GetUnitById;
 
-public class UnitDetailsDto:IMapFrom<Unit>
+public class UnitDetailsDto:IMapFrom<Department>
 {
     public int Id { get; set; }
     public string Name { get; set; }
 
     public void Mapping(Profile profile)
     {
-        profile.CreateMap<Unit, UnitDetailsDto>();
+        profile.CreateMap<Department, UnitDetailsDto>();
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using backend.Application.Common.Mappings;
+using backend.Application.InternShips.Common;
 using backend.Application.Units.Queries.GetAllUnits;
 using backend.Domain.Entities;
 
@@ -19,11 +20,11 @@ public class TranslationDto : IMapFrom<InternShipContentTranslation>
     public string Location { get; set; }
     public string Comment { get; set; }
     public string Content { get; set; }
-    public Language Language { get; set; }
+    public LanguageDto Language { get; set; }
     public int InternShipId { get; set; }
     public void Mapping(Profile profile)
     {
-        profile.CreateMap<InternShipContentTranslation, TranslationDto>();
-
+        profile.CreateMap<InternShipContentTranslation, TranslationDto>()
+            .ForMember(dest => dest.Language, opt => opt.MapFrom(src => src.Language));
     }
 }

@@ -21,22 +21,7 @@ public class GetAllQueryHandler : IRequestHandler<GetAllQuery, IEnumerable<Inter
 
     public async Task<IEnumerable<InternShipListDto>> Handle(GetAllQuery request, CancellationToken cancellationToken)
     {
-        var result = await _dbContext.InternShips.Include(x => x.Location).Include(x => x.Unit).ProjectTo<InternShipListDto>(_iMapper.ConfigurationProvider).ToListAsync();
-        //this call should later be placed inside the query (translations)
-        var translations = await _dbContext.Translations.Include(x => x.Language).ProjectTo<TranslationDto>(_iMapper.ConfigurationProvider).ToListAsync();
-        foreach (var internship in result)
-        {
-
-            foreach (var translation in translations)
-            {
-                if (internship.InternShipId == translation.Id)
-                {
-                    if (internship.Versions == null)
-                        internship.Versions = new List<TranslationDto>();
-                    internship.Versions.Add(translation);
-                }
-            }
-        }
+        var result = await _dbContext.InternShips.ProjectTo<InternShipListDto>(_iMapper.ConfigurationProvider).ToListAsync();
         return result;
     }
 }

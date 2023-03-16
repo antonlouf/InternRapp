@@ -69,7 +69,7 @@ return this.deleteSubject.pipe(switchMap(id =>
   return dialogRef.afterClosed().pipe(map(confirm=>confirm ? id : undefined )
 )})
 ,filter(id => !!id)
-,switchMap(id => this.unitService.deleteDepartment(id)))
+,switchMap(id =>  this.unitService.deleteDepartment(id)))
   }
   private configureUpdate$(){
     return this.updateSubject.pipe(switchMap(data => 

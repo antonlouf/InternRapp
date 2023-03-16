@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using backend.Application.Common.Interfaces;
-using backend.Application.Common.ValidationFunctions;
 using backend.Application.Units.Common;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
@@ -21,17 +20,13 @@ public class UpdateUnitCommandValidator:AbstractValidator<UpdateUnitCommand>
 
     public UpdateUnitCommandValidator()
     {
-        RuleFor(x=>x.Unit.Name).NotEmpty().NotNull().MinimumLength(2).Must(CheckName);
-        RuleFor(x => x.Unit.Id).NotNull().NotEmpty().GreaterThan(0).MustAsync(CheckIfIdExists);
+        var validator = new ValidationFunctions(_dbContext);
+        RuleFor(x=>x.Unit.Name).NotEmpty().NotNull().MinimumLength(2);
+        RuleFor(x => x.Unit.Id).NotNull().NotEmpty().GreaterThan(0).MustAsync(validator.CheckIfUnitIdExists);
 
     }
 
-    private async Task<bool> CheckIfIdExists(int id, CancellationToken arg2)
-    {
-        var validator = new CommonValidationFunctions(_dbContext);
-        return await validator.CheckIfIdExists(id);
-    }
 
-    private bool CheckName(string arg) => arg.IsStringWithoutSpecialChars();
+
  
 }

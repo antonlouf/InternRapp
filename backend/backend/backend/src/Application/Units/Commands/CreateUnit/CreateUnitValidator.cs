@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using backend.Application.Common.Interfaces;
-using backend.Application.Common.ValidationFunctions;
 using backend.Application.Units.Common;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
@@ -16,9 +15,12 @@ public class CreateUnitValidator:AbstractValidator<CreateUnitCommand>
     public CreateUnitValidator(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
+        RuleFor(x => x).NotEmpty().NotNull();
         RuleFor(x => x.SuperVisorEmails).NotEmpty().NotNull();
-        RuleFor(x => x.Name).NotEmpty().NotNull().MaximumLength(100).Must(CheckDepartmentName).WithMessage("Make sure you are giving a valid unit name");
+        RuleFor(x => x.Name).Cascade(CascadeMode.Stop)
+            .NotEmpty()
+            .NotNull()
+            .MaximumLength(100);
     }
 
-    private bool CheckDepartmentName(string arg) => arg.IsStringWithoutSpecialChars();
 }

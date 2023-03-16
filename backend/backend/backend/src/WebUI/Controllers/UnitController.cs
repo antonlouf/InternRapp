@@ -4,6 +4,7 @@ using backend.Application.Units.Commands.DeleteUnit;
 using backend.Application.Units.Commands.UpdateUnit;
 using backend.Application.Units.Queries.GetAllUnits;
 using backend.Application.Units.Queries.GetUnitById;
+using backend.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,18 +15,16 @@ namespace WebUI.Controllers;
 public class UnitController : ControllerBase
 {
     private IMediator _mediator;
-    private readonly IApplicationDbContext _dbContext;
-    public UnitController(IMediator mediator, IApplicationDbContext dbContext)
+    public UnitController(IMediator mediator)
     {
         _mediator = mediator;
-        _dbContext = dbContext;
     }
     //later to be adjusted dependent on what the situation should be see createunitcommand for more details!!
     [HttpPost]
-    public async Task<IActionResult> Create( CreateUnitCommand command)
+    public async Task Create( CreateUnitCommand command)
     {
-        await _mediator.Send(command);
-        return Ok();
+         await _mediator.Send(command);
+       
     }
     [HttpGet("{id:int}")]
     
@@ -37,14 +36,11 @@ public class UnitController : ControllerBase
     [HttpGet()]
     public async Task<IActionResult> GetAllByfilterAndPage([FromQuery] UnitFilterAndPaginationRequestDto dto)
     {
-        var splittedFilter=dto.Filter.Split(':');
-        if (splittedFilter.Length > 1)
-        {
-            dto.Filter = splittedFilter[1];
-        }
+      
        
         
         var list = await _mediator.Send(new GetAllQuery(){Dto=dto });
+        //return Ok(new {items=list,total=list.TotalCount});
         return Ok(list);
     }
     //[HttpGet]

@@ -30,14 +30,11 @@ public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternSh
 
 
         //this part is later be placed by operations in translations
-        var versions = await _dbContext.Translations.Where(x => x.InternShipId == request.Dto.internShipId).ToListAsync();
-        int counter = 0;
-        if (request.Dto.Versions.Count != versions.Count)
-        {
-            versions = versions.Where(x => x.Id == request.Dto.Versions[counter].TranslationId).ToList();
-        }
 
-        foreach (var version in versions)
+        int counter = 0;
+   
+       
+        foreach (var version in internShip.Translations)
         {
             foreach(var sendedVersion in request.Dto.Versions)
             {

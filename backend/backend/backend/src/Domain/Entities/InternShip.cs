@@ -9,7 +9,7 @@ namespace backend.Domain.Entities;
 public class InternShip
 {
     public int Id { get; set; }
-    public Unit Unit { get; set; }
+    public Department Unit { get; set; }
     public int UnitId { get; set; }
     public string SchoolYear { get; set; }
     public byte MaxStudents  { get; set; }
@@ -17,4 +17,5 @@ public class InternShip
     public int LocationId { get; set; }
     public byte CurrentCountOfStudents { get; set; }
     public TrainingType RequiredTrainingType { get; set; }
+    public IList<InternShipContentTranslation> Translations { get; set; }
 }

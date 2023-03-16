@@ -14,13 +14,9 @@ public class DeleteUnitCommandValidator:AbstractValidator<DeleteUnitCommand>
     public DeleteUnitCommandValidator(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
-        RuleFor(x => x.Id).NotNull().NotEmpty().GreaterThan(0).MustAsync(CheckIfIdExists).WithMessage("Make sure you are submitting a valid id");
+        var validator = new ValidationFunctions(_dbContext);
+        RuleFor(x => x.Id).NotNull().NotEmpty().GreaterThan(0).MustAsync(validator.CheckIfUnitIdExists).WithMessage("Make sure you are submitting a valid id");
     }
 
-    private async Task<bool> CheckIfIdExists(int id, CancellationToken arg2)
-    {
-        var validator = new CommonValidationFunctions(_dbContext);
-       return await validator.CheckIfIdExists(id);
-      
-    }
+
 }
