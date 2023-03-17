@@ -20,6 +20,7 @@ public class UpdateUnitCommandValidator:AbstractValidator<UpdateUnitCommand>
 
     public UpdateUnitCommandValidator()
     {
+        this.CascadeMode = CascadeMode.Stop;
         var validator = new ValidationFunctions(_dbContext);
         RuleFor(x=>x.Unit.Name).NotEmpty().NotNull().MinimumLength(2);
         RuleFor(x => x.Unit.Id).NotNull().NotEmpty().GreaterThan(0).MustAsync(validator.CheckIfUnitIdExists);

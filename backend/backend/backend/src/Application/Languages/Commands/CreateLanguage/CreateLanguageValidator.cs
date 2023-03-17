@@ -10,6 +10,7 @@ public class CreateLanguageValidator:AbstractValidator<CreateLanguageCommand>
 {
     public CreateLanguageValidator()
     {
+        this.CascadeMode = CascadeMode.Stop;
         RuleFor(x=>x.Name).NotNull().NotEmpty();
     }
 }

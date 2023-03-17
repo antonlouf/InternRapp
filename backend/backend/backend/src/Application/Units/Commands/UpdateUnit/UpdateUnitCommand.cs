@@ -19,11 +19,9 @@ public class UpdateUnitCommandHandler : AsyncRequestHandler<UpdateUnitCommand>
 {
 
     private readonly IApplicationDbContext _dbContext;
-    private readonly IMediator _mediator;
-    public UpdateUnitCommandHandler(IApplicationDbContext dbContext, IMediator mediator)
+    public UpdateUnitCommandHandler(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
-        _mediator = mediator;
     }
 
     protected async override Task Handle(UpdateUnitCommand request, CancellationToken cancellationToken)

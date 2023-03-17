@@ -14,6 +14,6 @@ public class LanguageConfiguration : IEntityTypeConfiguration<Language>
     {
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
-        builder.HasAlternateKey(x => x.Name);
+        builder.HasIndex(x => x.Name).IsUnique();
     }
 }

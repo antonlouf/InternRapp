@@ -14,10 +14,11 @@ public class CreateUnitValidator:AbstractValidator<CreateUnitCommand>
     private readonly IApplicationDbContext _dbContext;
     public CreateUnitValidator(IApplicationDbContext dbContext)
     {
+        this.CascadeMode = CascadeMode.Stop;
         _dbContext = dbContext;
         RuleFor(x => x).NotEmpty().NotNull();
         RuleFor(x => x.SuperVisorEmails).NotEmpty().NotNull();
-        RuleFor(x => x.Name).Cascade(CascadeMode.Stop)
+        RuleFor(x => x.Name)
             .NotEmpty()
             .NotNull()
             .MaximumLength(100);
