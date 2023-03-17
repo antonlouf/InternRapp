@@ -1,4 +1,5 @@
 ﻿using backend.Application.Common.Interfaces;
+using backend.Application.Common.Paging;
 using backend.Application.Units.Commands.CreateUnit;
 using backend.Application.Units.Commands.DeleteUnit;
 using backend.Application.Units.Commands.UpdateUnit;
@@ -34,7 +35,7 @@ public class UnitController : ControllerBase
     }
 
     [HttpGet()]
-    public async Task<IActionResult> GetAllByfilterAndPage([FromQuery] UnitFilterAndPaginationRequestDto dto)
+    public async Task<IActionResult> GetAllByfilterAndPage([FromQuery] FilterAndPaginationRequestDto dto)
     {
       
        

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PagingService } from './paging.service';
+import { LanguageService } from './language.service';
 
-describe('PagingService', () => {
-  let service: PagingService;
+describe('LanguageService', () => {
+  let service: LanguageService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PagingService);
+    service = TestBed.inject(LanguageService);
   });
 
   it('should be created', () => {

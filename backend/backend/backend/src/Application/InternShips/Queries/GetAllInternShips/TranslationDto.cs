@@ -20,7 +20,7 @@ public class TranslationDto : IMapFrom<InternShipContentTranslation>
     public string Location { get; set; }
     public string Comment { get; set; }
     public string Content { get; set; }
-    public LanguageDto Language { get; set; }
+    public LanguageListDto Language { get; set; }
     public int InternShipId { get; set; }
     public void Mapping(Profile profile)
     {

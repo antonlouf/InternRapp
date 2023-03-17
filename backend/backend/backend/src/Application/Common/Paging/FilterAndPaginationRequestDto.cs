@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace backend.Application.Units.Queries.GetAllUnits;
-public class UnitFilterAndPaginationRequestDto
+namespace backend.Application.Common.Paging;
+public class FilterAndPaginationRequestDto
 {
     public int PageIndex { get; set; }
     public int PageSize { get; set; }
-    public string  Filter { get; set; }
+    public string Filter { get; set; }
 }
