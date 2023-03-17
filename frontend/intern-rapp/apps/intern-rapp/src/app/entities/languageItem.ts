@@ -1,4 +1,4 @@
 export interface LanguageItem{
     id:number,
-    name: string
+    name: string|null
 }

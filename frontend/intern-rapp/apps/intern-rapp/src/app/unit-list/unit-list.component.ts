@@ -19,7 +19,6 @@ import { FilterType } from '../enums/filterType';
 import { map } from 'rxjs/operators';
 import { DepartmentItem } from '../entities/departmentItem';
 import { ResourceItemPagingResponse } from '../entities/resourceItemPagingResponse';
-import { PaginationRequest } from '../entities/paginationRequest';
 import {BaseList} from '../baselist/baseList'
 import { DepartmentUpdateComponent } from '../department-update/department-update.component';
 import { CreateDepartment } from '../entities/CreateDepartment';
@@ -51,7 +50,7 @@ private  popUpConfig={
  position:{top:'250px',right:'500px'}
 }
 getGridItems$(paginationFilterRequest: PaginationFilterRequest): Observable<ResourceItemPagingResponse<DepartmentItem>> {
-  return this.unitService.filter(paginationFilterRequest)
+  return this.unitService.filterAndPaginateDepartments(paginationFilterRequest)
 }
   ngOnInit(): void {
     this.filters=[{label:"Department name",name:"filterValue",type:FilterType.Text,observable:undefined}];

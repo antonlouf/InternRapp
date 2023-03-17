@@ -14,21 +14,21 @@ import { ResourceItemPagingResponse } from '../entities/resourceItemPagingRespon
 export class DepartmentService {
 
   constructor(private http: HttpClient) { }
-
+private baseSuffixApi="/api/Unit";
   getAllSupervisorNamesContaining(name: string|undefined): Observable<string[]>{
     return this.http.get<string[]>(APIConfiguration.baseString+`/api/ApplicationUser/?filterValue=${name}`).pipe(catchError((err,caught)=>caught))
   }
   postDepartment(department: CreateDepartment){
-    return this.http.post(APIConfiguration.baseString+`/api/Unit/`,department).pipe(catchError((err,caught)=>caught))
+    return this.http.post(APIConfiguration.baseString+`${this.baseSuffixApi}`,department).pipe(catchError((err,caught)=>caught))
   }
-  filter(filterPaginationRequest: PaginationFilterRequest){
-    return this.http.get<ResourceItemPagingResponse<DepartmentItem>>(APIConfiguration.baseString+`/api/unit?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&Filter=${filterPaginationRequest.filterString}`).pipe(catchError((err,caught)=>caught))
+  filterAndPaginateDepartments(filterPaginationRequest: PaginationFilterRequest){
+    return this.http.get<ResourceItemPagingResponse<DepartmentItem>>(APIConfiguration.baseString+`${this.baseSuffixApi}?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&Filter=${filterPaginationRequest.filterString}`).pipe(catchError((err,caught)=>caught))
   }
   deleteDepartment(id: number|undefined){
-return this.http.delete<number>(APIConfiguration.baseString+`/api/Unit?id=${id}`).pipe(catchError((err,caught)=>caught))
+return this.http.delete<number>(APIConfiguration.baseString+`${this.baseSuffixApi}?id=${id}`).pipe(catchError((err,caught)=>caught))
 }
 updateDepartment(itemToBeUpdated: DepartmentItem|undefined){
-  return this.http.patch(APIConfiguration.baseString+`/api/Unit`,{
+  return this.http.patch(APIConfiguration.baseString+`${this.baseSuffixApi}`,{
     
       "id": itemToBeUpdated?.id,
       "name": itemToBeUpdated?.name,
@@ -42,7 +42,7 @@ addDepartment(itemToBeAdded: CreateDepartment){
   const body={  "name": itemToBeAdded.name,
     "superVisorEmails": itemToBeAdded.superVisorEmails}
     console.log(body)
-  return this.http.post(APIConfiguration.baseString+`/api/Unit`,body).pipe(catchError((err,caught)=>caught))
+  return this.http.post(APIConfiguration.baseString+`${this.baseSuffixApi}`,body).pipe(catchError((err,caught)=>caught))
 
 }
 

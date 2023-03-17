@@ -14,7 +14,7 @@ export abstract class BaseList<T> {
    
     constructor( pageSize = 10){
         this.paginationsSub$ = new BehaviorSubject<PaginationRequest>({pageNumber:1,pageSize});
-        this.filtersSub$ = new BehaviorSubject<string>('b');
+        this.filtersSub$ = new BehaviorSubject<string>('');
     }
     public get currentPage$(): Observable<PaginationRequest> 
     {
