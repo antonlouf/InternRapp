@@ -1,11 +1,17 @@
-﻿using backend.Application.Common.Paging;
+﻿using System;
+using System.Globalization;
+using System.Reflection;
+using System.Resources;
+using backend.Application.Common.Paging;
 using backend.Application.InternShips.Common;
 using backend.Application.Languages.Commands.CreateLanguage;
 using backend.Application.Languages.Commands.DeleteLanguage;
 using backend.Application.Languages.Commands.UpdateLanguage;
 using backend.Application.Languages.Queries.GetAllLanguages;
+using Duende.IdentityServer.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 
 namespace WebUI.Controllers;
 [ApiController]
@@ -19,7 +25,7 @@ public class LanguageController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet()]
+    [HttpGet]
     public async Task<IActionResult> GetAllByfilterAndPage([FromQuery] FilterAndPaginationRequestDto dto)
     {
         var list = await _mediator.Send(new GetAllQuery() { Dto = dto });
@@ -43,4 +49,21 @@ public class LanguageController : ControllerBase
         await _mediator.Send(new DeleteLanguageCommand() { Id=id });
         return Ok();
     }
+    [HttpGet("{language}")]
+    public async Task<IActionResult> GetLocalizationFileAsDict([FromRoute] string language)
+    {
+       
+        ResourceManager rm = new ResourceManager($"WebUI.Resources.{language.ToString()}",Assembly.GetExecutingAssembly());
+        var myResourceSet = rm.GetResourceSet(CultureInfo.CurrentCulture, true, true);
+        var resourceSet=myResourceSet.GetEnumerator();
+        Dictionary<string, string> translations = new();
+        while(resourceSet.MoveNext())
+        {
+
+            translations.Add(resourceSet.Key.ToString(), resourceSet.Value.ToString());
+            
+        }
+        return Ok(translations);
+    }
+
 }

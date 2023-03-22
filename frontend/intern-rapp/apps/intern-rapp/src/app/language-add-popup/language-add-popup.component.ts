@@ -9,11 +9,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { LanguageItem } from '../entities/languageItem';
 import { CreateLanguage } from '../entities/createLanguage';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'intern-rapp-language-add-popup',
   standalone: true,
-  imports: [CommonModule,MatDialogModule,MatDividerModule,ReactiveFormsModule,MatFormFieldModule,MatInputModule,HttpClientModule,MatIconModule],
+  imports: [CommonModule,MatDialogModule,MatDividerModule,TranslateModule,ReactiveFormsModule,MatFormFieldModule,MatInputModule,HttpClientModule,MatIconModule],
   templateUrl: './language-add-popup.component.html',
   styleUrls: ['./language-add-popup.component.scss'],
 })

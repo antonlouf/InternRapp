@@ -9,16 +9,17 @@ import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'intern-rapp-delete-popup',
   standalone: true,
-  imports: [CommonModule,MatDialogModule,MatDividerModule,ReactiveFormsModule,MatFormFieldModule,MatAutocompleteModule,MatInputModule,HttpClientModule,MatChipsModule,MatIconModule],
+  imports: [CommonModule,MatDialogModule,MatDividerModule,TranslateModule,ReactiveFormsModule,MatFormFieldModule,MatAutocompleteModule,MatInputModule,HttpClientModule,MatChipsModule,MatIconModule],
   templateUrl: './delete-popup.component.html',
   styleUrls: ['./delete-popup.component.scss'],
 })
 export class DeletePopupComponent {
-  @Input() title:string|undefined
+  @Input() title!:string
 
   constructor(public dialogRef: MatDialogRef<DeletePopupComponent>){
 
@@ -26,4 +27,5 @@ export class DeletePopupComponent {
   closeDialog(hasData: boolean){
     this.dialogRef.close(hasData)
   }
+
 }

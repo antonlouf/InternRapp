@@ -14,10 +14,12 @@ import {MatChipInputEvent, MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { CreateDepartment } from '../entities/CreateDepartment';
+import { TranslateModule } from '@ngx-translate/core';
+
 @Component({
   selector: 'intern-rapp-department-add-popup',
   standalone: true,
-  imports: [CommonModule,MatDialogModule,MatDividerModule,ReactiveFormsModule,MatFormFieldModule,MatAutocompleteModule,MatInputModule,HttpClientModule,MatChipsModule,MatIconModule],
+  imports: [CommonModule,MatDialogModule,MatDividerModule,TranslateModule,ReactiveFormsModule,MatFormFieldModule,MatAutocompleteModule,MatInputModule,HttpClientModule,MatChipsModule,MatIconModule],
   templateUrl: './department-add-popup.component.html',
   styleUrls: ['./department-add-popup.component.scss'],
   providers:[HttpClient,DepartmentService]

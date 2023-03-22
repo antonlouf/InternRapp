@@ -14,11 +14,12 @@ import { Observable } from 'rxjs';
 import { CreateDepartment } from '../entities/CreateDepartment';
 import { MatOptionSelectionChange } from '@angular/material/core';
 import { DepartmentItem } from '../entities/departmentItem';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'intern-rapp-department-update',
   standalone: true,
-  imports: [CommonModule,MatDialogModule,MatDividerModule,ReactiveFormsModule,MatFormFieldModule,MatAutocompleteModule,MatInputModule,HttpClientModule,MatChipsModule,MatIconModule],
+  imports: [CommonModule,MatDialogModule,MatDividerModule,TranslateModule,ReactiveFormsModule,MatFormFieldModule,MatAutocompleteModule,MatInputModule,HttpClientModule,MatChipsModule,MatIconModule],
   templateUrl: './department-update.component.html',
   styleUrls: ['./department-update.component.scss'],
 })

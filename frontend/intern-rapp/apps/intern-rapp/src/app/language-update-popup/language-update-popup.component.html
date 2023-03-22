@@ -2,7 +2,7 @@
 
     <div   class="heading">
         <div mat-dialog-title select="[heading]">
-            update Language
+           {{'updateLanguageHeader' |translate}}
         </div>
     </div>
     
@@ -13,10 +13,10 @@
     <mat-dialog-content class="mat-typography">
     <form [formGroup]="updateForm">
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Language Name</mat-label>
+            <mat-label>{{'languageNameLabel' |translate}}</mat-label>
             <input matInput type="text" formControlName="languageName">
             <mat-error *ngIf="updateForm.controls.languageName.touched&&updateForm.controls.languageName.hasError">
-                The Name of the language is required
+                {{'languageNameRequiredErrorMessage' |translate}}
             </mat-error>
         </mat-form-field>
       

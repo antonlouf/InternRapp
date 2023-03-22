@@ -1,5 +1,5 @@
 
-
+ 
        
         <div style="display: flex;justify-content: space-between;align-items: center; border: 5px solid whitesmoke;">
                
@@ -16,51 +16,64 @@
                 </a>
               </div>
                <div class="nav-item">
-                       <a  style="font-size: 20px ;"  routerLinkActive="active" [routerLink]="'[departments]'" class="navbar-item" >
-                         Departments
+                       <a  style="font-size: 20px ;"  routerLinkActive="active" routerLink="/departments" class="navbar-item" >
+                   
+                         {{'departments' | translate}}
                        </a>
                      </div>
                      <div  class="nav-item">  
                        <a class="navbar-item" routerLinkActive="active" [routerLink]="'[stages]'" style="font-size: 20px" >
-                         Stages
+                        {{'internships'|translate}}
+
                        </a>
                      </div>
                      <div class="nav-item">
                          <a class="navbar-item"  routerLinkActive="active" [routerLink]="'[events]'" style="font-size: 20px" >
-                           events
+                          {{'events'|translate}}
+
                          </a>
                      </div>
                      <div class="nav-item">
                      <a class="navbar-item" routerLinkActive="active" [routerLink]="'[locations]'"  style="font-size: 20px" >
-                         locations
+                      {{'locations'|translate}}
+
                      </a>
                      </div>
                      <div class="nav-item">
                          <a class="navbar-item" routerLinkActive="active" [routerLink]="'[users]'"  style="font-size: 20px">
-                           users
+                         {{'users'|translate}}
+                          
                          </a>
                          </div>
                          <div class="nav-item">
                          <a class="navbar-item" routerLinkActive="active" [routerLink]="'[newinternship]'" style="font-size: 20px" >
-                           new internship
+                          {{'newInternShip'|translate}}
+
                          </a>
                      </div>
+                     <div class="nav-item">
+                      <a class="navbar-item" routerLinkActive="active" routerLink="/language" style="font-size: 20px" >
+                       {{'language'|translate}}
+
+                      </a>
+                  </div>
+                     <div class="language-dropdown">
+                      <intern-rapp-language-dropdown
+                      >
             
-           
+                      </intern-rapp-language-dropdown>
+                     </div>
                      <div class="nav-item" style="align-items: flex-end;">
                      <button  type="button" style="background-color:#00b5ad;border-radius: 20px;border:none;padding: 10px;">
                         <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp; Logout
                      </button>
                      </div>
-               
+                  
                  </div>
-                 <!-- <router-outlet></router-outlet> -->
+                 <router-outlet></router-outlet>
+                
 
-               <intern-rapp-language-list></intern-rapp-language-list>>
-          
-                 
+    
                        
 
-         
-
-
+        

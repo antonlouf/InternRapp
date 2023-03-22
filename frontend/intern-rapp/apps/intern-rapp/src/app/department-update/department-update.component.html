@@ -2,7 +2,7 @@
 
     <div   class="heading">
         <div mat-dialog-title select="[heading]">
-            update Department(unit)
+            {{'updateDepartmentHeader' |translate}}
         </div>
     </div>
     
@@ -13,10 +13,10 @@
     <mat-dialog-content class="mat-typography">
     <form [formGroup]="updateForm">
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Department Name</mat-label>
+            <mat-label>{{'departmentNameLabel' |translate}}</mat-label>
             <input matInput type="text" formControlName="departmentName">
             <mat-error *ngIf="updateForm.controls.departmentName.touched&&updateForm.controls.departmentName.hasError">
-                The Name of the department is required
+                {{'departmentNameEmptyErrorMessage' |translate}}
             </mat-error>
         </mat-form-field>
       

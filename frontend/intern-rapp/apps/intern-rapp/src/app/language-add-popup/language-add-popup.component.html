@@ -2,7 +2,7 @@
 
     <div   class="heading">
         <div mat-dialog-title select="[heading]">
-            Add language
+           {{'addLanguageHeader' |translate}}
         </div>
     </div>
     
@@ -13,10 +13,10 @@
     <mat-dialog-content class="mat-typography">
     <form [formGroup]="addForm">
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Department Name</mat-label>
+            <mat-label>{{'languageNameLabel' |translate}}</mat-label>
             <input matInput type="text" formControlName="languageName">
             <mat-error *ngIf="addForm.controls.languageName.touched&&addForm.controls.languageName.hasError">
-                The Name of the language is required
+                {{'languageNameRequiredErrorMessage' |translate}}
             </mat-error>
         </mat-form-field>
       
@@ -33,7 +33,7 @@
             <button class="save-button flex-row-cancel-save-update" (click)="closeDialog(true)" [disabled]="!addForm.valid" >
                 
             <div><mat-icon>save</mat-icon></div>
-            <div>Save</div>
+            <div>{{'saveButtonText' |translate}}</div>
             </button>
         </div>
         <div>
@@ -43,7 +43,7 @@
                 <mat-icon>cancel</mat-icon> 
             </div>        
                 <div>
-                    Cancel
+                    {{'cancelButtonText' |translate}}
                 </div>
                    </button>
     

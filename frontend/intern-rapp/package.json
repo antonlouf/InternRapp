@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "npx nx run intern-rapp:serve"  
+    "start": "npx nx run intern-rapp:serve"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +24,8 @@
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@ng-bootstrap/ng-bootstrap": "^14.0.1",
     "@ng-bootstrap/schematics": "^2.0.0-alpha.1",
+    "@ngx-translate/core": "^14.0.0",
+    "@ngx-translate/http-loader": "^7.0.0",
     "@nrwl/angular": "15.7.2",
     "@popperjs/core": "^2.11.6",
     "angular-font-awesome": "^3.1.2",

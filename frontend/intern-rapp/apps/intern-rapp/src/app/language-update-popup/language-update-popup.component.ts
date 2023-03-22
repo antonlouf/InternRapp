@@ -8,12 +8,12 @@ import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { LanguageItem } from '../entities/languageItem';
-import { Observable } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'intern-rapp-language-update-popup',
   standalone: true,
-  imports: [CommonModule,MatDialogModule,MatDividerModule,ReactiveFormsModule,MatFormFieldModule,MatInputModule,HttpClientModule,MatIconModule],
+  imports: [CommonModule,MatDialogModule,MatDividerModule,TranslateModule,ReactiveFormsModule,MatFormFieldModule,MatInputModule,HttpClientModule,MatIconModule],
   templateUrl: './language-update-popup.component.html',
   styleUrls: ['./language-update-popup.component.scss'],
 })

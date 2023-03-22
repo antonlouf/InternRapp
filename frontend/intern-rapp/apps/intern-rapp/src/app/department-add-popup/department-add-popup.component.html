@@ -2,7 +2,7 @@
 
 <div   style=" margin-left: 1%;margin-top: 2%;justify-content: center;text-align: center;">
     <div mat-dialog-title select="[heading]">
-        Add Department(unit)
+        {{'addDepartmentHeader' |translate}}
     </div>
 </div>
 
@@ -13,10 +13,10 @@
 <mat-dialog-content class="mat-typography">
 <form [formGroup]="addForm">
     <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Department Name</mat-label>
+        <mat-label>{{'departmentNameLabel' |translate}}</mat-label>
         <input matInput type="text" formControlName="departmentName">
         <mat-error *ngIf="addForm.controls.departmentName.touched&&addForm.controls.departmentName.hasError">
-            The Name of the department is required
+            {{'departmentNameEmptyErrorMessage' |translate}}
         </mat-error>
     </mat-form-field>
   
@@ -33,7 +33,7 @@
 
     <mat-form-field class="example-full-width">
     <input type="text"
-           placeholder="manager email"
+           placeholder="{{'managerEmail' |translate}}"
            aria-label="Manager Emails"
            matInput
            [matChipInputFor]="chipGrid"
@@ -62,7 +62,7 @@
         <button class="save-button flex-row-cancel-save-update" (click)="closeDialog(true)" [disabled]="!addForm.valid||managerEmailsTobeAdded.length<=0" >
             
         <div><mat-icon>save</mat-icon></div>
-        <div>Save</div>
+        <div>{{'saveButtonText'|translate}}</div>
         </button>
     </div>
     <div>
@@ -72,7 +72,7 @@
             <mat-icon>cancel</mat-icon> 
         </div>        
             <div>
-                Cancel
+              {{'cancelButtonText'|translate}}
             </div>
                </button>
 

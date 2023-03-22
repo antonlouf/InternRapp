@@ -1,6 +1,7 @@
+using System.Globalization;
 using backend.Application;
 using backend.Application.Common.Exceptions;
-
+using Microsoft.AspNetCore.Localization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,23 @@ builder.Services.AddCors(options =>
                                               ).AllowCredentials().AllowAnyMethod().AllowAnyHeader();
                       });
 });
+builder.Services.AddLocalization(opt =>
+{
+    opt.ResourcesPath = "Resources";
+});
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    List<CultureInfo> supportedCultures = new List<CultureInfo>
+        {
+            new CultureInfo("nl-NL"),
+            new CultureInfo("fr-FR"),
+            new CultureInfo("en-GB")
+        };
 
+    options.DefaultRequestCulture = new RequestCulture("en-GB");
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -68,6 +85,7 @@ app.UseSwaggerUI(options =>
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
     options.RoutePrefix = string.Empty;
 });
+app.UseRequestLocalization();
 app.UseRouting();
 app.UseCors("cors");
 app.UseAuthentication();

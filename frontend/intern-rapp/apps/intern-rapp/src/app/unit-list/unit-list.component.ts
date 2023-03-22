@@ -23,10 +23,12 @@ import {BaseList} from '../baselist/baseList'
 import { DepartmentUpdateComponent } from '../department-update/department-update.component';
 import { CreateDepartment } from '../entities/CreateDepartment';
 import { DepartmentAddPopupComponent } from '../department-add-popup/department-add-popup.component';
+import { TranslateModule } from '@ngx-translate/core';
+
 @Component({
   selector: 'intern-rapp-unit-list',
   standalone: true,
-  imports: [CommonModule,MatListModule,MatDialogModule,MatSelectModule,ReactiveFormsModule,HttpClientModule,ItemsTmplDirective,MatListModule,MatIconModule,MatInputModule,BaselistComponent,DeletePopupComponent],
+  imports: [CommonModule,MatListModule,MatDialogModule,MatSelectModule,ReactiveFormsModule,HttpClientModule,ItemsTmplDirective,MatListModule,MatIconModule,MatInputModule,BaselistComponent,DeletePopupComponent,TranslateModule],
   templateUrl: './unit-list.component.html',
   styleUrls: ['./unit-list.component.scss'],
   providers:[HttpClient,DepartmentService]

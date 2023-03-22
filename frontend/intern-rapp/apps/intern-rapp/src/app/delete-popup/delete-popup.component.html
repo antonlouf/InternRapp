@@ -1,9 +1,10 @@
 <div  >
 
-    <div   style=" margin-left: 1%;margin-top: 2%;justify-content: center;text-align: center;">
+    <div  class="header">
         <div mat-dialog-title 
         >
-            Delete  {{title}}
+            {{'delete' |translate}}  {{title |translate}}
+            
         </div>
     </div>
     
@@ -13,7 +14,7 @@
     
     <mat-dialog-content class="mat-typography">
  
-        are you sure to delete a {{title}}?
+       {{'confirmDeleteMessage' |translate}}
     
   
     
@@ -27,7 +28,7 @@
             <button (click)="closeDialog(true)"  class="cancel-button flex-row-cancel-save-update" >
                 
             <div><mat-icon>delete</mat-icon></div>
-            <div>Delete</div>
+            <div>{{'delete'|translate}}</div>
             </button>
         </div>
         <div>
@@ -36,7 +37,7 @@
                     <mat-icon>cancel</mat-icon> 
                 </div>        
                     <div>
-                        Cancel
+                        {{'cancelButtonText' |translate}}
                     </div>
                        </button>
         </div>

@@ -1,20 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { LanguageItem } from '../entities/languageItem';
 import { ResourceItemPagingResponse } from '../entities/resourceItemPagingResponse';
 import { CreateLanguage } from '../entities/createLanguage';
 import { APIConfiguration } from '../configurations/APIConfiguration';
 import { HttpClient } from '@angular/common/http';
 import { PaginationFilterRequest } from '../entities/paginationFilterRequest';
-import { filter, Observable, switchMap, Subject, tap, catchError } from 'rxjs';
+import { filter, Observable, switchMap, Subject, tap, catchError, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LanguageService {
-  constructor(private http: HttpClient) { }
+export class LanguageService{
+  constructor(private http: HttpClient) {
 
-private baseSuffixApi="/api/Language";
+   }
   
+  private baseSuffixApi="/api/Language";
+
+ 
+
 
   filterAndPaginateLanguages(filterPaginationRequest: PaginationFilterRequest){
     return this.http.get<ResourceItemPagingResponse<LanguageItem>>(APIConfiguration.baseString+`${this.baseSuffixApi}?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&Filter=${filterPaginationRequest.filterString}`).pipe(catchError((err,caught)=>caught))
@@ -35,4 +39,5 @@ addLanguage(itemToBeAdded: CreateLanguage){
   return this.http.post(APIConfiguration.baseString+`${this.baseSuffixApi}?languagenName=${itemToBeAdded.name}`,null).pipe(catchError((err,caught)=>caught))
 
 }
+
 }

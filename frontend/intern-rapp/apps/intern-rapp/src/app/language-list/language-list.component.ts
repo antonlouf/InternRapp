@@ -21,11 +21,12 @@ import { BaselistComponent } from '../baselist/baselist.component';
 import { ItemsTmplDirective } from '../items-tmpl.directive';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'intern-rapp-language-list',
   standalone: true,
-  imports: [CommonModule,MatDividerModule,MatIconModule,MatListModule,BaselistComponent,ItemsTmplDirective,ReactiveFormsModule,HttpClientModule,MatDialogModule],
+  imports: [CommonModule,MatDividerModule,MatIconModule,MatListModule,BaselistComponent,TranslateModule,ItemsTmplDirective,ReactiveFormsModule,HttpClientModule,MatDialogModule],
   templateUrl: './language-list.component.html',
   styleUrls: ['./language-list.component.scss'],
 })
@@ -60,7 +61,7 @@ export class LanguageListComponent extends BaseList<LanguageItem>{
   return this.deleteSubject.pipe(switchMap(id => 
     {
     const dialogRef= this.dialog.open(DeletePopupComponent, this.popUpConfig) 
-    dialogRef.componentInstance.title="Language"
+    dialogRef.componentInstance.title="language"
     return dialogRef.afterClosed().pipe(map(confirm=>confirm ? id : undefined )
   )})
   ,filter(id => !!id)
