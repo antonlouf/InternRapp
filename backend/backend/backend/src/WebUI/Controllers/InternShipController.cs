@@ -1,4 +1,5 @@
-﻿using backend.Application.InternShips.Commands.CreateInternShip;
+﻿using backend.Application.Common.Paging;
+using backend.Application.InternShips.Commands.CreateInternShip;
 using backend.Application.InternShips.Commands.UpdateInternShip;
 using backend.Application.InternShips.Queries.GetAllInternShips;
 using MediatR;
@@ -21,9 +22,9 @@ public class InternShipController : ControllerBase
         return Ok();
     }
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAll([FromQuery] FilterAndPaginationRequestDto dto)
     {
-        var result=await _mediator.Send(new GetAllQuery());
+        var result=await _mediator.Send(new GetAllQuery() { Dto=dto});
         return Ok(result);
     }
     [HttpPut]

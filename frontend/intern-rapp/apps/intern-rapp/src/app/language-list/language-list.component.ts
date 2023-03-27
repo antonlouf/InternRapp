@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DepartmentItem } from '../entities/departmentItem';
 import { LanguageService } from '../services/language.service';
@@ -30,7 +30,7 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './language-list.component.html',
   styleUrls: ['./language-list.component.scss'],
 })
-export class LanguageListComponent extends BaseList<LanguageItem>{
+export class LanguageListComponent extends BaseList<LanguageItem> implements OnInit{
   public deleteSubject=new Subject<number>()
   public addSubject=new Subject<CreateLanguage|undefined>();
   public updateSubject=new Subject<LanguageItem>();
@@ -105,10 +105,10 @@ export class LanguageListComponent extends BaseList<LanguageItem>{
        filterString = filterString.slice(0,filterString.length-1)
        this.filterUpdated(filterString)
     }
-    addDepartment(){
+    addLanguage(){
     this.addSubject.next(undefined)
     }
-  updateDepartment=(item: DepartmentItem)=>{
+  updateLanguage=(item: LanguageItem)=>{
   this.updateSubject.next(item)
   }
   delete(id: number){ 

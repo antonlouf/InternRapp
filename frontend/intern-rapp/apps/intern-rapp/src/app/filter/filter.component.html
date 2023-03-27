@@ -2,7 +2,7 @@
 <div class="flex-row">
 <div class="flex-start" *ngFor="let filter of filters">
 <mat-form-field [ngSwitch]="filter.type">
-        <mat-label >{{filter.label}}</mat-label>
+        <mat-label >{{filter.label |translate}}</mat-label>
         <input  matInput *ngSwitchCase="filtertype.Text"  formControlName="{{filter.name}}">
         <input  matInput *ngSwitchCase="filtertype.Dropdown"  formControlName="{{filter.name}}"> 
 

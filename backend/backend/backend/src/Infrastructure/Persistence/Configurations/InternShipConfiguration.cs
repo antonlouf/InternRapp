@@ -17,9 +17,12 @@ public class InternShipConfiguration : IEntityTypeConfiguration<InternShip>
         builder.HasIndex(x => new {x.SchoolYear});
         builder.Property(x=>x.SchoolYear).IsRequired();
         builder.HasOne(x => x.Unit);
-        builder.Property(x => x.CurrentCountOfStudents).IsRequired();
+        builder.Property(x => x.CurrentCountOfStudents).HasConversion(v => (byte) v,
+            v => v)
+            .IsRequired();
         builder.HasOne(x => x.Location);
-        builder.Property(x=>x.MaxStudents).IsRequired();
+        builder.Property(x=>x.MaxStudents).HasConversion(v => (byte)v,
+            v => v).IsRequired();
         builder.HasMany(x => x.Translations).WithOne(x => x.InternShip);
     }
 }

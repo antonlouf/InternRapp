@@ -13,13 +13,10 @@ public class UpdateUnitCommandValidator:AbstractValidator<UpdateUnitCommand>
 {
     private readonly IApplicationDbContext _dbContext;
 
+
     public UpdateUnitCommandValidator(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
-    }
-
-    public UpdateUnitCommandValidator()
-    {
         this.CascadeMode = CascadeMode.Stop;
         var validator = new ValidationFunctions(_dbContext);
         RuleFor(x=>x.Unit.Name).NotEmpty().NotNull().MinimumLength(2);

@@ -6,13 +6,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { Filter } from '../entities/filter';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
 @Component({
   selector: 'intern-rapp-filter',
   standalone: true,
-  imports: [CommonModule,MatFormFieldModule,ReactiveFormsModule,MatInputModule,MatIconModule],
+  imports: [CommonModule,MatFormFieldModule,ReactiveFormsModule,MatInputModule,MatIconModule,TranslateModule],
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
 })

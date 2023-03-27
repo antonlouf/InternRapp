@@ -36,9 +36,11 @@ export abstract class BaseList<T> {
     protected configureItems( refreshObservables?: Array<Observable<unknown>>): void 
     {
         this.listData$ = this.configureListData$(refreshObservables); 
+        
     }
     protected configureListData$(refreshObservables?: Array<Observable<unknown>>): Observable<ResourceItemPagingResponse<T>> 
     {
+        
         const refresh$ = refreshObservables && refreshObservables.length > 0? merge(...refreshObservables): of(undefined);
          return combineLatest([this.paginationsSub$, this.filtersSub$, refresh$.pipe(startWith(undefined)), ])
          .pipe(debounceTime(300),switchMap(([currentPage, filters, dependable]) => 

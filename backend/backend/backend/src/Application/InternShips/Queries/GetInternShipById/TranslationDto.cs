@@ -9,7 +9,7 @@ using backend.Application.InternShips.Common;
 using backend.Application.Units.Queries.GetAllUnits;
 using backend.Domain.Entities;
 
-namespace backend.Application.InternShips.Queries.GetAllInternShips;
+namespace backend.Application.InternShips.Queries.GetInternShipById;
 public class TranslationDto : IMapFrom<InternShipContentTranslation>
 {
     public int Id { get; set; }
