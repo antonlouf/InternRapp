@@ -126,6 +126,9 @@
   <data name="addLanguageHeader" xml:space="preserve">
     <value>voeg een nieuwe taal toe</value>
   </data>
+  <data name="addLocationHeader" xml:space="preserve">
+    <value>voeg een nieuwe locatie toe </value>
+  </data>
   <data name="cancelButtonText" xml:space="preserve">
     <value>annuleer</value>
   </data>
@@ -171,8 +174,32 @@
   <data name="languageNameRequiredErrorMessage" xml:space="preserve">
     <value>De taal is verplicht om in te vullen</value>
   </data>
+  <data name="locationCityLabel" xml:space="preserve">
+    <value>locatie stad </value>
+  </data>
+  <data name="locationCityRequiredErrorMessage" xml:space="preserve">
+    <value>locatie van de stad is verplicht </value>
+  </data>
+  <data name="locationHouseNumberErrorMessage" xml:space="preserve">
+    <value>locatie huisnummer is verplicht </value>
+  </data>
+  <data name="locationHouseNumberLabel" xml:space="preserve">
+    <value>locatie huisnummer</value>
+  </data>
   <data name="locations" xml:space="preserve">
     <value>locaties</value>
+  </data>
+  <data name="locationStreetNameLabel" xml:space="preserve">
+    <value>locatie straatnaam </value>
+  </data>
+  <data name="locationStreetRequiredErrorMessage" xml:space="preserve">
+    <value>lcoatie straatnaam is verplicht </value>
+  </data>
+  <data name="locationZipCodeLabel" xml:space="preserve">
+    <value>locatie postcode</value>
+  </data>
+  <data name="locationZipCodeRequiredErrorMessage" xml:space="preserve">
+    <value>lcoatie postcode is verplicht </value>
   </data>
   <data name="managerEmail" xml:space="preserve">
     <value>email van manager</value>
@@ -191,6 +218,9 @@
   </data>
   <data name="updateLanguageHeader" xml:space="preserve">
     <value>bijwerk taal</value>
+  </data>
+  <data name="updateLocationHeader" xml:space="preserve">
+    <value>pas locatie aan </value>
   </data>
   <data name="users" xml:space="preserve">
     <value>Gebruikers</value>

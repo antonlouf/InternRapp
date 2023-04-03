@@ -126,6 +126,9 @@
   <data name="addLanguageHeader" xml:space="preserve">
     <value>add a new language</value>
   </data>
+  <data name="addLocationHeader" xml:space="preserve">
+    <value>add a new location</value>
+  </data>
   <data name="cancelButtonText" xml:space="preserve">
     <value>cancel</value>
   </data>
@@ -171,8 +174,32 @@
   <data name="languageNameRequiredErrorMessage" xml:space="preserve">
     <value>the language name is required</value>
   </data>
+  <data name="locationCityLabel" xml:space="preserve">
+    <value>location city</value>
+  </data>
+  <data name="locationCityRequiredErrorMessage" xml:space="preserve">
+    <value>the location city is required</value>
+  </data>
+  <data name="locationHouseNumberErrorMessage" xml:space="preserve">
+    <value>location house number is required</value>
+  </data>
+  <data name="locationHouseNumberLabel" xml:space="preserve">
+    <value>location house number</value>
+  </data>
   <data name="locations" xml:space="preserve">
     <value>locations</value>
+  </data>
+  <data name="locationStreetNameLabel" xml:space="preserve">
+    <value>location street name</value>
+  </data>
+  <data name="locationStreetRequiredErrorMessage" xml:space="preserve">
+    <value>location street name is required</value>
+  </data>
+  <data name="locationZipCodeLabel" xml:space="preserve">
+    <value>location zipcode</value>
+  </data>
+  <data name="locationZipCodeRequiredErrorMessage" xml:space="preserve">
+    <value>location zipcode is required</value>
   </data>
   <data name="managerEmail" xml:space="preserve">
     <value>manager email</value>
@@ -191,6 +218,9 @@
   </data>
   <data name="updateLanguageHeader" xml:space="preserve">
     <value>update language</value>
+  </data>
+  <data name="updateLocationHeader" xml:space="preserve">
+    <value>update location</value>
   </data>
   <data name="users" xml:space="preserve">
     <value>users</value>

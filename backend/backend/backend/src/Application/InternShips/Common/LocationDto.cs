@@ -5,11 +5,11 @@ using backend.Domain.Entities;
 namespace backend.Application.InternShips.Common;
 public class LocationDto:IMapFrom<Location>
 {
-    public int Id { get; set; }
-    public string City { get; set; }
-    public string StreetName { get; set; }
-    public int HouseNumber { get; set; }
-    public string ZipCode { get; set; }
+    public int id { get; set; }
+    public string city { get; set; }
+    public string streetname { get; set; }
+    public int housenumber { get; set; }
+    public string zipcode { get; set; }
 
     public void Mapping(Profile profile)
     {

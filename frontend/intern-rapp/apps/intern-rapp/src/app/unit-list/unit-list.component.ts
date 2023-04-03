@@ -35,7 +35,6 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class UnitListComponent extends BaseList<DepartmentItem> implements OnInit{
  
-
 public deleteSubject=new Subject<number>()
 public addSubject=new Subject<CreateDepartment|undefined>();
 public updateSubject=new Subject<DepartmentItem>();

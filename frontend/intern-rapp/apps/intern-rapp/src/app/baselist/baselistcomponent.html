@@ -1,4 +1,5 @@
 <div  *ngIf="(result$|async) as pagedItems">
+  
   <intern-rapp-filter *ngIf="filters"
   [filters]="filters"
   (filtered)="filterList($event)"

@@ -9,8 +9,8 @@ export abstract class BaseList<T> {
 
     public listData$: Observable<ResourceItemPagingResponse<T>> | undefined;
     public filters: Filter[] | undefined;
-     private readonly paginationsSub$: BehaviorSubject<PaginationRequest>;
-     private readonly filtersSub$: BehaviorSubject<string>;
+    private readonly paginationsSub$: BehaviorSubject<PaginationRequest>;
+    private readonly filtersSub$: BehaviorSubject<string>;
    
     constructor( pageSize = 10){
         this.paginationsSub$ = new BehaviorSubject<PaginationRequest>({pageNumber:1,pageSize});

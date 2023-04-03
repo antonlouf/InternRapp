@@ -34,7 +34,7 @@ public class LanguageController : ControllerBase
     [HttpPost()]
     public async Task<IActionResult> PostLanguage(string languagenName)
     {
-         await _mediator.Send(new CreateLanguageCommand() { Name=languagenName });
+        await _mediator.Send(new CreateLanguageCommand() { Name=languagenName });
         return Ok();
     }
     [HttpPatch()]

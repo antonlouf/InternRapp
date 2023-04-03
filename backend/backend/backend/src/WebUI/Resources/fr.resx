@@ -126,6 +126,9 @@
   <data name="addLanguageHeader" xml:space="preserve">
     <value>ajouter une nouvelle langue</value>
   </data>
+  <data name="addLocationHeader" xml:space="preserve">
+    <value>ajouter un nouveau lieu</value>
+  </data>
   <data name="cancelButtonText" xml:space="preserve">
     <value>annuler</value>
   </data>
@@ -171,8 +174,32 @@
   <data name="languageNameRequiredErrorMessage" xml:space="preserve">
     <value>le nom de la langue est obligatoire</value>
   </data>
+  <data name="locationCityLabel" xml:space="preserve">
+    <value>nouvel emplacement</value>
+  </data>
+  <data name="locationCityRequiredErrorMessage" xml:space="preserve">
+    <value>la ville de localisation est requise</value>
+  </data>
+  <data name="locationHouseNumberErrorMessage" xml:space="preserve">
+    <value>la localisation du numéro de maison est requise</value>
+  </data>
+  <data name="locationHouseNumberLabel" xml:space="preserve">
+    <value>la localisation du numéro de maison</value>
+  </data>
   <data name="locations" xml:space="preserve">
     <value>Localisation des sites</value>
+  </data>
+  <data name="locationStreetNameLabel" xml:space="preserve">
+    <value>emplacement nom de la rue</value>
+  </data>
+  <data name="locationStreetRequiredErrorMessage" xml:space="preserve">
+    <value>le nom de la rue de l'emplacement est requis</value>
+  </data>
+  <data name="locationZipCodeLabel" xml:space="preserve">
+    <value>lieu code postal</value>
+  </data>
+  <data name="locationZipCodeRequiredErrorMessage" xml:space="preserve">
+    <value>le code postal de la localité est requis</value>
   </data>
   <data name="managerEmail" xml:space="preserve">
     <value>courriel du directeur</value>
@@ -191,6 +218,9 @@
   </data>
   <data name="updateLanguageHeader" xml:space="preserve">
     <value>mettre à jour la langue</value>
+  </data>
+  <data name="updateLocationHeader" xml:space="preserve">
+    <value>mettre à jour l'emplacement</value>
   </data>
   <data name="users" xml:space="preserve">
     <value>Utilisateurs</value>

@@ -18,8 +18,6 @@ export class LanguageService{
   private baseSuffixApi="/api/Language";
 
  
-
-
   filterAndPaginateLanguages(filterPaginationRequest: PaginationFilterRequest){
     return this.http.get<ResourceItemPagingResponse<LanguageItem>>(APIConfiguration.baseString+`${this.baseSuffixApi}?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&Filter=${filterPaginationRequest.filterString}`).pipe(catchError((err,caught)=>caught))
   }

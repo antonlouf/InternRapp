@@ -21,7 +21,6 @@ import { FilterComponent } from '../filter/filter.component';
   changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class BaselistComponent<T>{
-
   @Input() public filters: Filter[]|undefined|null;
   @Output() public readonly pagingUpdated = new EventEmitter<PageEvent>();
   @Output() public readonly filtered = new EventEmitter<object>();

@@ -31,7 +31,7 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./language-list.component.scss'],
 })
 export class LanguageListComponent extends BaseList<LanguageItem>{
-  public deleteSubject=new Subject<number>()
+  public deleteSubject=new Subject<number>();
   public addSubject=new Subject<CreateLanguage|undefined>();
   public updateSubject=new Subject<LanguageItem>();
   
@@ -52,8 +52,8 @@ export class LanguageListComponent extends BaseList<LanguageItem>{
     ngOnInit(): void {
       this.filters=[{label:"Language name",name:"filterValue",type:FilterType.Text,observable:undefined}];
       const delete$=this.configureDelete$();
-      const update$=this.configureUpdate$()
-      const add$=this.configureAdd$()
+      const update$=this.configureUpdate$();
+      const add$=this.configureAdd$();
       this.configureItems([delete$,update$,add$])
     } 
   
@@ -64,7 +64,7 @@ export class LanguageListComponent extends BaseList<LanguageItem>{
     dialogRef.componentInstance.title="language"
     return dialogRef.afterClosed().pipe(map(confirm=>confirm ? id : undefined )
   )})
-  ,filter(id => !!id)
+  ,filter(id => !!id) //undefined checken 
   ,switchMap(id =>  this.languageService.deleteLanguage(id)))
     }
     private configureUpdate$(){
@@ -78,7 +78,6 @@ export class LanguageListComponent extends BaseList<LanguageItem>{
       ,switchMap(languageItem=>{ 
         console.log(languageItem)
         return this.languageService.updateLanguage(languageItem)
-        
         }))
         }
   
