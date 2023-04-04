@@ -43,14 +43,9 @@ export class DepartmentUpdateComponent implements OnInit{
   }
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-  
-    // Add email of the manager
-    console.log(value)
     if (value) {
       this.managerEmailsAfterUpdate.push(value);
     }
-  
-    // Clear the input value
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     event.chipInput!.clear();
     this.updateForm.controls.managerEmails.setValue(null);
@@ -62,7 +57,6 @@ export class DepartmentUpdateComponent implements OnInit{
     this.updateForm.controls.managerEmails.patchValue(event.source.value.toString())
     }
     close(){
-      console.log('hello')
       this.data.managerEmails=this.managerEmailsAfterUpdate
       this.dialogRef.close(this.updateForm.valid?this.data:undefined)
     }

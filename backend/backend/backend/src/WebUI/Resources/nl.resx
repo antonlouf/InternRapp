@@ -123,8 +123,14 @@
   <data name="addDepartmentHeader" xml:space="preserve">
     <value>voeg een departement toe</value>
   </data>
+  <data name="addInternshipTitle" xml:space="preserve">
+    <value>Stage toevoegen</value>
+  </data>
   <data name="addLanguageHeader" xml:space="preserve">
     <value>voeg een nieuwe taal toe</value>
+  </data>
+  <data name="Bachelor" xml:space="preserve">
+    <value>Bachelor</value>
   </data>
   <data name="cancelButtonText" xml:space="preserve">
     <value>annuleer</value>
@@ -132,11 +138,17 @@
   <data name="confirmDeleteMessage" xml:space="preserve">
     <value>bent u zeker om te verwijderen?</value>
   </data>
+  <data name="currentCountOfStudentsErrorMessage" xml:space="preserve">
+    <value>Vul een positief getal</value>
+  </data>
+  <data name="currentCountOfStudentsLabel" xml:space="preserve">
+    <value>Aantal studenten die de dit stage zullen doen</value>
+  </data>
   <data name="delete" xml:space="preserve">
-    <value>verwijder</value>
+    <value>verwijderen</value>
   </data>
   <data name="deleteButton" xml:space="preserve">
-    <value>verwijder</value>
+    <value>verwijderen</value>
   </data>
   <data name="department" xml:space="preserve">
     <value>departement</value>
@@ -177,20 +189,44 @@
   <data name="managerEmail" xml:space="preserve">
     <value>email van manager</value>
   </data>
+  <data name="Master" xml:space="preserve">
+    <value>Master</value>
+  </data>
+  <data name="MasterAfterBachelor" xml:space="preserve">
+    <value>Master na Bachelor</value>
+  </data>
+  <data name="MasterAfterMaster" xml:space="preserve">
+    <value>Master na Master</value>
+  </data>
+  <data name="maxCountOfStudentsLabel" xml:space="preserve">
+    <value>Maximaal aantal toegelaten studenten</value>
+  </data>
+  <data name="maxStudentsErrorMessage" xml:space="preserve">
+    <value>Vul een positief getal</value>
+  </data>
   <data name="newInternShip" xml:space="preserve">
     <value>nieuw stageopdracht</value>
   </data>
   <data name="saveButtonText" xml:space="preserve">
     <value>opslaan</value>
   </data>
+  <data name="schoolyearErrorMessage" xml:space="preserve">
+    <value>de schooljaar is verplicht</value>
+  </data>
+  <data name="trainingTypeLabel" xml:space="preserve">
+    <value>vereist type opleiding</value>
+  </data>
+  <data name="unitEmptyErrorMessage" xml:space="preserve">
+    <value>de departement is verplicht</value>
+  </data>
   <data name="updateButtonText" xml:space="preserve">
-    <value>bijwerk</value>
+    <value>bijwerken</value>
   </data>
   <data name="updateDepartmentHeader" xml:space="preserve">
-    <value>bijwerk departement</value>
+    <value>departement bijwerken</value>
   </data>
   <data name="updateLanguageHeader" xml:space="preserve">
-    <value>bijwerk taal</value>
+    <value>taal bijwerken</value>
   </data>
   <data name="users" xml:space="preserve">
     <value>Gebruikers</value>

@@ -1,0 +1,55 @@
+
+  .form {
+
+    width: 100%;
+    margin-top: 1%;
+   height: 100%;
+  }
+  .center{
+    margin-left: 10%;
+  }
+  .center-header{
+    margin-top: 1%;
+   text-align: center;
+   margin-left: 10%;
+   width: 80%;
+    background-color: rgb(69, 116, 181);
+    color: white;
+  }
+
+  .flex-row{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    
+  }
+  .flex-row >div:first-child{
+    margin-left: 6%;
+    width: 100%;
+  }
+  .flex-row >div:first-child> mat-form-field{
+    margin-left: 10%;
+    width: 95%;
+  }
+  .flex-row >div:nth-child(2){
+    margin-right: 15%;
+    width: 95%;
+  }
+  
+  .flex-row >div:nth-child(2) >mat-form-field{
+    margin-left: 10%;
+    width: 100%;
+  }
+  .flex-end{
+    align-items: flex-end;
+  }
+  .flex-start{
+    align-items: flex-start;
+  }
+#trainingType{
+  margin-right: 60%;
+  width: 120%;
+}

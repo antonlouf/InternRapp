@@ -5,6 +5,7 @@ using backend.Application.InternShips.Queries.GetAllInternShips;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace WebUI.Controllers;
 [ApiController]
 [Route("/api/[Controller]")]
@@ -27,6 +28,7 @@ public class InternShipController : ControllerBase
         var result=await _mediator.Send(new GetAllQuery() { Dto=dto});
         return Ok(result);
     }
+ 
     [HttpPut]
     public async Task<IActionResult> Update(InternShipUpdateDto dto)
     {

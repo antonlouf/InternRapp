@@ -7,6 +7,7 @@ import { PaginationRequest } from '../entities/paginationRequest';
 import { DepartmentItem } from '../entities/departmentItem';
 import { PaginationFilterRequest } from '../entities/paginationFilterRequest';
 import { ResourceItemPagingResponse } from '../entities/resourceItemPagingResponse';
+import { DepartementItemWithMinimalData } from '../entities/depItemWithMinimalData';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,9 @@ private baseSuffixApi="/api/Unit";
   }
   filterAndPaginateDepartments(filterPaginationRequest: PaginationFilterRequest){
     return this.http.get<ResourceItemPagingResponse<DepartmentItem>>(APIConfiguration.baseString+`${this.baseSuffixApi}?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&Filter=${filterPaginationRequest.filterString}`).pipe(catchError((err,caught)=>caught))
+  }
+  filterAndPaginateDepartmentsWithMinimalData(filterPaginationRequest: PaginationFilterRequest){
+    return this.http.get<ResourceItemPagingResponse<DepartementItemWithMinimalData>>(APIConfiguration.baseString+`${this.baseSuffixApi}/getAllWithminimaldata?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&Filter=${filterPaginationRequest.filterString}`).pipe(catchError((err,caught)=>caught))
   }
   deleteDepartment(id: number|undefined){
 return this.http.delete<number>(APIConfiguration.baseString+`${this.baseSuffixApi}?id=${id}`).pipe(catchError((err,caught)=>caught))

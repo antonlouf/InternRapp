@@ -72,8 +72,6 @@ closeDialog(save:boolean){
   if(save){
     data={name:this.addForm.controls.departmentName.getRawValue(),superVisorEmails:this.managerEmailsTobeAdded}
   }
-  console.log('in close')
-  console.log(save)
   this.dialogRef.close(save?data:undefined)
 }
 

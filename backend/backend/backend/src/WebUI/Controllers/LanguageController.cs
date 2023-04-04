@@ -8,6 +8,7 @@ using backend.Application.Languages.Commands.CreateLanguage;
 using backend.Application.Languages.Commands.DeleteLanguage;
 using backend.Application.Languages.Commands.UpdateLanguage;
 using backend.Application.Languages.Queries.GetAllLanguages;
+using backend.Application.Languages.Queries.GetLanguageById;
 using Duende.IdentityServer.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +31,12 @@ public class LanguageController : ControllerBase
     {
         var list = await _mediator.Send(new GetAllQuery() { Dto = dto });
         return Ok(list);
+    }
+    [HttpGet("{id:int}")]
+    public async Task<IActionResult> GetById([FromRoute]int id)
+    {
+        var language = await _mediator.Send(new GetByIdQuery() { Dto = new() { Id = id } });
+        return Ok(language);
     }
     [HttpPost()]
     public async Task<IActionResult> PostLanguage(string languagenName)

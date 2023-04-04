@@ -123,14 +123,26 @@
   <data name="addDepartmentHeader" xml:space="preserve">
     <value>ajouter un département</value>
   </data>
+  <data name="addInternshipTitle" xml:space="preserve">
+    <value>ajouter un stage</value>
+  </data>
   <data name="addLanguageHeader" xml:space="preserve">
     <value>ajouter une nouvelle langue</value>
+  </data>
+  <data name="Bachelor" xml:space="preserve">
+    <value>Bachelier</value>
   </data>
   <data name="cancelButtonText" xml:space="preserve">
     <value>annuler</value>
   </data>
   <data name="confirmDeleteMessage" xml:space="preserve">
     <value>Êtes-vous sûr d'effacer?</value>
+  </data>
+  <data name="currentCountOfStudentsErrorMessage" xml:space="preserve">
+    <value>Saisir un nombre positif</value>
+  </data>
+  <data name="currentCountOfStudentsLabel" xml:space="preserve">
+    <value>Nombre d'étudiants qui effectueront ce stage</value>
   </data>
   <data name="delete" xml:space="preserve">
     <value>supprimer</value>
@@ -177,11 +189,35 @@
   <data name="managerEmail" xml:space="preserve">
     <value>courriel du directeur</value>
   </data>
+  <data name="Master" xml:space="preserve">
+    <value>Master</value>
+  </data>
+  <data name="MasterAfterBachelor" xml:space="preserve">
+    <value>Formation Master Après Licence</value>
+  </data>
+  <data name="MasterAfterMaster" xml:space="preserve">
+    <value>Master Complémentaire</value>
+  </data>
+  <data name="maxCountOfStudentsLabel" xml:space="preserve">
+    <value>Nombre maximum d'étudiants autorisés</value>
+  </data>
+  <data name="maxStudentsErrorMessage" xml:space="preserve">
+    <value>Saisir un nombre positif</value>
+  </data>
   <data name="newInternShip" xml:space="preserve">
     <value>Nouveau stage</value>
   </data>
   <data name="saveButtonText" xml:space="preserve">
     <value>sauver</value>
+  </data>
+  <data name="schoolyearErrorMessage" xml:space="preserve">
+    <value>L'année scolaire est obligatoire</value>
+  </data>
+  <data name="trainingTypeLabel" xml:space="preserve">
+    <value>type de formation requise</value>
+  </data>
+  <data name="unitEmptyErrorMessage" xml:space="preserve">
+    <value>L'unité est requise</value>
   </data>
   <data name="updateButtonText" xml:space="preserve">
     <value>mise à jour</value>

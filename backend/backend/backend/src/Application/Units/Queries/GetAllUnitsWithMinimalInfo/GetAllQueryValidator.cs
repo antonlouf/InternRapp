@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
 
-namespace backend.Application.Units.Queries.GetAllUnits;
-public class GetAllQueryValidator:AbstractValidator<GetAllQuery>    
+namespace backend.Application.Units.Queries.GetAllUnitsWithMinimalInfo;
+public class GetAllQueryValidator:AbstractValidator<GetAllQuery>
 {
     public GetAllQueryValidator()
     {

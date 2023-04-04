@@ -22,7 +22,6 @@
     <ItemGroup>
       <Folder Include="Common\FileGenerators\" />
       <Folder Include="Common\Security\" />
-      <Folder Include="InternShips\Queries\GetExportedInternShips\" />
     </ItemGroup>
 
     <ItemGroup>

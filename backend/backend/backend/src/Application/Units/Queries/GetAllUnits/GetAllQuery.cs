@@ -29,7 +29,7 @@ public class GetAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<UnitLis
             var splittedFilter = request.Dto.Filter.Split(':');
             if (splittedFilter.Length > 1)
             {
-                queryable = queryable.Where(x => x.Name.Contains(splittedFilter[1]));
+                queryable = queryable.Where(x => x.Name.StartsWith(splittedFilter[1]));
             }
            
 

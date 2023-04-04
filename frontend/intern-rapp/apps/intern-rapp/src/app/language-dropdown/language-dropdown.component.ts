@@ -30,7 +30,7 @@ export class LanguageDropdownComponent implements OnInit{
     }
     this.translateService.addLangs(Object.keys(LanguageOption))
     this.translateService.setDefaultLang(this.translateService.currentLang)
-
+    
   }
   private  capitalize = (s:string) => s[0].toUpperCase() + s.slice(1)
   languageChanged(event: MatOptionSelectionChange){

@@ -1,0 +1,84 @@
+<form  *ngIf="internshipTranslationForm" [formGroup]="internshipTranslationForm" >
+    <mat-form-field  >
+        <mat-label> {{'titleContentLabel'|translate}}</mat-label>
+        <input
+        formControlName="titleContent"
+        matInput
+        type="number"
+        >
+        <mat-error >
+            {{'titleContentLabelErrorMessage' |translate}}
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field  >
+        <mat-label> {{'descriptionLabel'|translate}}</mat-label>
+        <input
+        formControlName="description"
+        matInput
+        type="number"
+        >
+        <mat-error >
+            {{'descriptionLabelErrorMessage' |translate}}
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field  >
+        <mat-label> {{'knowledgeToDevelopLabel'|translate}}</mat-label>
+        <input
+        formControlName="knowledgeToDevelop"
+        matInput
+        type="number"
+        >
+        <mat-error >
+            {{'knowledgeToDevelopLabelErrorMessage' |translate}}
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field  >
+        <mat-label> {{'locationLabel'|translate}}</mat-label>
+        <input
+        formControlName="location"
+        matInput
+        type="number"
+        >
+        <mat-error >
+            {{'locationLabelErrorMessage' |translate}}
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field  >
+        <mat-label> {{'commentLabel'|translate}}</mat-label>
+        <input
+        formControlName="comment"
+        matInput
+        type="number"
+        >
+        <mat-error >
+            {{'commentLabelErrorMessage' |translate}}
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field  >
+        <mat-label> {{'contentLabel'|translate}}</mat-label>
+        <input
+        formControlName="content"
+        matInput
+        type="number"
+        >
+        <mat-error >
+            {{'contentLabelErrorMessage' |translate}}
+        </mat-error>
+    </mat-form-field>
+
+    <!-- <mat-form-field  >
+        <mat-label> language Id</mat-label>
+        <input
+        formControlName="languageId"
+        matInput
+        type="number"
+        >
+    </mat-form-field> -->
+
+   
+</form>

@@ -123,14 +123,26 @@
   <data name="addDepartmentHeader" xml:space="preserve">
     <value>add department</value>
   </data>
+  <data name="addInternshipTitle" xml:space="preserve">
+    <value>Add internship</value>
+  </data>
   <data name="addLanguageHeader" xml:space="preserve">
     <value>add a new language</value>
+  </data>
+  <data name="Bachelor" xml:space="preserve">
+    <value>Bachelor</value>
   </data>
   <data name="cancelButtonText" xml:space="preserve">
     <value>cancel</value>
   </data>
   <data name="confirmDeleteMessage" xml:space="preserve">
     <value>Are you sure to delete? </value>
+  </data>
+  <data name="currentCountOfStudentsErrorMessage" xml:space="preserve">
+    <value>Make sure you are entering a positive</value>
+  </data>
+  <data name="currentCountOfStudentsLabel" xml:space="preserve">
+    <value>Count of students that occupy the internship</value>
   </data>
   <data name="delete" xml:space="preserve">
     <value>delete</value>
@@ -177,11 +189,35 @@
   <data name="managerEmail" xml:space="preserve">
     <value>manager email</value>
   </data>
+  <data name="Master" xml:space="preserve">
+    <value>Master</value>
+  </data>
+  <data name="MasterAfterBachelor" xml:space="preserve">
+    <value>Master after Bachelor</value>
+  </data>
+  <data name="MasterAfterMaster" xml:space="preserve">
+    <value>Master after Master</value>
+  </data>
+  <data name="maxCountOfStudentsLabel" xml:space="preserve">
+    <value>Maximum allowed students</value>
+  </data>
+  <data name="maxStudentsErrorMessage" xml:space="preserve">
+    <value>Make sure you are entering a positive</value>
+  </data>
   <data name="newInternShip" xml:space="preserve">
     <value>New InternShip</value>
   </data>
   <data name="saveButtonText" xml:space="preserve">
     <value>save</value>
+  </data>
+  <data name="schoolyearErrorMessage" xml:space="preserve">
+    <value>The schoolyear is required</value>
+  </data>
+  <data name="trainingTypeLabel" xml:space="preserve">
+    <value>required training type</value>
+  </data>
+  <data name="unitEmptyErrorMessage" xml:space="preserve">
+    <value>The unit is required</value>
   </data>
   <data name="updateButtonText" xml:space="preserve">
     <value>update</value>

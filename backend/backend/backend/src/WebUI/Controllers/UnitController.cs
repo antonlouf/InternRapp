@@ -4,11 +4,14 @@ using backend.Application.Units.Commands.CreateUnit;
 using backend.Application.Units.Commands.DeleteUnit;
 using backend.Application.Units.Commands.UpdateUnit;
 using backend.Application.Units.Queries.GetAllUnits;
+using backend.Application.Units.Queries.GetAllUnitsWithMinimalInfo;
 using backend.Application.Units.Queries.GetUnitById;
 using backend.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using GetAllQueryMinimal = backend.Application.Units.Queries.GetAllUnitsWithMinimalInfo.GetAllQuery;
+using GetAllQuery = backend.Application.Units.Queries.GetAllUnits.GetAllQuery;
 
 namespace WebUI.Controllers;
 [ApiController]
@@ -37,19 +40,15 @@ public class UnitController : ControllerBase
     [HttpGet()]
     public async Task<IActionResult> GetAllByfilterAndPage([FromQuery] FilterAndPaginationRequestDto dto)
     {
-      
-       
-        
         var list = await _mediator.Send(new GetAllQuery(){Dto=dto });
-        //return Ok(new {items=list,total=list.TotalCount});
         return Ok(list);
     }
-    //[HttpGet]
-    //public async Task<IActionResult> GetAll()
-    //{
-    //    var result = await _mediator.Send(new GetAllQuery());
-    //    return Ok(result);
-    //}
+    [HttpGet("getAllWithminimaldata")]
+    public async Task<IActionResult> GetAllWithMinimumData([FromQuery] FilterAndPaginationRequestDto dto)
+    {
+        var result = await _mediator.Send(new GetAllQueryMinimal() { Dto = dto });
+        return Ok(result);
+    }
 
     [HttpPatch]
     public async Task<IActionResult> Update(UnitListDto dto)
