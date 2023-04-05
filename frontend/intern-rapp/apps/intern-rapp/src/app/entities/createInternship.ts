@@ -1,4 +1,11 @@
+import { InternshipTranslation } from "./internshipTranslation"
+
 export interface CreateInternship{
-    name:string
-    //later be adjusted when actually create user is worked out
+    schoolYear: string
+    unitId: number
+    maxCountOfStudents: number
+    currentCountOfStudents: number
+    trainingType: number
+    locationId: number
+    versions: InternshipTranslation[]
 }

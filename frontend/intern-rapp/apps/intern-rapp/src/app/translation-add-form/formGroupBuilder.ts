@@ -1,7 +1,8 @@
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { InternshipTranslation } from '../entities/internshipTranslation';
+import { InternshipTranslationUpdateDto } from '../entities/internshipTranslationUpdateDto';
 
-export function buildFormGroupForTranslations(data:InternshipTranslation|undefined,languageId:number|undefined=undefined,languageName:string|undefined=undefined){
+export function buildFormGroupForTranslations(data:InternshipTranslationUpdateDto|undefined,languageId:number|undefined=undefined,languageName:string|undefined=undefined){
     return new FormGroup({
         titleContent:new FormControl(data?.titleContent??'',[Validators.required]),
         description:new FormControl(data?.description??'',[Validators.required]),

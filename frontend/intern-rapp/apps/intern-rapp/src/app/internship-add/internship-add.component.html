@@ -3,12 +3,12 @@
         <div class="flex-row" >
       <div >
         <mat-form-field >
-            <mat-select formControlName="schoolYear"  #schoolYear>
+            <mat-select formControlName="schoolYear"  >
                 <mat-option   *ngFor="let date of availableDates()" [value]="date" >
                 {{date}}
                 </mat-option>
             </mat-select>
-            <mat-error *ngIf="schoolYear.ngControl.hasError">
+            <mat-error >
                 {{'schoolyearErrorMessage' |translate}}
             </mat-error>
                </mat-form-field>
@@ -59,8 +59,7 @@
         formControlName="currentCountOfStudents"
         matInput
         type="number"
-        maxlength="3"
-        minlength="1"
+  
         >
         <mat-error >
             {{'currentCountOfStudentsErrorMessage' |translate}}
@@ -88,12 +87,29 @@
               {{'schoolyearErrorMessage' |translate}}
           </mat-error>
              </mat-form-field>
-    </div>  
+    </div> 
+    <div>
+        <mat-form-field >
+            <mat-select formControlName="schoolYear"  >
+                <mat-option   *ngFor="let date of availableDates()" [value]="date" >
+                {{date}}
+                </mat-option>
+            </mat-select>
+            <mat-error >
+                {{'schoolyearErrorMessage' |translate}}
+            </mat-error>
+               </mat-form-field>
+    </div> 
+    <div>
+        <button mat-icon-button  (click)="addLanguage()">
+            <mat-icon>add</mat-icon>
+        </button>
     </div>
-<div class="flex-row">
+   
 
-</div>
-<mat-tab-group  mat-align-tabs="center" backgroundColor="accent"  formArrayName="translateTabs">
+    </div>
+
+<mat-tab-group   mat-align-tabs="center" backgroundColor="primary"  formArrayName="translateTabs">
     <mat-tab  *ngFor="let tab of tabs" label="{{getFormGroupOutOfAbstractControl(tab).controls['languageName'].value}}"> 
         <intern-rapp-translation-add-form
         [internshipTranslationForm]="getFormGroupOutOfAbstractControl(tab)"
@@ -103,8 +119,8 @@
     </mat-tab>
 
   </mat-tab-group>
-  <button mat-icon-button  (click)="addLanguage()">
-    <mat-icon>add</mat-icon>
+  <button class="save-button" mat-icon-button  (click)="addInternship()">
+    <mat-icon>save</mat-icon>
 </button>
     </form>
       

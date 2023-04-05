@@ -76,7 +76,7 @@ public class ValidationFunctions
 
     public async Task<bool> CheckIfUnitIdExists(int arg1, CancellationToken arg2)
     {
-        var result = await _dbContext.InternShips.FirstOrDefaultAsync(x => x.Id == arg1);
+        var result = await _dbContext.Departments.FirstOrDefaultAsync(x => x.Id == arg1);
         return result != null;
     }
     public async Task<bool> CheckIfInternShipIdExists(int arg1, CancellationToken arg2)

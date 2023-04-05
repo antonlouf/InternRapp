@@ -1,4 +1,5 @@
 ﻿using backend.Application.Common.Interfaces;
+using backend.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,34 +26,32 @@ public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternSh
         internShip.RequiredTrainingType = request.Dto.TrainingType;
         internShip.LocationId = request.Dto.LocationId;
         internShip.UnitId = request.Dto.UnitId;
-        internShip.CurrentCountOfStudents= request.Dto.CurrentCountOfStudents;
-
-
-
+        internShip.CurrentCountOfStudents = request.Dto.CurrentCountOfStudents;
         //this part is later be placed by operations in translations
-
-        int counter = 0;
-   
-       
-        foreach (var version in internShip.Translations)
+        internShip.Translations = new List<InternShipContentTranslation>();
+        
+        foreach (var sendedVersion in request.Dto.Versions)
         {
-            foreach(var sendedVersion in request.Dto.Versions)
+            internShip.Translations.Add(new()
             {
-                if (sendedVersion.TranslationId == version.Id)
-                {
-                    version.NeededKnowledge=sendedVersion.NeededKnowledge;
-                    version.KnowledgeToDevelop = sendedVersion.KnowledgeToDevelop;
-                    version.Comment=sendedVersion.Comment;
-                    version.Content = sendedVersion.Content;
-                    version.Description = sendedVersion.Description;
-                    version.Location = sendedVersion.Location;
-                    version.TitleContent = sendedVersion.TitleContent;
-                }
-            }
+                Id=sendedVersion.TranslationId,
+                LanguageId=sendedVersion.LanguageId,
+                NeededKnowledge = sendedVersion.NeededKnowledge,
+                KnowledgeToDevelop = sendedVersion.KnowledgeToDevelop,
+                Comment = sendedVersion.Comment,
+                Content = sendedVersion.Content,
+                Description = sendedVersion.Description,
+                Location = sendedVersion.Location,
+                TitleContent = sendedVersion.TitleContent
+            });
         }
-
         await _dbContext.SaveChangesAsync(cancellationToken);
 
-        
     }
+
+
+    
+
+
 }
+

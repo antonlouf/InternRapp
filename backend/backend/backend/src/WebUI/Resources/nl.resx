@@ -135,8 +135,14 @@
   <data name="cancelButtonText" xml:space="preserve">
     <value>annuleer</value>
   </data>
+  <data name="commentLabel" xml:space="preserve">
+    <value>commentaar</value>
+  </data>
   <data name="confirmDeleteMessage" xml:space="preserve">
     <value>bent u zeker om te verwijderen?</value>
+  </data>
+  <data name="contentLabel" xml:space="preserve">
+    <value>inhoud</value>
   </data>
   <data name="currentCountOfStudentsErrorMessage" xml:space="preserve">
     <value>Vul een positief getal</value>
@@ -162,6 +168,9 @@
   <data name="departments" xml:space="preserve">
     <value>departementen</value>
   </data>
+  <data name="descriptionLabel" xml:space="preserve">
+    <value>beschrijving</value>
+  </data>
   <data name="editButton" xml:space="preserve">
     <value>bijwerk</value>
   </data>
@@ -170,6 +179,9 @@
   </data>
   <data name="internships" xml:space="preserve">
     <value>Stages</value>
+  </data>
+  <data name="knowledgeToDevelopLabel" xml:space="preserve">
+    <value>kennis dat opgedaan zal worden</value>
   </data>
   <data name="language" xml:space="preserve">
     <value>taal</value>
@@ -182,6 +194,9 @@
   </data>
   <data name="languageNameRequiredErrorMessage" xml:space="preserve">
     <value>De taal is verplicht om in te vullen</value>
+  </data>
+  <data name="locationLabel" xml:space="preserve">
+    <value>locatie</value>
   </data>
   <data name="locations" xml:space="preserve">
     <value>locaties</value>
@@ -212,6 +227,9 @@
   </data>
   <data name="schoolyearErrorMessage" xml:space="preserve">
     <value>de schooljaar is verplicht</value>
+  </data>
+  <data name="titleContentLabetitleContent" xml:space="preserve">
+    <value>titel</value>
   </data>
   <data name="trainingTypeLabel" xml:space="preserve">
     <value>vereist type opleiding</value>

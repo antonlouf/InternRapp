@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace backend.Domain.Enums;
 public enum TrainingType
 {
-    Bachelor,
-    Master,
-    MasterAfterMaster,
-    MasterAfterBachelor
+    Bachelor=0,
+    Master=1,
+    MasterAfterMaster=2,
+    MasterAfterBachelor=3
 }

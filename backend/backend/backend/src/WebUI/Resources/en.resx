@@ -135,8 +135,14 @@
   <data name="cancelButtonText" xml:space="preserve">
     <value>cancel</value>
   </data>
+  <data name="commentLabel" xml:space="preserve">
+    <value>comment</value>
+  </data>
   <data name="confirmDeleteMessage" xml:space="preserve">
     <value>Are you sure to delete? </value>
+  </data>
+  <data name="contentLabel" xml:space="preserve">
+    <value>content</value>
   </data>
   <data name="currentCountOfStudentsErrorMessage" xml:space="preserve">
     <value>Make sure you are entering a positive</value>
@@ -162,6 +168,9 @@
   <data name="departments" xml:space="preserve">
     <value>departments</value>
   </data>
+  <data name="descriptionLabel" xml:space="preserve">
+    <value>description</value>
+  </data>
   <data name="editButton" xml:space="preserve">
     <value>edit</value>
   </data>
@@ -170,6 +179,9 @@
   </data>
   <data name="internships" xml:space="preserve">
     <value>internships</value>
+  </data>
+  <data name="knowledgeToDevelopLabel" xml:space="preserve">
+    <value>knowledge to develop</value>
   </data>
   <data name="language" xml:space="preserve">
     <value>language</value>
@@ -182,6 +194,9 @@
   </data>
   <data name="languageNameRequiredErrorMessage" xml:space="preserve">
     <value>the language name is required</value>
+  </data>
+  <data name="locationLabel" xml:space="preserve">
+    <value>location</value>
   </data>
   <data name="locations" xml:space="preserve">
     <value>locations</value>
@@ -212,6 +227,9 @@
   </data>
   <data name="schoolyearErrorMessage" xml:space="preserve">
     <value>The schoolyear is required</value>
+  </data>
+  <data name="titleContentLabel" xml:space="preserve">
+    <value>title</value>
   </data>
   <data name="trainingTypeLabel" xml:space="preserve">
     <value>required training type</value>

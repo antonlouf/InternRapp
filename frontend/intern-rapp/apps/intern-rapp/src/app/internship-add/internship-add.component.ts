@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewChecked, ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterContentInit, AfterViewChecked, ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { CommonModule, KeyValue } from '@angular/common';
 import { FormGroup, ReactiveFormsModule, FormControl, Validators, FormArray, AbstractControl } from '@angular/forms';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
@@ -13,7 +13,7 @@ import { DepartmentItem } from '../entities/departmentItem';
 import { ResourceItemPagingResponse } from '../entities/resourceItemPagingResponse';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { DepartementItemWithMinimalData } from '../entities/depItemWithMinimalData';
-import { filter, map, shareReplay, startWith, takeUntil } from 'rxjs/operators';
+import { filter, map, shareReplay, startWith, take, takeUntil } from 'rxjs/operators';
 import { TrainingType } from '../enums/trainingType';
 import {MatTabsModule} from '@angular/material/tabs';
 import { LanguageItem } from '../entities/languageItem';
@@ -24,6 +24,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { LanguagePopupChoiceComponent } from '../language-popup-choice/language-popup-choice.component';
 import { TranslationAddFormComponent } from '../translation-add-form/translation-add-form.component';
+import { CreateInternship } from '../entities/createInternship';
 @Component({
   selector: 'intern-rapp-internship-add',
   standalone: true,
@@ -32,7 +33,7 @@ import { TranslationAddFormComponent } from '../translation-add-form/translation
   styleUrls: ['./internship-add.component.scss'],
  changeDetection:ChangeDetectionStrategy.Default
 })
-export class InternshipAddComponent implements OnInit{
+export class InternshipAddComponent implements OnInit,OnDestroy{
   public availableTrainingTypes=Object.values(TrainingType).slice(0,Object.values(TrainingType).length/2) 
   
   public addInternshipForm:FormGroup|undefined; 
@@ -40,6 +41,7 @@ constructor(private unitService: DepartmentService,
             private languageService:LanguageService,
             private dialog: MatDialog
             ){}
+
 
   public unitObs$:Observable<DepartementItemWithMinimalData[]>|undefined
   private languageObs$:Observable<LanguageItem[]>|undefined
@@ -50,6 +52,10 @@ constructor(private unitService: DepartmentService,
    disableClose:false,
    hasBackdrop:true,
    position:{top:'250px',right:'630px'}
+  }
+  ngOnDestroy(): void {
+    this.destrojSubj$.next(undefined)
+    this.destrojSubj$.complete()
   }
   ngOnInit(): void {
     this.addInternshipForm= new FormGroup({
@@ -103,7 +109,6 @@ constructor(private unitService: DepartmentService,
     }),
     switchMap(data => 
       {
-        console.log(data)
       const dialogRef= this.dialog.open(LanguagePopupChoiceComponent, this.popUpConfig) 
       dialogRef.componentInstance.languageItems=data
       return dialogRef.afterClosed().pipe(
@@ -115,11 +120,12 @@ constructor(private unitService: DepartmentService,
        
         controls.push(buildFormGroupForTranslations(undefined,data!==undefined?data.id:undefined,data!==undefined?data.name?.toString():undefined))
       }))}),
+      take(1),
     takeUntil(this.destrojSubj$)).subscribe()
 
 
     
- 
+
   }
   public getLanguageById(formGroup:FormGroup){
     return this.languageService.getById(formGroup.controls['languageId'].value)
@@ -128,5 +134,15 @@ constructor(private unitService: DepartmentService,
     console.log(this.addInternshipForm?.getRawValue())
     return abstractControl as FormGroup
   }
-
+public addInternship(){
+return
+}
+private mapToSubmittableInternshipObject(){
+  // const internShipToBeReturned:CreateInternship|undefined={
+  //   currentCountOfStudents:this.addInternshipForm?.controls['currentCountOfStudents'].value,
+  //   maxCountOfStudents:this.addInternshipForm?.controls['maxStudents'].value,
+  //   locationId:this.addInternshipForm?.controls['loca'].value,
+  // }
+  // return internShipToBeReturned
+}
 }

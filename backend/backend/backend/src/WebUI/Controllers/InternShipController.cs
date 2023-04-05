@@ -17,9 +17,9 @@ public class InternShipController : ControllerBase
         _mediator = mediator;
     }
     [HttpPost]
-    public async Task<IActionResult> Create(CreateInternShipCommand dto)
+    public async Task<IActionResult> Create([FromBody] InternShipCreateDto dto)
     {
-        await _mediator.Send(dto);  
+        await _mediator.Send(new CreateInternShipCommand() { Dto=dto});  
         return Ok();
     }
     [HttpGet]

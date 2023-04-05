@@ -1,84 +1,153 @@
 <form  *ngIf="internshipTranslationForm" [formGroup]="internshipTranslationForm" >
+    <div class="flex-column" >
+<div class="title-content">
+  
     <mat-form-field  >
-        <mat-label> {{'titleContentLabel'|translate}}</mat-label>
-        <input
-        formControlName="titleContent"
-        matInput
-        type="number"
-        >
-        <mat-error >
-            {{'titleContentLabelErrorMessage' |translate}}
-        </mat-error>
-    </mat-form-field>
+                <mat-label> {{'titleContentLabel'|translate}}</mat-label>
+                <input
+                formControlName="titleContent"
+                matInput
+                type="text"
+                >
+                <mat-error >
+                    {{'titleContentLabelErrorMessage' |translate}}
+                </mat-error>
+            </mat-form-field>
+      
+        
+      
+    </div>
+<div>
+   <div class="flex-row">
+    <div>
+        <div class="editor">
+  
+            <div >
+                <mat-label class="editor-label"> {{'descriptionLabel'|translate}}</mat-label>
+    
+            </div>
+        <div>
+        <angular-editor  formControlName="description" [config]="editorConfig"></angular-editor>
+    
+       
+    
+        <div>
+            <mat-error *ngIf="internshipTranslationForm.controls['description'].dirty && internshipTranslationForm.controls['description'].invalid">
+                {{'descriptionLabelErrorMessage' |translate}}
+            </mat-error>
+        </div>
+        </div>
+    
+    </div>
+    </div>
+    <div>
+        <div class="editor">
+  
+            <div >
+                <mat-label> {{'knowledgeToDevelopLabel'|translate}}</mat-label>
+            </div>
+        <div>
+        <angular-editor  formControlName="knowledgeToDevelop" [config]="editorConfig"></angular-editor>
+    
+        <div>
+            <mat-error *ngIf="internshipTranslationForm.controls['knowledgeToDevelop'].dirty && internshipTranslationForm.controls['knowledgeToDevelop'].invalid">
+                {{'knowledgeToDevelopLabelErrorMessage' |translate}}
+            </mat-error>
+        </div>
+        </div>
+    
+    </div>
+    </div>
+   </div>
 
-    <mat-form-field  >
-        <mat-label> {{'descriptionLabel'|translate}}</mat-label>
-        <input
-        formControlName="description"
-        matInput
-        type="number"
-        >
-        <mat-error >
-            {{'descriptionLabelErrorMessage' |translate}}
-        </mat-error>
-    </mat-form-field>
+</div>
+<div>
+<div class="flex-row">
+    <div>
+        <div class="editor">
+  
+            <div >
+                <mat-label> {{'locationLabel'|translate}}</mat-label>
+            </div>
+        <div>
+        <angular-editor  formControlName="location" [config]="editorConfig"></angular-editor>
+    
+        <div>
+            <mat-error *ngIf="internshipTranslationForm.controls['location'].dirty && internshipTranslationForm.controls['location'].invalid">
+                {{'locationLabelErrorMessage' |translate}}
+            </mat-error>
+        </div>
+        </div>
+    
+    </div>
+    </div>
+    <div>
+        <div class="flew-row">
+            <div>
+                <div class="editor">
+  
+                    <div >
+                        <mat-label> {{'commentLabel'|translate}}</mat-label>
+                    </div>
+                <div>
+                <angular-editor  formControlName="comment" [config]="editorConfig"></angular-editor>
+            
+                <div>
+                    <mat-error *ngIf="internshipTranslationForm.controls['comment'].dirty && internshipTranslationForm.controls['comment'].invalid">
+                        {{'commentLabelErrorMessage' |translate}}
+                    </mat-error>
+                </div>
+                </div>
+            
+            </div>
+            </div>
+            
+        </div>
+       
+    </div>
+</div>
 
-    <mat-form-field  >
-        <mat-label> {{'knowledgeToDevelopLabel'|translate}}</mat-label>
-        <input
-        formControlName="knowledgeToDevelop"
-        matInput
-        type="number"
-        >
-        <mat-error >
-            {{'knowledgeToDevelopLabelErrorMessage' |translate}}
-        </mat-error>
-    </mat-form-field>
 
-    <mat-form-field  >
-        <mat-label> {{'locationLabel'|translate}}</mat-label>
-        <input
-        formControlName="location"
-        matInput
-        type="number"
-        >
-        <mat-error >
-            {{'locationLabelErrorMessage' |translate}}
-        </mat-error>
-    </mat-form-field>
+  
+ </div>
+ <div>
+ 
+ </div>
+<div >
+   
+</div>
+<div >
+        
+   
 
-    <mat-form-field  >
-        <mat-label> {{'commentLabel'|translate}}</mat-label>
-        <input
-        formControlName="comment"
-        matInput
-        type="number"
-        >
-        <mat-error >
-            {{'commentLabelErrorMessage' |translate}}
-        </mat-error>
-    </mat-form-field>
+    <div class="editor">
+  
+        <div >
+            <mat-label> {{'contentLabel'|translate}}</mat-label>
+        </div>
+    <div>
+    <angular-editor  formControlName="content" [config]="editorConfig"></angular-editor>
 
-    <mat-form-field  >
-        <mat-label> {{'contentLabel'|translate}}</mat-label>
-        <input
-        formControlName="content"
-        matInput
-        type="number"
-        >
-        <mat-error >
+    <div>
+        <mat-error *ngIf="internshipTranslationForm.controls['content'].dirty && internshipTranslationForm.controls['content'].invalid">
             {{'contentLabelErrorMessage' |translate}}
         </mat-error>
-    </mat-form-field>
+    </div>
+    </div>
 
-    <!-- <mat-form-field  >
-        <mat-label> language Id</mat-label>
-        <input
-        formControlName="languageId"
-        matInput
-        type="number"
-        >
-    </mat-form-field> -->
+</div>
+</div>
+    </div>
+   
+
+
+    
+
+
+
+  
+
+ 
 
    
 </form>

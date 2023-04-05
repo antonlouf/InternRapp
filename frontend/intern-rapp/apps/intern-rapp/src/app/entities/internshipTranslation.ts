@@ -1,10 +1,10 @@
 export interface InternshipTranslation{
-    languageId:number,
-    titleContent:string,
-    description:string,
-    knowledgeToDevelop:string,
-    location:string,
-    comment:string,
-    content:string,
-    languageName:string
+  languageId: number
+  titleContent: string
+  description: string
+  knowledgeToDevelop: string
+  neededKnowledge: string
+  location: string
+  comment: string
+  content: string
 }
