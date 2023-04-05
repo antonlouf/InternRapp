@@ -25,7 +25,6 @@
       <Folder Include="Common\" />
       <Folder Include="Files\Maps\" />
       <Folder Include="Identity\" />
-      <Folder Include="Persistence\Configurations\" />
       <Folder Include="Persistence\Interceptors\" />
     </ItemGroup>
 

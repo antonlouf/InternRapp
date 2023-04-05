@@ -5,7 +5,7 @@
         <RootNamespace>backend.Application</RootNamespace>
         <AssemblyName>backend.Application</AssemblyName>
         <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
+        <!--<Nullable>enable</Nullable>-->
     </PropertyGroup>
 
     <ItemGroup>
@@ -21,6 +21,14 @@
 
     <ItemGroup>
       <Folder Include="Common\Security\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EditorConfigFiles Remove="C:\Users\RGTCP77\project\InternRApp\backend\backend\backend\src\Application\InternShips\Queries\.editorconfig" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="C:\Users\RGTCP77\project\InternRApp\backend\backend\backend\src\Application\InternShips\Queries\.editorconfig" />
     </ItemGroup>
 
 </Project>
