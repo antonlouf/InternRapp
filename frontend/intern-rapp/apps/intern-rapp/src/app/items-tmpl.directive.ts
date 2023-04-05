@@ -9,7 +9,7 @@ import {ItemsTmplContext} from '../app/items-tmpl-context'
 export class ItemsTmplDirective<T> {
 
   public constructor(public readonly templateRef: TemplateRef<T>) {}
- public static ngTemplateContextGuard<T>( _dir: ItemsTmplDirective<T>, ctx: unknown): ctx is ItemsTmplContext<T> 
+  public static ngTemplateContextGuard<T>( _dir: ItemsTmplDirective<T>, ctx: unknown): ctx is ItemsTmplContext<T> 
  {
    return true; 
  }

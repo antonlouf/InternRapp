@@ -201,6 +201,18 @@
   <data name="locations" xml:space="preserve">
     <value>locaties</value>
   </data>
+  <data name="locationStreetNameLabel" xml:space="preserve">
+    <value>locatie straatnaam </value>
+  </data>
+  <data name="locationStreetRequiredErrorMessage" xml:space="preserve">
+    <value>lcoatie straatnaam is verplicht </value>
+  </data>
+  <data name="locationZipCodeLabel" xml:space="preserve">
+    <value>locatie postcode</value>
+  </data>
+  <data name="locationZipCodeRequiredErrorMessage" xml:space="preserve">
+    <value>lcoatie postcode is verplicht </value>
+  </data>
   <data name="managerEmail" xml:space="preserve">
     <value>email van manager</value>
   </data>
@@ -245,6 +257,9 @@
   </data>
   <data name="updateLanguageHeader" xml:space="preserve">
     <value>taal bijwerken</value>
+  </data>
+  <data name="updateLocationHeader" xml:space="preserve">
+    <value>pas locatie aan </value>
   </data>
   <data name="users" xml:space="preserve">
     <value>Gebruikers</value>

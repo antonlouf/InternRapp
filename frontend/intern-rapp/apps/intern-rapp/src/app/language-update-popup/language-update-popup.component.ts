@@ -28,6 +28,7 @@ export class LanguageUpdatePopupComponent {
   }
   ngOnInit(): void {
     this.updateForm.controls.languageName.patchValue(this.data?.name)
+    console.log(this.data);
   }
   
 

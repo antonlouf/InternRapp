@@ -13,8 +13,6 @@ public class UpdateLanguageCommandValidator:AbstractValidator<UpdateLanguageComm
 {
     private readonly IApplicationDbContext _dbContext;
 
- 
-
     public UpdateLanguageCommandValidator(IApplicationDbContext dbContext)
     {
         this.CascadeMode = CascadeMode.Stop;

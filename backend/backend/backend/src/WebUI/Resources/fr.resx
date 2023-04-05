@@ -201,6 +201,18 @@
   <data name="locations" xml:space="preserve">
     <value>Localisation des sites</value>
   </data>
+  <data name="locationStreetNameLabel" xml:space="preserve">
+    <value>emplacement nom de la rue</value>
+  </data>
+  <data name="locationStreetRequiredErrorMessage" xml:space="preserve">
+    <value>le nom de la rue de l'emplacement est requis</value>
+  </data>
+  <data name="locationZipCodeLabel" xml:space="preserve">
+    <value>lieu code postal</value>
+  </data>
+  <data name="locationZipCodeRequiredErrorMessage" xml:space="preserve">
+    <value>le code postal de la localité est requis</value>
+  </data>
   <data name="managerEmail" xml:space="preserve">
     <value>courriel du directeur</value>
   </data>
@@ -245,6 +257,9 @@
   </data>
   <data name="updateLanguageHeader" xml:space="preserve">
     <value>mettre à jour la langue</value>
+  </data>
+  <data name="updateLocationHeader" xml:space="preserve">
+    <value>mettre à jour l'emplacement</value>
   </data>
   <data name="users" xml:space="preserve">
     <value>Utilisateurs</value>

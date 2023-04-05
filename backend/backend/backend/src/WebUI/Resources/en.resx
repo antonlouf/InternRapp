@@ -201,6 +201,18 @@
   <data name="locations" xml:space="preserve">
     <value>locations</value>
   </data>
+  <data name="locationStreetNameLabel" xml:space="preserve">
+    <value>location street name</value>
+  </data>
+  <data name="locationStreetRequiredErrorMessage" xml:space="preserve">
+    <value>location street name is required</value>
+  </data>
+  <data name="locationZipCodeLabel" xml:space="preserve">
+    <value>location zipcode</value>
+  </data>
+  <data name="locationZipCodeRequiredErrorMessage" xml:space="preserve">
+    <value>location zipcode is required</value>
+  </data>
   <data name="managerEmail" xml:space="preserve">
     <value>manager email</value>
   </data>
@@ -245,6 +257,9 @@
   </data>
   <data name="updateLanguageHeader" xml:space="preserve">
     <value>update language</value>
+  </data>
+  <data name="updateLocationHeader" xml:space="preserve">
+    <value>update location</value>
   </data>
   <data name="users" xml:space="preserve">
     <value>users</value>
