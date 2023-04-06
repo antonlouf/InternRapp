@@ -1,34 +1,34 @@
-import { AfterContentInit, AfterViewChecked, ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
-import { CommonModule, KeyValue } from '@angular/common';
+import {  ChangeDetectionStrategy, Component, DoCheck, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormGroup, ReactiveFormsModule, FormControl, Validators, FormArray, AbstractControl } from '@angular/forms';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatOptionSelectionChange } from '@angular/material/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { Subject, Observable, switchMap, tap } from 'rxjs';
-import { PaginationRequest } from '../entities/paginationRequest';
 import { DepartmentService } from '../services/department.service';
-import { DepartmentItem } from '../entities/departmentItem';
-import { ResourceItemPagingResponse } from '../entities/resourceItemPagingResponse';
-import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { DepartementItemWithMinimalData } from '../entities/depItemWithMinimalData';
 import { filter, map, shareReplay, startWith, take, takeUntil } from 'rxjs/operators';
 import { TrainingType } from '../enums/trainingType';
 import {MatTabsModule} from '@angular/material/tabs';
 import { LanguageItem } from '../entities/languageItem';
 import { LanguageService } from '../services/language.service';
-import{buildFormGroupForTranslations} from '../translation-add-form/formGroupBuilder'
+import{buildFormGroupForTranslations, convertFormsArrayToObject} from '../translation-add-form/formGroupBuilder'
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { LanguagePopupChoiceComponent } from '../language-popup-choice/language-popup-choice.component';
 import { TranslationAddFormComponent } from '../translation-add-form/translation-add-form.component';
+import { LocationItem } from '../entities/locationItem';
+import { LocationService } from '../services/location.service';
 import { CreateInternship } from '../entities/createInternship';
+import { InternshipService } from '../services/internship.service';
+import { InternshipTranslation } from '../entities/internshipTranslation';
+import { Router } from '@angular/router';
 @Component({
   selector: 'intern-rapp-internship-add',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,MatInputModule,MatDialogModule,TranslationAddFormComponent,MatSelectModule,TranslateModule,MatAutocompleteModule,MatTabsModule,MatIconModule,MatButtonModule],
+  imports: [CommonModule,ReactiveFormsModule,MatInputModule,MatAutocompleteModule,MatDialogModule,TranslationAddFormComponent,MatSelectModule,TranslateModule,MatAutocompleteModule,MatTabsModule,MatIconModule,MatButtonModule],
   templateUrl: './internship-add.component.html',
   styleUrls: ['./internship-add.component.scss'],
  changeDetection:ChangeDetectionStrategy.Default
@@ -39,13 +39,18 @@ export class InternshipAddComponent implements OnInit,OnDestroy{
   public addInternshipForm:FormGroup|undefined; 
 constructor(private unitService: DepartmentService,
             private languageService:LanguageService,
-            private dialog: MatDialog
+            private dialog: MatDialog,
+            private locationService: LocationService,
+            private internShipService:InternshipService,
+            private router:Router
             ){}
 
 
   public unitObs$:Observable<DepartementItemWithMinimalData[]>|undefined
+  public locationObs$:Observable<LocationItem[]>|undefined
   private languageObs$:Observable<LanguageItem[]>|undefined
   private destrojSubj$=new Subject()
+
   private  popUpConfig={
     width: '400px',
    closeOnNavigation:true,
@@ -64,18 +69,18 @@ constructor(private unitService: DepartmentService,
       maxStudents:new FormControl(0,[Validators.required,Validators.pattern("^[0-9]*$"),Validators.maxLength(10)]),
       currentCountOfStudents:new FormControl(0,[Validators.required,Validators.pattern("^[0-9]*$")]),
       trainingType:new FormControl("0",[Validators.required]),
-      translateTabs:new FormArray([])
+      translateTabs:new FormArray([]),
+      locations:new FormControl('',[Validators.required])
     })
     this.languageObs$=this.languageService.filterAndPaginateLanguages({filterString:'',pageIndex:1,pageSize:100}).pipe(shareReplay(1),map(data=>data.items))
-    
+    this.locationObs$=this.locationService.filterAndPaginateLocations$({filterString:'',pageIndex:1,pageSize:1000}).pipe(map(data=>data.items))
     this.unitObs$=this.addInternshipForm?.controls['unit'].valueChanges.pipe(startWith(''),switchMap(data=>{
       return this.unitService.filterAndPaginateDepartmentsWithMinimalData({pageIndex:1,filterString:'unitName:'+data?.toString()??'',pageSize:100})
     }),map(data=> data.items
       ))
+      
   }
-  // compareWith=(o1: any, o2: any)=> o1=== o2;
-   
-  
+
   availableDates(){
     const availableDates=[]
     const year=new Date().getFullYear()
@@ -122,27 +127,33 @@ constructor(private unitService: DepartmentService,
       }))}),
       take(1),
     takeUntil(this.destrojSubj$)).subscribe()
-
-
-    
-
   }
-  public getLanguageById(formGroup:FormGroup){
-    return this.languageService.getById(formGroup.controls['languageId'].value)
-  }
+
   public getFormGroupOutOfAbstractControl(abstractControl: AbstractControl):FormGroup{
-    console.log(this.addInternshipForm?.getRawValue())
+   
     return abstractControl as FormGroup
   }
+  public convertOptionToName(item:DepartementItemWithMinimalData){
+    console.log(item)
+    return item?item.name:'';
+  }
 public addInternship(){
-return
+ const newInternship=this.mapToSubmittableInternshipObject()
+  this.internShipService.createInternship(newInternship).pipe(take(1),takeUntil(this.destrojSubj$)).subscribe()
+  this.router.navigateByUrl("/internships")
 }
 private mapToSubmittableInternshipObject(){
-  // const internShipToBeReturned:CreateInternship|undefined={
-  //   currentCountOfStudents:this.addInternshipForm?.controls['currentCountOfStudents'].value,
-  //   maxCountOfStudents:this.addInternshipForm?.controls['maxStudents'].value,
-  //   locationId:this.addInternshipForm?.controls['loca'].value,
-  // }
-  // return internShipToBeReturned
+
+     
+  const internShipToBeReturned:CreateInternship|undefined={
+    currentCountOfStudents:this.addInternshipForm?.controls['currentCountOfStudents'].value,
+    maxCountOfStudents:this.addInternshipForm?.controls['maxStudents'].value,
+    locations:this.addInternshipForm?.controls['locations'].value,
+    schoolYear:this.addInternshipForm?.controls['schoolYear'].value,
+    trainingType:this.addInternshipForm?.controls['trainingType'].value,
+    unitId:this.addInternshipForm?.controls['unit'].value['id'],
+    versions:convertFormsArrayToObject(this.addInternshipForm?.controls['translateTabs'] as FormArray)
+  }
+  return internShipToBeReturned
 }
 }

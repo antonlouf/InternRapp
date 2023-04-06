@@ -13,9 +13,10 @@ public class InternShip
     public int UnitId { get; set; }
     public string SchoolYear { get; set; }
     public int MaxStudents  { get; set; }
-    public Location Location { get; set; }
-    public int LocationId { get; set; }
+    public IList<Location> Locations { get; set; }
     public int CurrentCountOfStudents { get; set; }
     public TrainingType RequiredTrainingType { get; set; }
     public IList<InternShipContentTranslation> Translations { get; set; }
+    //public string CreatorEmail { get; set; }
+
 }

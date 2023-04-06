@@ -1,4 +1,5 @@
 import { InternshipTranslation } from "./internshipTranslation"
+import { LocationItem } from "./locationItem"
 
 export interface CreateInternship{
     schoolYear: string
@@ -6,6 +7,6 @@ export interface CreateInternship{
     maxCountOfStudents: number
     currentCountOfStudents: number
     trainingType: number
-    locationId: number
+    locations: LocationItem[]
     versions: InternshipTranslation[]
 }

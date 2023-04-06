@@ -9,6 +9,7 @@ namespace backend.Domain.Entities;
 public class Department
 {
     public int Id { get; set; }
+    //public string CreatorEmail { get; set; }
     public string Name { get; set; }
     private string _managerEmails;
 

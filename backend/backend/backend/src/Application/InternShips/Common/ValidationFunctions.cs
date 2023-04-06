@@ -67,11 +67,16 @@ public class ValidationFunctions
         return true;
 
     }
-    public async Task<bool> CheckIfLocationIdExists(int arg1, CancellationToken arg2)
+    public async Task<bool> CheckIfLocationIdExists(int[] arg1, CancellationToken arg2)
     {
         //should later be placed inside the getbyidquery of locations this is just temporary
-        var result = await _dbContext.Locations.Where(x => x.Id == arg1).ToListAsync();
-        return result != null;
+        foreach (var item in arg1)
+        {
+            var result = await _dbContext.Locations.Where(x => x.Id == item).ToListAsync();
+            if(result==null) return false;
+        }
+      
+        return true;
     }
 
     public async Task<bool> CheckIfUnitIdExists(int arg1, CancellationToken arg2)

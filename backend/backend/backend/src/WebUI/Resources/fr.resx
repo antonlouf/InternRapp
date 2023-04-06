@@ -195,6 +195,12 @@
   <data name="languageNameRequiredErrorMessage" xml:space="preserve">
     <value>le nom de la langue est obligatoire</value>
   </data>
+  <data name="locationFieldEmptyMessage" xml:space="preserve">
+    <value>sélectionnez un lieu, s'il vous plaît</value>
+  </data>
+  <data name="locationFieldLabel" xml:space="preserve">
+    <value>localisation</value>
+  </data>
   <data name="locationLabel" xml:space="preserve">
     <value>emplacement</value>
   </data>
@@ -230,6 +236,12 @@
   </data>
   <data name="maxStudentsErrorMessage" xml:space="preserve">
     <value>Saisir un nombre positif</value>
+  </data>
+  <data name="neededKnowledgeLabel" xml:space="preserve">
+    <value>connaissances minimales requises pour ces stages</value>
+  </data>
+  <data name="neededKnowledgeLabelErrorMessage" xml:space="preserve">
+    <value>entrer les connaissances nécessaires pour ces stages, s'il vous plaît</value>
   </data>
   <data name="newInternShip" xml:space="preserve">
     <value>Nouveau stage</value>

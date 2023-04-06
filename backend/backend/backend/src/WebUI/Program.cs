@@ -2,6 +2,7 @@ using System.Globalization;
 using backend.Application;
 using backend.Application.Common.Exceptions;
 using Microsoft.AspNetCore.Localization;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -74,6 +75,11 @@ app.Use(async (context, next) =>
 
 
 
+    }
+    catch
+    {
+        
+        await context.Response.WriteAsJsonAsync("some error happened during processing");
     }
 });
 app.UseStaticFiles();

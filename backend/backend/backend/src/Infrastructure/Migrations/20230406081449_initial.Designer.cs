@@ -12,8 +12,8 @@ using backend.Infrastructure.Persistence;
 namespace backend.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230322144819_second")]
-    partial class second
+    [Migration("20230406081449_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,50 +38,16 @@ namespace backend.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("ManagerDepartmentId")
-                        .HasColumnType("int");
-
                     b.Property<Guid>("ObjectIdentifier")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasAlternateKey("Email");
 
-                    b.HasIndex("ManagerDepartmentId");
-
                     b.HasIndex("ObjectIdentifier");
 
                     b.ToTable("ApplicationUsers");
-                });
-
-            modelBuilder.Entity("backend.Domain.Entities.Contributor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AppUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DepartmentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TypeOfContributor")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.ToTable("Contributor");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Department", b =>
@@ -253,34 +219,6 @@ namespace backend.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Locations");
-                });
-
-            modelBuilder.Entity("backend.Domain.Entities.ApplicationUser", b =>
-                {
-                    b.HasOne("backend.Domain.Entities.Department", "ManagerDepartment")
-                        .WithMany()
-                        .HasForeignKey("ManagerDepartmentId");
-
-                    b.Navigation("ManagerDepartment");
-                });
-
-            modelBuilder.Entity("backend.Domain.Entities.Contributor", b =>
-                {
-                    b.HasOne("backend.Domain.Entities.ApplicationUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("backend.Domain.Entities.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-
-                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>

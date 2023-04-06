@@ -19,12 +19,13 @@ public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternSh
 
     protected async override Task Handle(UpdateInternShipCommand request, CancellationToken cancellationToken)
     {
+        var convertedLocations = request.Dto.Locations.Select(x => new Location() { City = x.city, HouseNumber = x.housenumber, Id = x.id, StreetName = x.streetname, ZipCode = x.zipcode }).ToList();
 
         var internShip = await _dbContext.InternShips.FirstOrDefaultAsync(x => x.Id == request.Dto.internShipId);
         internShip.MaxStudents = request.Dto.MaxCountOfStudents;
         internShip.SchoolYear = request.Dto.SchoolYear;
         internShip.RequiredTrainingType = request.Dto.TrainingType;
-        internShip.LocationId = request.Dto.LocationId;
+        internShip.Locations = convertedLocations;
         internShip.UnitId = request.Dto.UnitId;
         internShip.CurrentCountOfStudents = request.Dto.CurrentCountOfStudents;
         //this part is later be placed by operations in translations

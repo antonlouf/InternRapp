@@ -22,6 +22,21 @@ namespace backend.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("InternShipLocation", b =>
+                {
+                    b.Property<int>("InternshipsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LocationsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("InternshipsId", "LocationsId");
+
+                    b.HasIndex("LocationsId");
+
+                    b.ToTable("InternShipLocation");
+                });
+
             modelBuilder.Entity("backend.Domain.Entities.ApplicationUser", b =>
                 {
                     b.Property<int>("Id")
@@ -35,50 +50,16 @@ namespace backend.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("ManagerDepartmentId")
-                        .HasColumnType("int");
-
                     b.Property<Guid>("ObjectIdentifier")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasAlternateKey("Email");
 
-                    b.HasIndex("ManagerDepartmentId");
-
                     b.HasIndex("ObjectIdentifier");
 
                     b.ToTable("ApplicationUsers");
-                });
-
-            modelBuilder.Entity("backend.Domain.Entities.Contributor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AppUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DepartmentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TypeOfContributor")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.ToTable("Contributor");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Department", b =>
@@ -115,9 +96,6 @@ namespace backend.Infrastructure.Migrations
                     b.Property<byte>("CurrentCountOfStudents")
                         .HasColumnType("tinyint");
 
-                    b.Property<int>("LocationId")
-                        .HasColumnType("int");
-
                     b.Property<byte>("MaxStudents")
                         .HasColumnType("tinyint");
 
@@ -132,8 +110,6 @@ namespace backend.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LocationId");
 
                     b.HasIndex("SchoolYear");
 
@@ -252,49 +228,28 @@ namespace backend.Infrastructure.Migrations
                     b.ToTable("Locations");
                 });
 
-            modelBuilder.Entity("backend.Domain.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("InternShipLocation", b =>
                 {
-                    b.HasOne("backend.Domain.Entities.Department", "ManagerDepartment")
+                    b.HasOne("backend.Domain.Entities.InternShip", null)
                         .WithMany()
-                        .HasForeignKey("ManagerDepartmentId");
-
-                    b.Navigation("ManagerDepartment");
-                });
-
-            modelBuilder.Entity("backend.Domain.Entities.Contributor", b =>
-                {
-                    b.HasOne("backend.Domain.Entities.ApplicationUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId")
+                        .HasForeignKey("InternshipsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("backend.Domain.Entities.Department", "Department")
+                    b.HasOne("backend.Domain.Entities.Location", null)
                         .WithMany()
-                        .HasForeignKey("DepartmentId")
+                        .HasForeignKey("LocationsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("AppUser");
-
-                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
                 {
-                    b.HasOne("backend.Domain.Entities.Location", "Location")
-                        .WithMany()
-                        .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("backend.Domain.Entities.Department", "Unit")
                         .WithMany()
                         .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Location");
 
                     b.Navigation("Unit");
                 });

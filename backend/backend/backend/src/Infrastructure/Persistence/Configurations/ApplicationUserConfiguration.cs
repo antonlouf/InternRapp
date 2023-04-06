@@ -17,8 +17,7 @@ public class ApplicationUserConfiguration : IEntityTypeConfiguration<Application
         builder.HasAlternateKey(x => x.Email);
         builder.Property(x=>x.ObjectIdentifier).IsRequired();
         builder.HasIndex(x => x.ObjectIdentifier);
-        builder.Property(x => x.Role).IsRequired();
-        builder.HasOne(x => x.ManagerDepartment);
+ 
 
     }
 }

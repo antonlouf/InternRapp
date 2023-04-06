@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace backend.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class addsinitial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -51,7 +51,6 @@ namespace backend.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Languages", x => x.Id);
-                    table.UniqueConstraint("AK_Languages_Name", x => x.Name);
                 });
 
             migrationBuilder.CreateTable(
@@ -157,6 +156,12 @@ namespace backend.Infrastructure.Migrations
                 name: "IX_InternShips_UnitId",
                 table: "InternShips",
                 column: "UnitId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Languages_Name",
+                table: "Languages",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Translations_InternShipId",

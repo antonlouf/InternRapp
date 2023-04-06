@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using backend.Application.Common.Mappings;
+using backend.Application.InternShips.Common;
 using backend.Application.Units.Queries.GetAllUnits;
 using backend.Domain.Entities;
 using backend.Domain.Enums;
@@ -15,7 +16,7 @@ public class InternShipCreateDto
     public TrainingType TrainingType { get; set; }
    
 
-    public int LocationId { get; set; }
+    public IList<LocationDto> Locations { get; set; }
     public IList<LanguageSpecificInternShipDto> Versions { get; set; }
 
 

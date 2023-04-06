@@ -37,7 +37,7 @@
   }
   .flex-row >div:first-child> mat-form-field{
     margin-left: 10%;
-    width: 95%;
+    width: 98%;
   }
   .flex-row >div:nth-child(2){
     margin-right: 15%;
@@ -57,9 +57,17 @@
   }
   .add-translation-button{
     
-    margin-left: 50%;
+    margin-right:5%;
+    margin-left: 20%;
   }
+ 
 #trainingType{
-  margin-right: 6%;
-  width: 120%;
+ margin-left: 6%;
+ margin-right: -1.4%;
+ width: 2500%;
 }
+#location{
+margin-left: 44%;
+width: 346%;
+}
+

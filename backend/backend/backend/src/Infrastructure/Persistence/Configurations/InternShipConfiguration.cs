@@ -20,7 +20,7 @@ public class InternShipConfiguration : IEntityTypeConfiguration<InternShip>
         builder.Property(x => x.CurrentCountOfStudents).HasConversion(v => (byte) v,
             v => v)
             .IsRequired();
-        builder.HasOne(x => x.Location);
+        builder.HasMany(x => x.Locations).WithMany(x=>x.Internships);
         builder.Property(x=>x.MaxStudents).HasConversion(v => (byte)v,
             v => v).IsRequired();
         builder.HasMany(x => x.Translations).WithOne(x => x.InternShip);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using backend.Application.InternShips.Commands.CreateInternShip;
+using backend.Application.InternShips.Common;
 using backend.Domain.Enums;
 
 namespace backend.Application.InternShips.Commands.UpdateInternShip;
@@ -17,6 +18,6 @@ public class InternShipUpdateDto
     public byte CurrentCountOfStudents { get; set; }
 
 
-    public int LocationId { get; set; }
+    public IList<LocationDto> Locations { get; set; }
     public IList<LanguageSpecificUpdateInternShipDto> Versions { get; set; }
 }

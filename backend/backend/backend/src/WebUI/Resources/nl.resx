@@ -195,6 +195,12 @@
   <data name="languageNameRequiredErrorMessage" xml:space="preserve">
     <value>De taal is verplicht om in te vullen</value>
   </data>
+  <data name="locationFieldEmptyMessage" xml:space="preserve">
+    <value>kies een locatie aub</value>
+  </data>
+  <data name="locationFieldLabel" xml:space="preserve">
+    <value>locatie</value>
+  </data>
   <data name="locationLabel" xml:space="preserve">
     <value>locatie</value>
   </data>
@@ -231,6 +237,12 @@
   <data name="maxStudentsErrorMessage" xml:space="preserve">
     <value>Vul een positief getal</value>
   </data>
+  <data name="neededKnowledgeLabel" xml:space="preserve">
+    <value>minimum kennis om dit stage tot een goed einde te brengen</value>
+  </data>
+  <data name="neededKnowledgeLabelErrorMessage" xml:space="preserve">
+    <value>vul de minimum kennis in om dit stage tot een goed einde te brengen</value>
+  </data>
   <data name="newInternShip" xml:space="preserve">
     <value>nieuw stageopdracht</value>
   </data>
@@ -239,6 +251,9 @@
   </data>
   <data name="schoolyearErrorMessage" xml:space="preserve">
     <value>de schooljaar is verplicht</value>
+  </data>
+  <data name="titleContentLabel" xml:space="preserve">
+    <value>titel</value>
   </data>
   <data name="titleContentLabetitleContent" xml:space="preserve">
     <value>titel</value>

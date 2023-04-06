@@ -20,11 +20,14 @@ internRappItemsTmpl let-items
  
     <mat-list-item  *ngFor="let item of items">
       <div class="flex-row" >
-        <div class="flex-begin">{{item.title}}
-          <span class="material-symbols-outlined" style="color:green" *ngFor="let availablePlace of [].constructor(item.currentCountOfStudents)">
+        <div>
+          {{item.title}}
+        </div>
+        <div class="flex-begin">
+          <span class="material-symbols-outlined" style="color:red" *ngFor="let availablePlace of [].constructor(item.currentCountOfStudents)">
             person
             </span>
-            <span class="material-symbols-outlined" style="color:red" *ngFor="let availablePlace of [].constructor(item.maxStudents-item.currentCountOfStudents)">
+            <span class="material-symbols-outlined" style="color:green" *ngFor="let availablePlace of [].constructor(item.maxStudents-item.currentCountOfStudents)">
               person
               </span>
         </div>

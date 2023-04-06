@@ -24,8 +24,8 @@
                formControlName="unit"
                matInput
             [matAutocomplete]="auto">
-       <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" >
-        <mat-option *ngFor="let option of unitObs$ | async" [value]="option.name" [id]="(option.id).toString()">
+       <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="convertOptionToName">
+        <mat-option *ngFor="let option of unitObs$ | async" [value]="option" [id]="(option.id).toString()">
           {{option.name}}
         </mat-option>
       </mat-autocomplete>
@@ -88,20 +88,23 @@
           </mat-error>
              </mat-form-field>
     </div> 
-    <div>
-        <mat-form-field >
-            <mat-select formControlName="schoolYear"  >
-                <mat-option   *ngFor="let date of availableDates()" [value]="date" >
-                {{date}}
+    <div >
+
+        <mat-form-field id="location">
+            <mat-label>{{'locationFieldLabel'|translate}}</mat-label>
+         
+            <mat-select  formControlName="locations" multiple="true"  >
+                <mat-option   *ngFor="let location of locationObs$|async" [value]="location" >
+                {{location.streetname}} {{location.housenumber}},{{location.city}} {{location.zipcode}}
                 </mat-option>
             </mat-select>
             <mat-error >
-                {{'schoolyearErrorMessage' |translate}}
+                {{'locationFieldEmptyMessage' |translate}}
             </mat-error>
                </mat-form-field>
     </div> 
-    <div>
-        <button mat-icon-button  (click)="addLanguage()">
+    <div class="add-translation-button">
+        <button  mat-icon-button  (click)="addLanguage()">
             <mat-icon>add</mat-icon>
         </button>
     </div>

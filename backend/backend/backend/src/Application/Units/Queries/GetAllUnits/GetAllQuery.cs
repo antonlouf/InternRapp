@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using backend.Application.Common.Interfaces;
 using backend.Application.Common.Paging;
@@ -31,7 +32,7 @@ public class GetAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<UnitLis
             {
                 queryable = queryable.Where(x => x.Name.StartsWith(splittedFilter[1]));
             }
-           
+
 
         }     
         return  await PagedList<UnitListDto>.ToPagedList(queryable.ProjectTo<UnitListDto>(_iMapper.ConfigurationProvider), request.Dto.PageIndex, request.Dto.PageSize);
