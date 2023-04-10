@@ -24,7 +24,9 @@ public class UnitController : ControllerBase
     [HttpPost]
     public async Task Create( CreateUnitCommand command)
     {
-         await _mediator.Send(command);
+        //ToDo - Null check / empty -> bad request
+        //ToDo - Web contract / application  contract should be different.
+        await _mediator.Send(command);
        
     }
     [HttpGet("{id:int}")]
@@ -54,7 +56,11 @@ public class UnitController : ControllerBase
     [HttpPatch]
     public async Task<IActionResult> Update(UnitListDto dto)
     {
-         await _mediator.Send(new UpdateUnitCommand() { Unit=dto});
+        //ToDo - Null check / empty -> bad request
+        //ToDo - Web contract / application  contract should be different.
+        await _mediator.Send(new UpdateUnitCommand() { Unit=dto});
+
+        // Response text needed?
         return Ok("successfully updated");
     }
 
@@ -63,6 +69,7 @@ public class UnitController : ControllerBase
     {
         await _mediator.Send(new DeleteUnitCommand() { Id=id});
  
+        //Return Id should be part of the commandHandler?
         return Ok($"{id}");
     }
 }

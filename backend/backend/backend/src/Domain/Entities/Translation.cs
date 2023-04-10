@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 namespace backend.Domain.Entities;
 public class InternShipContentTranslation
 {
+    //Not sure if DDD is in scope but atleast make this domain abit smarter.
+    //Make it immutable
+    //Dont reference by type if the class doesnt 'own' the other one (use id for EF core config)
+    //Check our commands and forsee a Update method instead of setting the properties
+    //Forsee a static Create method
     public int Id { get; set; }
     public string TitleContent { get; set; }
     public string Description { get; set; }

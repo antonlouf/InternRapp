@@ -12,6 +12,9 @@ public static class ConfigureServices
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
        
+        //Dont pase IConfiguration to this lib, pass a InfrastructionOptions class (bind it in startup)
+        //Use a static class AppSettings with all the hard typed values
+ 
         if (configuration.GetValue<bool>("UseInMemoryDatabase"))
         {
             services.AddDbContext<ApplicationDbContext>(options =>

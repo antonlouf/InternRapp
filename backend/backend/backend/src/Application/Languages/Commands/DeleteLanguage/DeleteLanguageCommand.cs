@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 namespace backend.Application.Languages.Commands.DeleteLanguage;
 public class DeleteLanguageCommand:IRequest
 {
+    // make command immutable 
+  
     public int Id { get; set; }
 }
 public class DeleteLanguageCommandHandler : AsyncRequestHandler<DeleteLanguageCommand>
@@ -23,6 +25,7 @@ public class DeleteLanguageCommandHandler : AsyncRequestHandler<DeleteLanguageCo
 
     protected override async Task Handle(DeleteLanguageCommand request, CancellationToken cancellationToken)
     {
+        //single or default
         var entityTobeDeleted = await _dbContext.Languages.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
         _dbContext.Languages.Remove(entityTobeDeleted);
         await _dbContext.SaveChangesAsync(cancellationToken);

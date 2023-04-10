@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 namespace backend.Application.Locations.Commands.DeleteLocation;
 public class DeleteLocationCommand:IRequest
 {
+    // make command immutable 
+    // Dont wrap the properties in a DTO
     public int Id { get; set; }
 }
     public class DeleteLocationCommandHandler : AsyncRequestHandler<DeleteLocationCommand>
@@ -24,6 +26,7 @@ public class DeleteLocationCommand:IRequest
 
         protected override async Task Handle(DeleteLocationCommand request, CancellationToken cancellationToken)
         {
+        //single or default (think EF even has a method for searching on primary key - find?)
             var entityTobeDeleted = await _dbContext.Locations.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
             _dbContext.Locations.Remove(entityTobeDeleted);
             await _dbContext.SaveChangesAsync(cancellationToken);

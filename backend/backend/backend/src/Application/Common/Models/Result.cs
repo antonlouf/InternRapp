@@ -2,6 +2,7 @@
 
 public class Result
 {
+    //Not used / part of WebUi?
     internal Result(bool succeeded, IEnumerable<string> errors)
     {
         Succeeded = succeeded;

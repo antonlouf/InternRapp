@@ -28,18 +28,23 @@ public class LanguageController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAllByfilterAndPage([FromQuery] FilterAndPaginationRequestDto dto)
     {
+        //ToDo - Null check / empty -> bad request
+        //ToDo - Web contract / application  contract should be different.
         var list = await _mediator.Send(new GetAllQuery() { Dto = dto });
         return Ok(list);
     }
     [HttpPost()]
     public async Task<IActionResult> PostLanguage(string languagenName)
     {
+        //ToDo - Null check / empty -> bad request
         await _mediator.Send(new CreateLanguageCommand() { Name=languagenName });
         return Ok();
     }
     [HttpPatch()]
     public async Task<IActionResult> UpdateLanguage(LanguageListDto dto)
     {
+        //ToDo - Null check / empty -> bad request
+        //ToDo - Web contract / application  contract should be different.
         await _mediator.Send(new UpdateLanguageCommand() { Dto=dto });
         return Ok();
     }
@@ -52,7 +57,7 @@ public class LanguageController : ControllerBase
     [HttpGet("{language}")]
     public async Task<IActionResult> GetLocalizationFileAsDict([FromRoute] string language)
     {
-       
+       //Not sure about this, 1st time i see this in a controller
         ResourceManager rm = new ResourceManager($"WebUI.Resources.{language.ToString()}",Assembly.GetExecutingAssembly());
         var myResourceSet = rm.GetResourceSet(CultureInfo.CurrentCulture, true, true);
         var resourceSet=myResourceSet.GetEnumerator();

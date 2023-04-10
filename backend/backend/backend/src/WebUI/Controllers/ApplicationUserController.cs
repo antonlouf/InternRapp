@@ -18,12 +18,17 @@ public class ApplicationUserController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(CreateApplicationUserCommand dto)
     {
+        //ToDo - Null check / empty -> bad request
+        //ToDo - Web contract / application  contract should be different.
+
         await _mediator.Send(dto);
         return Ok();
     }
     [HttpGet]
     public async Task<IActionResult> GetAllEmailsContaining(string filterValue)
     {
+        //ToDo - Null check / empty -> bad request
+      
         var result = await _mediator.Send(new GetByEmailContainingQuery() { EmailAdress=filterValue});
         return Ok(result);
     }

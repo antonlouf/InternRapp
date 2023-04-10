@@ -22,6 +22,8 @@ public class GetByIdQueryValidator:AbstractValidator<GetByIdQuery>
         _dbContext = dbContext;
         _mediator = mediator;
         var validator = new ValidationFunctions( _dbContext);
+        //dont expose internal workings
+        //not sure if we need to validate a query? Internal DB workings are exposed / Id is a int (impossible to be null/empty)
         RuleFor(x => x.Id).NotEmpty().NotNull().GreaterThan(0).MustAsync(validator.CheckIfInternShipIdExists).WithMessage("Make sure you are giving an existing ID!(also greater than 0)");
 
     }

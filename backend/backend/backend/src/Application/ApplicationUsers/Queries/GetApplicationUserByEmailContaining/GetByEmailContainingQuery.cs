@@ -12,6 +12,7 @@ public class GetByEmailContainingQuery:IRequest<List<string>>
 {
     public string EmailAdress { get; set; }
 }
+//Use different files for query and handler
 public class GetByEmailContainingQueryHandler : IRequestHandler<GetByEmailContainingQuery, List<string>>
 {
     private readonly IApplicationDbContext _dbContext;
@@ -23,6 +24,7 @@ public class GetByEmailContainingQueryHandler : IRequestHandler<GetByEmailContai
 
     public async Task<List<string>> Handle(GetByEmailContainingQuery request, CancellationToken cancellationToken)
     {
+        //use a select to expose email. To much data is now fetched
         var users= await _dbContext.ApplicationUsers.Where(x => x.Email.StartsWith(request.EmailAdress)).ToListAsync();
         var emails=new List<string>();
         foreach (var user in users)

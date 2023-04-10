@@ -19,7 +19,7 @@ public class UpdateLocationCommandValidator:AbstractValidator<UpdateLocationComm
         _dbContext = dbContext;
         var validator = new Validator(_dbContext);
 
-        RuleFor(x => x).NotEmpty().NotNull(); //Nodig?
+        RuleFor(x => x).NotEmpty().NotNull(); //Nodig? -> should be checked in controller
         RuleFor(x => x.Dto.id).NotNull().NotEmpty().MustAsync(validator.DoesIdExists);
         RuleFor(x => x.Dto.city).NotNull().NotEmpty();
         RuleFor(x => x.Dto.housenumber).NotNull().NotEmpty();
@@ -28,6 +28,9 @@ public class UpdateLocationCommandValidator:AbstractValidator<UpdateLocationComm
 
     private async Task<bool> IsNameUnique(string arg1, CancellationToken arg2)
     {
+        //naming of input - single or default 
+        //part of DB key?
+        // How are you comparing these strings? Lower vs upper etc...
         var result = await _dbContext.Locations.Where(x => x.City == arg1).FirstOrDefaultAsync();
         return result == null;
     }

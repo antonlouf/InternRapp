@@ -58,6 +58,7 @@ app.UseHttpsRedirection();
 
 app.Use(async (context, next) =>
 {
+    //exceptionFilter is maybe cleaner?
     try
     {
         await next();

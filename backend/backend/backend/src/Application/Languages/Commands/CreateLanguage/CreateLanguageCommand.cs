@@ -10,6 +10,8 @@ using MediatR;
 namespace backend.Application.Languages.Commands.CreateLanguage;
 public class CreateLanguageCommand:IRequest
 {
+    // make command immutable 
+ 
     public string Name { get; set; }
 }
 public class CreateLanguageCommandHandler : AsyncRequestHandler<CreateLanguageCommand>

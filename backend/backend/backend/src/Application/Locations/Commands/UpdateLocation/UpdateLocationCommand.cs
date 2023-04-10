@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 namespace backend.Application.Locations.Commands.UpdateLocation;
 public class UpdateLocationCommand : IRequest
 {
+    // make command immutable 
+    // Dont wrap the properties in a DTO
     public LocationDto Dto { get; set; }
 }
 
@@ -30,7 +32,7 @@ public class UpdateLocationCommandHandler : AsyncRequestHandler<UpdateLocationCo
         location.StreetName = request.Dto.streetname;
         location.HouseNumber = request.Dto.housenumber;
         location.ZipCode = request.Dto.zipcode;
-
+        //Update not needed -> ef core changeTracker?
         _dbContext.Locations.Update(location);
 
         await _dbContext.SaveChangesAsync(cancellationToken);

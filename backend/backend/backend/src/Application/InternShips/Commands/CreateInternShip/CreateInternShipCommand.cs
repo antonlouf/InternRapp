@@ -10,6 +10,9 @@ using MediatR;
 namespace backend.Application.InternShips.Commands.CreateInternShip;
 public class CreateInternShipCommand:IRequest
 {
+    // make command immutable 
+    // Dont wrap the properties in a DTO
+    // Different file for command/handler
     public InternShipCreateDto Dto { get; set; }
 }
 public class CreateInternShipCommandHandler : AsyncRequestHandler<CreateInternShipCommand>
@@ -29,6 +32,7 @@ public class CreateInternShipCommandHandler : AsyncRequestHandler<CreateInternSh
        var result= await _dbContext.InternShips.AddAsync(new() { MaxStudents = request.Dto.MaxCountOfStudents, RequiredTrainingType = request.Dto.TrainingType, SchoolYear = request.Dto.SchoolYear, UnitId = request.Dto.UnitId,LocationId=request.Dto.LocationId });
         // also add command for translationss!! (for english etc) for loop for each language
         await _dbContext.SaveChangesAsync(cancellationToken);
+        //dont use 'list' as a name
         var list = new List<InternShipContentTranslation>();
         for (int i = 0; i < request.Dto.Versions.Count; i++)
         {
@@ -46,6 +50,8 @@ public class CreateInternShipCommandHandler : AsyncRequestHandler<CreateInternSh
             });
         }
         await _dbContext.Translations.AddRangeAsync(list);
+        // double save changes feels not ok -> what if it crashes between the 2 saves? inconsistent data. 
+        // aggregate feels not ok / work with transaction / work with domain event
         await _dbContext.SaveChangesAsync(cancellationToken);
 
     }

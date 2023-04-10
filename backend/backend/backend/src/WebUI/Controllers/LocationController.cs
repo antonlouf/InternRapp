@@ -32,12 +32,16 @@ public class LocationController: ControllerBase
     [HttpPost()]
     public async Task<IActionResult> PostLocation(CreateLocationDto location)
     {
-        await _mediator.Send(new CreateLocationCommand() { LocationDto = location });
+           //ToDo - Null check / empty -> bad request
+           //ToDo - Web contract / application  contract should be different.
+            await _mediator.Send(new CreateLocationCommand() { LocationDto = location });
         return Ok();
     }
     [HttpPatch()]
     public async Task<IActionResult> UpdateLocation(LocationDto dto)
     {
+        //ToDo - Null check / empty -> bad request
+        //ToDo - Web contract / application  contract should be different.
         await _mediator.Send(new UpdateLocationCommand() { Dto = dto });
         return Ok();
     }

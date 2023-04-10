@@ -14,6 +14,7 @@ public class GetByIdQuery : IRequest<ApplicationUserDetailDto>
 {
     public int Id { get; set; }
 }
+//Use different files for query and handler
 public class GetByIdQueryHandler : IRequestHandler<GetByIdQuery, ApplicationUserDetailDto>
 {
     private readonly IApplicationDbContext _dbContext;

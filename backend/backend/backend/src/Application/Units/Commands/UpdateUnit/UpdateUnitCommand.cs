@@ -26,10 +26,12 @@ public class UpdateUnitCommandHandler : AsyncRequestHandler<UpdateUnitCommand>
 
     protected async override Task Handle(UpdateUnitCommand request, CancellationToken cancellationToken)
     {
-        //add control to the validator to check there is an existing item with this id!!
+        //add control to the validator to check there is an existing item with this id!! -> check it here
+        //single or default (or find)
         var unit = await _dbContext.Departments.Where(x => x.Id == request.Unit.Id).FirstOrDefaultAsync();
         unit.Name= request.Unit.Name; 
         unit.ManagerEmails=request.Unit.ManagerEmails;
+        //Update not needed -> ef core changeTracker?
         _dbContext.Departments.Update(unit);
        await _dbContext.SaveChangesAsync(cancellationToken);
     }

@@ -6,10 +6,13 @@ using MediatR;
 using Unit = MediatR.Unit;
 
 namespace backend.Application.ApplicationUsers.Commands.CreateApplicationUser;
+  
 public class CreateApplicationUserCommand : IRequest
 {
     public string Email { get; set; }
 }
+//Use different files for command and handler
+// immutable command
 public class CreateApplicationUserCommandHandler : AsyncRequestHandler<CreateApplicationUserCommand>
 {
 

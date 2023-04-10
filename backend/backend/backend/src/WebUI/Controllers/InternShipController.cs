@@ -16,19 +16,22 @@ public class InternShipController : ControllerBase
     }
     [HttpPost]
     public async Task<IActionResult> Create(CreateInternShipCommand dto)
-    {
+    {   //ToDo - Null check / empty -> bad request
+        //ToDo - Web contract / application  contract should be different.
         await _mediator.Send(dto);  
         return Ok();
     }
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var result=await _mediator.Send(new GetAllQuery());
+        var result =await _mediator.Send(new GetAllQuery());
         return Ok(result);
     }
     [HttpPut]
     public async Task<IActionResult> Update(InternShipUpdateDto dto)
     {
+        //ToDo - Null check / empty -> bad request
+        //ToDo - Web contract / application  contract should be different.
         await _mediator.Send(new UpdateInternShipCommand() { Dto=dto});
         return Ok();
     }

@@ -2,6 +2,7 @@
 
 public class NotFoundException : Exception
 {
+    // Dont use a notFoundException. Let controller decide if it should return a 404.
     public NotFoundException()
         : base()
     {

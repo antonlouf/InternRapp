@@ -10,7 +10,7 @@ public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavio
     {
         _logger = logger;
     }
-
+    //This should be part of your WebUI - exception filter / ExceptionHandler
     public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
     {
         try

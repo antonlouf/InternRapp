@@ -8,6 +8,8 @@ using backend.Domain.Entities;
 using MediatR;
 
 namespace backend.Application.Locations.Commands.CreateLocation;
+       // make command immutable 
+    // Dont wrap the properties in a DTO
 public class CreateLocationCommand: IRequest
 {
     public CreateLocationDto LocationDto;

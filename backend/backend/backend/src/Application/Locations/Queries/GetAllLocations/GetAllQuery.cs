@@ -15,7 +15,7 @@ public class GetAllQuery:IRequest<PagedList<LocationDto>>
 {
     public FilterAndPaginationRequestDto Dto { get; set; }
 }
-
+//split into files
 public class getAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<LocationDto>>
 {
     private readonly IApplicationDbContext _dbContext;
@@ -30,11 +30,14 @@ public class getAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<Locatio
     public async Task<PagedList<LocationDto>> Handle(GetAllQuery request, CancellationToken cancellationToken)
     {
         var queryable = _dbContext.Locations.AsQueryable();
+        //String.isnullorempty
         if (request.Dto.Filter != null && request.Dto.Filter != "")
         {
+            //Make filter part of the GetAllQuery (typed)
             var splittedFilter = request.Dto.Filter.Split(':');
             if (splittedFilter.Length > 1)
             {
+                //Compare strings with a toLower/toUper of even better use a valueObject
                 queryable = queryable.Where(x => x.City.StartsWith(splittedFilter[1]));
             }
 

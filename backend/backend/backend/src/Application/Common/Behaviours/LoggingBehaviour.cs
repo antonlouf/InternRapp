@@ -13,13 +13,13 @@ public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest> where T
         _logger = logger;
         _currentUserService = currentUserService;
     }
-
+    //Not related to this file but think about placing this common folder in a lib. Will make you think about the correct place/lib for some of these files.
     public async Task Process(TRequest request, CancellationToken cancellationToken)
     {
         var requestName = typeof(TRequest).Name;
         var userId = _currentUserService.UserId ?? string.Empty;
         string userName = string.Empty;
-
+        //Empty if
         if (!string.IsNullOrEmpty(userId))
         {
         }

@@ -22,6 +22,7 @@ public class ValidationFunctions
     {
         foreach (var version in arg)
         {
+            //use string.isnullorempty
             if (version.NeededKnowledge == null || version.NeededKnowledge == "") return false;
             if (version.TitleContent == null || version.TitleContent == "") return false;
             if (version.Comment == null || version.Comment == "") return false;
@@ -49,6 +50,9 @@ public class ValidationFunctions
     }
     public async Task<bool> CheckIfLanguageIdExists(IList<LanguageSpecificInternShipDto> dtos, CancellationToken arg2)
     {
+        //Personal opinion but i am no fan of query calls in these validation pipelines. Hides allot...
+        // Non personal opinion -> never foreach a DB calls (use/create bulk call)
+        // Empty list instead of null?
         for (int i = 0; i < dtos.Count; i++)
         {
             var result = await _dbContext.Languages.Where(x => x.Id == dtos[i].LanguageId).ToListAsync();
@@ -59,6 +63,8 @@ public class ValidationFunctions
     }
     public async Task<bool> CheckIfLanguageIdExists(IList<LanguageSpecificUpdateInternShipDto> dtos, CancellationToken arg2)
     {
+        // Non personal opinion -> never foreach a DB calls (use/create bulk call)
+        // Empty list instead of null?
         for (int i = 0; i < dtos.Count; i++)
         {
             var result = await _dbContext.Languages.Where(x => x.Id == dtos[i].LanguageId).ToListAsync();
@@ -70,35 +76,52 @@ public class ValidationFunctions
     public async Task<bool> CheckIfLocationIdExists(int arg1, CancellationToken arg2)
     {
         //should later be placed inside the getbyidquery of locations this is just temporary
+        // Empty list instead of null?
+        // fix input parameter names
         var result = await _dbContext.Locations.Where(x => x.Id == arg1).ToListAsync();
         return result != null;
     }
 
     public async Task<bool> CheckIfUnitIdExists(int arg1, CancellationToken arg2)
     {
+        // fix input parameter names
+        //Single or default?
         var result = await _dbContext.InternShips.FirstOrDefaultAsync(x => x.Id == arg1);
         return result != null;
     }
     public async Task<bool> CheckIfInternShipIdExists(int arg1, CancellationToken arg2)
     {
+        // fix input parameter names
+        //Single or default?
         var result = await _dbContext.InternShips.FirstOrDefaultAsync(x => x.Id == arg1);
         return result != null;
     }
     public async Task<bool> CheckIfTranslationIdExists(int arg1, CancellationToken arg2)
     {
+        // fix input parameter names
+        //Single or default?
         var result = await _dbContext.Translations.FirstOrDefaultAsync(x => x.Id == arg1);
         return result != null;
     }
     public async Task<bool> CheckIfTranslationIdExists(List<LanguageSpecificUpdateInternShipDto> dto, CancellationToken arg2)
     {
+        // fix input parameter names
+        //Single or default?
+        //never foreach a DB calls(use / create bulk call)
+        // Bit weird to stop checking when one is false -> confusing method name
         foreach (var item in dto)
         {
+
             var result = await _dbContext.Translations.FirstOrDefaultAsync(x => x.LanguageId == item.LanguageId);
             if (result == null) return false;
         }
 
         return true;
     }
+    // fix input parameter names
+    // Feels like this should be a value object that is part of your domain
+    // 2020 should prolly be in a appsettings
+    // Allways calculate dateTime with UTC 
     public bool IsValidSchoolYear(string arg)
     {
         var currentYear = DateTime.Now.Year;

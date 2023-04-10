@@ -14,6 +14,7 @@ public class DeleteLocationCommandValidator: AbstractValidator<DeleteLocationCom
     public DeleteLocationCommandValidator(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
+        //Dont check on the id (2 calls / doesnt matter / exposing internals)
         RuleFor(x => x.Id).NotNull().NotEmpty().MustAsync(new Validator(_dbContext).DoesIdExists).WithMessage("this Id does not exists!!");
     }
 }
