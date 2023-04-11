@@ -6,6 +6,8 @@ import { ResourceItemPagingResponse } from '../entities/resourceItemPagingRespon
 import { InternshipItem } from '../entities/internshipItem';
 import { catchError, retry } from 'rxjs';
 import { CreateInternship } from '../entities/createInternship';
+import { InternshipTranslationUpdateDto } from '../entities/internshipTranslationUpdateDto';
+import { InternshipDetailItem } from '../entities/internshipDetailItem';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +15,14 @@ import { CreateInternship } from '../entities/createInternship';
 export class InternshipService {
 
   constructor(private http:HttpClient) { }
+  public entityTobeUpdated:InternshipDetailItem|undefined
   private baseSuffixApi="/api/InternShip";
   public filterAndPaginateLanguages(filterPaginationRequest:PaginationFilterRequest){
     return this.http.get<ResourceItemPagingResponse<InternshipItem>>(APIConfiguration.baseString+`${this.baseSuffixApi}?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&Filter=${filterPaginationRequest.filterString}`).pipe(catchError((err,caught)=>caught))
 
+  }
+  public getInternshipById(id:number){
+    return this.http.get<InternshipDetailItem>(APIConfiguration.baseString+`${this.baseSuffixApi}/${id}`)
   }
   public createInternship(internship: CreateInternship){
     

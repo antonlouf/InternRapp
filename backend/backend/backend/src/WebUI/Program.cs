@@ -76,7 +76,7 @@ app.Use(async (context, next) =>
 
 
     }
-    catch
+    catch(Exception ex)
     {
         
         await context.Response.WriteAsJsonAsync("some error happened during processing");

@@ -20,10 +20,10 @@ public class UpdateLocationCommandValidator:AbstractValidator<UpdateLocationComm
         var validator = new Validator(_dbContext);
 
         RuleFor(x => x).NotEmpty().NotNull(); //Nodig?
-        RuleFor(x => x.Dto.id).NotNull().NotEmpty().MustAsync(validator.DoesIdExists);
-        RuleFor(x => x.Dto.city).NotNull().NotEmpty();
-        RuleFor(x => x.Dto.housenumber).NotNull().NotEmpty();
-        RuleFor(x => x.Dto.zipcode).NotNull().NotEmpty();
+        RuleFor(x => x.Dto.Id).NotNull().NotEmpty().MustAsync(validator.DoesIdExists);
+        RuleFor(x => x.Dto.City).NotNull().NotEmpty();
+        RuleFor(x => x.Dto.Housenumber).NotNull().NotEmpty();
+        RuleFor(x => x.Dto.Zipcode).NotNull().NotEmpty();
     }
 
     private async Task<bool> IsNameUnique(string arg1, CancellationToken arg2)

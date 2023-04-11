@@ -1,11 +1,13 @@
+import { LanguageItem } from "./languageItem"
+import { LanguageWithMinimalData } from "./languageWithMinimalData"
+
 export interface InternshipTranslationUpdateDto{
-    languageId: number
     titleContent: string
     description: string
     knowledgeToDevelop: string
-    neededKnowledge: string
+    neededKnowledge: string,
+    language:LanguageItem
     location: string
     comment: string
     content: string
-    languageName:string
 }

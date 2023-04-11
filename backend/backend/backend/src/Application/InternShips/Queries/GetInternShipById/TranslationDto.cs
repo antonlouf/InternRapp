@@ -21,7 +21,7 @@ public class TranslationDto : IMapFrom<InternShipContentTranslation>
     public string Comment { get; set; }
     public string Content { get; set; }
     public LanguageListDto Language { get; set; }
-    public int InternShipId { get; set; }
+   
     public void Mapping(Profile profile)
     {
         profile.CreateMap<InternShipContentTranslation, TranslationDto>()

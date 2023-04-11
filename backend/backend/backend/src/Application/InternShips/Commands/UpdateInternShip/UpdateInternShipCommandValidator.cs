@@ -19,8 +19,8 @@ public class UpdateInternShipCommandValidator : AbstractValidator<UpdateInternSh
         RuleFor(x => x.Dto.UnitId).NotNull().NotEmpty().MustAsync(validator.CheckIfUnitIdExists);
         RuleFor(x => x.Dto.MaxCountOfStudents).NotNull().NotEmpty().Must(x => x > 0);
         RuleFor(x => x.Dto.Locations).NotEmpty().NotNull();
-        RuleFor(x => x.Dto.TrainingType).NotEmpty().NotNull();
-        RuleFor(x => x.Dto.Versions).NotEmpty().NotNull().Must(ValidationFunctions.IsVersionValid).MustAsync(validator.CheckIfLanguageIdExists).MustAsync(validator.CheckIfLanguageIdExists);
+        RuleFor(x => x.Dto.TrainingType).IsInEnum();
+        RuleFor(x => x.Dto.Versions).NotEmpty().NotNull().Must(ValidationFunctions.IsVersionValid).MustAsync(validator.CheckIfLanguageIdExists);
         RuleFor(x => x.Dto.internShipId).MustAsync(validator.CheckIfInternShipIdExists).WithMessage("Make sure you are giving an existing ID!(also greater than 0)");
     }
 

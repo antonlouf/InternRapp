@@ -19,13 +19,14 @@ public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternSh
 
     protected async override Task Handle(UpdateInternShipCommand request, CancellationToken cancellationToken)
     {
-        var convertedLocations = request.Dto.Locations.Select(x => new Location() { City = x.city, HouseNumber = x.housenumber, Id = x.id, StreetName = x.streetname, ZipCode = x.zipcode }).ToList();
-
-        var internShip = await _dbContext.InternShips.FirstOrDefaultAsync(x => x.Id == request.Dto.internShipId);
+        var convertedLocations = request.Dto.Locations.Select(x => new Location() { City = x.City, HouseNumber = x.Housenumber, Id = x.Id, StreetName = x.Streetname, ZipCode = x.Zipcode }).ToList();
+        _dbContext.Locations.UpdateRange(convertedLocations);
+        var internShip = await _dbContext.InternShips.Include(x=>x.Locations).Include(x=>x.Translations).FirstOrDefaultAsync(x => x.Id == request.Dto.internShipId);
+        _dbContext.InternShips.Update(internShip);
         internShip.MaxStudents = request.Dto.MaxCountOfStudents;
         internShip.SchoolYear = request.Dto.SchoolYear;
         internShip.RequiredTrainingType = request.Dto.TrainingType;
-        internShip.Locations = convertedLocations;
+        internShip.Locations=null;
         internShip.UnitId = request.Dto.UnitId;
         internShip.CurrentCountOfStudents = request.Dto.CurrentCountOfStudents;
         //this part is later be placed by operations in translations
@@ -33,19 +34,44 @@ public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternSh
         
         foreach (var sendedVersion in request.Dto.Versions)
         {
-            internShip.Translations.Add(new()
+            if (sendedVersion.TranslationId!=null)
             {
-                Id=sendedVersion.TranslationId,
-                LanguageId=sendedVersion.LanguageId,
-                NeededKnowledge = sendedVersion.NeededKnowledge,
-                KnowledgeToDevelop = sendedVersion.KnowledgeToDevelop,
-                Comment = sendedVersion.Comment,
-                Content = sendedVersion.Content,
-                Description = sendedVersion.Description,
-                Location = sendedVersion.Location,
-                TitleContent = sendedVersion.TitleContent
-            });
+                internShip.Translations.Add(new()
+                {
+                    Id = (int)sendedVersion.TranslationId,
+                    LanguageId = sendedVersion.LanguageId,
+                    NeededKnowledge = sendedVersion.NeededKnowledge,
+                    KnowledgeToDevelop = sendedVersion.KnowledgeToDevelop,
+                    Comment = sendedVersion.Comment,
+                    Content = sendedVersion.Content,
+                    Description = sendedVersion.Description,
+                    Location = sendedVersion.Location,
+                    TitleContent = sendedVersion.TitleContent
+                });
+            }
+            else
+            {
+
+           
+               internShip.Translations.Add(new()
+               {
+
+                   NeededKnowledge = sendedVersion.NeededKnowledge,
+                   KnowledgeToDevelop = sendedVersion.KnowledgeToDevelop,
+                   Comment = sendedVersion.Comment,
+                   Content = sendedVersion.Content,
+                   Description = sendedVersion.Description,
+                   Location = sendedVersion.Location,
+                   TitleContent = sendedVersion.TitleContent,
+                   InternShipId=internShip.Id,
+                   LanguageId = sendedVersion.LanguageId,
+
+               });
+               
+            }
+
         }
+        internShip.Locations = convertedLocations;
         await _dbContext.SaveChangesAsync(cancellationToken);
 
     }

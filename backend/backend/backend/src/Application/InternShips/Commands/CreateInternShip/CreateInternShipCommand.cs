@@ -23,14 +23,14 @@ public class CreateInternShipCommandHandler : AsyncRequestHandler<CreateInternSh
 
     protected async override Task Handle(CreateInternShipCommand request, CancellationToken cancellationToken)
     {
-        var convertedLocations = request.Dto.Locations.Select(x => new Location() { City = x.city, HouseNumber = x.housenumber, Id = x.id, StreetName = x.streetname, ZipCode = x.zipcode }).ToList();
-        convertedLocations.ForEach(x => _dbContext.Locations.Attach(x));
-        var result= await _dbContext.InternShips.AddAsync(new() { MaxStudents = request.Dto.MaxCountOfStudents, RequiredTrainingType = request.Dto.TrainingType, Locations= convertedLocations, SchoolYear = request.Dto.SchoolYear, UnitId = request.Dto.UnitId,CurrentCountOfStudents=request.Dto.CurrentCountOfStudents });
-        await _dbContext.SaveChangesAsync(cancellationToken);
-       
+        var convertedLocations = request.Dto.Locations.Select(x => new Location() { City = x.City, HouseNumber = x.Housenumber, Id = x.Id, StreetName = x.Streetname, ZipCode = x.Zipcode }).ToList();
+        _dbContext.Locations.AttachRange(convertedLocations);
+        var result = await _dbContext.InternShips.AddAsync(new() { MaxStudents = request.Dto.MaxCountOfStudents, RequiredTrainingType = request.Dto.TrainingType, Locations= convertedLocations, SchoolYear = request.Dto.SchoolYear, UnitId = request.Dto.UnitId,CurrentCountOfStudents=request.Dto.CurrentCountOfStudents });
+        //await _dbContext.SaveChangesAsync(cancellationToken);
+        result.Entity.Translations = new List<InternShipContentTranslation>();
         for (int i = 0; i < request.Dto.Versions.Count; i++)
         {
-            _dbContext.Translations.Add(new()
+            result.Entity.Translations.Add(new()
             {
                 InternShipId = result.Entity.Id,
                 Comment = request.Dto.Versions[i].Comment,

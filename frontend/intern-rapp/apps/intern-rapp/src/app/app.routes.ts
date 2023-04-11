@@ -5,6 +5,7 @@ import { LocationListComponent } from './location-list/location-list.component';
 import { UnitListComponent } from './unit-list/unit-list.component';
 import { InternShipListComponent } from './intern-ship-list/intern-ship-list.component';
 import { InternshipAddComponent } from './internship-add/internship-add.component';
+import { InternshipDetailItem } from './entities/internshipDetailItem';
 
 export const appRoutes: Route[] = [
     {
@@ -17,7 +18,7 @@ export const appRoutes: Route[] = [
         path: 'internships', component: InternShipListComponent
     },
     {
-        path: 'createInternship', component: InternshipAddComponent
+        path: 'internships/create', component: InternshipAddComponent,data:{internshipTobeUpdated:undefined}
     },
     {
         path: 'locations', component: LocationListComponent

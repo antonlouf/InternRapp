@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace backend.Application.InternShips.Commands.UpdateInternShip;
 public class LanguageSpecificUpdateInternShipDto
 {
-    public int TranslationId { get; set; }
+    public int? TranslationId { get; set; }
     public int LanguageId { get; set; }
     public string TitleContent { get; set; }
     public string Description { get; set; }

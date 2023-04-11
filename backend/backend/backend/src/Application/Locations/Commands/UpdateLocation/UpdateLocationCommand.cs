@@ -25,11 +25,11 @@ public class UpdateLocationCommandHandler : AsyncRequestHandler<UpdateLocationCo
 
     protected override async Task Handle(UpdateLocationCommand request, CancellationToken cancellationToken)
     {
-        var location = await _dbContext.Locations.Where(x => x.Id == request.Dto.id).FirstOrDefaultAsync();
-        location.City = request.Dto.city;
-        location.StreetName = request.Dto.streetname;
-        location.HouseNumber = request.Dto.housenumber;
-        location.ZipCode = request.Dto.zipcode;
+        var location = await _dbContext.Locations.Where(x => x.Id == request.Dto.Id).FirstOrDefaultAsync();
+        location.City = request.Dto.City;
+        location.StreetName = request.Dto.Streetname;
+        location.HouseNumber = request.Dto.Housenumber;
+        location.ZipCode = request.Dto.Zipcode;
 
         _dbContext.Locations.Update(location);
 

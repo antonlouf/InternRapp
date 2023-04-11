@@ -9,12 +9,12 @@
 <ng-template
 internRappItemsTmpl let-items
 >
-<button  class="align-right save-button-above-list"  >
   <div class="flex-row center-flex-items" >
-    <div>    <mat-icon>add</mat-icon></div>
-    <div>{{'addButton'|translate}}</div>
+    <div>       
+      <button  mat-icon-button  (click)="addInternship()">
+      <mat-icon>add</mat-icon>
+  </button></div>
   </div>
-</button>
 
   <mat-list >
  
@@ -45,9 +45,9 @@ internRappItemsTmpl let-items
             </button>
           </div>
             <div>
-              <button  class="save-button" color="primary" mat-fab color="primary" >
+              <button  mat-icon-button  (click)="updateInternship(item.id)">
                 <mat-icon>edit</mat-icon>
-              </button>
+            </button>
             </div>
           </div>
         </div>

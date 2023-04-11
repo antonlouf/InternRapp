@@ -22,13 +22,13 @@ public class ValidationFunctions
     {
         foreach (var version in arg)
         {
-            if (version.NeededKnowledge == null || version.NeededKnowledge == "") return false;
-            if (version.TitleContent == null || version.TitleContent == "") return false;
-            if (version.Comment == null || version.Comment == "") return false;
-            if (version.Content == null || version.Content == "") return false;
-            if (version.Description == null || version.Description == "") return false;
-            if (version.Location == null || version.Location == "") return false;
-            if (version.KnowledgeToDevelop == null || version.KnowledgeToDevelop == "") return false;
+            if (String.IsNullOrEmpty(version.NeededKnowledge)) return false;
+            if (String.IsNullOrEmpty(version.TitleContent)) return false;
+            if (String.IsNullOrEmpty(version.Comment)) return false;
+            if (String.IsNullOrEmpty(version.Content)) return false;
+            if (String.IsNullOrEmpty(version.Description)) return false;
+            if (String.IsNullOrEmpty(version.Location)) return false;
+            if (String.IsNullOrEmpty(version.KnowledgeToDevelop)) return false;
 
         }
         return true;
@@ -37,35 +37,27 @@ public class ValidationFunctions
     {
         foreach (var version in arg)
         {
-            if (version.NeededKnowledge == null || version.NeededKnowledge == "") return false;
-            if (version.TitleContent == null || version.TitleContent == "") return false;
-            if (version.Comment == null || version.Comment == "") return false;
-            if (version.Content == null || version.Content == "") return false;
-            if (version.Description == null || version.Description == "") return false;
-            if (version.Location == null || version.Location == "") return false;
-            if (version.KnowledgeToDevelop == null || version.KnowledgeToDevelop == "") return false;
+            if (String.IsNullOrEmpty(version.NeededKnowledge)) return false;
+            if (String.IsNullOrEmpty(version.TitleContent)) return false;
+            if (String.IsNullOrEmpty(version.Comment)) return false;
+            if (String.IsNullOrEmpty(version.Content)) return false;
+            if (String.IsNullOrEmpty(version.Description)) return false;
+            if (String.IsNullOrEmpty(version.Location)) return false;
+            if (String.IsNullOrEmpty(version.KnowledgeToDevelop)) return false;
         }
         return true;
     }
     public async Task<bool> CheckIfLanguageIdExists(IList<LanguageSpecificInternShipDto> dtos, CancellationToken arg2)
     {
-        for (int i = 0; i < dtos.Count; i++)
-        {
-            var result = await _dbContext.Languages.Where(x => x.Id == dtos[i].LanguageId).ToListAsync();
-            if (result == null) return false;
-        }
-        return true;
-
+        var languageIds = dtos.Select(x => x.LanguageId).ToList();
+        var countOfFounded=await _dbContext.Languages.Where(x => languageIds.Contains(x.Id)).CountAsync();
+        return countOfFounded == dtos.Count;
     }
     public async Task<bool> CheckIfLanguageIdExists(IList<LanguageSpecificUpdateInternShipDto> dtos, CancellationToken arg2)
     {
-        for (int i = 0; i < dtos.Count; i++)
-        {
-            var result = await _dbContext.Languages.Where(x => x.Id == dtos[i].LanguageId).ToListAsync();
-            if (result == null) return false;
-        }
-        return true;
-
+        var languageIds = dtos.Select(x => x.LanguageId).ToList();
+        var countOfFounded = await _dbContext.Languages.Where(x => languageIds.Contains(x.Id)).CountAsync();
+        return countOfFounded == dtos.Count;
     }
     public async Task<bool> CheckIfLocationIdExists(int[] arg1, CancellationToken arg2)
     {
