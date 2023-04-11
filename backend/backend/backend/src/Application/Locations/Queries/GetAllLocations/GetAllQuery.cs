@@ -38,7 +38,6 @@ public class getAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<Locatio
                 queryable = queryable.Where(x => x.City.StartsWith(splittedFilter[1]));
             }
 
-
         }
         return await PagedList<LocationDto>.ToPagedList(queryable.ProjectTo<LocationDto>(_iMapper.ConfigurationProvider), request.Dto.PageIndex, request.Dto.PageSize);
     }

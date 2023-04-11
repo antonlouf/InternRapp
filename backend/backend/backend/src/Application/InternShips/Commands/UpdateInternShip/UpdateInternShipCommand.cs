@@ -28,31 +28,27 @@ public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternSh
         internShip.CurrentCountOfStudents= request.Dto.CurrentCountOfStudents;
 
 
-
         //this part is later be placed by operations in translations
-
-        int counter = 0;
-   
-       
-        foreach (var version in internShip.Translations)
+        
+        foreach( var version in internShip.Translations)
         {
-            foreach(var sendedVersion in request.Dto.Versions)
+            var sendedVersion = request.Dto.Versions.FirstOrDefault(x => x.TranslationId == version.Id);
+
+            if (sendedVersion == null)
             {
-                if (sendedVersion.TranslationId == version.Id)
-                {
-                    version.NeededKnowledge=sendedVersion.NeededKnowledge;
-                    version.KnowledgeToDevelop = sendedVersion.KnowledgeToDevelop;
-                    version.Comment=sendedVersion.Comment;
-                    version.Content = sendedVersion.Content;
-                    version.Description = sendedVersion.Description;
-                    version.Location = sendedVersion.Location;
-                    version.TitleContent = sendedVersion.TitleContent;
-                }
+                continue;
             }
+
+            version.NeededKnowledge = sendedVersion.NeededKnowledge;
+            version.KnowledgeToDevelop = sendedVersion.KnowledgeToDevelop;
+            version.Comment = sendedVersion.Comment;
+            version.Content = sendedVersion.Content;
+            version.Description = sendedVersion.Description;
+            version.Location = sendedVersion.Location;
+            version.TitleContent = sendedVersion.TitleContent;
         }
-
+      
         await _dbContext.SaveChangesAsync(cancellationToken);
-
         
     }
 }

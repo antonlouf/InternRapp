@@ -23,8 +23,6 @@ public class CreateInternShipCommandHandler : AsyncRequestHandler<CreateInternSh
 
     protected async override Task Handle(CreateInternShipCommand request, CancellationToken cancellationToken)
     {
-
-
         
        var result= await _dbContext.InternShips.AddAsync(new() { MaxStudents = request.Dto.MaxCountOfStudents, RequiredTrainingType = request.Dto.TrainingType, SchoolYear = request.Dto.SchoolYear, UnitId = request.Dto.UnitId,LocationId=request.Dto.LocationId });
         // also add command for translationss!! (for english etc) for loop for each language
