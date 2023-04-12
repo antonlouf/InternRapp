@@ -23,13 +23,13 @@ public class ValidationFunctions
         foreach (var version in arg)
         {
             //use string.isnullorempty
-            if (version.NeededKnowledge == null || version.NeededKnowledge == "") return false;
-            if (version.TitleContent == null || version.TitleContent == "") return false;
-            if (version.Comment == null || version.Comment == "") return false;
-            if (version.Content == null || version.Content == "") return false;
-            if (version.Description == null || version.Description == "") return false;
-            if (version.Location == null || version.Location == "") return false;
-            if (version.KnowledgeToDevelop == null || version.KnowledgeToDevelop == "") return false;
+            if (String.IsNullOrEmpty(version.NeededKnowledge)) return false;
+            if (String.IsNullOrEmpty(version.TitleContent)) return false;
+            if (String.IsNullOrEmpty(version.Comment)) return false;
+            if (String.IsNullOrEmpty(version.Content)) return false;
+            if (String.IsNullOrEmpty(version.Description)) return false;
+            if (String.IsNullOrEmpty(version.Location)) return false;
+            if (String.IsNullOrEmpty(version.KnowledgeToDevelop)) return false;
 
         }
         return true;
@@ -38,13 +38,13 @@ public class ValidationFunctions
     {
         foreach (var version in arg)
         {
-            if (version.NeededKnowledge == null || version.NeededKnowledge == "") return false;
-            if (version.TitleContent == null || version.TitleContent == "") return false;
-            if (version.Comment == null || version.Comment == "") return false;
-            if (version.Content == null || version.Content == "") return false;
-            if (version.Description == null || version.Description == "") return false;
-            if (version.Location == null || version.Location == "") return false;
-            if (version.KnowledgeToDevelop == null || version.KnowledgeToDevelop == "") return false;
+            if (String.IsNullOrEmpty(version.NeededKnowledge)) return false;
+            if (String.IsNullOrEmpty(version.TitleContent)) return false;
+            if (String.IsNullOrEmpty(version.Comment)) return false;
+            if (String.IsNullOrEmpty(version.Content)) return false;
+            if (String.IsNullOrEmpty(version.Description)) return false;
+            if (String.IsNullOrEmpty(version.Location)) return false;
+            if (String.IsNullOrEmpty(version.KnowledgeToDevelop)) return false;
         }
         return true;
     }
