@@ -12,8 +12,8 @@ using backend.Infrastructure.Persistence;
 namespace backend.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230406083551_second")]
-    partial class second
+    [Migration("20230412073138_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,21 @@ namespace backend.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("InternShipLocation", b =>
+                {
+                    b.Property<int>("InternshipsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LocationsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("InternshipsId", "LocationsId");
+
+                    b.HasIndex("LocationsId");
+
+                    b.ToTable("InternShipLocation");
+                });
 
             modelBuilder.Entity("backend.Domain.Entities.ApplicationUser", b =>
                 {
@@ -201,9 +216,6 @@ namespace backend.Infrastructure.Migrations
                     b.Property<int>("HouseNumber")
                         .HasColumnType("int");
 
-                    b.Property<int?>("InternShipId")
-                        .HasColumnType("int");
-
                     b.Property<string>("StreetName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -216,9 +228,22 @@ namespace backend.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("InternShipId");
-
                     b.ToTable("Locations");
+                });
+
+            modelBuilder.Entity("InternShipLocation", b =>
+                {
+                    b.HasOne("backend.Domain.Entities.InternShip", null)
+                        .WithMany()
+                        .HasForeignKey("InternshipsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("backend.Domain.Entities.Location", null)
+                        .WithMany()
+                        .HasForeignKey("LocationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
@@ -251,17 +276,8 @@ namespace backend.Infrastructure.Migrations
                     b.Navigation("Language");
                 });
 
-            modelBuilder.Entity("backend.Domain.Entities.Location", b =>
-                {
-                    b.HasOne("backend.Domain.Entities.InternShip", null)
-                        .WithMany("Locations")
-                        .HasForeignKey("InternShipId");
-                });
-
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
                 {
-                    b.Navigation("Locations");
-
                     b.Navigation("Translations");
                 });
 #pragma warning restore 612, 618

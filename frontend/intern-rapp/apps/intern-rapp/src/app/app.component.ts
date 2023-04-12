@@ -1,6 +1,6 @@
  import { NxWelcomeComponent } from './nx-welcome.component';
 import { RouterModule } from '@angular/router';
-import { Component, Inject, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit, inject } from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +16,7 @@ import { LanguageOption } from './enums/languageDropdownOptions';
   selector: 'intern-rapp-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class AppComponent{
 

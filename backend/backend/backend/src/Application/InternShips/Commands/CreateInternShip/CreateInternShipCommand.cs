@@ -26,7 +26,6 @@ public class CreateInternShipCommandHandler : AsyncRequestHandler<CreateInternSh
         var convertedLocations = request.Dto.Locations.Select(x => new Location() { City = x.City, HouseNumber = x.Housenumber, Id = x.Id, StreetName = x.Streetname, ZipCode = x.Zipcode }).ToList();
         _dbContext.Locations.AttachRange(convertedLocations);
         var result = await _dbContext.InternShips.AddAsync(new() { MaxStudents = request.Dto.MaxCountOfStudents, RequiredTrainingType = request.Dto.TrainingType, Locations= convertedLocations, SchoolYear = request.Dto.SchoolYear, UnitId = request.Dto.UnitId,CurrentCountOfStudents=request.Dto.CurrentCountOfStudents });
-        //await _dbContext.SaveChangesAsync(cancellationToken);
         result.Entity.Translations = new List<InternShipContentTranslation>();
         for (int i = 0; i < request.Dto.Versions.Count; i++)
         {

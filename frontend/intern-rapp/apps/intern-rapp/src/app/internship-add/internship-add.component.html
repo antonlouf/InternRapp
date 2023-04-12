@@ -16,17 +16,16 @@
 
 
 <div >
-    <mat-form-field >
+    <mat-form-field *ngIf="unitObs$ | async as options">
         <mat-label>Unit</mat-label>
         <input type="text"
                placeholder="Unit"
                aria-label="Unit"
-               formControlName="unit"
+               formControlName="unitId"
                matInput
-               
             [matAutocomplete]="auto">
-       <mat-autocomplete    autoActiveFirstOption #auto="matAutocomplete"   [displayWith]="convertOptionToName">
-        <mat-option  *ngFor="let option of unitObs$ | async" [value]="option" [id]="(option.id).toString()">
+       <mat-autocomplete    autoActiveFirstOption #auto="matAutocomplete"   [displayWith]="convertOptionToName(options)" >
+        <mat-option  *ngFor="let option of options" [value]="option.id" [id]="(option.id).toString()">
           {{option.name}}
         </mat-option>
       </mat-autocomplete>
@@ -75,11 +74,11 @@
     <div id="trainingType">
       <mat-form-field >
         <mat-label>{{'trainingTypeLabel'|translate}}</mat-label>
-          <mat-select  matNativeControl formControlName="trainingType" >
-              <mat-option  *ngFor="let  availableTrainingType of availableTrainingTypes|keyvalue;" 
-              [value]="availableTrainingType.key" 
+          <mat-select  matNativeControl formControlName="trainingType" [compareWith]="compareTrainingType">
+              <mat-option  *ngFor="let  availableTrainingType of availableTrainingTypes;" 
+              value="{{trainingType[availableTrainingType]}}" 
                >
-              {{availableTrainingType.value.toString()|translate}} 
+              {{availableTrainingType|translate}} 
               </mat-option>
             
           </mat-select>
@@ -123,7 +122,7 @@
     </mat-tab>
 
   </mat-tab-group>
-  <button type="button" class="save-button" mat-icon-button  (click)="addInternship()">
+  <button [disabled]="!this.addInternshipForm.valid||tabsArrayLength<1||tabIsInvalid" type="button" class="save-button" mat-icon-button  (click)="addInternship()">
     <mat-icon>save</mat-icon>
 </button>
     </form>

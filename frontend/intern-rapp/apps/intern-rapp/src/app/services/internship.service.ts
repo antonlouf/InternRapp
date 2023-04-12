@@ -8,12 +8,12 @@ import { catchError, retry } from 'rxjs';
 import { CreateInternship } from '../entities/createInternship';
 import { InternshipTranslationUpdateDto } from '../entities/internshipTranslationUpdateDto';
 import { InternshipDetailItem } from '../entities/internshipDetailItem';
+import { InternshipUpdateDto } from '../entities/internshipUpdateDto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InternshipService {
-
   constructor(private http:HttpClient) { }
   public entityTobeUpdated:InternshipDetailItem|undefined
   private baseSuffixApi="/api/InternShip";
@@ -26,10 +26,26 @@ export class InternshipService {
   }
   public createInternship(internship: CreateInternship){
     
-
-  
     return this.http.post(APIConfiguration.baseString+`${this.baseSuffixApi}`,    {
       "schoolYear": internship.schoolYear,
+      "unitId": internship.unitId,
+      "maxCountOfStudents": internship.maxCountOfStudents,
+      "currentCountOfStudents": internship.currentCountOfStudents,
+      "trainingType":Number(internship.trainingType),
+      "locations": internship.locations,
+      "versions": internship.versions
+  },{
+      headers:{
+        "content-type":"application/json"
+      }
+    }).pipe(catchError((err,caught)=>caught),retry(2))
+
+  }
+  public updateInternship(internship:InternshipUpdateDto ){
+    
+    return this.http.put(APIConfiguration.baseString+`${this.baseSuffixApi}`,    {
+      "schoolYear": internship.schoolYear,
+      "internshipId":internship.internShipId,
       "unitId": internship.unitId,
       "maxCountOfStudents": internship.maxCountOfStudents,
       "currentCountOfStudents": internship.currentCountOfStudents,

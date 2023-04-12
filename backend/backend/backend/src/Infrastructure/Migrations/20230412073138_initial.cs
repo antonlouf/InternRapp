@@ -78,7 +78,6 @@ namespace backend.Infrastructure.Migrations
                     UnitId = table.Column<int>(type: "int", nullable: false),
                     SchoolYear = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     MaxStudents = table.Column<byte>(type: "tinyint", nullable: false),
-                    LocationId = table.Column<int>(type: "int", nullable: false),
                     CurrentCountOfStudents = table.Column<byte>(type: "tinyint", nullable: false),
                     RequiredTrainingType = table.Column<int>(type: "int", nullable: false)
                 },
@@ -91,9 +90,27 @@ namespace backend.Infrastructure.Migrations
                         principalTable: "Departments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "InternShipLocation",
+                columns: table => new
+                {
+                    InternshipsId = table.Column<int>(type: "int", nullable: false),
+                    LocationsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_InternShipLocation", x => new { x.InternshipsId, x.LocationsId });
                     table.ForeignKey(
-                        name: "FK_InternShips_Locations_LocationId",
-                        column: x => x.LocationId,
+                        name: "FK_InternShipLocation_InternShips_InternshipsId",
+                        column: x => x.InternshipsId,
+                        principalTable: "InternShips",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_InternShipLocation_Locations_LocationsId",
+                        column: x => x.LocationsId,
                         principalTable: "Locations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -143,9 +160,9 @@ namespace backend.Infrastructure.Migrations
                 column: "Name");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InternShips_LocationId",
-                table: "InternShips",
-                column: "LocationId");
+                name: "IX_InternShipLocation_LocationsId",
+                table: "InternShipLocation",
+                column: "LocationsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_InternShips_SchoolYear",
@@ -181,7 +198,13 @@ namespace backend.Infrastructure.Migrations
                 name: "ApplicationUsers");
 
             migrationBuilder.DropTable(
+                name: "InternShipLocation");
+
+            migrationBuilder.DropTable(
                 name: "Translations");
+
+            migrationBuilder.DropTable(
+                name: "Locations");
 
             migrationBuilder.DropTable(
                 name: "InternShips");
@@ -191,9 +214,6 @@ namespace backend.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Departments");
-
-            migrationBuilder.DropTable(
-                name: "Locations");
         }
     }
 }

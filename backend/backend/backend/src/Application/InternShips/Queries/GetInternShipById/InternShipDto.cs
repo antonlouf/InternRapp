@@ -12,7 +12,7 @@ public class InternShipDto:IMapFrom<InternShip>
 {
     public string SchoolYear { get; set; }
     public int InternShipId { get; set; }
-    public DepartmentMinimalDataDto Dto{ get; set; }
+    public int UnitId{ get; set; }
     public int MaxCountOfStudents { get; set; }
     public int CurrentCountOfStudents { get; set; }
     public TrainingType TrainingType { get; set; }
@@ -26,7 +26,9 @@ public class InternShipDto:IMapFrom<InternShip>
                     .ForMember(dest => dest.InternShipId, opt => opt.MapFrom(src => src.Id))
                     .ForMember(dest => dest.MaxCountOfStudents, opt => opt.MapFrom(src => src.MaxStudents))
                     .ForMember(dest => dest.Versions, opt => opt.MapFrom(src => src.Translations))
-                    .ForMember(dest => dest.Dto, opt => opt.MapFrom(src => src.Unit));
+                    .ForMember(dest => dest.TrainingType, opt => opt.MapFrom(src => src.RequiredTrainingType))
+                    .ForMember(dest => dest.UnitId, opt => opt.MapFrom(src => src.Unit.Id));
+                    
 
 
     }

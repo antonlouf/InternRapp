@@ -26,6 +26,7 @@ import { Router } from '@angular/router';
   imports: [CommonModule,MatDividerModule,MatIconModule,MatListModule,BaselistComponent,TranslateModule,ItemsTmplDirective,ReactiveFormsModule,HttpClientModule,MatDialogModule],
   templateUrl: './intern-ship-list.component.html',
   styleUrls: ['./intern-ship-list.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class InternShipListComponent extends BaseList<InternshipItem> implements OnInit,OnDestroy{
   public deleteSubject=new Subject<number>()
@@ -51,11 +52,12 @@ export class InternShipListComponent extends BaseList<InternshipItem> implements
   public addInternship(){
     this.router.navigateByUrl("internships/create")
   }
-  public updateInternship(id:unknown){
+  public updateInternship(id: unknown) {
       this.internshipService.getInternshipById(id as number)
-      .pipe(tap(data=>{
-        this.internshipService.entityTobeUpdated=data
-        this.router.navigateByUrl("internships/create")
+        .pipe(tap(data => {
+          this.internshipService.entityTobeUpdated = data
+          
+        this.router.navigateByUrl("internships/create",)
       })
       ,take(1),
       takeUntil(this.destroySubj$)

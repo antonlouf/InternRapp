@@ -10,7 +10,7 @@ using backend.Domain.Enums;
 namespace backend.Application.InternShips.Commands.UpdateInternShip;
 public class InternShipUpdateDto
 {
-    public int internShipId { get; set; }
+    public int InternShipId { get; set; }
     public string SchoolYear { get; set; }
     public int UnitId { get; set; }
     public byte MaxCountOfStudents { get; set; }
