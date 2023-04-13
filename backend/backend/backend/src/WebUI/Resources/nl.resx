@@ -154,7 +154,7 @@
     <value>verwijderen</value>
   </data>
   <data name="deleteButton" xml:space="preserve">
-    <value>verwijderen</value>
+    <value>verwijder</value>
   </data>
   <data name="department" xml:space="preserve">
     <value>departement</value>
@@ -176,6 +176,9 @@
   </data>
   <data name="events" xml:space="preserve">
     <value>beurzen</value>
+  </data>
+  <data name="internship" xml:space="preserve">
+    <value>stage</value>
   </data>
   <data name="internships" xml:space="preserve">
     <value>Stages</value>

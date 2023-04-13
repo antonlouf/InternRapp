@@ -40,7 +40,7 @@ internRappItemsTmpl let-items
         <div class="flex-end">
           <div class="flex-row ">
             <div >     
-               <button    class="cancel-button"   mat-fab color="primary" >
+               <button  (click)="delete(item.id)"  class="cancel-button"   mat-fab color="primary" >
               <mat-icon>delete</mat-icon>
             </button>
           </div>

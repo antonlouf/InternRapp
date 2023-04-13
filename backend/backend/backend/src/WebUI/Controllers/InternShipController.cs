@@ -1,5 +1,6 @@
 ﻿using backend.Application.Common.Paging;
 using backend.Application.InternShips.Commands.CreateInternShip;
+using backend.Application.InternShips.Commands.DeleteInternship;
 using backend.Application.InternShips.Commands.UpdateInternShip;
 using backend.Application.InternShips.Queries.GetAllInternShips;
 using backend.Application.InternShips.Queries.GetInternShipById;
@@ -39,6 +40,12 @@ public class InternShipController : ControllerBase
     public async Task<IActionResult> Update(InternShipUpdateDto dto)
     {
         await _mediator.Send(new UpdateInternShipCommand() { Dto=dto});
+        return Ok();
+    }
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> Delete([FromRoute] int id)
+    {
+        await _mediator.Send(new DeleteInternshipCommand() { Id=id });
         return Ok();
     }
 

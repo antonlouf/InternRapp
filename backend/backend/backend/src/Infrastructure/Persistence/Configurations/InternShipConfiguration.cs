@@ -23,7 +23,7 @@ public class InternShipConfiguration : IEntityTypeConfiguration<InternShip>
         builder.HasMany(x => x.Locations).WithMany(x=>x.Internships);
         builder.Property(x=>x.MaxStudents).HasConversion(v => (byte)v,
             v => v).IsRequired();
-        builder.HasMany(x => x.Translations).WithOne(x => x.InternShip);
+        builder.HasMany(x => x.Translations).WithOne(x => x.InternShip).OnDelete(DeleteBehavior.Cascade);
         
     }
 }

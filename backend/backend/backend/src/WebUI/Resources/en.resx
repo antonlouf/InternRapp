@@ -177,6 +177,9 @@
   <data name="events" xml:space="preserve">
     <value>events</value>
   </data>
+  <data name="internship" xml:space="preserve">
+    <value>internship</value>
+  </data>
   <data name="internships" xml:space="preserve">
     <value>internships</value>
   </data>

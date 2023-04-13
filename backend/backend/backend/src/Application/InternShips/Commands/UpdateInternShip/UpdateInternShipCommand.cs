@@ -22,7 +22,6 @@ public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternSh
         var convertedLocations = request.Dto.Locations.Select(x => new Location() { City = x.City, HouseNumber = x.Housenumber, Id = x.Id, StreetName = x.Streetname, ZipCode = x.Zipcode }).ToList();
         _dbContext.Locations.UpdateRange(convertedLocations);
         var internShip = await _dbContext.InternShips.Include(x=>x.Locations).Include(x=>x.Translations).FirstOrDefaultAsync(x => x.Id == request.Dto.InternShipId);
-       // _dbContext.InternShips.Update(internShip);
         internShip.MaxStudents = request.Dto.MaxCountOfStudents;
         internShip.SchoolYear = request.Dto.SchoolYear;
         internShip.RequiredTrainingType = request.Dto.TrainingType;
