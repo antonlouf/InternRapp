@@ -2,6 +2,7 @@
 using backend.Application.InternShips.Commands.CreateInternShip;
 using backend.Application.InternShips.Commands.UpdateInternShip;
 using backend.Application.InternShips.Queries.GetAllInternShips;
+using backend.Application.InternShips.Queries.GetExportInternShipData;
 using backend.Application.InternShips.Queries.getFilteredInternShip;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -22,20 +23,28 @@ public class InternShipController : ControllerBase
         await _mediator.Send(new CreateInternShipCommand() { Dto = dto });
         return Ok();
     }
-    /*[HttpGet]
-    public async Task<IActionResult> GetAll()
-    {
-        return Ok(await _mediator.Send(new GetAllQuery()));
-    }*/
+    //[HttpGet ]
+    //public async Task<IActionResult> GetAll()
+    //{
+    //    return Ok(await _mediator.Send(new GetAllQuery()));
+    //}
+
     [HttpGet]
     public async Task<IActionResult> GetFiltered([FromQuery] InternShipFilteredDto dto)
     {
-        return Ok(await _mediator.Send(new GetFilteredQuery { Dto = dto}));
+        return Ok(await _mediator.Send(new GetFilteredQuery { Dto = dto }));
     }
+
+    [HttpGet("export")]
+    public async Task<IActionResult> Export([FromQuery] InternshipExportDto dto)
+    {
+        return Ok(await _mediator.Send(new GetExportInterShipQuery { Dto = dto }));
+    }
+
     [HttpPut]
     public async Task<IActionResult> Update(InternShipUpdateDto dto)
     {
-        await _mediator.Send(new UpdateInternShipCommand() { Dto=dto});
+        await _mediator.Send(new UpdateInternShipCommand() { Dto = dto });
         return Ok();
     }
 

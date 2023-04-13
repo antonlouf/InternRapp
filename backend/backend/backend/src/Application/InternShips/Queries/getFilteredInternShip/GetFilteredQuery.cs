@@ -17,6 +17,7 @@ namespace backend.Application.InternShips.Queries.getFilteredInternShip;
 public class GetFilteredQuery : IRequest<PagedList<InternShipListDto>>
 {
     public InternShipFilteredDto Dto { get; set; }
+  
 }
 public class GetFilteredInterShipsQueryHandler : IRequestHandler<GetFilteredQuery, PagedList<InternShipListDto>>
 {
