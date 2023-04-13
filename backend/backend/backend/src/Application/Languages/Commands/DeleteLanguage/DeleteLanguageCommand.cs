@@ -12,7 +12,7 @@ public class DeleteLanguageCommand:IRequest
 {
     // make command immutable 
   
-    public int Id { get; set; }
+    public int Id { get; init; }
 }
 public class DeleteLanguageCommandHandler : AsyncRequestHandler<DeleteLanguageCommand>
 {

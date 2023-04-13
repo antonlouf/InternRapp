@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +12,7 @@ namespace backend.Application.Languages.Commands.CreateLanguage;
 public class CreateLanguageCommand:IRequest
 {
     // make command immutable 
- 
-    public string Name { get; set; }
+   public string Name { get; init; }
 }
 public class CreateLanguageCommandHandler : AsyncRequestHandler<CreateLanguageCommand>
 {

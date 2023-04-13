@@ -27,6 +27,11 @@ public class UpdateLanguageCommandHandler : AsyncRequestHandler<UpdateLanguageCo
         //Single or default / check on null (will crash if language is not found)
         //Do we even need to change the name of a language? 
         var language = await _dbContext.Languages.Where(x => x.Id == request.Dto.Id).FirstOrDefaultAsync();
+
+        if (language == null) {
+            return;
+        }
+
         language.Name = request.Dto.Name;
         //Update not needed -> ef core changeTracker?
         _dbContext.Languages.Update(language);
