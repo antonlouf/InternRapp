@@ -25,12 +25,12 @@ public class UpdateLanguageCommandValidator:AbstractValidator<UpdateLanguageComm
 
 
 
-    private async Task<bool> IsNameUnique(string arg1, CancellationToken arg2)
+    private async Task<bool> IsNameUnique(string langName, CancellationToken arg2)
     {
         //Should be part of the create language too?
         //naming of input
         //Racing condition -> Is name of language part of the DB key? Last resort...
-        var result = await _dbContext.Languages.Where(x => x.Name == arg1).FirstOrDefaultAsync();
+        var result = await _dbContext.Languages.Where(x => x.Name == langName).FirstOrDefaultAsync();
         return result == null;
     }
 

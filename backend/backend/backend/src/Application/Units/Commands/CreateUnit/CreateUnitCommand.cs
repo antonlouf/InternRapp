@@ -10,8 +10,8 @@ using MediatR;
 namespace backend.Application.Units.Commands.CreateUnit;
 public class CreateUnitCommand:IRequest
 {
-    public string Name { get; set; }
-    public List<string> SuperVisorEmails { get; set; }
+    public string Name { get; init; }
+    public List<string> SuperVisorEmails { get; init; }
 }
 //multiple files
 //Immutable command

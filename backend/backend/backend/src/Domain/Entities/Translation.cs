@@ -24,4 +24,6 @@ public class InternShipContentTranslation
     public int InternShipId { get; set; }
     public Language Language { get; set; }
     public int LanguageId { get; set; }
+
+
 }

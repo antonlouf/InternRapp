@@ -12,7 +12,7 @@ namespace backend.Application.Locations.Commands.CreateLocation;
     // Dont wrap the properties in a DTO
 public class CreateLocationCommand: IRequest
 {
-    public CreateLocationDto LocationDto;
+    public CreateLocationDto LocationDto { get; init; }
 }
 
 public class CreateLocationCommandHandler : AsyncRequestHandler<CreateLocationCommand>

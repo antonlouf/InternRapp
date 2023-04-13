@@ -25,8 +25,7 @@ public class DeleteLanguageCommandHandler : AsyncRequestHandler<DeleteLanguageCo
 
     protected override async Task Handle(DeleteLanguageCommand request, CancellationToken cancellationToken)
     {
-        //single or default
-        var entityTobeDeleted = await _dbContext.Languages.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+        var entityTobeDeleted = await _dbContext.Languages.Where(x => x.Id == request.Id).SingleOrDefaultAsync();
         _dbContext.Languages.Remove(entityTobeDeleted);
         await _dbContext.SaveChangesAsync(cancellationToken);
     }

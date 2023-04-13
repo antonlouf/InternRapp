@@ -26,7 +26,7 @@ public class UpdateLanguageCommandHandler : AsyncRequestHandler<UpdateLanguageCo
     {
         //Single or default / check on null (will crash if language is not found)
         //Do we even need to change the name of a language? 
-        var language = await _dbContext.Languages.Where(x => x.Id == request.Dto.Id).FirstOrDefaultAsync();
+        var language = await _dbContext.Languages.Where(x => x.Id == request.Dto.Id).SingleOrDefaultAsync();
 
         if (language == null) {
             return;
@@ -34,7 +34,7 @@ public class UpdateLanguageCommandHandler : AsyncRequestHandler<UpdateLanguageCo
 
         language.Name = request.Dto.Name;
         //Update not needed -> ef core changeTracker?
-        _dbContext.Languages.Update(language);
+
         await _dbContext.SaveChangesAsync(cancellationToken);
     }
 
