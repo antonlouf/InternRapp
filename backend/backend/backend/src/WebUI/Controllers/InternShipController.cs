@@ -3,6 +3,8 @@ using backend.Application.InternShips.Commands.CreateInternShip;
 using backend.Application.InternShips.Commands.DeleteInternship;
 using backend.Application.InternShips.Commands.UpdateInternShip;
 using backend.Application.InternShips.Queries.GetAllInternShips;
+using backend.Application.InternShips.Queries.GetExportInternShipData;
+using backend.Application.InternShips.Queries.getFilteredInternShip;
 using backend.Application.InternShips.Queries.GetInternShipById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -20,10 +22,18 @@ public class InternShipController : ControllerBase
     }
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] InternShipCreateDto dto)
+    public async Task<IActionResult> Create(InternShipCreateDto dto)
     {
         await _mediator.Send(new CreateInternShipCommand() { Dto=dto});  
+        await _mediator.Send(new CreateInternShipCommand() { Dto = dto });
         return Ok();
     }
+    //[HttpGet ]
+    //public async Task<IActionResult> GetAll()
+    //{
+    //    return Ok(await _mediator.Send(new GetAllQuery()));
+    //}
+
     [HttpGet]
     public async Task<IActionResult> GetAll([FromQuery] FilterAndPaginationRequestDto dto)
     {
@@ -32,14 +42,23 @@ public class InternShipController : ControllerBase
     }
     [HttpGet("{id:int}")]
     public async Task<IActionResult> GetById(int id)
+    public async Task<IActionResult> GetFiltered([FromQuery] InternShipFilteredDto dto)
+    {
+        return Ok(await _mediator.Send(new GetFilteredQuery { Dto = dto }));
+    }
+
+    [HttpGet("export")]
+    public async Task<IActionResult> Export([FromQuery] InternshipExportDto dto)
     {
         var result = await _mediator.Send(new GetByIdQuery() { Id=id});
         return Ok(result);
+        return Ok(await _mediator.Send(new GetExportInterShipQuery { Dto = dto }));
     }
+
     [HttpPut]
     public async Task<IActionResult> Update(InternShipUpdateDto dto)
     {
-        await _mediator.Send(new UpdateInternShipCommand() { Dto=dto});
+        await _mediator.Send(new UpdateInternShipCommand() { Dto = dto });
         return Ok();
     }
     [HttpDelete("{id:int}")]

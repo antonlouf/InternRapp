@@ -14,7 +14,7 @@ public class CreateLocationValidator:AbstractValidator<CreateLocationCommand>
         RuleFor(x => x.LocationDto.city).NotNull().NotEmpty();
         RuleFor(x => x.LocationDto.streetname).NotNull().NotEmpty();
         RuleFor(x => x.LocationDto.housenumber).NotNull().NotEmpty();
-        //.Must(x => x.GetType() == typeof(int));
+        //.Must(x => x.GetType() == typeof(int)); 
         RuleFor(x => x.LocationDto.zipcode).NotNull().NotEmpty();
     }
 }

@@ -1,43 +1,65 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
-import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {  DepartmentService } from '../services/department.service';
-import { catchError, debounceTime, distinctUntilChanged, EMPTY, Observable, startWith, switchMap } from 'rxjs';
+import { MatAutocompleteModule} from '@angular/material/autocomplete';
+import { DepartmentService } from '../services/department.service';
+import { catchError, debounceTime, distinctUntilChanged, EMPTY, map, Observable, startWith, Subject, switchMap } from 'rxjs';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatOptionSelectionChange } from '@angular/material/core';
-import {MatChipInputEvent, MatChipsModule} from '@angular/material/chips';
-import {MatIconModule} from '@angular/material/icon';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { MatChipInputEvent, MatChipsModule} from '@angular/material/chips';
+import { MatIconModule} from '@angular/material/icon';
+import { COMMA, ENTER} from '@angular/cdk/keycodes';
 import { CreateDepartment } from '../entities/CreateDepartment';
 import { TranslateModule } from '@ngx-translate/core';
+import { AddLanguagePopupComponent } from '../add-language-popup/add-language-popup.component';
+import { LanguageItem } from '../entities/languageItem';
 
 @Component({
   selector: 'intern-rapp-department-add-popup',
   standalone: true,
-  imports: [CommonModule,MatDialogModule,MatDividerModule,TranslateModule,ReactiveFormsModule,MatFormFieldModule,MatAutocompleteModule,MatInputModule,HttpClientModule,MatChipsModule,MatIconModule],
+  imports: [CommonModule,MatDialogModule, MatDividerModule,TranslateModule,ReactiveFormsModule,MatFormFieldModule,MatAutocompleteModule,MatInputModule,HttpClientModule,MatChipsModule,MatIconModule],
   templateUrl: './department-add-popup.component.html',
   styleUrls: ['./department-add-popup.component.scss'],
   providers:[HttpClient,DepartmentService]
 })
 export class DepartmentAddPopupComponent implements OnInit{
+
 filteredOptions!:Observable<(string|undefined)[]>
 separatorKeysCodes: number[] = [ENTER, COMMA];
 options:string[]=[]
+
+public $addVersionSubject = new Subject<CreateDepartment>;
+public $languages = new Observable<LanguageItem>;
+public addSubject = new Subject<CreateDepartment|undefined>();
+
+//per unit 
 addForm=new FormGroup({
 departmentName: new FormControl('',[Validators.required]),
-managerEmails:new FormControl('')
+managerEmails:new FormControl(''),
+versions: new FormGroup({
+  languageId: new FormArray([]), 
+  preface: new FormArray([])
+  })
 })
 
 managerEmailsTobeAdded: string[]=[]
 
-constructor(private unitService: DepartmentService,public dialogRef: MatDialogRef<DepartmentAddPopupComponent>) {
-  
+constructor(private unitService: DepartmentService, 
+  public dialogRef: MatDialogRef<DepartmentAddPopupComponent>,
+  public dialog: MatDialog) {} 
+
+private  popUpConfig={
+  width: '400px',
+ closeOnNavigation:true,
+ disableClose:false,
+ hasBackdrop:true,
+ position:{top:'250px',right:'500px'}
 }
+
 add(event: MatChipInputEvent): void {
   const value = (event.value || '').trim();
 
@@ -61,16 +83,37 @@ ngOnInit(): void {
     //map(searchString=>searchString as string|undefined)),
     switchMap(searchString=>this.unitService.getAllSupervisorNamesContaining(searchString as string|undefined).pipe(catchError(()=>EMPTY))),
   );
-  
 }
 
 addToListOfManagers(event: MatOptionSelectionChange){
 this.addForm.controls.managerEmails.patchValue(event.source.value.toString())
 }
+
+addLanguage() {
+  return this.$addVersionSubject.pipe(switchMap(data => 
+    { 
+    
+    const dialogRef = this.dialog.open(AddLanguagePopupComponent, this.popUpConfig)// geef obs met taal data mee in constructor
+    
+    return dialogRef.afterClosed().pipe(map(confirm=> confirm!==undefined ? confirm : undefined))
+    //het enige wat we hier nodig hebben is Taal, en met die taal wil ik een text editor venster openenen 
+  })
+ // ,filter(id => !!id) checken!
+ //openen van text editor venster en deze data toevoegen samen met languageId
+  )
+    // resultaat toevoegen aan formArray versions 
+  }
+
+
 closeDialog(save:boolean){
   let data: CreateDepartment|undefined
   if(save){
-    data={name:this.addForm.controls.departmentName.getRawValue(),superVisorEmails:this.managerEmailsTobeAdded}
+    data={
+      name:this.addForm.controls.departmentName.getRawValue(),
+      superVisorEmails:this.managerEmailsTobeAdded,
+      //languageId: this.addForm.controls.versions // hier wil ik gewoon data meegeven en geen obs 
+      //
+    }
   }
   this.dialogRef.close(save?data:undefined)
 }
