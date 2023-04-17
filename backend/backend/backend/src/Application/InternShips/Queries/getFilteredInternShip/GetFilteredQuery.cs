@@ -32,11 +32,7 @@ public class GetFilteredInterShipsQueryHandler : IRequestHandler<GetFilteredQuer
 
     public async Task<PagedList<InternShipListDto>> Handle(GetFilteredQuery request, CancellationToken cancellationToken)
     {
-        var h= await PagedList<InternShipListDto>.ToPagedList(_dbContext.InternShips
-            .Where(internschip => (request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(internschip.UnitId))
-                && (request.Dto.SchoolYear == null || request.Dto.SchoolYear.Count == 0 || request.Dto.SchoolYear.Contains(internschip.SchoolYear))
-                && (request.Dto.LanguageIds == null || request.Dto.LanguageIds.Count == 0 || internschip.Translations.Any(trnsl => request.Dto.LanguageIds.Contains(trnsl.LanguageId))))
-            .ProjectTo<InternShipListDto>(_iMapper.ConfigurationProvider), request.Dto.PageIndex, request.Dto.PageSize);
+        
         return await PagedList<InternShipListDto>.ToPagedList(_dbContext.InternShips
             .Where(internschip => (request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(internschip.UnitId))
                 && (request.Dto.SchoolYear == null || request.Dto.SchoolYear.Count == 0 || request.Dto.SchoolYear.Contains(internschip.SchoolYear))
