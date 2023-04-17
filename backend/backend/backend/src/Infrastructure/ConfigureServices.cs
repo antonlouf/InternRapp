@@ -1,4 +1,5 @@
 ﻿using backend.Application.Common.Interfaces;
+using backend.Infrastructure.Constants;
 using backend.Infrastructure.Persistence;
 using backend.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
@@ -11,19 +12,20 @@ public static class ConfigureServices
 {
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
-       
-        //Dont pase IConfiguration to this lib, pass a InfrastructionOptions class (bind it in startup)
+
+        //Dont pass IConfiguration to this lib, pass a InfrastructionOptions class (bind it in startup)
+
         //Use a static class AppSettings with all the hard typed values
- 
-        if (configuration.GetValue<bool>("UseInMemoryDatabase"))
+
+        if (configuration.GetValue<bool>(AppSettingsConstant.InMemoryDB))
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("default")));
+                options.UseSqlServer(configuration.GetConnectionString(AppSettingsConstant.DefaultInMemoryConnectionString)));
         }
         else
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("Default"),
+                options.UseSqlServer(configuration.GetConnectionString(AppSettingsConstant.DefaultInMemoryConnectionString),
                     builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         }
         //services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());

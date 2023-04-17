@@ -18,6 +18,11 @@ public class ApplicationUserController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(CreateApplicationUserCommand dto)
     {
+        if(dto is null)
+        {
+            return BadRequest();
+        }
+
         //ToDo - Null check / empty -> bad request
         //ToDo - Web contract / application  contract should be different.
 

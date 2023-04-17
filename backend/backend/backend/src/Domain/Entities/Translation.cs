@@ -25,5 +25,45 @@ public class InternShipContentTranslation
     public Language Language { get; set; }
     public int LanguageId { get; set; }
 
+    public InternShipContentTranslation()
+    {
+    }
 
+    //public InternShipContentTranslation(int id, string titleContent, string description, string knowledgeToDevelop, string neededKnowledge, string location, string comment, string content, InternShip internShip, int internShipId, Language language, int languageId)
+    //{
+    //    Id = id;
+    //    TitleContent = titleContent;
+    //    Description = description;
+    //    KnowledgeToDevelop = knowledgeToDevelop;
+    //    NeededKnowledge = neededKnowledge;
+    //    Location = location;
+    //    Comment = comment;
+    //    Content = content;
+    //    InternShip = internShip;
+    //    InternShipId = internShipId;
+    //    Language = language;
+    //    LanguageId = languageId;
+    //}
+
+    public static InternShipContentTranslation Initialize(int id, string titleContent, string description, string knowledgeToDevelop, string neededKnowledge, string location, string comment, string content, InternShip internShip, int internShipId, Language language, int languageId)
+    {
+        if(id == 0 || titleContent == null || description == null || knowledgeToDevelop == null || neededKnowledge == null ||
+            location == null || comment == null || content == null || internShip == null || internShipId == 0 || language == null || languageId == 0) 
+        { throw new ArgumentException(); }
+        
+        return new InternShipContentTranslation() {
+        Id = id,
+        TitleContent = titleContent,
+        Description = description,
+        KnowledgeToDevelop = knowledgeToDevelop,
+        NeededKnowledge = neededKnowledge,
+        Location = location,
+        Comment = comment,
+        Content = content,
+        InternShip = internShip,
+        InternShipId = internShipId,
+        Language = language,
+        LanguageId = languageId,
+    };
+    }
 }
