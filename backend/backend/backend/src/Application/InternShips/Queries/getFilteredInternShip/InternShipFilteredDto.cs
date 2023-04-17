@@ -10,7 +10,7 @@ public class InternShipFilteredDto
 {
     public int PageIndex { get; set; }
     public int PageSize { get; set; }
-    public List<int> UnitId { get; set; }
+    public List<int> UnitIds { get; set; }
     public List<string> SchoolYear { get; set; }
-    public List<int> LanguageId { get; set; }
+    public List<int> LanguageIds { get; set; }
 }

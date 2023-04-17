@@ -49,7 +49,7 @@ export class LocationListComponent extends BaseList<LocationItem> {
   }
 
   ngOnInit(): void {
-    this.filters=[{label:"location name",name:"filterValue",type:FilterType.Text,observable:undefined}];
+    this.filters=[{label:"location name",name:"filterValue",type:FilterType.Text,observable:undefined,optionBuilder:(item:unknown[])=>undefined}];
     const delete$=this.configureDelete$();
     const update$=this.configureUpdate$();
     const add$=this.configureAdd$();

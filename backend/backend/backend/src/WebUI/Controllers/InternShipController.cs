@@ -22,37 +22,29 @@ public class InternShipController : ControllerBase
     }
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] InternShipCreateDto dto)
-    public async Task<IActionResult> Create(InternShipCreateDto dto)
     {
-        await _mediator.Send(new CreateInternShipCommand() { Dto=dto});  
         await _mediator.Send(new CreateInternShipCommand() { Dto = dto });
         return Ok();
     }
-    //[HttpGet ]
-    //public async Task<IActionResult> GetAll()
-    //{
-    //    return Ok(await _mediator.Send(new GetAllQuery()));
-    //}
 
-    [HttpGet]
-    public async Task<IActionResult> GetAll([FromQuery] FilterAndPaginationRequestDto dto)
-    {
-        var result=await _mediator.Send(new GetAllQuery() { Dto=dto});
-        return Ok(result);
-    }
     [HttpGet("{id:int}")]
     public async Task<IActionResult> GetById(int id)
+    {
+        var result = await _mediator.Send(new GetByIdQuery() { Id = id });
+        return Ok(result);
+    }
+    [HttpGet]
     public async Task<IActionResult> GetFiltered([FromQuery] InternShipFilteredDto dto)
     {
-        return Ok(await _mediator.Send(new GetFilteredQuery { Dto = dto }));
+       
+        return Ok(await _mediator.Send(new GetFilteredQuery() { Dto = dto }));
     }
 
     [HttpGet("export")]
     public async Task<IActionResult> Export([FromQuery] InternshipExportDto dto)
     {
-        var result = await _mediator.Send(new GetByIdQuery() { Id=id});
-        return Ok(result);
-        return Ok(await _mediator.Send(new GetExportInterShipQuery { Dto = dto }));
+        
+        return Ok(await _mediator.Send(new GetExportInterShipQuery() { Dto = dto }));
     }
 
     [HttpPut]

@@ -50,7 +50,7 @@ export class LanguageListComponent extends BaseList<LanguageItem> implements OnI
     return this.languageService.filterAndPaginateLanguages(paginationFilterRequest)
   }
     ngOnInit(): void {
-      this.filters=[{label:"Language name",name:"filterValue",type:FilterType.Text,observable:undefined}];
+      this.filters=[{label:"Language name",name:"filterValue",type:FilterType.Text,optionBuilder:(items:unknown[])=>undefined,observable:undefined}];
       const delete$=this.configureDelete$();
       const update$=this.configureUpdate$();
       const add$=this.configureAdd$();

@@ -23,7 +23,7 @@ export class InternshipService {
     return this.http
       .get<ResourceItemPagingResponse<InternshipItem>>(
         APIConfiguration.baseString +
-          `${this.baseSuffixApi}?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&Filter=${filterPaginationRequest.filterString}`
+          `${this.baseSuffixApi}?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&${filterPaginationRequest.filterString}`
       )
       .pipe(catchError((err, caught) => caught));
   }

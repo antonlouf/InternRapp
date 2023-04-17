@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,7 +15,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { BaseList } from '../baselist/baseList';
-import { filter, Observable, switchMap, Subject, tap, map, take, takeUntil } from 'rxjs';
+import {
+  filter,
+  Observable,
+  switchMap,
+  Subject,
+  tap,
+  map,
+  take,
+  takeUntil,
+  of,
+  from,
+} from 'rxjs';
 import { PaginationFilterRequest } from '../entities/paginationFilterRequest';
 import { CreateInternship } from '../entities/createInternship';
 import { InternshipDetailItem } from '../entities/internshipDetailItem';
@@ -20,6 +36,11 @@ import { ResourceItemPagingResponse } from '../entities/resourceItemPagingRespon
 import { InternshipItem } from '../entities/internshipItem';
 import { Router } from '@angular/router';
 import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
+import { DepartmentService } from '../services/department.service';
+import { LanguageService } from '../services/language.service';
+import { LanguageItem } from '../entities/languageItem';
+import { DepartmentItem } from '../entities/departmentItem';
+import { DepartementItemWithMinimalData } from '../entities/depItemWithMinimalData';
 
 @Component({
   selector: 'intern-rapp-intern-ship-list',
@@ -50,6 +71,8 @@ export class InternShipListComponent
   private destroySubj$ = new Subject<void>();
   constructor(
     private internshipService: InternshipService,
+    private unitService: DepartmentService,
+    private languageService: LanguageService,
     private router: Router,
     public dialog: MatDialog
   ) {
@@ -111,23 +134,107 @@ export class InternShipListComponent
     this.filters = [
       {
         label: 'languageNameLabel',
-        name: 'filterValue',
-        type: FilterType.Text,
-        observable: undefined,
+        name: 'languages',
+        type: FilterType.MultiSelectDropdown,
+        observable: this.languageService
+          .filterAndPaginateLanguages({
+            pageSize: 250,
+            pageIndex: 1,
+            filterString: '',
+          })
+          .pipe(map((data) => data.items)),
+        optionBuilder: (items: unknown[], value: LanguageItem) => {
+          const optionBuilder: unknown[] = [];
+          const displayValue =
+            (items as LanguageItem[]).find((x) => x.id === value.id)?.name ??
+            '';
+          optionBuilder.push(displayValue);
+          optionBuilder.push(value.id);
+          return optionBuilder;
+        },
+      },
+      {
+        label: 'unitNameLabel',
+        name: 'units',
+        type: FilterType.MultiSelectDropdown,
+        observable: this.unitService
+          .filterAndPaginateDepartmentsWithMinimalData({
+            filterString: '',
+            pageIndex: 1,
+            pageSize: 100,
+          })
+          .pipe(map((data) => data.items)),
+        optionBuilder: (
+          items: unknown[],
+          value: DepartementItemWithMinimalData
+        ) => {
+          const optionBuilder: unknown[] = [];
+          const displayValue =
+            (items as DepartementItemWithMinimalData[]).find(
+              (x) => x.id === value.id
+            )?.name ?? '';
+          optionBuilder.push(displayValue);
+          optionBuilder.push(value.id);
+          return optionBuilder;
+        },
+      },
+      {
+        label: 'schoolYearLabel',
+        name: 'schoolyear',
+        type: FilterType.SingleSelectDropdown,
+        observable: this.availableDatesAsObservable(),
+        optionBuilder: (items: unknown[], item: string) => {
+          const optionBuilder: unknown[] = [];
+          const displayValue =
+            (items as string[]).find((x) => x === item) ?? '';
+          optionBuilder.push(displayValue);
+          optionBuilder.push(item);
+          return optionBuilder;
+        },
       },
     ];
 
     this.configureItems([this.configureDelete$()]);
   }
-
+  private availableDatesAsObservable() {
+    const availableDates = [];
+    const year = new Date().getFullYear();
+    const previousYear = year - 1;
+    for (let i = 0; i < 20; i++) {
+      availableDates[i] = `${previousYear - i}-${year - i}`;
+    }
+    return of(availableDates);
+  }
   filterUpdating(filter: {}) {
-    let filterString = '';
     const record = filter as Record<string, never>;
-    this.filters?.forEach((x) => {
-      filterString += `unit:${record[x.name]},`;
-    });
-    filterString = filterString.slice(0, filterString.length - 1);
-    this.filterUpdated(filterString);
+    const activeFilters :Record<string,unknown>= {};
+    
+    if (record['schoolyear']) {
+      activeFilters['schoolYear'] = record['schoolyear'];
+
+    }
+    if (record['units']) {
+      const unitIds = (record['units'] as string[])
+      let unitFilterString = "";
+      for (let unitId of unitIds) {
+        unitFilterString+=`unitIds=${unitId}&`
+      }
+    unitFilterString=unitFilterString.slice(0, unitFilterString.length - 1);
+      activeFilters['unitIds'] = unitFilterString;
+    }
+    if (record['languages']) {
+      const unitIds = record['languages'] as string[];
+      let languageFilterString = '';
+      for (let languageId of unitIds) {
+        languageFilterString += `languageIds=${languageId}&`;
+      }
+      languageFilterString = languageFilterString.slice(
+        0,
+        languageFilterString.length - 1
+      );
+      activeFilters['languageIds'] = languageFilterString;
+    }
+      this.filterUpdated(activeFilters);
   }
   delete(id: number) {
     this.deleteSubject.next(id);

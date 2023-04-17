@@ -133,7 +133,7 @@
     <value>Bachelor</value>
   </data>
   <data name="cancelButtonText" xml:space="preserve">
-    <value>annuleer</value>
+    <value>annuleren</value>
   </data>
   <data name="commentLabel" xml:space="preserve">
     <value>commentaar</value>
@@ -151,10 +151,10 @@
     <value>Aantal studenten die de dit stage zullen doen</value>
   </data>
   <data name="delete" xml:space="preserve">
-    <value>verwijderen</value>
+    <value>verwijder</value>
   </data>
   <data name="deleteButton" xml:space="preserve">
-    <value>verwijder</value>
+    <value>verwijderen</value>
   </data>
   <data name="department" xml:space="preserve">
     <value>departement</value>
@@ -172,7 +172,7 @@
     <value>beschrijving</value>
   </data>
   <data name="editButton" xml:space="preserve">
-    <value>bijwerk</value>
+    <value>bijwerken</value>
   </data>
   <data name="events" xml:space="preserve">
     <value>beurzen</value>

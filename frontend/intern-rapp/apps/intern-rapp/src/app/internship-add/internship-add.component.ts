@@ -1,14 +1,8 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
-  DoCheck,
-  Input,
-  OnChanges,
   OnDestroy,
   OnInit,
-  SimpleChanges,
-  ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -22,12 +16,10 @@ import {
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { TranslateModule } from '@ngx-translate/core';
-import { Subject, Observable, switchMap, tap } from 'rxjs';
+import { Subject, Observable, switchMap, tap, of } from 'rxjs';
 import { DepartmentService } from '../services/department.service';
 import {
-  MatAutocomplete,
   MatAutocompleteModule,
-  MatAutocompleteOrigin,
 } from '@angular/material/autocomplete';
 import { DepartementItemWithMinimalData } from '../entities/depItemWithMinimalData';
 import {
@@ -57,9 +49,7 @@ import { LocationService } from '../services/location.service';
 import { CreateInternship } from '../entities/createInternship';
 import { InternshipService } from '../services/internship.service';
 import { Router } from '@angular/router';
-import { InternshipDetailItem } from '../entities/internshipDetailItem';
 import { InternshipTranslationUpdateDto } from '../entities/internshipTranslationUpdateDto';
-import { InternshipTranslationUpdatePostDto } from '../entities/internshipTranslationUpdatePostDto';
 import { InternshipUpdateDto } from '../entities/internshipUpdateDto';
 @Component({
   selector: 'intern-rapp-internship-add',
@@ -80,7 +70,7 @@ import { InternshipUpdateDto } from '../entities/internshipUpdateDto';
   ],
   templateUrl: './internship-add.component.html',
   styleUrls: ['./internship-add.component.scss'],
-  changeDetection:ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InternshipAddComponent implements OnInit, OnDestroy {
   public availableTrainingTypes = Object.values(TrainingType).slice(
@@ -115,7 +105,6 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    
     this.addInternshipForm = new FormGroup({
       schoolYear: new FormControl(
         this.internShipService.entityTobeUpdated?.schoolYear ??
@@ -126,15 +115,12 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
         this.internShipService.entityTobeUpdated?.unitId ?? '',
         [Validators.required]
       ),
-      internshipId:new FormControl(
-        this.internShipService.entityTobeUpdated?.internShipId ?? 0,
+      internshipId: new FormControl(
+        this.internShipService.entityTobeUpdated?.internShipId ?? 0
       ),
       maxStudents: new FormControl(
         this.internShipService.entityTobeUpdated?.maxCountOfStudents ?? 0,
-        [
-          Validators.required,
-          Validators.pattern('^[0-9]*$')
-        ]
+        [Validators.required, Validators.pattern('^[0-9]*$')]
       ),
       currentCountOfStudents: new FormControl(
         this.internShipService.entityTobeUpdated?.currentCountOfStudents ?? 0,
@@ -167,7 +153,9 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
         pageSize: 1000,
       })
       .pipe(map((data) => data.items));
-    this.unitObs$ = this.addInternshipForm?.controls['unitId'].valueChanges.pipe(
+    this.unitObs$ = this.addInternshipForm?.controls[
+      'unitId'
+    ].valueChanges.pipe(
       startWith(''),
       switchMap((data) => {
         return this.unitService.filterAndPaginateDepartmentsWithMinimalData({
@@ -201,11 +189,12 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
     const availableDates = [];
     const year = new Date().getFullYear();
     const previousYear = year - 1;
-    for (let i = 0; i < 2; i++) {
-      availableDates[i] = `${previousYear + i}-${year + i}`;
+    for (let i = 0; i < 20; i++) {
+      availableDates[i] = `${previousYear - i}-${year - i}`;
     }
     return availableDates;
   }
+
   public get tabsArrayLength() {
     return (this.addInternshipForm?.controls['translateTabs'] as FormArray)
       .length;
@@ -287,7 +276,7 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
 
     if (this.internShipService.entityTobeUpdated === undefined) {
       const newInternship = this.mapToSubmittableNewInternshipObject();
-      console.log(newInternship)
+      console.log(newInternship);
       this.internShipService
         .createInternship(newInternship)
         .pipe(take(1), takeUntil(this.destrojSubj$))
@@ -299,7 +288,9 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
         .pipe(take(1), takeUntil(this.destrojSubj$))
         .subscribe();
     }
-    this.router.navigateByUrl('/internships',{onSameUrlNavigation:'reload'});
+    this.router.navigateByUrl('/internships', {
+      onSameUrlNavigation: 'reload',
+    });
   }
   private mapToSubmittableNewInternshipObject() {
     const internShipToBeReturned: CreateInternship | undefined = {
@@ -316,10 +307,9 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
     };
     return internShipToBeReturned;
   }
-  private mapToSubmittableUpdatedInternshipObject() {   
+  private mapToSubmittableUpdatedInternshipObject() {
     const internShipToBeReturned: InternshipUpdateDto | undefined = {
-      internShipId:
-        this.addInternshipForm?.controls['internshipId'].value ?? 0,
+      internShipId: this.addInternshipForm?.controls['internshipId'].value ?? 0,
       currentCountOfStudents:
         this.addInternshipForm?.controls['currentCountOfStudents'].value,
       maxCountOfStudents: this.addInternshipForm?.controls['maxStudents'].value,

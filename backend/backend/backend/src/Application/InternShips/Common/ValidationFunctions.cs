@@ -99,8 +99,8 @@ public class ValidationFunctions
     public bool IsValidSchoolYear(string arg)
     {
         var currentYear = DateTime.Now.Year;
-        var differenceWithMinimalYear = currentYear - 2020;
-        for (int i = 0; i <= differenceWithMinimalYear; i++)
+        //var differenceWithMinimalYear = currentYear - 2020;
+        for (int i = 0; i <= 20; i++)
         {
             var yearRange = $"{2020 + i}-{2020 + i + 1}";
             if (yearRange == arg) return true;

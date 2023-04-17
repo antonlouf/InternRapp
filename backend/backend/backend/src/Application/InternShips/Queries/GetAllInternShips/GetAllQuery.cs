@@ -8,11 +8,11 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Application.InternShips.Queries.GetAllInternShips;
-public class GetAllQuery : IRequest<PagedList<InternShipDto>>
+public class GetAllQuery : IRequest<PagedList<InternShipListDto>>
 {
     public FilterAndPaginationRequestDto Dto { get; set; }
 }
-public class GetAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<InternShipDto>>
+public class GetAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<InternShipListDto>>
 {
     private readonly IApplicationDbContext _dbContext;
     private readonly IMapper _iMapper;
@@ -22,7 +22,7 @@ public class GetAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<InternS
         _iMapper = iMapper;
     }
 
-    public async Task<PagedList<InternShipDto>> Handle(GetAllQuery request, CancellationToken cancellationToken)
+    public async Task<PagedList<InternShipListDto>> Handle(GetAllQuery request, CancellationToken cancellationToken)
     {
         // later to be adjusted to filter year unit 
         var queryable = _dbContext.InternShips.AsQueryable();
@@ -36,6 +36,6 @@ public class GetAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<InternS
 
 
         }
-        return await PagedList<InternShipDto>.ToPagedList(queryable.ProjectTo<InternShipDto>(_iMapper.ConfigurationProvider), request.Dto.PageIndex, request.Dto.PageSize);
+        return await PagedList<InternShipListDto>.ToPagedList(queryable.ProjectTo<InternShipListDto>(_iMapper.ConfigurationProvider), request.Dto.PageIndex, request.Dto.PageSize);
     }
 }

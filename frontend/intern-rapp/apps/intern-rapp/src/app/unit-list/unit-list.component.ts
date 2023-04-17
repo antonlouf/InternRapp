@@ -54,7 +54,7 @@ getGridItems$(paginationFilterRequest: PaginationFilterRequest): Observable<Reso
   return this.unitService.filterAndPaginateDepartments(paginationFilterRequest)
 }
   ngOnInit(): void {
-    this.filters=[{label:"Department name",name:"filterValue",type:FilterType.Text,observable:undefined}];
+    this.filters=[{label:"Department name",name:"filterValue",type:FilterType.Text,observable:undefined,optionBuilder:(items:unknown[])=>undefined}];
     const delete$=this.configureDelete$();
     const update$=this.configureUpdate$()
     const add$=this.configureAdd$()
