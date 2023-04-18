@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using backend.Application.Common.Interfaces;
 using backend.Application.Units.Commands.CreateUnit;
 using FluentValidation.TestHelper;
@@ -5,6 +6,7 @@ using Moq;
 using Xunit;
 
 namespace unit_tests;
+
 
 public class CreateUnitCommandTests
 {

@@ -27,7 +27,7 @@ public class UpdateUnitCommandHandler : AsyncRequestHandler<UpdateUnitCommand>
     protected async override Task Handle(UpdateUnitCommand request, CancellationToken cancellationToken)
     {
         //add control to the validator to check there is an existing item with this id!!
-        var unit = await _dbContext.Departments.Where(x => x.Id == request.Unit.Id).FirstOrDefaultAsync();
+        var unit = await _dbContext.Departments.FirstOrDefaultAsync(x=>x.Id==request.Unit.Id);
         unit.Name= request.Unit.Name; 
         unit.ManagerEmails=request.Unit.ManagerEmails;
         _dbContext.Departments.Update(unit);
