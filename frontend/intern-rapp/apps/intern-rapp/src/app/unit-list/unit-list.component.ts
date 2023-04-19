@@ -28,90 +28,145 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'intern-rapp-unit-list',
   standalone: true,
-  imports: [CommonModule,MatListModule,MatDialogModule,MatSelectModule,ReactiveFormsModule,HttpClientModule,ItemsTmplDirective,MatListModule,MatIconModule,MatInputModule,BaselistComponent,DeletePopupComponent,TranslateModule],
+  imports: [
+    CommonModule,
+    MatListModule,
+    MatDialogModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    ItemsTmplDirective,
+    MatListModule,
+    MatIconModule,
+    MatInputModule,
+    BaselistComponent,
+    DeletePopupComponent,
+    TranslateModule,
+  ],
   templateUrl: './unit-list.component.html',
   styleUrls: ['./unit-list.component.scss'],
-  providers:[HttpClient,DepartmentService]
+  providers: [HttpClient, DepartmentService],
 })
-export class UnitListComponent extends BaseList<DepartmentItem> implements OnInit{
- 
-public deleteSubject=new Subject<number>()
-public addSubject=new Subject<CreateDepartment|undefined>();
-public updateSubject=new Subject<DepartmentItem>();
+export class UnitListComponent
+  extends BaseList<DepartmentItem>
+  implements OnInit
+{
+  public deleteSubject = new Subject<number>();
+  public addSubject = new Subject<CreateDepartment | undefined>();
+  public updateSubject = new Subject<DepartmentItem>();
 
-constructor(private unitService: DepartmentService,public dialog: MatDialog){
-  super()
-}
+  constructor(
+    private unitService: DepartmentService,
+    public dialog: MatDialog
+  ) {
+    super();
+  }
 
-private  popUpConfig={
-  width: '400px',
- closeOnNavigation:true,
- disableClose:false,
- hasBackdrop:true,
- position:{top:'250px',right:'500px'}
-}
-getGridItems$(paginationFilterRequest: PaginationFilterRequest): Observable<ResourceItemPagingResponse<DepartmentItem>> {
-  return this.unitService.filterAndPaginateDepartments(paginationFilterRequest)
-}
+  private popUpConfig = {
+    width: '400px',
+    closeOnNavigation: true,
+    disableClose: false,
+    hasBackdrop: true,
+    position: { top: '250px', right: '500px' },
+  };
+  getGridItems$(
+    paginationFilterRequest: PaginationFilterRequest
+  ): Observable<ResourceItemPagingResponse<DepartmentItem>> {
+    return this.unitService.filterAndPaginateDepartments(
+      paginationFilterRequest
+    );
+  }
   ngOnInit(): void {
-    this.filters=[{label:"Department name",name:"filterValue",type:FilterType.Text,observable:undefined,optionBuilder:(items:unknown[])=>undefined}];
-    const delete$=this.configureDelete$();
-    const update$=this.configureUpdate$()
-    const add$=this.configureAdd$()
-    this.configureItems([delete$,update$,add$])
-  } 
-
-  private configureDelete$(){
-return this.deleteSubject.pipe(switchMap(id => 
-  {
-  const dialogRef= this.dialog.open(DeletePopupComponent, this.popUpConfig) 
-  dialogRef.componentInstance.title="department"
-  return dialogRef.afterClosed().pipe(map(confirm=>confirm ? id : undefined )
-)})
-,filter(id => !!id)
-,switchMap(id =>  this.unitService.deleteDepartment(id)))
-  }
-  private configureUpdate$(){
-    return this.updateSubject.pipe(switchMap(data => 
+    this.filters = [
       {
-      const dialogRef= this.dialog.open(DepartmentUpdateComponent, this.popUpConfig) 
-      dialogRef.componentInstance.data=data
-      return dialogRef.afterClosed().pipe(map(confirm=>confirm ? data : undefined )
-    )})
-    ,filter(id => !!id)
-    ,switchMap(depItem => this.unitService.updateDepartment(depItem)))
-      }
-
-      private configureAdd$(){
-        return this.addSubject.pipe(switchMap(data => 
-          {
-          const dialogRef= this.dialog.open(DepartmentAddPopupComponent, this.popUpConfig) 
-          return dialogRef.afterClosed().pipe(map(confirm=> confirm!==undefined ? confirm : undefined
-             )
-        )})
-        ,filter(id => !!id)
-        ,switchMap(depItem => 
-          {
-          return  this.unitService.addDepartment(depItem)
-          }))
-          }
-
-  filterUpdating(filter: {}){
-    let filterString=""
-    const record=filter as Record<string,never>
-     this.filters?.forEach(x=>{
-       filterString+=`unit:${record[x.name]},`
-     })
-     filterString = filterString.slice(0,filterString.length-1)
-     this.filterUpdated(filterString)
+        label: 'Department name',
+        name: 'filterValue',
+        type: FilterType.Text,
+        observable: undefined,
+        optionBuilder: (items: unknown[]) => undefined,
+      },
+    ];
+    const delete$ = this.configureDelete$();
+    const update$ = this.configureUpdate$();
+    const add$ = this.configureAdd$();
+    this.configureItems([delete$, update$, add$]);
   }
-  addDepartment(){
-  this.addSubject.next(undefined)
+
+  private configureDelete$() {
+    return this.deleteSubject.pipe(
+      switchMap((id) => {
+        const dialogRef = this.dialog.open(
+          DeletePopupComponent,
+          this.popUpConfig
+        );
+        dialogRef.componentInstance.title = 'department';
+        return dialogRef
+          .afterClosed()
+          .pipe(map((confirm) => (confirm ? id : undefined)));
+      }),
+      filter((id) => !!id),
+      switchMap((id) => this.unitService.deleteDepartment(id))
+    );
   }
-updateDepartment=(item: DepartmentItem)=>{
-this.updateSubject.next(item)
-}
-delete(id: number){ 
-   this.deleteSubject.next(id)
-}
+  private configureUpdate$() {
+    return this.updateSubject.pipe(
+      switchMap((data) => {
+        const dialogRef = this.dialog.open(
+          DepartmentUpdateComponent,
+          this.popUpConfig
+        );
+        dialogRef.componentInstance.data = data;
+        return dialogRef
+          .afterClosed()
+          .pipe(map((confirm) => (confirm ? data : undefined)));
+      }),
+      filter((id) => !!id),
+      switchMap((depItem) => this.unitService.updateDepartment(depItem))
+    );
+  }
+
+  private configureAdd$() {
+    return this.addSubject.pipe(
+      switchMap((data) => {
+        const dialogRef = this.dialog.open(
+          DepartmentAddPopupComponent,
+          this.popUpConfig
+        );
+        return dialogRef
+          .afterClosed()
+          .pipe(
+            
+            map((confirm) => (confirm !== undefined ? confirm : undefined)),
+            tap(data => {
+              console.log(data)
+              debugger;
+            })
+          );
+      }),
+      filter((id) => !!id),
+      switchMap((depItem) => {
+        return this.unitService.addDepartment(depItem);
+      })
+    );
+  }
+
+  filterUpdating(filter: {}) {
+    let filterString = '';
+    const record = filter as Record<string, never>;
+    this.filters?.forEach((x) => {
+      filterString += `unit:${record[x.name]},`;
+    });
+    filterString = filterString.slice(0, filterString.length - 1);
+    this.filterUpdated(filterString);
+  }
+  addDepartment() {
+    this.addSubject.next(undefined);
+  }
+ 
+  updateDepartment = (item: DepartmentItem) => {
+    this.updateSubject.next(item);
+  };
+  delete(id: number) {
+    this.deleteSubject.next(id);
+  }
 }

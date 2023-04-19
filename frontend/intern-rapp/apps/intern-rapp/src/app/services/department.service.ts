@@ -43,9 +43,11 @@ updateDepartment(itemToBeUpdated: DepartmentItem|undefined){
 
 addDepartment(itemToBeAdded: CreateDepartment){
 
-  const body={  "name": itemToBeAdded.name,
-    "superVisorEmails": itemToBeAdded.superVisorEmails}
-    console.log(body)
+  const body = {
+    "name": itemToBeAdded.name,
+    "superVisorEmails": itemToBeAdded.superVisorEmails,
+    "prefaceTranslations":itemToBeAdded.prefaces
+  }
   return this.http.post(APIConfiguration.baseString+`${this.baseSuffixApi}`,body).pipe(catchError((err,caught)=>caught))
 
 }

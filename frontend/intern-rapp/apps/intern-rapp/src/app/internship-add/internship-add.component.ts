@@ -140,7 +140,7 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
       .filterAndPaginateLanguages({
         filterString: '',
         pageIndex: 1,
-        pageSize: 100,
+        pageSize: 250,
       })
       .pipe(
         shareReplay(1),
@@ -273,17 +273,13 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
     return o1?.id == o2?.id;
   }
   public addInternship() {
-    console.log(this.internShipService.entityTobeUpdated);
-
     if (this.internShipService.entityTobeUpdated === undefined) {
       const newInternship = this.mapToSubmittableNewInternshipObject();
-      console.log(newInternship);
       this.internShipService
         .createInternship(newInternship)
         .pipe(take(1), takeUntil(this.destrojSubj$))
         .subscribe();
     } else {
-       debugger;
       const updatedInternship = this.mapToSubmittableUpdatedInternshipObject();
       this.internShipService
         .updateInternship(updatedInternship)

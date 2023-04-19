@@ -1,7 +1,8 @@
 import { PrefaceTranslationCreateUnit } from "./prefaceTranslationCreateUnit";
 
-export interface CreateDepartment {
-  name: string | null;
-  superVisorEmails: string[];
+export interface DepartmentCreateDto {
+  id: number;
+  name: string;
+  managerEmails: string[];
   prefaces: PrefaceTranslationCreateUnit[] | null;
 }
