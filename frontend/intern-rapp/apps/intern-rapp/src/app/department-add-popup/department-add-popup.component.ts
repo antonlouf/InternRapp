@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   MatDialog,
@@ -69,7 +69,7 @@ import { LanguageService } from '../services/language.service';
   styleUrls: ['./department-add-popup.component.scss'],
   providers: [HttpClient, DepartmentService],
 })
-export class DepartmentAddPopupComponent implements OnInit {
+export class DepartmentAddPopupComponent implements OnInit,OnDestroy {
   filteredOptions!: Observable<(string | undefined)[]>;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   options: string[] = [];
@@ -98,6 +98,10 @@ export class DepartmentAddPopupComponent implements OnInit {
     hasBackdrop: true,
     position: { top: '250px', right: '500px' },
   };
+  ngOnDestroy(): void {
+    this.destroySubject$.next(undefined);
+    this.destroySubject$.complete();
+  }
   public get tabsArrayLength() {
     return (this.addUnitForm?.controls['translateTabs'] as FormArray).length;
   }
@@ -219,14 +223,12 @@ export class DepartmentAddPopupComponent implements OnInit {
   }
   closeDialog(save: boolean) {
     let data: CreateDepartment | undefined;
-    debugger;
-    console.log(this.addUnitForm?.getRawValue());
     if (save) {
       data = this.mapToSubmittableNewUnitObject();
     }
     this.dialogRef.close(save ? data : undefined);
   }
-  
+
   private mapToSubmittableNewUnitObject() {
     const internShipToBeReturned: CreateDepartment | undefined = {
       name: this.addUnitForm?.controls['departmentName'].getRawValue(),

@@ -10,11 +10,10 @@
     <ng-template
     internRappItemsTmpl let-items 
     >
-    <button (click)="addDepartment()" class="align-right save-button-above-list"  >
-      <div class="flex-row center-flex-items" >
-        <div><mat-icon>add</mat-icon></div>
-        <div>{{'addButton'|translate}}</div>
-      </div>
+    <button mat-icon-button (click)="addDepartment()" class="align-right save-button-above-list"  >
+      <!-- <div class="flex-row center-flex-items" > -->
+        <mat-icon>add</mat-icon>
+      <!-- </div> -->
     </button>
       <mat-list >
   
@@ -30,7 +29,7 @@
                 </button>
               </div>
                 <div>
-                  <button (click)="updateDepartment(item)" class="save-button" color="primary" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                  <button (click)="updateDepartment(item.id)" class="save-button" color="primary" mat-fab color="primary" aria-label="Example icon button with a delete icon">
                     <mat-icon>edit</mat-icon>
                   </button>
                 </div>

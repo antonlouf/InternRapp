@@ -1,10 +1,8 @@
-import { LanguageItem } from "./languageItem";
-import { PrefaceTranslationCreateUnit } from "./prefaceTranslationCreateUnit";
+import { PrefaceTranslationUpdateUnit } from './prefaceTranslationUpdateUnit';
 
 export interface DepartmentItemDetail {
   id: number;
   name: string;
   managerEmails: string[];
-  language: LanguageItem;
-  preface: PrefaceTranslationCreateUnit[] | null;
+  prefaceTranslations: PrefaceTranslationUpdateUnit[] | null;
 }

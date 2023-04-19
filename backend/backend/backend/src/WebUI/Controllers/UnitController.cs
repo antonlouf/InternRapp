@@ -32,7 +32,7 @@ public class UnitController : ControllerBase
     }
     [HttpGet("{id:int}")]
     
-    public async Task<IActionResult> GetById(int id)
+    public async Task<IActionResult> GetById([FromRoute] int id)
     {
        return Ok(await _mediator.Send(new GetByIdQuery() { Id=id}));
     }
@@ -54,7 +54,7 @@ public class UnitController : ControllerBase
     public async Task<IActionResult> Update(UnitListUpdateDto dto)
     {
          await _mediator.Send(new UpdateUnitCommand() { Unit=dto});
-        return Ok("successfully updated");
+        return Ok();
     }
 
     [HttpDelete]

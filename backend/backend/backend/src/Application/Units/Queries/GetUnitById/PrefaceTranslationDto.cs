@@ -20,6 +20,6 @@ public class PrefaceTranslationDto:IMapFrom<PrefaceTranslation>
     {
         profile.CreateMap<PrefaceTranslation, PrefaceTranslationDto>()
              .ForMember(dest => dest.Language, opt => opt.MapFrom(src => src.Language))
-             .ForMember(x => x.TranslationId, opt => opt.MapFrom(src => src.Id));
+             .ForMember(dest => dest.TranslationId, opt => opt.MapFrom(src => src.Id));
     }
 }

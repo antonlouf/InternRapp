@@ -21,14 +21,13 @@ public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternSh
     {
         var convertedLocations = request.Dto.Locations.Select(x => new Location() { City = x.City, HouseNumber = x.Housenumber, Id = x.Id, StreetName = x.Streetname, ZipCode = x.Zipcode }).ToList();
         _dbContext.Locations.UpdateRange(convertedLocations);
-        var internShip = await _dbContext.InternShips.Include(x=>x.Locations).FirstOrDefaultAsync(x => x.Id == request.Dto.InternShipId);
+        var internShip = await _dbContext.InternShips.Include(x=>x.Locations).SingleOrDefaultAsync(x => x.Id == request.Dto.InternShipId);
         internShip.MaxStudents = request.Dto.MaxCountOfStudents;
         internShip.SchoolYear = request.Dto.SchoolYear;
         internShip.RequiredTrainingType = request.Dto.TrainingType;
         internShip.Locations=null;
         internShip.UnitId = request.Dto.UnitId;
         internShip.CurrentCountOfStudents = request.Dto.CurrentCountOfStudents;
-        //this part is later be placed by operations in translations
         internShip.Translations = new List<InternShipContentTranslation>();
         
         foreach (var sendedVersion in request.Dto.Versions)

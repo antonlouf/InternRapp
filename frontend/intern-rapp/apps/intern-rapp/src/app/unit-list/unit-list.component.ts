@@ -1,10 +1,15 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { filter, Observable, switchMap, Subject, tap } from 'rxjs';
-import {  BaselistComponent } from '../baselist/baselist.component';
+import { BaselistComponent } from '../baselist/baselist.component';
 import { DepartmentService } from '../services/department.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
@@ -19,11 +24,14 @@ import { FilterType } from '../enums/filterType';
 import { map } from 'rxjs/operators';
 import { DepartmentItem } from '../entities/departmentItem';
 import { ResourceItemPagingResponse } from '../entities/resourceItemPagingResponse';
-import {BaseList} from '../baselist/baseList'
+import { BaseList } from '../baselist/baseList';
 import { DepartmentUpdateComponent } from '../department-update/department-update.component';
 import { CreateDepartment } from '../entities/CreateDepartment';
 import { DepartmentAddPopupComponent } from '../department-add-popup/department-add-popup.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { DepartmentUpdate } from '../entities/departmentUpdate';
+import { DepartmentItemDetail } from '../entities/departmentItemDetail';
+import { convertFormsArrayToObjectForUpdatedUnit } from '../preface-translation-form/buildFormGroupForPrefaceTranslation';
 
 @Component({
   selector: 'intern-rapp-unit-list',
@@ -46,6 +54,7 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './unit-list.component.html',
   styleUrls: ['./unit-list.component.scss'],
   providers: [HttpClient, DepartmentService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UnitListComponent
   extends BaseList<DepartmentItem>
@@ -53,7 +62,7 @@ export class UnitListComponent
 {
   public deleteSubject = new Subject<number>();
   public addSubject = new Subject<CreateDepartment | undefined>();
-  public updateSubject = new Subject<DepartmentItem>();
+  public updateSubject = new Subject<number>();
 
   constructor(
     private unitService: DepartmentService,
@@ -108,21 +117,27 @@ export class UnitListComponent
       switchMap((id) => this.unitService.deleteDepartment(id))
     );
   }
+
   private configureUpdate$() {
+    
     return this.updateSubject.pipe(
+      switchMap((id) => {
+        return this.unitService.getById(id);
+      }),
       switchMap((data) => {
+        
         const dialogRef = this.dialog.open(
           DepartmentUpdateComponent,
           this.popUpConfig
         );
-        dialogRef.componentInstance.data = data;
+        dialogRef.componentInstance.data = data as DepartmentItemDetail;
         return dialogRef
           .afterClosed()
-          .pipe(map((confirm) => (confirm ? data : undefined)));
+          .pipe(map((confirm) => (confirm ? confirm : undefined)));
       }),
       filter((id) => !!id),
-      switchMap((depItem) => this.unitService.updateDepartment(depItem))
-    );
+      switchMap((depItem) =>  this.unitService.updateDepartment(depItem as DepartmentUpdate)));
+      
   }
 
   private configureAdd$() {
@@ -135,12 +150,7 @@ export class UnitListComponent
         return dialogRef
           .afterClosed()
           .pipe(
-            
-            map((confirm) => (confirm !== undefined ? confirm : undefined)),
-            tap(data => {
-              console.log(data)
-              debugger;
-            })
+            map((confirm) => (confirm !== undefined ? confirm : undefined))
           );
       }),
       filter((id) => !!id),
@@ -162,9 +172,9 @@ export class UnitListComponent
   addDepartment() {
     this.addSubject.next(undefined);
   }
- 
-  updateDepartment = (item: DepartmentItem) => {
-    this.updateSubject.next(item);
+
+  updateDepartment = (id: number) => {
+    this.updateSubject.next(id);
   };
   delete(id: number) {
     this.deleteSubject.next(id);

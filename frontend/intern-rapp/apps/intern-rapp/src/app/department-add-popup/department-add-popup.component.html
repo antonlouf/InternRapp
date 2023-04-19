@@ -1,6 +1,6 @@
 <div  >
 
-<div   style=" margin-left: 1%;margin-top: 2%;justify-content: center;text-align: center;">
+<div   class="heading">
     <div mat-dialog-title select="[heading]">
         {{'addDepartmentHeader' |translate}}
     </div>
@@ -73,7 +73,7 @@
 <mat-dialog-actions align="center">
    <div class="flex-row">
     <div>
-        <button [disabled]="this.addUnitForm?.invalid||tabsArrayLength<1||tabIsInvalid||managerEmailsTobeAdded.length<=0" type="button" id="save"  class="save-button flex-row-cancel-save-update"
+        <button [disabled]="this.addUnitForm?.invalid||tabsArrayLength<1||tabIsInvalid||managerEmailsTobeAdded.length<=0" type="button"   class="save-button flex-row-cancel-save-update"
           mat-icon-button (click)="closeDialog(true)">
           <mat-icon>save</mat-icon>
         
@@ -84,10 +84,9 @@
   <div>
 
   </div>
-       <button class="cancel-button   flex-row-cancel-save-update"  (click)="closeDialog(false)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
-        <div>
+       <button mat-icon-button class="cancel-button flex-row-cancel-save-update"  (click)="closeDialog(false)" type="button" mat-fab color="primary" aria-label="Example icon button with a delete icon">
             <mat-icon>cancel</mat-icon> 
-        </div>        
+
             <div>
               {{'cancelButtonText'|translate}}
             </div>

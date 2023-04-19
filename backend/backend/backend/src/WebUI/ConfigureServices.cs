@@ -12,7 +12,7 @@ public static class ConfigureServices
     {
         services.AddDatabaseDeveloperPageExceptionFilter();
 
-        services.AddSingleton<ICurrentUserService, CurrentUserService>();
+        services.AddScoped<ICurrentUserService, CurrentUserService>();
 
         services.AddHttpContextAccessor();
 
