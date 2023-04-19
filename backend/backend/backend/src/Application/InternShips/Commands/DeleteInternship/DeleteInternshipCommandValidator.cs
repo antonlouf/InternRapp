@@ -12,6 +12,6 @@ public class DeleteInternshipCommandValidator:AbstractValidator<DeleteInternship
 {
     public DeleteInternshipCommandValidator(IApplicationDbContext dbContext)
     {
-        RuleFor(x => x.Id).NotNull().NotEmpty().MustAsync(new ValidationFunctions(dbContext).CheckIfInternShipIdExists);
+        RuleFor(x => x.Id).MustAsync(new ValidationFunctions(dbContext).CheckIfInternShipIdExists);
     }
 }

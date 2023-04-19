@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using backend.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using backend.Infrastructure.Persistence;
 namespace backend.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230418082926_changes data model of department")]
+    partial class changesdatamodelofdepartment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,13 +27,13 @@ namespace backend.Infrastructure.Migrations
 
             modelBuilder.Entity("InternShipLocation", b =>
                 {
-                    b.Property<int>("InternShipId")
+                    b.Property<int>("InternshipsId")
                         .HasColumnType("int");
 
                     b.Property<int>("LocationsId")
                         .HasColumnType("int");
 
-                    b.HasKey("InternShipId", "LocationsId");
+                    b.HasKey("InternshipsId", "LocationsId");
 
                     b.HasIndex("LocationsId");
 
@@ -171,6 +174,8 @@ namespace backend.Infrastructure.Migrations
 
                     b.HasIndex("InternShipId");
 
+                    b.HasIndex("LanguageId");
+
                     b.ToTable("Translations");
                 });
 
@@ -240,9 +245,6 @@ namespace backend.Infrastructure.Migrations
                     b.Property<int?>("DepartmentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
@@ -254,7 +256,7 @@ namespace backend.Infrastructure.Migrations
                 {
                     b.HasOne("backend.Domain.Entities.InternShip", null)
                         .WithMany()
-                        .HasForeignKey("InternShipId")
+                        .HasForeignKey("InternshipsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -278,11 +280,21 @@ namespace backend.Infrastructure.Migrations
 
             modelBuilder.Entity("backend.Domain.Entities.InternShipContentTranslation", b =>
                 {
-                    b.HasOne("backend.Domain.Entities.InternShip", null)
+                    b.HasOne("backend.Domain.Entities.InternShip", "InternShip")
                         .WithMany("Translations")
                         .HasForeignKey("InternShipId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("backend.Domain.Entities.Language", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("InternShip");
+
+                    b.Navigation("Language");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.PrefaceTranslation", b =>

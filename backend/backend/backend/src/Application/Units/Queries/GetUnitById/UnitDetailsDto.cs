@@ -8,7 +8,9 @@ public class UnitDetailsDto:IMapFrom<Department>
 {
     public int Id { get; set; }
     public string Name { get; set; }
+    public List<string> ManagerEmails { get; set; }
 
+    public IList<PrefaceTranslationDto> PrefaceTranslations { get; set; }
     public void Mapping(Profile profile)
     {
         profile.CreateMap<Department, UnitDetailsDto>();

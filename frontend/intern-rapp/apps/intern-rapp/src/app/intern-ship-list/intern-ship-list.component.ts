@@ -91,6 +91,7 @@ export class InternShipListComponent
     this.destroySubj$.complete();
   }
   public addInternship() {
+    this.internshipService.entityTobeUpdated=undefined
     this.router.navigateByUrl('internships/create');
   }
   public updateInternship(id: unknown) {
@@ -234,7 +235,8 @@ export class InternShipListComponent
       );
       activeFilters['languageIds'] = languageFilterString;
     }
-      this.filterUpdated(activeFilters);
+    this.filterUpdated(activeFilters);
+    debugger;
   }
   delete(id: number) {
     this.deleteSubject.next(id);

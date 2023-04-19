@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using backend.Application.Common.Interfaces;
+using backend.Application.Units.Commands.CreateUnit;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Application.Units.Common;
@@ -21,4 +22,5 @@ public class ValidationFunctions
         var result = await _dbContext.Departments.FirstOrDefaultAsync(x => x.Id == arg1);
         return result != null;
     }
+
 }

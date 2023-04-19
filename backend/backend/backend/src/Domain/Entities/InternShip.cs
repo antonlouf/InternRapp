@@ -8,7 +8,7 @@ using backend.Domain.Enums;
 namespace backend.Domain.Entities;
 public class InternShip
 {
-    public int Id { get; set; }
+    public int Id { get;  set; }
     public Department Unit { get; set; }
     public int UnitId { get; set; }
     public string SchoolYear { get; set; }

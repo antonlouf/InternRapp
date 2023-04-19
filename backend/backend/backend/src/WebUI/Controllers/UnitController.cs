@@ -51,7 +51,7 @@ public class UnitController : ControllerBase
     }
 
     [HttpPatch]
-    public async Task<IActionResult> Update(UnitListDto dto)
+    public async Task<IActionResult> Update(UnitListUpdateDto dto)
     {
          await _mediator.Send(new UpdateUnitCommand() { Unit=dto});
         return Ok("successfully updated");

@@ -22,6 +22,11 @@ public class CreateUnitValidator:AbstractValidator<CreateUnitCommand>
             .NotEmpty()
             .NotNull()
             .MaximumLength(100);
+        RuleFor(x => x.PrefaceTranslations).NotNull().NotEmpty().ForEach(x =>
+        {
+            x.Must(checkTranslationIsEmpty);
+        });
     }
+    private  bool checkTranslationIsEmpty(PrefaceTranslationCreateDto prefaceTranslation) => !(String.IsNullOrEmpty(prefaceTranslation.Content));
 
 }

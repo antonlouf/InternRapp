@@ -28,10 +28,7 @@ public class GetByIdQueryHandler : IRequestHandler<GetByIdQuery, InternShipDto>
 
     public async Task<InternShipDto> Handle(GetByIdQuery request, CancellationToken cancellationToken)
     {
-        var list =await _dbContext.InternShips.Where(x => x.Id == request.Id).SingleOrDefaultAsync();
-        var t = (byte)list.RequiredTrainingType;
-        var result= await _dbContext.InternShips.Where(x => x.Id == request.Id).ProjectTo<InternShipDto>(_iMapper.ConfigurationProvider).FirstOrDefaultAsync();
-        //result.TrainingType = (int) result.TrainingType;
+        var result= await _dbContext.InternShips.Where(x => x.Id == request.Id).ProjectTo<InternShipDto>(_iMapper.ConfigurationProvider).SingleOrDefaultAsync();
         return result;
     }
 }

@@ -13,6 +13,5 @@ public class Location
     public int HouseNumber { get; set; }
     public string ZipCode { get; set; }
     //public string CreatorEmail { get; set; }
-    public IList<InternShip> Internships { get; set; }
 
 }

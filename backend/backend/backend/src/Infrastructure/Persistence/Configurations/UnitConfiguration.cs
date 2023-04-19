@@ -19,6 +19,6 @@ public class UnitConfiguration : IEntityTypeConfiguration<Department>
         builder.HasIndex(x => x.Name);
         
         builder.Property(x=>x.ManagerEmails).UsePropertyAccessMode(PropertyAccessMode.PreferProperty).HasConversion(v=>string.Join(',',v),x=>x.Split(',',StringSplitOptions.RemoveEmptyEntries).ToList());
-        
+        builder.HasMany(x => x.PrefaceTranslations).WithOne().OnDelete(DeleteBehavior.Cascade);
     }
 }

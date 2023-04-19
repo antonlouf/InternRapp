@@ -20,11 +20,14 @@ public class UpdateUnitCommandValidator:AbstractValidator<UpdateUnitCommand>
         this.CascadeMode = CascadeMode.Stop;
         var validator = new ValidationFunctions(_dbContext);
         RuleFor(x=>x.Unit.Name).NotEmpty().NotNull().MinimumLength(2);
+        RuleFor(x => x.Unit.ManagerEmails).NotNull().NotEmpty();
         RuleFor(x => x.Unit.Id).NotNull().NotEmpty().GreaterThan(0).MustAsync(validator.CheckIfUnitIdExists);
+        RuleFor(x => x.Unit.PrefaceTranslations).NotNull().NotEmpty().ForEach(x =>
+        {
+            x.Must(CheckTranslationIsEmpty);
+        });
 
     }
 
-
-
- 
+    private bool CheckTranslationIsEmpty(PrefaceTranslationUpdateDto translation) => !(String.IsNullOrEmpty(translation.Content));
 }

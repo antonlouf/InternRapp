@@ -14,6 +14,6 @@ public class DeleteLanguageCommandValidator:AbstractValidator<DeleteLanguageComm
     public DeleteLanguageCommandValidator(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
-        RuleFor(x => x.Id).NotNull().NotEmpty().MustAsync(new Validator(_dbContext).DoesIdExists).WithMessage("this Id does not exists!!");
+        RuleFor(x => x.Id).MustAsync(new Validator(_dbContext).DoesIdExists).WithMessage("this Id does not exists!!");
     }
 }

@@ -48,7 +48,7 @@ import { LocationItem } from '../entities/locationItem';
 import { LocationService } from '../services/location.service';
 import { CreateInternship } from '../entities/createInternship';
 import { InternshipService } from '../services/internship.service';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { InternshipTranslationUpdateDto } from '../entities/internshipTranslationUpdateDto';
 import { InternshipUpdateDto } from '../entities/internshipUpdateDto';
 @Component({
@@ -189,8 +189,9 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
     const availableDates = [];
     const year = new Date().getFullYear();
     const previousYear = year - 1;
-    for (let i = 0; i < 20; i++) {
-      availableDates[i] = `${previousYear - i}-${year - i}`;
+    availableDates[0] = `${year}-${year+1}`;
+    for (let i = 1; i < 21; i++) {
+      availableDates[i] = `${previousYear - i+1}-${year - i+1}`;
     }
     return availableDates;
   }
@@ -282,15 +283,18 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
         .pipe(take(1), takeUntil(this.destrojSubj$))
         .subscribe();
     } else {
+       debugger;
       const updatedInternship = this.mapToSubmittableUpdatedInternshipObject();
       this.internShipService
         .updateInternship(updatedInternship)
         .pipe(take(1), takeUntil(this.destrojSubj$))
         .subscribe();
     }
-    this.router.navigateByUrl('/internships', {
-      onSameUrlNavigation: 'reload',
-    });
+ const navigationExtras: NavigationExtras = {
+   queryParams: { timestamp: new Date().getTime() },
+ };
+
+    this.router.navigateByUrl('/internships', navigationExtras);
   }
   private mapToSubmittableNewInternshipObject() {
     const internShipToBeReturned: CreateInternship | undefined = {
@@ -308,6 +312,7 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
     return internShipToBeReturned;
   }
   private mapToSubmittableUpdatedInternshipObject() {
+   
     const internShipToBeReturned: InternshipUpdateDto | undefined = {
       internShipId: this.addInternshipForm?.controls['internshipId'].value ?? 0,
       currentCountOfStudents:

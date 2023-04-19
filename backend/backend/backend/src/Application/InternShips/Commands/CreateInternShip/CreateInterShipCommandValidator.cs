@@ -9,12 +9,12 @@ using Microsoft.EntityFrameworkCore;
 namespace backend.Application.InternShips.Commands.CreateInternShip;
 public class CreateInterShipCommandValidator : AbstractValidator<CreateInternShipCommand>
 {
-    private readonly IMediator _mediator;
     private readonly IApplicationDbContext _dbContext;
-    public CreateInterShipCommandValidator(IMediator mediator, IApplicationDbContext dbContext)
+    public CreateInterShipCommandValidator( IApplicationDbContext dbContext)
     {
-        _mediator = mediator;
+        
         _dbContext = dbContext;
+        CascadeMode = CascadeMode.Stop;
         var validator = new ValidationFunctions(_dbContext);
         RuleFor(x => x.Dto).NotEmpty().NotNull();
         RuleFor(x => x.Dto.SchoolYear).NotNull().NotEmpty().Must(validator.IsValidSchoolYear);

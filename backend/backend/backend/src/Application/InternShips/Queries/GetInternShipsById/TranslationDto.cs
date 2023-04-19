@@ -12,7 +12,7 @@ using backend.Domain.Entities;
 namespace backend.Application.InternShips.Queries.GetInternShipById;
 public class TranslationDto : IMapFrom<InternShipContentTranslation>
 {
-    public int Id { get; set; }
+    public int TranslationId { get; set; }
     public string TitleContent { get; set; }
     public string Description { get; set; }
     public string KnowledgeToDevelop { get; set; }
@@ -25,6 +25,7 @@ public class TranslationDto : IMapFrom<InternShipContentTranslation>
     public void Mapping(Profile profile)
     {
         profile.CreateMap<InternShipContentTranslation, TranslationDto>()
-            .ForMember(dest => dest.Language, opt => opt.MapFrom(src => src.Language));
+            .ForMember(dest => dest.Language, opt => opt.MapFrom(src => src.Language))
+            .ForMember(x => x.TranslationId, opt => opt.MapFrom(src => src.Id));
     }
 }

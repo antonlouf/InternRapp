@@ -39,7 +39,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
             new CultureInfo("en-GB")
         };
 
-    options.DefaultRequestCulture = new RequestCulture("en-GB");
+    options.DefaultRequestCulture = new RequestCulture("nl-NL");
     options.SupportedCultures = supportedCultures;
     options.SupportedUICultures = supportedCultures;
 });
@@ -79,9 +79,14 @@ app.Use(async (context, next) =>
 
 
     }
+    catch (BadHttpRequestException ex)
+    {
+        context.Response.StatusCode = 400;
+        await context.Response.WriteAsJsonAsync("the request is not appropriate");
+    }
     catch(Exception ex)
     {
-        
+        context.Response.StatusCode = 500;
         await context.Response.WriteAsJsonAsync("some error happened during processing");
     }
 });

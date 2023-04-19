@@ -46,7 +46,7 @@ export abstract class BaseList<T> {
         debugger;
         let filterString=""
         for (let key in filters) {
-            if ((filters[key] as string).split('&').length>=2) {
+            if ((filters[key] as string).split('=').length>=2) {
             filterString += `${filters[key]}&`;
                 
             }
