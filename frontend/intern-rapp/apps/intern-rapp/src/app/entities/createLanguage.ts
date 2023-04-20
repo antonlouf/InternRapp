@@ -1,3 +1,4 @@
 export interface CreateLanguage{
-    name:string|null
+    name: string | null,
+    code:string|null
 }

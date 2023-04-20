@@ -11,16 +11,22 @@
     <mat-divider></mat-divider>
     
     <mat-dialog-content class="mat-typography">
-    <form [formGroup]="updateForm">
+    <form *ngIf="updateForm" [formGroup]="updateForm">
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>{{'languageNameLabel' |translate}}</mat-label>
             <input matInput type="text" formControlName="languageName">
-            <mat-error *ngIf="updateForm.controls.languageName.touched&&updateForm.controls.languageName.hasError">
+            <mat-error >
                 {{'languageNameRequiredErrorMessage' |translate}}
             </mat-error>
         </mat-form-field>
       
-    
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>{{'languageCodeLabel' |translate}}</mat-label>
+            <input matInput type="text" formControlName="languageCode">
+            <mat-error>
+                {{'languageCodeRequiredErrorMessage' |translate}}
+            </mat-error>
+        </mat-form-field>
   
     
         
@@ -35,7 +41,7 @@
     <mat-dialog-actions align="center">
        <div class="flex-row">
         <div>
-            <button (click)="close()" class="save-button flex-row-cancel-save-update"  [disabled]="!updateForm.valid" >
+            <button (click)="close()" class="save-button flex-row-cancel-save-update"  [disabled]="!updateForm?.valid" >
                 
             <div><mat-icon>edit</mat-icon></div>
             <div>Update</div>

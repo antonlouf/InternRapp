@@ -18,7 +18,7 @@
                 <mat-label>Language</mat-label>
                 <mat-select formControlName="languageName">
                     <mat-option *ngFor="let language of languageItems" [value]="language.id" [id]="language.id.toString()">
-                        {{language.name}}
+                       {{language.code}}-{{language.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>

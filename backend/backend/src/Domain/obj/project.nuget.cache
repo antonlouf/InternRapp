@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "iZqRpqPIznMJTIpUwsoYjoe2X/+ba5L/RF3BC7cC1ZvXVfa0v7gzzWbOx/RUy8tpB8W5ippLWeOqmzxBU/TRpw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\RGTCP77\\project\\InternRApp\\backend\\backend\\src\\Domain\\Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\RGTCP77\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

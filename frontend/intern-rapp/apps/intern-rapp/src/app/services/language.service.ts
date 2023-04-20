@@ -31,14 +31,15 @@ return this.http.delete<number>(APIConfiguration.baseString+`${this.baseSuffixAp
 updateLanguage(itemToBeUpdated: LanguageItem|undefined){
   return this.http.patch(APIConfiguration.baseString+`${this.baseSuffixApi}`,{
       "id": itemToBeUpdated?.id,
-      "name": itemToBeUpdated?.name,
+    "name": itemToBeUpdated?.name,
+      "code":itemToBeUpdated?.code
   }).pipe(catchError((err,caught)=>caught))
 
 }
 
 addLanguage(itemToBeAdded: CreateLanguage){
 
-  return this.http.post(APIConfiguration.baseString+`${this.baseSuffixApi}?languagenName=${itemToBeAdded.name}`,null).pipe(catchError((err,caught)=>caught))
+  return this.http.post(APIConfiguration.baseString+`${this.baseSuffixApi}`,itemToBeAdded).pipe(catchError((err,caught)=>caught))
 
 }
 

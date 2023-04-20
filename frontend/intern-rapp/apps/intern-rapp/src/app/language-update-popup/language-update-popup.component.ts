@@ -19,22 +19,26 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class LanguageUpdatePopupComponent {
   @Input() data!: LanguageItem
-  updateForm=new FormGroup({
-    languageName: new FormControl('',[Validators.required]),
-  })
+  updateForm:FormGroup|undefined
   managerEmailsAfterUpdate: string[]=[]
   constructor(public dialogRef: MatDialogRef<LanguageUpdatePopupComponent>){
 
   }
   ngOnInit(): void {
-    this.updateForm.controls.languageName.patchValue(this.data?.name)
-    console.log(this.data);
+    this.updateForm = new FormGroup({
+      languageName: new FormControl('', [Validators.required]),
+      languageCode: new FormControl('', [Validators.required]),
+    });
+    this.updateForm.controls['languageName'].patchValue(this.data?.name)
+    this.updateForm.controls['languageCode'].patchValue(this.data?.code);
+    
   }
   
 
     close(){
-      this.data.name=this.updateForm.controls.languageName.getRawValue()
-      this.dialogRef.close(this.updateForm.valid?this.data:undefined)
+      this.data.name = this.updateForm?.controls['languageName'].getRawValue()
+      this.data.code = this.updateForm?.controls['languageCode'].getRawValue();
+      this.dialogRef.close(this.updateForm?.valid?this.data:undefined)
     }
 
 }

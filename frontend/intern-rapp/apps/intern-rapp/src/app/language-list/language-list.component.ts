@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DepartmentItem } from '../entities/departmentItem';
 import { LanguageService } from '../services/language.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PaginationFilterRequest } from '../entities/paginationFilterRequest';
 import { ResourceItemPagingResponse } from '../entities/resourceItemPagingResponse';
 import { filter, Observable, switchMap, Subject, tap, map } from 'rxjs';
-import { CreateDepartment } from '../entities/CreateDepartment';
 import { BaseList } from '../baselist/baseList';
 import { LanguageItem } from '../entities/languageItem';
 import { CreateLanguage } from '../entities/createLanguage';
