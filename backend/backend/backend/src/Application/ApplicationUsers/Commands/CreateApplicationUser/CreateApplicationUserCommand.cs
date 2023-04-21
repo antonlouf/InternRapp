@@ -9,7 +9,7 @@ namespace backend.Application.ApplicationUsers.Commands.CreateApplicationUser;
   
 public class CreateApplicationUserCommand : IRequest
 {
-    public string Email { get; set; }
+    public string Email { get; init; }
 }
 //Use different files for command and handler
 // immutable command

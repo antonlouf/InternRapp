@@ -13,10 +13,10 @@ public class DeleteLanguageCommandValidator:AbstractValidator<DeleteLanguageComm
     private readonly IApplicationDbContext _dbContext;
     public DeleteLanguageCommandValidator(IApplicationDbContext dbContext)
     {
-        //Id cannot be null / empty
+        //Id cannot be null / empty 
         //This is a good example for my opinion on DB calls inside this validation pipeline -> We are doing 2 calls here (get and the real delete)
         //Do we even want to validate if this id exists on a delete? 
         _dbContext = dbContext;
-        RuleFor(x => x.Id).NotNull().NotEmpty().MustAsync(new Validator(_dbContext).DoesIdExists).WithMessage("this Id does not exists!!");
+        RuleFor(x => x.Id).NotNull().NotEmpty().MustAsync(new Validator(_dbContext).DoesIdExists).WithMessage("invalid id");
     }
 }
