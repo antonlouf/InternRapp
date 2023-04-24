@@ -38,7 +38,7 @@ export class DepartmentService {
     return this.http
       .get<ResourceItemPagingResponse<DepartmentItem>>(
         APIConfiguration.baseString +
-          `${this.baseSuffixApi}?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&Filter=${filterPaginationRequest.filterString}`
+          `${this.baseSuffixApi}?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&${filterPaginationRequest.filterString}`
       )
       .pipe(catchError((err, caught) => caught));
   }

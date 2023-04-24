@@ -2,17 +2,13 @@
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
-using backend.Application.Common.Paging;
-using backend.Application.InternShips.Common;
 using backend.Application.Languages.Commands.CreateLanguage;
 using backend.Application.Languages.Commands.DeleteLanguage;
 using backend.Application.Languages.Commands.UpdateLanguage;
 using backend.Application.Languages.Queries.GetAllLanguages;
 using backend.Application.Languages.Queries.GetLanguageById;
-using Duende.IdentityServer.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Localization;
 using WebUI.Contracts;
 
 namespace WebUI.Controllers;
@@ -28,9 +24,9 @@ public class LanguageController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAllByfilterAndPage([FromQuery] FilterAndPaginationRequestDto dto)
+    public async Task<IActionResult> GetAllByfilterAndPage([FromQuery] LanguageFilterAndPaginationDto dto)
     {
-        var list = await _mediator.Send(new GetAllQuery() { Dto = dto });
+        var list = await _mediator.Send(new GetAllQuery() { LanguageCode=dto.LanguageCode,PageIndex=dto.PageIndex,PageSize=dto.PageSize });
         return Ok(list);
     }
     [HttpGet("{id:int}")]

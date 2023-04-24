@@ -9,6 +9,7 @@ using backend.Application.Languages.Commands.UpdateLanguage;
 using backend.Application.Locations.Commands.UpdateLocation;
 using backend.Application.Languages.Commands.DeleteLanguage;
 using backend.Application.Locations.Commands.DeleteLocation;
+using WebUI.Contracts;
 
 namespace WebUI.Controllers;
 [ApiController]
@@ -24,9 +25,9 @@ public class LocationController: ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAllByfilterAndPage([FromQuery] FilterAndPaginationRequestDto dto)
+    public async Task<IActionResult> GetAllByfilterAndPage([FromQuery] LocationFilterAndPaginationDto dto)
     {
-        var list = await _mediator.Send(new GetAllQuery() { Dto = dto });
+        var list = await _mediator.Send(new GetAllQuery() { PageSize=dto.PageSize,City=dto.City,PageIndex=dto.PageIndex });
         return Ok(list);
     }
     [HttpPost()]

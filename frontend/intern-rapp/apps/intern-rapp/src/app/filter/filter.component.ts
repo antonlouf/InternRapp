@@ -41,7 +41,6 @@ export class FilterComponent implements OnInit {
   }
   filter() {
     this.filtered.emit(this.filterForm.getRawValue());
-    console.log(this.filterForm.getRawValue())
   }
   
 }

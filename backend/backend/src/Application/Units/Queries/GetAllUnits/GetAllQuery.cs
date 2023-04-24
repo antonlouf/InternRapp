@@ -9,7 +9,9 @@ using MediatR;
 namespace backend.Application.Units.Queries.GetAllUnits;
 public class GetAllQuery : IRequest<PagedList<UnitListDto>>
 {
-    public FilterAndPaginationRequestDto Dto { get; set; }
+    public int PageIndex { get; set; }
+    public int PageSize { get; set; }
+    public string UnitName { get; set; }
 }
 public class GetAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<UnitListDto>>
 {
@@ -25,17 +27,11 @@ public class GetAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<UnitLis
     public async Task<PagedList<UnitListDto>> Handle(GetAllQuery request, CancellationToken cancellationToken)
     {
         var queryable = _dbContext.Departments.AsQueryable();
-        if (request.Dto.Filter!=null&&request.Dto.Filter != "")
+        if (request.UnitName!=null&&request.UnitName != "")
         {
-            var splittedFilter = request.Dto.Filter.Split(':');
-            if (splittedFilter.Length > 1)
-            {
-                queryable = queryable.Where(x => x.Name.StartsWith(splittedFilter[1]));
-            }
-
-
+           queryable = queryable.Where(x => x.Name.StartsWith(request.UnitName));
         }     
-        return  await PagedList<UnitListDto>.ToPagedList(queryable.ProjectTo<UnitListDto>(_iMapper.ConfigurationProvider), request.Dto.PageIndex, request.Dto.PageSize);
+        return  await PagedList<UnitListDto>.ToPagedList(queryable.ProjectTo<UnitListDto>(_iMapper.ConfigurationProvider), request.PageIndex, request.PageSize);
         
     }
 }

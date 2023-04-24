@@ -161,13 +161,13 @@ export class UnitListComponent
   }
 
   filterUpdating(filter: {}) {
-    let filterString = '';
     const record = filter as Record<string, never>;
+     const activeFilters: Record<string, unknown> = {};
     this.filters?.forEach((x) => {
-      filterString += `unit:${record[x.name]},`;
+      activeFilters['unitName']= `${record[x.name]}`;
     });
-    filterString = filterString.slice(0, filterString.length - 1);
-    this.filterUpdated(filterString);
+
+    this.filterUpdated(activeFilters);
   }
   addDepartment() {
     this.addSubject.next(undefined);

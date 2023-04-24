@@ -13,7 +13,9 @@ using MediatR;
 namespace backend.Application.Locations.Queries.GetAllLocations;
 public class GetAllQuery:IRequest<PagedList<LocationDto>> 
 {
-    public FilterAndPaginationRequestDto Dto { get; set; }
+    public int PageIndex { get; set; }
+    public int PageSize { get; set; }
+    public string City { get; set; }
 }
 
 public class getAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<LocationDto>>
@@ -30,15 +32,10 @@ public class getAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<Locatio
     public async Task<PagedList<LocationDto>> Handle(GetAllQuery request, CancellationToken cancellationToken)
     {
         var queryable = _dbContext.Locations.AsQueryable();
-        if (request.Dto.Filter != null && request.Dto.Filter != "")
+        if (request.City != null && request.City != "")
         {
-            var splittedFilter = request.Dto.Filter.Split(':');
-            if (splittedFilter.Length > 1)
-            {
-                queryable = queryable.Where(x => x.City.StartsWith(splittedFilter[1]));
-            }
-
+                queryable = queryable.Where(x => x.City.StartsWith(request.City));
         }
-        return await PagedList<LocationDto>.ToPagedList(queryable.ProjectTo<LocationDto>(_iMapper.ConfigurationProvider), request.Dto.PageIndex, request.Dto.PageSize);
+        return await PagedList<LocationDto>.ToPagedList(queryable.ProjectTo<LocationDto>(_iMapper.ConfigurationProvider), request.PageIndex, request.PageSize);
     }
 }

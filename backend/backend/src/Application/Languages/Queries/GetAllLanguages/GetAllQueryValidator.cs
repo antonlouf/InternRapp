@@ -11,9 +11,9 @@ public class GetAllQueryValidator:AbstractValidator<GetAllQuery>
     public GetAllQueryValidator()
     {
         this.CascadeMode = CascadeMode.Stop;
-        RuleFor(x => x.Dto).Cascade(CascadeMode.Stop).NotNull().NotEmpty();
-        RuleFor(x => x.Dto.PageSize).NotNull().NotEmpty();
-        RuleFor(x => x.Dto.PageIndex).NotNull().NotEmpty();
+        RuleFor(x => x).Cascade(CascadeMode.Stop).NotNull().NotEmpty();
+        RuleFor(x => x.PageSize).NotNull().NotEmpty();
+        RuleFor(x => x.PageIndex).NotNull().NotEmpty();
         
     }
 }

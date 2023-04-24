@@ -10,14 +10,19 @@ using backend.Application.Common.Paging;
 using backend.Application.InternShips.Common;
 using backend.Domain.Entities;
 using MediatR;
-using backend.Application.InternShips.Queries.GetAllInternShips; 
+using backend.Application.InternShips.Queries.GetAllInternShips;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Application.InternShips.Queries.getFilteredInternShip;
 
 public class GetFilteredQuery : IRequest<PagedList<InternShipListDto>>
 {
-    public InternShipFilteredDto Dto { get; set; }
-  
+    public int PageIndex { get; set; }
+    public int PageSize { get; set; }
+    public List<int> UnitIds { get; set; }
+    public List<string> SchoolYear { get; set; }
+    public List<int> LanguageIds { get; set; }
+
 }
 public class GetFilteredInterShipsQueryHandler : IRequestHandler<GetFilteredQuery, PagedList<InternShipListDto>>
 {
@@ -32,12 +37,11 @@ public class GetFilteredInterShipsQueryHandler : IRequestHandler<GetFilteredQuer
 
     public async Task<PagedList<InternShipListDto>> Handle(GetFilteredQuery request, CancellationToken cancellationToken)
     {
-        
         return await PagedList<InternShipListDto>.ToPagedList(_dbContext.InternShips
-            .Where(internschip => (request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(internschip.UnitId))
-                && (request.Dto.SchoolYear == null || request.Dto.SchoolYear.Count == 0 || request.Dto.SchoolYear.Contains(internschip.SchoolYear))
-                && (request.Dto.LanguageIds == null || request.Dto.LanguageIds.Count == 0 || internschip.Translations.Any(trnsl => request.Dto.LanguageIds.Contains(trnsl.LanguageId))))
-            .ProjectTo<InternShipListDto>(_iMapper.ConfigurationProvider), request.Dto.PageIndex, request.Dto.PageSize);
+            .Where(internschip => (request.UnitIds == null || request.UnitIds.Count == 0 || request.UnitIds.Contains(internschip.UnitId))
+                && (request.SchoolYear == null || request.SchoolYear.Count == 0 || request.SchoolYear.Contains(internschip.SchoolYear))
+                && (request.LanguageIds == null || request.LanguageIds.Count == 0 || internschip.Translations.Any(trnsl => request.LanguageIds.Contains(trnsl.LanguageId))))
+            .ProjectTo<InternShipListDto>(_iMapper.ConfigurationProvider), request.PageIndex, request.PageSize);
     }
 
 }

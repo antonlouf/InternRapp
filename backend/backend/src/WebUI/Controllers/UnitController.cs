@@ -38,15 +38,15 @@ public class UnitController : ControllerBase
     }
 
     [HttpGet()]
-    public async Task<IActionResult> GetAllByfilterAndPage([FromQuery] FilterAndPaginationRequestDto dto)
+    public async Task<IActionResult> GetAllByfilterAndPage([FromQuery] UnitFilterAndPaginationDto dto)
     {
-        var list = await _mediator.Send(new GetAllQuery(){Dto=dto });
+        var list = await _mediator.Send(new GetAllQuery(){PageIndex=dto.PageIndex,UnitName=dto.UnitName,PageSize=dto.PageSize });
         return Ok(list);
     }
     [HttpGet("getAllWithminimaldata")]
-    public async Task<IActionResult> GetAllWithMinimumData([FromQuery] FilterAndPaginationRequestDto dto)
+    public async Task<IActionResult> GetAllWithMinimumData([FromQuery] UnitFilterAndPaginationDto dto)
     {
-        var result = await _mediator.Send(new GetAllQueryMinimal() { Dto = dto });
+        var result = await _mediator.Send(new GetAllQueryMinimal() { PageIndex = dto.PageIndex, UnitName = dto.UnitName, PageSize = dto.PageSize });
         return Ok(result);
     }
 

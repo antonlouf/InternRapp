@@ -46,7 +46,7 @@ public class InternShipController : ControllerBase
     public async Task<IActionResult> GetFiltered([FromQuery] InternShipFilteredDto dto)
     {
        
-        return Ok(await _mediator.Send(new GetFilteredQuery() { Dto = dto }));
+        return Ok(await _mediator.Send(new GetFilteredQuery() { PageIndex=dto.PageIndex,PageSize=dto.PageSize,LanguageIds=dto.LanguageIds,SchoolYear=dto.SchoolYear,UnitIds=dto.UnitIds }));
     }
 
     [HttpGet("export")]

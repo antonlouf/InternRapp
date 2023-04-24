@@ -73,8 +73,7 @@ export class LocationListComponent extends BaseList<LocationItem> {
   private configureUpdate$() {
     return this.updateSubject.pipe(switchMap(data => 
       {
-        //open een dialog popup en geef de geklikte location door aan update popup component
-        //zodat de data ervan getoond kan worden
+       
       const dialogRef= this.dialog.open(LocationUpdatePopupComponent, this.popUpConfig) 
       dialogRef.componentInstance.data=data
       return dialogRef.afterClosed().pipe(map(confirm=>confirm ? data : undefined )
@@ -101,13 +100,12 @@ export class LocationListComponent extends BaseList<LocationItem> {
 
    //filter nog niet begrepen----
   filterUpdating(filter: {}){
-    let filterString=""
-    const record=filter as Record<string,never>
+    const record = filter as Record<string, never>
+    const activeFilters: Record<string, unknown> = {};
      this.filters?.forEach(x=>{
-       filterString+=`unit:${record[x.name]},`
+       activeFilters['city']=`${record[x.name]}`
      })
-     filterString = filterString.slice(0,filterString.length-1)
-     this.filterUpdated(filterString)
+     this.filterUpdated(activeFilters)
   }
 
   //Wanneer geklikt wordt op addLocation dan worden de gepredefinieerde observers uitgevoerd

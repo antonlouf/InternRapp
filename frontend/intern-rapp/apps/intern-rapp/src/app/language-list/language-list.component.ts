@@ -94,13 +94,12 @@ export class LanguageListComponent extends BaseList<LanguageItem> implements OnI
             }
   
     filterUpdating(filter: {}){
-      let filterString=""
-      const record=filter as Record<string,never>
+      const record = filter as Record<string, never>
+      const activeFilters: Record<string, unknown> = {};
        this.filters?.forEach(x=>{
-         filterString+=`unit:${record[x.name]},`
+         activeFilters['languageCode']=`${record[x.name]}`
        })
-       filterString = filterString.slice(0,filterString.length-1)
-       this.filterUpdated(filterString)
+       this.filterUpdated(activeFilters)
     }
     addLanguage(){
     this.addSubject.next(undefined)

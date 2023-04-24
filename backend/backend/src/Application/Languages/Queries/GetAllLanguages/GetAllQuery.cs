@@ -15,7 +15,9 @@ using Microsoft.EntityFrameworkCore;
 namespace backend.Application.Languages.Queries.GetAllLanguages;
 public class GetAllQuery:IRequest<PagedList<LanguageListDto>>
 {
-    public FilterAndPaginationRequestDto Dto { get; set; }
+    public int PageIndex { get; set; }
+    public int PageSize { get; set; }
+    public string LanguageCode { get; set; }
 }
 public class GetAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<LanguageListDto>>
 {
@@ -31,17 +33,12 @@ public class GetAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<Languag
     public async Task<PagedList<LanguageListDto>> Handle(GetAllQuery request, CancellationToken cancellationToken)
     {
         var queryable = _dbContext.Languages.AsQueryable().AsNoTracking();
-        if (request.Dto.Filter != null && request.Dto.Filter != "")
+        if (request.LanguageCode != null && request.LanguageCode != "")
         {
-            var splittedFilter = request.Dto.Filter.Split(':');
-            if (splittedFilter.Length > 1)
-            {
-                queryable = queryable.Where(x => x.Name.StartsWith(splittedFilter[1]));
-            }
-
-
+            queryable = queryable.Where(x => x.Code.StartsWith(request.LanguageCode));
+            
         }
-        return await PagedList<LanguageListDto>.ToPagedList(queryable.ProjectTo<LanguageListDto>(_iMapper.ConfigurationProvider), request.Dto.PageIndex, request.Dto.PageSize);
+        return await PagedList<LanguageListDto>.ToPagedList(queryable.ProjectTo<LanguageListDto>(_iMapper.ConfigurationProvider), request.PageIndex, request.PageSize);
 
     }
 }

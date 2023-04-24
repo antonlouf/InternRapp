@@ -236,7 +236,7 @@ export class InternShipListComponent
       activeFilters['languageIds'] = languageFilterString;
     }
     this.filterUpdated(activeFilters);
-    debugger;
+
   }
   delete(id: number) {
     this.deleteSubject.next(id);

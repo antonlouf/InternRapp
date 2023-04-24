@@ -14,7 +14,9 @@ using Microsoft.EntityFrameworkCore;
 namespace backend.Application.Units.Queries.GetAllUnitsWithMinimalInfo;
 public class GetAllQuery:IRequest<PagedList<UnitListDtoWithMinimalData>>
 {
-    public FilterAndPaginationRequestDto Dto { get; set; }
+    public int PageIndex { get; set; }
+    public int PageSize { get; set; }
+    public string UnitName { get; set; }
 }
 public class GetAllQueryHandler : IRequestHandler<GetAllQuery,PagedList<UnitListDtoWithMinimalData>>
 {
@@ -29,17 +31,11 @@ public class GetAllQueryHandler : IRequestHandler<GetAllQuery,PagedList<UnitList
     public async Task<PagedList<UnitListDtoWithMinimalData>> Handle(GetAllQuery request, CancellationToken cancellationToken)
     {
         var queryable = _dbContext.Departments.AsQueryable();
-        if (request.Dto.Filter != null && request.Dto.Filter != "")
+        if (request.UnitName != null && request.UnitName != "")
         {
-            var splittedFilter = request.Dto.Filter.Split(':');
-            if (splittedFilter.Length > 1)
-            {
-                queryable = queryable.Where(x => x.Name.StartsWith(splittedFilter[1]));
-            }
-
-
+            queryable = queryable.Where(x => x.Name.StartsWith(request.UnitName));
         }
-        return await PagedList<UnitListDtoWithMinimalData>.ToPagedList(queryable.ProjectTo<UnitListDtoWithMinimalData>(_iMapper.ConfigurationProvider), request.Dto.PageIndex, request.Dto.PageSize);
+        return await PagedList<UnitListDtoWithMinimalData>.ToPagedList(queryable.ProjectTo<UnitListDtoWithMinimalData>(_iMapper.ConfigurationProvider), request.PageIndex, request.PageSize);
 
     }
 }

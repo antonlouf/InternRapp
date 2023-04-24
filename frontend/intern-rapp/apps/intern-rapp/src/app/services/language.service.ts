@@ -20,7 +20,7 @@ export class LanguageService{
 
  
   filterAndPaginateLanguages(filterPaginationRequest: PaginationFilterRequest){
-    return this.http.get<ResourceItemPagingResponse<LanguageItem>>(APIConfiguration.baseString+`${this.baseSuffixApi}?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&Filter=${filterPaginationRequest.filterString}`).pipe(catchError((err,caught)=>caught),retry(2))
+    return this.http.get<ResourceItemPagingResponse<LanguageItem>>(APIConfiguration.baseString+`${this.baseSuffixApi}?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&${filterPaginationRequest.filterString}`).pipe(catchError((err,caught)=>caught),retry(2))
   }
   getById(id:number){
     return this.http.get<LanguageWithMinimalData>(APIConfiguration.baseString+`${this.baseSuffixApi}/${id}`).pipe(catchError((err,caught)=>caught),retry(2))
