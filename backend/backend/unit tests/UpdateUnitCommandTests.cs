@@ -1,4 +1,5 @@
 ﻿using backend.Application.Common.Interfaces;
+using backend.Application.Units.Commands.CreateUnit;
 using backend.Application.Units.Commands.UpdateUnit;
 using backend.Application.Units.Queries.GetAllUnits;
 using backend.Domain.Entities;
@@ -74,5 +75,39 @@ public class UpdateUnitCommandTests
         var validator = new UpdateUnitCommandValidator(mockDbContext.Object);
         var result = validator?.TestValidate(command);
         result?.ShouldHaveValidationErrorFor(x => x.Name);
+    }
+    [Fact]
+    public void PrefaceTranslation_Null_Should_Throw_Validation_Error()
+    {
+        var mockedDbContext = new Mock<IApplicationDbContext>();
+
+        var validator = new UpdateUnitCommandValidator(mockedDbContext.Object);
+        var command = new UpdateUnitCommand()
+        {
+            Name = "Java",
+            ManagerEmails = new() { "recep@inetum-realdolmen.world" },
+            Id=1,
+            
+
+        };
+        var result = validator?.TestValidate(command);
+        result?.ShouldHaveValidationErrorFor(x => x.PrefaceTranslations);
+    }
+    [Fact]
+    public void PrefaceTranslation_Content_Empty_Should_Throw_Validation_Error()
+    {
+        var mockedDbContext = new Mock<IApplicationDbContext>();
+
+        var validator = new UpdateUnitCommandValidator(mockedDbContext.Object);
+        var command = new UpdateUnitCommand()
+        {
+            Name = "Java",
+            ManagerEmails = new() { "recep@inetum-realdolmen.world" },
+            Id=1,
+            PrefaceTranslations = new List<PrefaceTranslationUpdateDto>()
+
+        };
+        var result = validator?.TestValidate(command);
+        result?.ShouldHaveValidationErrorFor(x => x.PrefaceTranslations);
     }
 }

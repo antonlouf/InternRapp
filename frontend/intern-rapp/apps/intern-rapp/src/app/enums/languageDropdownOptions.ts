@@ -1,5 +1,5 @@
 export enum LanguageOption{
-En="english",
-Fr="français",
+En="en",
+Fr="fr",
 Nl="dutch"
 }

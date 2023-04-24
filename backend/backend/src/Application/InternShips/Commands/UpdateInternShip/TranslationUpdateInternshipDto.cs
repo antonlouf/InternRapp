@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace backend.Application.InternShips.Commands.UpdateInternShip;
-public class LanguageSpecificUpdateInternShipDto
+public class TranslationUpdateInternshipDto
 {
     public int? TranslationId { get; set; }
     public int LanguageId { get; set; }

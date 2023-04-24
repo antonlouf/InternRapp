@@ -174,8 +174,14 @@
   <data name="editButton" xml:space="preserve">
     <value>éditer</value>
   </data>
+  <data name="En" xml:space="preserve">
+    <value>l'anglais</value>
+  </data>
   <data name="events" xml:space="preserve">
     <value>Evénements</value>
+  </data>
+  <data name="Fr" xml:space="preserve">
+    <value>français</value>
   </data>
   <data name="internship" xml:space="preserve">
     <value>stage</value>
@@ -204,11 +210,17 @@
   <data name="languageNameRequiredErrorMessage" xml:space="preserve">
     <value>le nom de la langue est obligatoire</value>
   </data>
+  <data name="locationCityLabel" xml:space="preserve">
+    <value>nouvel emplacement</value>
+  </data>
   <data name="locationFieldEmptyMessage" xml:space="preserve">
     <value>sélectionnez un lieu, s'il vous plaît</value>
   </data>
   <data name="locationFieldLabel" xml:space="preserve">
     <value>localisation</value>
+  </data>
+  <data name="locationHouseNumberLabel" xml:space="preserve">
+    <value>la localisation du numéro de maison</value>
   </data>
   <data name="locationLabel" xml:space="preserve">
     <value>emplacement</value>
@@ -255,11 +267,17 @@
   <data name="newInternShip" xml:space="preserve">
     <value>Nouveau stage</value>
   </data>
+  <data name="Nl" xml:space="preserve">
+    <value>néerlandais</value>
+  </data>
   <data name="saveButtonText" xml:space="preserve">
     <value>sauver</value>
   </data>
   <data name="schoolyearErrorMessage" xml:space="preserve">
     <value>L'année scolaire est obligatoire</value>
+  </data>
+  <data name="schoolYearLabel" xml:space="preserve">
+    <value>l'année scolaire</value>
   </data>
   <data name="titleContentLabel" xml:space="preserve">
     <value>titre</value>
@@ -269,6 +287,9 @@
   </data>
   <data name="unitEmptyErrorMessage" xml:space="preserve">
     <value>L'unité est requise</value>
+  </data>
+  <data name="unitNameLabel" xml:space="preserve">
+    <value>département</value>
   </data>
   <data name="updateButtonText" xml:space="preserve">
     <value>mise à jour</value>

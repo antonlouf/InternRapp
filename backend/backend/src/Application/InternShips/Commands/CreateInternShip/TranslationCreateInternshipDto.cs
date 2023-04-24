@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace backend.Application.InternShips.Commands.CreateInternShip;
-public class LanguageSpecificInternShipDto
+public class TranslationCreateInternshipDto
 {
     public int LanguageId { get; set; }
     public string TitleContent { get; set; }

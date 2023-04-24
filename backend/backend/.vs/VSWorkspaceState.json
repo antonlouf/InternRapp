@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\Application",
+    "\\src\\Application\\InternShips",
+    "\\src\\Application\\InternShips\\Queries",
+    "\\src\\Application\\InternShips\\Queries\\GetAllInternShips",
+    "\\src\\Application\\Units",
+    "\\src\\Application\\Units\\Commands",
+    "\\src\\Application\\Units\\Commands\\CreateUnit",
+    "\\src\\Application\\Units\\Commands\\UpdateUnit",
+    "\\unit tests"
+  ],
+  "SelectedNode": "\\src\\Application\\Units\\Commands\\UpdateUnit\\UpdateUnitCommandValidator.cs",
+  "PreviewInSolutionExplorer": false
+}

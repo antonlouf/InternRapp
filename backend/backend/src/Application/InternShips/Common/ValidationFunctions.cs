@@ -18,7 +18,7 @@ public class ValidationFunctions
         _dbContext = dbContext;
     }
 
-    public static bool IsVersionValid(IList<LanguageSpecificUpdateInternShipDto> arg)
+    public static bool IsVersionValid(IList<TranslationUpdateInternshipDto> arg)
     {
         foreach (var version in arg)
         {
@@ -33,7 +33,7 @@ public class ValidationFunctions
         }
         return true;
     }
-    public static bool IsVersionValid(IList<LanguageSpecificInternShipDto> arg)
+    public static bool IsVersionValid(IList<TranslationCreateInternshipDto> arg)
     {
         foreach (var version in arg)
         {
@@ -47,13 +47,13 @@ public class ValidationFunctions
         }
         return true;
     }
-    public async Task<bool> CheckIfLanguageIdExists(IList<LanguageSpecificInternShipDto> dtos, CancellationToken arg2)
+    public async Task<bool> CheckIfLanguageIdExists(IList<TranslationCreateInternshipDto> dtos, CancellationToken arg2)
     {
         var languageIds = dtos.Select(x => x.LanguageId).ToList();
         var countOfFounded=await _dbContext.Languages.Where(x => languageIds.Contains(x.Id)).CountAsync();
         return countOfFounded == dtos.Count;
     }
-    public async Task<bool> CheckIfLanguageIdExists(IList<LanguageSpecificUpdateInternShipDto> dtos, CancellationToken arg2)
+    public async Task<bool> CheckIfLanguageIdExists(IList<TranslationUpdateInternshipDto> dtos, CancellationToken arg2)
     {
         var languageIds = dtos.Select(x => x.LanguageId).ToList();
         var countOfFounded = await _dbContext.Languages.Where(x => languageIds.Contains(x.Id)).CountAsync();
@@ -86,7 +86,7 @@ public class ValidationFunctions
         var result = await _dbContext.Translations.FirstOrDefaultAsync(x => x.Id == arg1);
         return result != null;
     }
-    public async Task<bool> CheckIfTranslationIdExists(List<LanguageSpecificUpdateInternShipDto> dto, CancellationToken arg2)
+    public async Task<bool> CheckIfTranslationIdExists(List<TranslationUpdateInternshipDto> dto, CancellationToken arg2)
     {
         foreach (var item in dto)
         {
@@ -98,11 +98,11 @@ public class ValidationFunctions
     }
     public bool IsValidSchoolYear(string arg)
     {
-        var currentYear = DateTime.Now.Year;
+        var currentYear = DateTime.UtcNow.Year;
         //var differenceWithMinimalYear = currentYear - 2020;
         for (int i = 0; i <= 20; i++)
         {
-            var yearRange = $"{2020 + i}-{2020 + i + 1}";
+            var yearRange = $"{currentYear - i}-{currentYear - i +1}";
             if (yearRange == arg) return true;
         }
 

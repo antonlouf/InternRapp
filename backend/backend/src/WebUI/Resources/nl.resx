@@ -174,8 +174,14 @@
   <data name="editButton" xml:space="preserve">
     <value>bijwerken</value>
   </data>
+  <data name="En" xml:space="preserve">
+    <value>Engels</value>
+  </data>
   <data name="events" xml:space="preserve">
     <value>beurzen</value>
+  </data>
+  <data name="Fr" xml:space="preserve">
+    <value>Frans</value>
   </data>
   <data name="internship" xml:space="preserve">
     <value>stage</value>
@@ -204,11 +210,17 @@
   <data name="languageNameRequiredErrorMessage" xml:space="preserve">
     <value>De taal is verplicht om in te vullen</value>
   </data>
+  <data name="locationCityLabel" xml:space="preserve">
+    <value> stad</value>
+  </data>
   <data name="locationFieldEmptyMessage" xml:space="preserve">
     <value>kies een locatie aub</value>
   </data>
   <data name="locationFieldLabel" xml:space="preserve">
     <value>locatie</value>
+  </data>
+  <data name="locationHouseNumberLabel" xml:space="preserve">
+    <value>huisnummer</value>
   </data>
   <data name="locationLabel" xml:space="preserve">
     <value>locatie</value>
@@ -255,11 +267,17 @@
   <data name="newInternShip" xml:space="preserve">
     <value>nieuw stageopdracht</value>
   </data>
+  <data name="Nl" xml:space="preserve">
+    <value>Nederlands</value>
+  </data>
   <data name="saveButtonText" xml:space="preserve">
     <value>opslaan</value>
   </data>
   <data name="schoolyearErrorMessage" xml:space="preserve">
     <value>de schooljaar is verplicht</value>
+  </data>
+  <data name="schoolYearLabel" xml:space="preserve">
+    <value>schooljaar</value>
   </data>
   <data name="titleContentLabel" xml:space="preserve">
     <value>titel</value>
@@ -272,6 +290,9 @@
   </data>
   <data name="unitEmptyErrorMessage" xml:space="preserve">
     <value>de departement is verplicht</value>
+  </data>
+  <data name="unitNameLabel" xml:space="preserve">
+    <value>afdeling</value>
   </data>
   <data name="updateButtonText" xml:space="preserve">
     <value>bijwerken</value>

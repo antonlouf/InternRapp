@@ -30,3 +30,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
    
     // border-radius: 0px;
 }
+button{
+    border-radius: 0%;
+    border: none;
+    text-shadow: none;
+    box-shadow: none;
+}
+mat-icon{
+    text-shadow: none;
+        box-shadow: none;
+}

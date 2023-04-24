@@ -23,7 +23,16 @@ public class InternShipController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] InternShipCreateDto dto)
     {
-        await _mediator.Send(new CreateInternShipCommand() { Dto = dto });
+        await _mediator.Send(new CreateInternShipCommand() 
+        { 
+            CurrentCountOfStudents=dto.CurrentCountOfStudents,
+            Locations=dto.Locations,
+            MaxCountOfStudents=dto.MaxCountOfStudents,
+            TrainingType=dto.TrainingType,
+            SchoolYear=dto.SchoolYear,
+            UnitId=dto.UnitId,
+            Versions=dto.Versions 
+        });
         return Ok();
     }
 
@@ -50,7 +59,17 @@ public class InternShipController : ControllerBase
     [HttpPut]
     public async Task<IActionResult> Update(InternShipUpdateDto dto)
     {
-        await _mediator.Send(new UpdateInternShipCommand() { Dto = dto });
+        await _mediator.Send(new UpdateInternShipCommand() 
+                                                    { 
+            Versions=dto.Versions,
+            CurrentCountOfStudents=dto.CurrentCountOfStudents,  
+            InternShipId=dto.InternShipId,
+            Locations=dto.Locations,
+            MaxCountOfStudents= dto.MaxCountOfStudents,
+            SchoolYear=dto.SchoolYear,
+            TrainingType=dto.TrainingType,
+            UnitId=dto.UnitId,
+        });
         return Ok();
     }
     [HttpDelete("{id:int}")]

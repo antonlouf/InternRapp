@@ -21,11 +21,11 @@ public class UpdateUnitCommandValidator:AbstractValidator<UpdateUnitCommand>
         var validator = new ValidationFunctions(_dbContext);
         RuleFor(x=>x.Name).NotEmpty().NotNull().MinimumLength(2);
         RuleFor(x => x.ManagerEmails).NotNull().NotEmpty();
-        RuleFor(x => x.Id).NotNull().NotEmpty().GreaterThan(0).MustAsync(validator.CheckIfUnitIdExists);
         RuleFor(x => x.PrefaceTranslations).NotNull().NotEmpty().ForEach(x =>
         {
             x.Must(CheckTranslationIsEmpty);
         });
+        RuleFor(x => x.Id).GreaterThan(0).MustAsync(validator.CheckIfUnitIdExists);
 
     }
 

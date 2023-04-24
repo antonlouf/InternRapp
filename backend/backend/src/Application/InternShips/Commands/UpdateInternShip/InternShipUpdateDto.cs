@@ -19,5 +19,5 @@ public class InternShipUpdateDto
 
 
     public IList<LocationDto> Locations { get; set; }
-    public IList<LanguageSpecificUpdateInternShipDto> Versions { get; set; }
+    public IList<TranslationUpdateInternshipDto> Versions { get; set; }
 }

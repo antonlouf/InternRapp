@@ -174,8 +174,14 @@
   <data name="editButton" xml:space="preserve">
     <value>edit</value>
   </data>
+  <data name="En" xml:space="preserve">
+    <value>English</value>
+  </data>
   <data name="events" xml:space="preserve">
     <value>events</value>
+  </data>
+  <data name="Fr" xml:space="preserve">
+    <value>French</value>
   </data>
   <data name="internship" xml:space="preserve">
     <value>internship</value>
@@ -204,11 +210,20 @@
   <data name="languageNameRequiredErrorMessage" xml:space="preserve">
     <value>the language name is required</value>
   </data>
+  <data name="locationCityLabel" xml:space="preserve">
+    <value>location city</value>
+  </data>
   <data name="locationFieldEmptyMessage" xml:space="preserve">
     <value> select a location please</value>
   </data>
   <data name="locationFieldLabel" xml:space="preserve">
     <value>location</value>
+  </data>
+  <data name="locationHouseNumberErrorMessage" xml:space="preserve">
+    <value>location house number is required</value>
+  </data>
+  <data name="locationHouseNumberLabel" xml:space="preserve">
+    <value>location house number</value>
   </data>
   <data name="locationLabel" xml:space="preserve">
     <value>location</value>
@@ -255,11 +270,17 @@
   <data name="newInternShip" xml:space="preserve">
     <value>New InternShip</value>
   </data>
+  <data name="Nl" xml:space="preserve">
+    <value>Dutch</value>
+  </data>
   <data name="saveButtonText" xml:space="preserve">
     <value>save</value>
   </data>
   <data name="schoolyearErrorMessage" xml:space="preserve">
     <value>The schoolyear is required</value>
+  </data>
+  <data name="schoolYearLabel" xml:space="preserve">
+    <value>school year</value>
   </data>
   <data name="titleContentLabel" xml:space="preserve">
     <value>title</value>
@@ -269,6 +290,9 @@
   </data>
   <data name="unitEmptyErrorMessage" xml:space="preserve">
     <value>The unit is required</value>
+  </data>
+  <data name="unitNameLabel" xml:space="preserve">
+    <value>unit</value>
   </data>
   <data name="updateButtonText" xml:space="preserve">
     <value>update</value>

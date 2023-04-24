@@ -1,12 +1,23 @@
 ﻿using backend.Application.Common.Interfaces;
+using backend.Application.InternShips.Common;
 using backend.Domain.Entities;
+using backend.Domain.Enums;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Application.InternShips.Commands.UpdateInternShip;
 public class UpdateInternShipCommand : IRequest
 {
-    public InternShipUpdateDto Dto { get; set; }
+    public int InternShipId { get; set; }
+    public string SchoolYear { get; set; }
+    public int UnitId { get; set; }
+    public byte MaxCountOfStudents { get; set; }
+    public TrainingType TrainingType { get; set; }
+    public byte CurrentCountOfStudents { get; set; }
+
+
+    public IList<LocationDto> Locations { get; set; }
+    public IList<TranslationUpdateInternshipDto> Versions { get; set; }
 }
 public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternShipCommand>
 {
@@ -19,18 +30,18 @@ public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternSh
 
     protected async override Task Handle(UpdateInternShipCommand request, CancellationToken cancellationToken)
     {
-        var convertedLocations = request.Dto.Locations.Select(x => new Location() { City = x.City, HouseNumber = x.Housenumber, Id = x.Id, StreetName = x.Streetname, ZipCode = x.Zipcode }).ToList();
+        var convertedLocations = request.Locations.Select(x => new Location() { City = x.City, HouseNumber = x.Housenumber, Id = x.Id, StreetName = x.Streetname, ZipCode = x.Zipcode }).ToList();
         _dbContext.Locations.UpdateRange(convertedLocations);
-        var internShip = await _dbContext.InternShips.Include(x=>x.Locations).SingleOrDefaultAsync(x => x.Id == request.Dto.InternShipId);
-        internShip.MaxStudents = request.Dto.MaxCountOfStudents;
-        internShip.SchoolYear = request.Dto.SchoolYear;
-        internShip.RequiredTrainingType = request.Dto.TrainingType;
+        var internShip = await _dbContext.InternShips.Include(x=>x.Locations).SingleOrDefaultAsync(x => x.Id == request.InternShipId);
+        internShip.MaxStudents = request.MaxCountOfStudents;
+        internShip.SchoolYear = request.SchoolYear;
+        internShip.RequiredTrainingType = request.TrainingType;
         internShip.Locations=null;
-        internShip.UnitId = request.Dto.UnitId;
-        internShip.CurrentCountOfStudents = request.Dto.CurrentCountOfStudents;
+        internShip.UnitId = request.UnitId;
+        internShip.CurrentCountOfStudents = request.CurrentCountOfStudents;
         internShip.Translations = new List<InternShipContentTranslation>();
         
-        foreach (var sendedVersion in request.Dto.Versions)
+        foreach (var sendedVersion in request.Versions)
         {
             if (sendedVersion.TranslationId!=null)
             {

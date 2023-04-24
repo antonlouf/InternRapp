@@ -147,7 +147,7 @@ export class InternShipListComponent
         optionBuilder: (items: unknown[], value: LanguageItem) => {
           const optionBuilder: unknown[] = [];
           const displayValue =
-            (items as LanguageItem[]).find((x) => x.id === value.id)?.name ??
+            (items as LanguageItem[]).find((x) => x.id === value.id)?.code ??
             '';
           optionBuilder.push(displayValue);
           optionBuilder.push(value.id);

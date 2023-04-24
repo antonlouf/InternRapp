@@ -7,21 +7,21 @@ namespace backend.Application.InternShips.Commands.UpdateInternShip;
 public class UpdateInternShipCommandValidator : AbstractValidator<UpdateInternShipCommand>
 {
 
-    private readonly IMediator _mediator;
     private readonly IApplicationDbContext _dbContext;
-    public UpdateInternShipCommandValidator(IMediator mediator, IApplicationDbContext dbContext)
+    public UpdateInternShipCommandValidator( IApplicationDbContext dbContext)
     {
-        _mediator = mediator;
+        CascadeMode = CascadeMode.Stop;
         _dbContext = dbContext;
         var validator = new ValidationFunctions( _dbContext);
-        RuleFor(x => x.Dto).NotEmpty().NotNull();
-        RuleFor(x => x.Dto.SchoolYear).NotNull().NotEmpty().Must(validator.IsValidSchoolYear);
-        RuleFor(x => x.Dto.UnitId).NotNull().NotEmpty().MustAsync(validator.CheckIfUnitIdExists);
-        RuleFor(x => x.Dto.MaxCountOfStudents).NotNull().NotEmpty().Must(x => x > 0);
-        RuleFor(x => x.Dto.Locations).NotEmpty().NotNull();
-        RuleFor(x => x.Dto.TrainingType).IsInEnum();
-        RuleFor(x => x.Dto.Versions).NotEmpty().NotNull().Must(ValidationFunctions.IsVersionValid).MustAsync(validator.CheckIfLanguageIdExists);
-        RuleFor(x => x.Dto.InternShipId).MustAsync(validator.CheckIfInternShipIdExists).WithMessage("Make sure you are giving an existing ID!(also greater than 0)");
+        RuleFor(x => x).NotEmpty().NotNull();
+        RuleFor(x => x.SchoolYear).NotEmpty().Must(validator.IsValidSchoolYear);
+        RuleFor(x => x.MaxCountOfStudents).Must(x => x > 0);
+        RuleFor(x => x.CurrentCountOfStudents).LessThanOrEqualTo(x => x.MaxCountOfStudents);
+        RuleFor(x => x.Locations).NotEmpty().NotNull();
+        RuleFor(x => x.TrainingType).IsInEnum();
+        RuleFor(x => x.Versions).NotEmpty().NotNull().Must(ValidationFunctions.IsVersionValid).MustAsync(validator.CheckIfLanguageIdExists);
+        RuleFor(x => x.UnitId).MustAsync(validator.CheckIfUnitIdExists);
+        RuleFor(x => x.InternShipId).MustAsync(validator.CheckIfInternShipIdExists).WithMessage("Make sure you are giving an existing ID!(also greater than 0)");
     }
 
 

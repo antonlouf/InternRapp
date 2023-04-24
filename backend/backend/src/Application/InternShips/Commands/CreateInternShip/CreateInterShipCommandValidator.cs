@@ -16,14 +16,14 @@ public class CreateInterShipCommandValidator : AbstractValidator<CreateInternShi
         _dbContext = dbContext;
         CascadeMode = CascadeMode.Stop;
         var validator = new ValidationFunctions(_dbContext);
-        RuleFor(x => x.Dto).NotEmpty().NotNull();
-        RuleFor(x => x.Dto.SchoolYear).NotNull().NotEmpty().Must(validator.IsValidSchoolYear);
-        RuleFor(x => x.Dto.UnitId).NotNull().NotEmpty().MustAsync(validator.CheckIfUnitIdExists);
-        RuleFor(x => x.Dto.MaxCountOfStudents).NotNull().NotEmpty().Must(x => x > 0);
-        RuleFor(x => x.Dto.Locations).NotEmpty().NotNull();
-        RuleFor(x => x.Dto.TrainingType).IsInEnum();
-        RuleFor(x => x.Dto.CurrentCountOfStudents).GreaterThanOrEqualTo(0).LessThanOrEqualTo(x => x.Dto.MaxCountOfStudents);
-        RuleFor(x => x.Dto.Versions).NotEmpty().NotNull().Must(ValidationFunctions.IsVersionValid).MustAsync(validator.CheckIfLanguageIdExists);
+        RuleFor(x => x).NotEmpty().NotNull();
+        RuleFor(x => x.MaxCountOfStudents).Must(x => x > 0);
+        RuleFor(x => x.SchoolYear).NotNull().NotEmpty().Must(validator.IsValidSchoolYear);
+        RuleFor(x => x.Locations).NotNull();
+        RuleFor(x => x.TrainingType).IsInEnum();
+        RuleFor(x => x.CurrentCountOfStudents).GreaterThanOrEqualTo(0).LessThanOrEqualTo(x => x.MaxCountOfStudents);
+        RuleFor(x => x.Versions).NotEmpty().NotNull().Must(ValidationFunctions.IsVersionValid).MustAsync(validator.CheckIfLanguageIdExists);
+        RuleFor(x => x.UnitId).NotNull().NotEmpty().MustAsync(validator.CheckIfUnitIdExists);
     }
     
 }

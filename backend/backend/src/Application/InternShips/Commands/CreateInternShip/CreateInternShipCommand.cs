@@ -4,13 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using backend.Application.Common.Interfaces;
+using backend.Application.InternShips.Common;
 using backend.Domain.Entities;
+using backend.Domain.Enums;
 using MediatR;
 
 namespace backend.Application.InternShips.Commands.CreateInternShip;
 public class CreateInternShipCommand:IRequest
 {
-    public InternShipCreateDto Dto { get; set; }
+    public string SchoolYear { get; set; }
+    public int UnitId { get; set; }
+    public int MaxCountOfStudents { get; set; }
+    public int CurrentCountOfStudents { get; set; }
+    public TrainingType TrainingType { get; set; }
+
+
+    public IList<LocationDto> Locations { get; set; }
+    public IList<TranslationCreateInternshipDto> Versions { get; set; }
 }
 public class CreateInternShipCommandHandler : AsyncRequestHandler<CreateInternShipCommand>
 {
@@ -23,23 +33,23 @@ public class CreateInternShipCommandHandler : AsyncRequestHandler<CreateInternSh
 
     protected async override Task Handle(CreateInternShipCommand request, CancellationToken cancellationToken)
     {
-        var convertedLocations = request.Dto.Locations.Select(x => new Location() { City = x.City, HouseNumber = x.Housenumber, Id = x.Id, StreetName = x.Streetname, ZipCode = x.Zipcode }).ToList();
+        var convertedLocations = request.Locations.Select(x => new Location() { City = x.City, HouseNumber = x.Housenumber, Id = x.Id, StreetName = x.Streetname, ZipCode = x.Zipcode }).ToList();
         _dbContext.Locations.AttachRange(convertedLocations);
-        var result = await _dbContext.InternShips.AddAsync(new() { MaxStudents = request.Dto.MaxCountOfStudents, RequiredTrainingType = request.Dto.TrainingType, Locations= convertedLocations, SchoolYear = request.Dto.SchoolYear, UnitId = request.Dto.UnitId,CurrentCountOfStudents=request.Dto.CurrentCountOfStudents });
+        var result = await _dbContext.InternShips.AddAsync(new() { MaxStudents = request.MaxCountOfStudents, RequiredTrainingType = request.TrainingType, Locations= convertedLocations, SchoolYear = request.SchoolYear, UnitId = request.UnitId,CurrentCountOfStudents=request.CurrentCountOfStudents });
         result.Entity.Translations = new List<InternShipContentTranslation>();
-        for (int i = 0; i < request.Dto.Versions.Count; i++)
+        for (int i = 0; i < request.Versions.Count; i++)
         {
             result.Entity.Translations.Add(new()
             {
                 InternShipId = result.Entity.Id,
-                Comment = request.Dto.Versions[i].Comment,
-                Description = request.Dto.Versions[i].Description,
-                Content = request.Dto.Versions[i].Content,
-                KnowledgeToDevelop = request.Dto.Versions[i].KnowledgeToDevelop,
-                NeededKnowledge = request.Dto.Versions[i].NeededKnowledge,
-                TitleContent = request.Dto.Versions[i].TitleContent,
-                Location= request.Dto.Versions[i].Location,
-                LanguageId = request.Dto.Versions[i].LanguageId,
+                Comment = request.Versions[i].Comment,
+                Description = request.Versions[i].Description,
+                Content = request.Versions[i].Content,
+                KnowledgeToDevelop = request.Versions[i].KnowledgeToDevelop,
+                NeededKnowledge = request.Versions[i].NeededKnowledge,
+                TitleContent = request.Versions[i].TitleContent,
+                Location= request.Versions[i].Location,
+                LanguageId = request.Versions[i].LanguageId,
                 
             });
         }
