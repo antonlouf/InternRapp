@@ -26,6 +26,7 @@ public class GetAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<UnitLis
 
     public async Task<PagedList<UnitListDto>> Handle(GetAllQuery request, CancellationToken cancellationToken)
     {
+        
         var queryable = _dbContext.Departments.AsQueryable();
         if (request.UnitName!=null&&request.UnitName != "")
         {

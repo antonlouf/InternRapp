@@ -23,6 +23,7 @@ public class InternShipController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] InternShipCreateDto dto)
     {
+
         await _mediator.Send(new CreateInternShipCommand() 
         { 
             CurrentCountOfStudents=dto.CurrentCountOfStudents,

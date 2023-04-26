@@ -1,6 +1,8 @@
-﻿namespace WebUI.Contracts;
+﻿using WebUI.BaseContracts;
 
-public class LocationFilterAndPaginationDto
+namespace WebUI.Contracts;
+
+public class LocationFilterAndPaginationDto:IPageable
 {
     public int PageIndex { get; set; }
     public int PageSize { get; set; }

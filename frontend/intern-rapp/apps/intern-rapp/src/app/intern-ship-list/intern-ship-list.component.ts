@@ -59,7 +59,7 @@ import { DepartementItemWithMinimalData } from '../entities/depItemWithMinimalDa
   ],
   templateUrl: './intern-ship-list.component.html',
   styleUrls: ['./intern-ship-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class InternShipListComponent
   extends BaseList<InternshipItem>

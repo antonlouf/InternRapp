@@ -1,8 +1,10 @@
-﻿namespace WebUI.Contracts;
+﻿using WebUI.BaseContracts;
 
-public class LanguageFilterAndPaginationDto
+namespace WebUI.Contracts;
+
+public class LanguageFilterAndPaginationDto : IPageable
 {
-    public int PageIndex { get; set; }
-    public int PageSize { get; set; }
     public string LanguageCode { get; set; }
+    public int PageIndex { get ; set ; }
+    public int PageSize { get; set ; }
 }

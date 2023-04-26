@@ -7,6 +7,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using backend.Application.Common.Interfaces;
 using backend.Application.Common.Paging;
+using backend.Application.InternShips.Queries.GetAllInternShips;
 using backend.Application.Units.Queries.GetAllUnits;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,7 @@ public class GetAllQueryHandler : IRequestHandler<GetAllQuery,PagedList<UnitList
 
     public async Task<PagedList<UnitListDtoWithMinimalData>> Handle(GetAllQuery request, CancellationToken cancellationToken)
     {
+
         var queryable = _dbContext.Departments.AsQueryable();
         if (request.UnitName != null && request.UnitName != "")
         {

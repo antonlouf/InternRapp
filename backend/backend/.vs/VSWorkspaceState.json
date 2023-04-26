@@ -4,14 +4,13 @@
     "\\src",
     "\\src\\Application",
     "\\src\\Application\\InternShips",
+    "\\src\\Application\\InternShips\\Common",
     "\\src\\Application\\InternShips\\Queries",
-    "\\src\\Application\\InternShips\\Queries\\GetAllInternShips",
+    "\\src\\Application\\InternShips\\Queries\\GetInternShipsById",
     "\\src\\Application\\Units",
-    "\\src\\Application\\Units\\Commands",
-    "\\src\\Application\\Units\\Commands\\CreateUnit",
-    "\\src\\Application\\Units\\Commands\\UpdateUnit",
-    "\\unit tests"
+    "\\src\\Application\\Units\\Queries",
+    "\\src\\Application\\Units\\Queries\\GetAllUnitsWithMinimalInfo"
   ],
-  "SelectedNode": "\\src\\Application\\Units\\Commands\\UpdateUnit\\UpdateUnitCommandValidator.cs",
+  "SelectedNode": "\\src\\Application\\InternShips\\Queries\\getFilteredInternShip\\GetFilteredQuery.cs",
   "PreviewInSolutionExplorer": false
 }

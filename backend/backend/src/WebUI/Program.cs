@@ -4,6 +4,7 @@ using backend.Application.Common.Exceptions;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using WebUI.ExceptionFilters;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +16,11 @@ builder.Services.AddApplicationServices();
 builder.Services.AddWebUIServices();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddControllers();
+builder.Services.AddScoped<GlobalExceptionFilter>();
+builder.Services.AddControllers(opt =>
+{
+    opt.Filters.Add(new GlobalExceptionFilter());
+});
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "cors",
@@ -85,7 +90,7 @@ app.Use(async (context, next) =>
     }
     catch(Exception ex)
     {
-        context.Response.StatusCode = 500;
+         context.Response.StatusCode = 500;
         await context.Response.WriteAsJsonAsync("some error happened during processing");
     }
 });
