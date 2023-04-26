@@ -72,11 +72,11 @@ export class UnitListComponent
   }
 
   private popUpConfig = {
-    width: '400px',
+    width: '500px',
     closeOnNavigation: true,
     disableClose: false,
     hasBackdrop: true,
-    position: { top: '250px', right: '500px' },
+    position: { top: '250px', right: '1200px' },
   };
   getGridItems$(
     paginationFilterRequest: PaginationFilterRequest

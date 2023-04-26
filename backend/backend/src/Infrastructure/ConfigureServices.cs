@@ -1,28 +1,28 @@
 ﻿using backend.Application.Common.Interfaces;
 using backend.Infrastructure.Persistence;
-using backend.Infrastructure.Services;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
+using backend.Infrastructure.Persistence.ConfigOptions;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace Microsoft.Extensions.DependencyInjection;
 public static class ConfigureServices
 {
-    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IOptions<DatabaseConfigOption> dbConfig)
     {
        
-        if (configuration.GetValue<bool>("UseInMemoryDatabase"))
-        {
+        //if (configuration.GetValue<bool>("UseInMemoryDatabase"))
+        //{
+        //    services.AddDbContext<ApplicationDbContext>(options =>
+        //        options.UseSqlServer(configuration.GetConnectionString("default")));
+        //}
+        //else
+        //{
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("default")));
-        }
-        else
-        {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("Default"),
+                options.UseSqlServer(dbConfig.Value.ConnectionString,
                     builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
-        }
+        //}//
         //services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
         services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 

@@ -204,7 +204,7 @@ export class DepartmentAddPopupComponent implements OnInit,OnDestroy {
                 buildFormGroupForTranslations(
                   undefined,
                   data !== undefined ? data.id : undefined,
-                  data !== undefined ? data.name?.toString() : undefined
+                  data !== undefined ? data.code?.toString() : undefined
                 )
               );
             })

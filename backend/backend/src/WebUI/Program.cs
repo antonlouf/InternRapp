@@ -1,16 +1,18 @@
 using System.Globalization;
 using backend.Application;
 using backend.Application.Common.Exceptions;
+using backend.Infrastructure.Persistence.ConfigOptions;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using WebUI.ExceptionFilters;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices();
 
 builder.Services.AddWebUIServices();
@@ -30,6 +32,11 @@ builder.Services.AddCors(options =>
                                               ).AllowCredentials().AllowAnyMethod().AllowAnyHeader();
                       });
 });
+
+builder.Services.Configure<DatabaseConfigOption>(builder.Configuration.GetSection("ConnectionStrings"));
+
+builder.Services.AddInfrastructureServices(Options.Create(builder.Configuration.GetSection("ConnectionStrings").Get<DatabaseConfigOption>()));
+
 builder.Services.AddLocalization(opt =>
 {
     opt.ResourcesPath = "Resources";

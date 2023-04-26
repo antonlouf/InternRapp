@@ -40,7 +40,7 @@ export class LocationListComponent extends BaseList<LocationItem> {
    closeOnNavigation:true,
    disableClose:false,
    hasBackdrop:true,
-   position:{top:'150px',right:'500px'}
+   position:{top:'150px',right:'1200px'}
   }
 
   //Locations ophalen met filter 

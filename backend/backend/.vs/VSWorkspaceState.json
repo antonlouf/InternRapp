@@ -3,14 +3,16 @@
     "",
     "\\src",
     "\\src\\Application",
-    "\\src\\Application\\InternShips",
-    "\\src\\Application\\InternShips\\Common",
-    "\\src\\Application\\InternShips\\Queries",
-    "\\src\\Application\\InternShips\\Queries\\GetInternShipsById",
-    "\\src\\Application\\Units",
-    "\\src\\Application\\Units\\Queries",
-    "\\src\\Application\\Units\\Queries\\GetAllUnitsWithMinimalInfo"
+    "\\src\\Application\\Languages",
+    "\\src\\Application\\Languages\\Commands",
+    "\\src\\Application\\Languages\\Commands\\DeleteLanguage",
+    "\\src\\Infrastructure",
+    "\\src\\Infrastructure\\Persistence",
+    "\\src\\Infrastructure\\Persistence\\ConfigOptions",
+    "\\src\\WebUI",
+    "\\src\\WebUI\\Controllers",
+    "\\unit tests"
   ],
-  "SelectedNode": "\\src\\Application\\InternShips\\Queries\\getFilteredInternShip\\GetFilteredQuery.cs",
+  "SelectedNode": "\\src\\WebUI\\Controllers\\InternShipController.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -42,7 +42,7 @@ export class LanguageListComponent extends BaseList<LanguageItem> implements OnI
    closeOnNavigation:true,
    disableClose:false,
    hasBackdrop:true,
-   position:{top:'250px',right:'500px'}
+   position:{top:'250px',right:'1200px'}
   }
   getGridItems$(paginationFilterRequest: PaginationFilterRequest): Observable<ResourceItemPagingResponse<LanguageItem>> {
     return this.languageService.filterAndPaginateLanguages(paginationFilterRequest)
