@@ -38,7 +38,7 @@ public class GetAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<Languag
             queryable = queryable.Where(x => x.Code.StartsWith(request.LanguageCode));
             
         }
-        return await PagedList<LanguageListDto>.ToPagedList(queryable.ProjectTo<LanguageListDto>(_iMapper.ConfigurationProvider), request.PageIndex, request.PageSize);
+        return await PagedList<LanguageListDto>.ToPagedList(queryable.ProjectTo<LanguageListDto>(_iMapper.ConfigurationProvider).AsNoTracking(), request.PageIndex, request.PageSize);
 
     }
 }

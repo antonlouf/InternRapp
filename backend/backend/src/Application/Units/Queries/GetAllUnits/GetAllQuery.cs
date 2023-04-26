@@ -4,7 +4,7 @@ using AutoMapper.QueryableExtensions;
 using backend.Application.Common.Interfaces;
 using backend.Application.Common.Paging;
 using MediatR;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Application.Units.Queries.GetAllUnits;
 public class GetAllQuery : IRequest<PagedList<UnitListDto>>
@@ -32,7 +32,7 @@ public class GetAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<UnitLis
         {
            queryable = queryable.Where(x => x.Name.StartsWith(request.UnitName));
         }     
-        return  await PagedList<UnitListDto>.ToPagedList(queryable.ProjectTo<UnitListDto>(_iMapper.ConfigurationProvider), request.PageIndex, request.PageSize);
+        return  await PagedList<UnitListDto>.ToPagedList(queryable.ProjectTo<UnitListDto>(_iMapper.ConfigurationProvider).AsNoTracking(), request.PageIndex, request.PageSize);
         
     }
 }

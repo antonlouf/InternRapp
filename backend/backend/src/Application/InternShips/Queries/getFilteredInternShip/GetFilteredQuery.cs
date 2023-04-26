@@ -47,7 +47,7 @@ public class GetFilteredInterShipsQueryHandler : IRequestHandler<GetFilteredQuer
             .Where(internschip => (request.UnitIds == null || request.UnitIds.Count == 0 || request.UnitIds.Contains(internschip.UnitId))
                 && (request.SchoolYear == null || request.SchoolYear.Count == 0 || request.SchoolYear.Contains(internschip.SchoolYear))
                 && (request.LanguageIds == null || request.LanguageIds.Count == 0 || internschip.Translations.Any(trnsl => request.LanguageIds.Contains(trnsl.LanguageId))))
-            .ProjectTo<InternShipListDto>(_iMapper.ConfigurationProvider), request.PageIndex, request.PageSize);
+            .ProjectTo<InternShipListDto>(_iMapper.ConfigurationProvider).AsNoTracking(), request.PageIndex, request.PageSize);
     }
 
 }

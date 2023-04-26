@@ -37,7 +37,7 @@ public class GetAllQueryHandler : IRequestHandler<GetAllQuery,PagedList<UnitList
         {
             queryable = queryable.Where(x => x.Name.StartsWith(request.UnitName));
         }
-        return await PagedList<UnitListDtoWithMinimalData>.ToPagedList(queryable.ProjectTo<UnitListDtoWithMinimalData>(_iMapper.ConfigurationProvider), request.PageIndex, request.PageSize);
+        return await PagedList<UnitListDtoWithMinimalData>.ToPagedList(queryable.ProjectTo<UnitListDtoWithMinimalData>(_iMapper.ConfigurationProvider).AsNoTracking(), request.PageIndex, request.PageSize);
 
     }
 }

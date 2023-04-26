@@ -9,6 +9,7 @@ using backend.Application.Common.Interfaces;
 using backend.Application.Common.Paging;
 using backend.Application.InternShips.Common;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Application.Locations.Queries.GetAllLocations;
 public class GetAllQuery:IRequest<PagedList<LocationDto>> 
@@ -36,6 +37,6 @@ public class getAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<Locatio
         {
                 queryable = queryable.Where(x => x.City.StartsWith(request.City));
         }
-        return await PagedList<LocationDto>.ToPagedList(queryable.ProjectTo<LocationDto>(_iMapper.ConfigurationProvider), request.PageIndex, request.PageSize);
+        return await PagedList<LocationDto>.ToPagedList(queryable.ProjectTo<LocationDto>(_iMapper.ConfigurationProvider).AsNoTracking(), request.PageIndex, request.PageSize);
     }
 }

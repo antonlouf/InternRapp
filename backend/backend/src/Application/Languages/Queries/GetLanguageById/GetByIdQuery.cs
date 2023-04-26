@@ -28,6 +28,6 @@ public class GetAllQueryHandler : IRequestHandler<GetByIdQuery, LanguageMinimalD
 
     public async Task<LanguageMinimalDataDto> Handle(GetByIdQuery request, CancellationToken cancellationToken)
     {
-        return await _dbContext.Languages.Where(x=>x.Id==request.Dto.Id).ProjectTo<LanguageMinimalDataDto>(_iMapper.ConfigurationProvider).SingleOrDefaultAsync();
+        return await _dbContext.Languages.Where(x=>x.Id==request.Dto.Id).ProjectTo<LanguageMinimalDataDto>(_iMapper.ConfigurationProvider).AsNoTracking().SingleOrDefaultAsync();
     }
 }

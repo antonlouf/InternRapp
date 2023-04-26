@@ -29,7 +29,7 @@ public class GetByIdQueryHandler : IRequestHandler<GetByIdQuery, InternShipDto>
     public async Task<InternShipDto> Handle(GetByIdQuery request, CancellationToken cancellationToken)
     {
    
-        var result= await _dbContext.InternShips.Where(x => x.Id == request.Id).Select(x=>new InternShipDto()).ProjectTo<InternShipDto>(_iMapper.ConfigurationProvider).SingleOrDefaultAsync();
+        var result= await _dbContext.InternShips.Where(x => x.Id == request.Id).Select(x=>new InternShipDto()).ProjectTo<InternShipDto>(_iMapper.ConfigurationProvider).AsNoTracking().SingleOrDefaultAsync();
         return result;
     }
 }

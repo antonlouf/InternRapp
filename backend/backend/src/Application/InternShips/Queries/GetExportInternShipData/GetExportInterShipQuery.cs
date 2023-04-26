@@ -35,6 +35,6 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
            .Where(internschip => (request.Dto.UnitId == null || request.Dto.UnitId.Count == 0 || request.Dto.UnitId.Contains(internschip.UnitId))
                && (request.Dto.SchoolYear == null || request.Dto.SchoolYear.Count == 0 || request.Dto.SchoolYear.Contains(internschip.SchoolYear))
                && (request.Dto.LanguageId == null || request.Dto.LanguageId.Count == 0 || internschip.Translations.Any(trnsl => request.Dto.LanguageId.Contains(trnsl.LanguageId))))
-           .ProjectTo<InternShipListDto>(_iMapper.ConfigurationProvider).ToListAsync();
+           .ProjectTo<InternShipListDto>(_iMapper.ConfigurationProvider).AsNoTracking().ToListAsync();
     }
 }
