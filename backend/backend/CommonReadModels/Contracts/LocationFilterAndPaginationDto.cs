@@ -1,6 +1,6 @@
-﻿using WebUI.BaseContracts;
+﻿using CommonReadModels.BaseContracts;
 
-namespace WebUI.Contracts;
+namespace CommonReadModels.Contracts;
 
 public class LocationFilterAndPaginationDto:IPageable
 {

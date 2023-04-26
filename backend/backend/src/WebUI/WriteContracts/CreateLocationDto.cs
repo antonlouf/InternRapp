@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AutoMapper;
-using backend.Application.Common.Mappings;
-using backend.Application.InternShips.Common;
-using backend.Domain.Entities;
 
-namespace backend.Application.Locations.Commands.CreateLocation;
+
+namespace CommonReadModels.Contracts;
 public class CreateLocationDto
 {
     public string city { get; set; }

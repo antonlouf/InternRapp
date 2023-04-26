@@ -232,3 +232,5 @@ C:\Users\RGTCP77\project\InternRApp\backend\backend\src\WebUI\obj\Debug\net7.0\r
 C:\Users\RGTCP77\project\InternRApp\backend\backend\src\WebUI\obj\Debug\net7.0\WebUI.pdb
 C:\Users\RGTCP77\project\InternRApp\backend\backend\src\WebUI\obj\Debug\net7.0\WebUI.genruntimeconfig.cache
 C:\Users\RGTCP77\project\InternRApp\backend\backend\src\WebUI\obj\Debug\net7.0\ref\WebUI.dll
+C:\Users\RGTCP77\project\InternRApp\backend\backend\src\WebUI\bin\Debug\net7.0\CommonReadModels.dll
+C:\Users\RGTCP77\project\InternRApp\backend\backend\src\WebUI\bin\Debug\net7.0\CommonReadModels.pdb

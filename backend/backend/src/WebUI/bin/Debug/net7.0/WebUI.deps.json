@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v7.0": {
       "WebUI/1.0.0": {
         "dependencies": {
+          "CommonReadModels": "1.0.0",
           "DocX": "2.4.0",
           "FluentValidation.AspNetCore": "10.3.4",
           "Microsoft.AspNetCore.ApiAuthorization.IdentityServer": "7.0.0-rc.2.22476.2",
@@ -1067,6 +1068,11 @@
           "backend.Infrastructure.dll": {}
         }
       },
+      "CommonReadModels/1.0.0": {
+        "runtime": {
+          "CommonReadModels.dll": {}
+        }
+      },
       "backend.Application.Reference/1.0.0.0": {
         "runtime": {
           "backend.Application.dll": {
@@ -1887,6 +1893,11 @@
       "sha512": ""
     },
     "backend.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CommonReadModels/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

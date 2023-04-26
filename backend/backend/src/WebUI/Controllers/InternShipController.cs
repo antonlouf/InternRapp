@@ -2,7 +2,6 @@
 using backend.Application.InternShips.Commands.CreateInternShip;
 using backend.Application.InternShips.Commands.DeleteInternship;
 using backend.Application.InternShips.Commands.UpdateInternShip;
-using backend.Application.InternShips.Queries.GetAllInternShips;
 using backend.Application.InternShips.Queries.GetExportInternShipData;
 using backend.Application.InternShips.Queries.getFilteredInternShip;
 using backend.Application.InternShips.Queries.GetInternShipById;

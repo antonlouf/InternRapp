@@ -9,8 +9,7 @@ using backend.Application.Languages.Commands.UpdateLanguage;
 using backend.Application.Locations.Commands.UpdateLocation;
 using backend.Application.Languages.Commands.DeleteLanguage;
 using backend.Application.Locations.Commands.DeleteLocation;
-using WebUI.Contracts;
-
+using CommonReadModels.Contracts;
 namespace WebUI.Controllers;
 [ApiController]
 [Route("/api/[Controller]")]

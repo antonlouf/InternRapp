@@ -1,4 +1,4 @@
-﻿namespace WebUI.Contracts;
+﻿namespace CommonReadModels.Contracts;
 
 public class UpdateLanguageDto 
 {

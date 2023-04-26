@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GetAllQueryMinimal = backend.Application.Units.Queries.GetAllUnitsWithMinimalInfo.GetAllQuery;
 using GetAllQuery = backend.Application.Units.Queries.GetAllUnits.GetAllQuery;
+using CommonReadModels.Contracts;
 
 namespace WebUI.Controllers;
 [ApiController]

@@ -9,7 +9,7 @@ using backend.Application.Languages.Queries.GetAllLanguages;
 using backend.Application.Languages.Queries.GetLanguageById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using WebUI.Contracts;
+using CommonReadModels.Contracts;
 
 namespace WebUI.Controllers;
 [ApiController]

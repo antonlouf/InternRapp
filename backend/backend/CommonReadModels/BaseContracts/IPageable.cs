@@ -1,4 +1,4 @@
-﻿namespace WebUI.BaseContracts;
+﻿namespace CommonReadModels.BaseContracts;
 
 public interface IPageable
 {
