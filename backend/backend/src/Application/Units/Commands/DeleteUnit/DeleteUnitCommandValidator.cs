@@ -15,8 +15,7 @@ public class DeleteUnitCommandValidator:AbstractValidator<DeleteUnitCommand>
     {
         this.CascadeMode = CascadeMode.Stop;
         _dbContext = dbContext;
-        var validator = new ValidationFunctions(_dbContext);
-        RuleFor(x => x.Id).GreaterThan(0).MustAsync(validator.CheckIfUnitIdExists).WithMessage("Make sure you are submitting a valid id");
+       
     }
 
 

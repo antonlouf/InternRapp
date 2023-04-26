@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using backend.Application.Common.Interfaces;
-using backend.Application.Locations.Common;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,13 +16,12 @@ public class UpdateLocationCommandValidator:AbstractValidator<UpdateLocationComm
     {
         this.CascadeMode = CascadeMode.Stop;
         _dbContext = dbContext;
-        var validator = new Validator(_dbContext);
+
 
         RuleFor(x => x).NotEmpty().NotNull(); //Nodig?
-        RuleFor(x => x.Dto.Id).NotNull().NotEmpty().MustAsync(validator.DoesIdExists);
-        RuleFor(x => x.Dto.City).NotNull().NotEmpty();
-        RuleFor(x => x.Dto.Housenumber).NotNull().NotEmpty();
-        RuleFor(x => x.Dto.Zipcode).NotNull().NotEmpty();
+        RuleFor(x => x.City).NotNull().NotEmpty();
+        RuleFor(x => x.Housenumber).NotNull().NotEmpty();
+        RuleFor(x => x.Zipcode).NotNull().NotEmpty();
     }
 
     private async Task<bool> IsNameUnique(string arg1, CancellationToken arg2)

@@ -11,10 +11,10 @@ public class CreateLocationValidator:AbstractValidator<CreateLocationCommand>
     public CreateLocationValidator()
     {
         this.CascadeMode = CascadeMode.Stop;
-        RuleFor(x => x.LocationDto.city).NotNull().NotEmpty();
-        RuleFor(x => x.LocationDto.streetname).NotNull().NotEmpty();
-        RuleFor(x => x.LocationDto.housenumber).NotNull().NotEmpty();
-        //.Must(x => x.GetType() == typeof(int)); 
-        RuleFor(x => x.LocationDto.zipcode).NotNull().NotEmpty();
+        RuleFor(x => x.city).NotNull().NotEmpty();
+        RuleFor(x => x.streetname).NotNull().NotEmpty();
+        RuleFor(x => x.housenumber).NotNull().NotEmpty();
+        //.Must(x => x.GetType= typeof(int)); 
+        RuleFor(x => x.zipcode).NotNull().NotEmpty();
     }
 }

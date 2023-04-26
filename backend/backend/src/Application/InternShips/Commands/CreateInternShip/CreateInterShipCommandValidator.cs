@@ -21,9 +21,8 @@ public class CreateInterShipCommandValidator : AbstractValidator<CreateInternShi
         RuleFor(x => x.SchoolYear).NotNull().NotEmpty().Must(validator.IsValidSchoolYear);
         RuleFor(x => x.Locations).NotNull();
         RuleFor(x => x.TrainingType).IsInEnum();
+        RuleFor(x => x.Versions).NotEmpty().NotNull().Must(ValidationFunctions.IsVersionValid);
         RuleFor(x => x.CurrentCountOfStudents).GreaterThanOrEqualTo(0).LessThanOrEqualTo(x => x.MaxCountOfStudents);
-        RuleFor(x => x.Versions).NotEmpty().NotNull().Must(ValidationFunctions.IsVersionValid).MustAsync(validator.CheckIfLanguageIdExists);
-        RuleFor(x => x.UnitId).NotNull().NotEmpty().MustAsync(validator.CheckIfUnitIdExists);
     }
     
 }

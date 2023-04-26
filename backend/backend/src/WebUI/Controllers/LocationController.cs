@@ -33,13 +33,13 @@ public class LocationController: ControllerBase
     [HttpPost()]
     public async Task<IActionResult> PostLocation(CreateLocationDto location)
     {
-        await _mediator.Send(new CreateLocationCommand() { LocationDto = location });
+        await _mediator.Send(new CreateLocationCommand() { city=location.city,housenumber=location.housenumber,streetname=location.streetname,zipcode=location.zipcode });
         return Ok();
     }
     [HttpPatch()]
-    public async Task<IActionResult> UpdateLocation(LocationDto dto)
+    public async Task<IActionResult> UpdateLocation(UpdateLocationDto dto)
     {
-        await _mediator.Send(new UpdateLocationCommand() { Dto = dto });
+        await _mediator.Send(new UpdateLocationCommand() { Id=dto.Id,City=dto.City,Housenumber=dto.Housenumber,Streetname=dto.Streetname });
         return Ok();
     }
     [HttpDelete()]

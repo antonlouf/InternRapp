@@ -11,7 +11,11 @@ using Microsoft.EntityFrameworkCore;
 namespace backend.Application.Locations.Commands.UpdateLocation;
 public class UpdateLocationCommand : IRequest
 {
-    public LocationDto Dto { get; set; }
+    public int Id { get; set; }
+    public string City { get; set; }
+    public string Streetname { get; set; }
+    public int Housenumber { get; set; }
+    public string Zipcode { get; set; }
 }
 
 public class UpdateLocationCommandHandler : AsyncRequestHandler<UpdateLocationCommand>
@@ -25,11 +29,11 @@ public class UpdateLocationCommandHandler : AsyncRequestHandler<UpdateLocationCo
 
     protected override async Task Handle(UpdateLocationCommand request, CancellationToken cancellationToken)
     {
-        var location = await _dbContext.Locations.Where(x => x.Id == request.Dto.Id).FirstOrDefaultAsync();
-        location.City = request.Dto.City;
-        location.StreetName = request.Dto.Streetname;
-        location.HouseNumber = request.Dto.Housenumber;
-        location.ZipCode = request.Dto.Zipcode;
+        var location = await _dbContext.Locations.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+        location.City = request.City;
+        location.StreetName = request.Streetname;
+        location.HouseNumber = request.Housenumber;
+        location.ZipCode = request.Zipcode;
 
         _dbContext.Locations.Update(location);
 

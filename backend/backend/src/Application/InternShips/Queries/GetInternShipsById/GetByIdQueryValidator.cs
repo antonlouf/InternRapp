@@ -20,10 +20,7 @@ public class GetByIdQueryValidator:AbstractValidator<GetByIdQuery>
     public GetByIdQueryValidator(IApplicationDbContext dbContext, IMediator mediator)
     {
         _dbContext = dbContext;
-        _mediator = mediator;
-        var validator = new ValidationFunctions( _dbContext);
-        RuleFor(x => x.Id).NotEmpty().NotNull().GreaterThan(0).MustAsync(validator.CheckIfInternShipIdExists).WithMessage("Make sure you are giving an existing ID!(also greater than 0)");
-
+        
     }
 
 

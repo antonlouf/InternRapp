@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using backend.Application.Common.Interfaces;
-using backend.Application.Languages.Common;
 using FluentValidation;
 
 namespace backend.Application.Languages.Commands.DeleteLanguage;
@@ -14,6 +13,5 @@ public class DeleteLanguageCommandValidator:AbstractValidator<DeleteLanguageComm
     public DeleteLanguageCommandValidator(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
-        RuleFor(x => x.Id).MustAsync(new Validator(_dbContext).DoesIdExists).WithMessage("this Id does not exists!!");
     }
 }

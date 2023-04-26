@@ -10,7 +10,10 @@ using MediatR;
 namespace backend.Application.Locations.Commands.CreateLocation;
 public class CreateLocationCommand: IRequest
 {
-    public CreateLocationDto LocationDto;
+    public string city { get; set; }
+    public string streetname { get; set; }
+    public int housenumber { get; set; }
+    public string zipcode { get; set; }
 }
 
 public class CreateLocationCommandHandler : AsyncRequestHandler<CreateLocationCommand>
@@ -25,10 +28,10 @@ public class CreateLocationCommandHandler : AsyncRequestHandler<CreateLocationCo
     protected override async Task Handle(CreateLocationCommand request, CancellationToken cancellationToken)
     {
         var entityTobeAdded = new Location() { 
-            City = request.LocationDto.city, 
-            StreetName = request.LocationDto.streetname, 
-            HouseNumber = request.LocationDto.housenumber, 
-            ZipCode = request.LocationDto.zipcode
+            City = request.city, 
+            StreetName = request.streetname, 
+            HouseNumber = request.housenumber, 
+            ZipCode = request.zipcode
         };
         await _dbContext.Locations.AddAsync(entityTobeAdded); 
         await _dbContext.SaveChangesAsync(cancellationToken);

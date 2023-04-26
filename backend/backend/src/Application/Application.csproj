@@ -23,6 +23,8 @@
     <ItemGroup>
       <Folder Include="Common\FileGenerators\" />
       <Folder Include="Common\Security\" />
+      <Folder Include="Languages\Common\" />
+      <Folder Include="Locations\Common\" />
     </ItemGroup>
 
     <ItemGroup>

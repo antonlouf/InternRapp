@@ -47,55 +47,7 @@ public class ValidationFunctions
         }
         return true;
     }
-    public async Task<bool> CheckIfLanguageIdExists(IList<TranslationCreateInternshipDto> dtos, CancellationToken arg2)
-    {
-        var languageIds = dtos.Select(x => x.LanguageId).ToList();
-        var countOfFounded=await _dbContext.Languages.Where(x => languageIds.Contains(x.Id)).CountAsync();
-        return countOfFounded == dtos.Count;
-    }
-    public async Task<bool> CheckIfLanguageIdExists(IList<TranslationUpdateInternshipDto> dtos, CancellationToken arg2)
-    {
-        var languageIds = dtos.Select(x => x.LanguageId).ToList();
-        var countOfFounded = await _dbContext.Languages.Where(x => languageIds.Contains(x.Id)).CountAsync();
-        return countOfFounded == dtos.Count;
-    }
-    public async Task<bool> CheckIfLocationIdExists(int[] arg1, CancellationToken arg2)
-    {
-        //should later be placed inside the getbyidquery of locations this is just temporary
-        foreach (var item in arg1)
-        {
-            var result = await _dbContext.Locations.Where(x => x.Id == item).ToListAsync();
-            if(result==null) return false;
-        }
-      
-        return true;
-    }
-
-    public async Task<bool> CheckIfUnitIdExists(int arg1, CancellationToken arg2)
-    {
-        var result = await _dbContext.Departments.FirstOrDefaultAsync(x => x.Id == arg1);
-        return result != null;
-    }
-    public async Task<bool> CheckIfInternShipIdExists(int arg1, CancellationToken arg2)
-    {
-        var result = await _dbContext.InternShips.FirstOrDefaultAsync(x => x.Id == arg1);
-        return result != null;
-    }
-    public async Task<bool> CheckIfTranslationIdExists(int arg1, CancellationToken arg2)
-    {
-        var result = await _dbContext.Translations.FirstOrDefaultAsync(x => x.Id == arg1);
-        return result != null;
-    }
-    public async Task<bool> CheckIfTranslationIdExists(List<TranslationUpdateInternshipDto> dto, CancellationToken arg2)
-    {
-        foreach (var item in dto)
-        {
-            var result = await _dbContext.Translations.FirstOrDefaultAsync(x => x.LanguageId == item.LanguageId);
-            if (result == null) return false;
-        }
-
-        return true;
-    }
+ 
     public bool IsValidSchoolYear(string arg)
     {
         var currentYear = DateTime.UtcNow.Year;

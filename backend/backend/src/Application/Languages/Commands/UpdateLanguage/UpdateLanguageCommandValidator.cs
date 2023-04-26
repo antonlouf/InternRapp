@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using backend.Application.Common.Interfaces;
-using backend.Application.Languages.Common;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,10 +15,7 @@ public class UpdateLanguageCommandValidator:AbstractValidator<UpdateLanguageComm
     public UpdateLanguageCommandValidator(IApplicationDbContext dbContext)
     {
         this.CascadeMode = CascadeMode.Stop;
-        _dbContext = dbContext;
-        var validator = new Validator(_dbContext);
         RuleFor(x => x).MustAsync(IsUniqueLanguage).NotEmpty().NotNull();
-        RuleFor(x => x.Id).NotNull().NotEmpty().MustAsync(validator.DoesIdExists);
         RuleFor(x => x.Name).NotNull().NotEmpty().WithMessage("there is already an existing language");
     }
 

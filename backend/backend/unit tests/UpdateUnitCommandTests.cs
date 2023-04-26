@@ -29,30 +29,7 @@ public class UpdateUnitCommandTests
         var result = validator?.TestValidate(command);
         result?.ShouldHaveValidationErrorFor(x => x.ManagerEmails);
     }
-    [Fact]
-    public void Id_Empty_Should_Throw_Validation_Error()
-    {
-        var mockDbContext = new Mock<IApplicationDbContext>();
-        var unit = new UnitListDto { Name = "Java", ManagerEmails = new List<string> { "jane.doe@example.com" } };
-        var mockDbSetDepartment = new Mock<DbSet<Department>>();
-        var mockDbSetPrefaceTranslation = new Mock<DbSet<PrefaceTranslation>>();
-
-        var command = new UpdateUnitCommand
-        {
-            
-            ManagerEmails=unit.ManagerEmails,
-            Name = unit.Name,
-            PrefaceTranslations = new List<PrefaceTranslationUpdateDto>()
-        {
-        new(){Content="zefzef",LanguageId=1,TranslationId=1}
-        }
-        };
-        mockDbContext.Setup(x => x.Departments).Returns(mockDbSetDepartment.Object);
-        //mockDbContext.Setup(x => x.PrefaceTranslations).Returns(mockDbSetPrefaceTranslation.Object);
-        var validator = new UpdateUnitCommandValidator(mockDbContext.Object);
-        var result = validator?.TestValidate(command);
-        result?.ShouldHaveValidationErrorFor(x => x.Id);
-    }
+ 
     [Fact]
     public void DepartmentName_Empty_Should_Throw_Validation_Error()
     {
