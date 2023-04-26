@@ -129,6 +129,9 @@
   <data name="addLanguageHeader" xml:space="preserve">
     <value>add a new language</value>
   </data>
+  <data name="addLocationHeader" xml:space="preserve">
+    <value>Add a location</value>
+  </data>
   <data name="Bachelor" xml:space="preserve">
     <value>Bachelor</value>
   </data>
@@ -205,13 +208,13 @@
     <value>language</value>
   </data>
   <data name="languageNameLabel" xml:space="preserve">
-    <value>language name</value>
+    <value>language </value>
   </data>
   <data name="languageNameRequiredErrorMessage" xml:space="preserve">
     <value>the language name is required</value>
   </data>
   <data name="locationCityLabel" xml:space="preserve">
-    <value>location city</value>
+    <value>city</value>
   </data>
   <data name="locationFieldEmptyMessage" xml:space="preserve">
     <value> select a location please</value>
@@ -220,10 +223,10 @@
     <value>location</value>
   </data>
   <data name="locationHouseNumberErrorMessage" xml:space="preserve">
-    <value>location house number is required</value>
+    <value> house number is required</value>
   </data>
   <data name="locationHouseNumberLabel" xml:space="preserve">
-    <value>location house number</value>
+    <value>house number</value>
   </data>
   <data name="locationLabel" xml:space="preserve">
     <value>location</value>
@@ -232,16 +235,16 @@
     <value>locations</value>
   </data>
   <data name="locationStreetNameLabel" xml:space="preserve">
-    <value>location street name</value>
+    <value> street name</value>
   </data>
   <data name="locationStreetRequiredErrorMessage" xml:space="preserve">
-    <value>location street name is required</value>
+    <value> street name is required</value>
   </data>
   <data name="locationZipCodeLabel" xml:space="preserve">
-    <value>location zipcode</value>
+    <value> zipcode</value>
   </data>
   <data name="locationZipCodeRequiredErrorMessage" xml:space="preserve">
-    <value>location zipcode is required</value>
+    <value> zipcode is required</value>
   </data>
   <data name="managerEmail" xml:space="preserve">
     <value>manager email</value>

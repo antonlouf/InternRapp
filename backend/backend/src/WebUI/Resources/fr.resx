@@ -129,6 +129,9 @@
   <data name="addLanguageHeader" xml:space="preserve">
     <value>ajouter une nouvelle langue</value>
   </data>
+  <data name="addLocationHeader" xml:space="preserve">
+    <value>ajouter un lieu</value>
+  </data>
   <data name="Bachelor" xml:space="preserve">
     <value>Bachelier</value>
   </data>
@@ -205,7 +208,7 @@
     <value>langue</value>
   </data>
   <data name="languageNameLabel" xml:space="preserve">
-    <value>nom de la langue</value>
+    <value> la langue</value>
   </data>
   <data name="languageNameRequiredErrorMessage" xml:space="preserve">
     <value>le nom de la langue est obligatoire</value>
@@ -220,7 +223,7 @@
     <value>localisation</value>
   </data>
   <data name="locationHouseNumberLabel" xml:space="preserve">
-    <value>la localisation du numéro de maison</value>
+    <value> du numéro de maison</value>
   </data>
   <data name="locationLabel" xml:space="preserve">
     <value>emplacement</value>
@@ -229,13 +232,13 @@
     <value>Localisation des sites</value>
   </data>
   <data name="locationStreetNameLabel" xml:space="preserve">
-    <value>emplacement nom de la rue</value>
+    <value> nom de la rue</value>
   </data>
   <data name="locationStreetRequiredErrorMessage" xml:space="preserve">
     <value>le nom de la rue de l'emplacement est requis</value>
   </data>
   <data name="locationZipCodeLabel" xml:space="preserve">
-    <value>lieu code postal</value>
+    <value> code postal</value>
   </data>
   <data name="locationZipCodeRequiredErrorMessage" xml:space="preserve">
     <value>le code postal de la localité est requis</value>

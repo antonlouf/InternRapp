@@ -129,6 +129,9 @@
   <data name="addLanguageHeader" xml:space="preserve">
     <value>voeg een nieuwe taal toe</value>
   </data>
+  <data name="addLocationHeader" xml:space="preserve">
+    <value>een locatie toevoegen</value>
+  </data>
   <data name="Bachelor" xml:space="preserve">
     <value>Bachelor</value>
   </data>
@@ -205,7 +208,7 @@
     <value>taal</value>
   </data>
   <data name="languageNameLabel" xml:space="preserve">
-    <value>taal naam</value>
+    <value>taal</value>
   </data>
   <data name="languageNameRequiredErrorMessage" xml:space="preserve">
     <value>De taal is verplicht om in te vullen</value>
@@ -229,16 +232,16 @@
     <value>locaties</value>
   </data>
   <data name="locationStreetNameLabel" xml:space="preserve">
-    <value>locatie straatnaam </value>
+    <value> straatnaam </value>
   </data>
   <data name="locationStreetRequiredErrorMessage" xml:space="preserve">
-    <value>lcoatie straatnaam is verplicht </value>
+    <value> straatnaam is verplicht </value>
   </data>
   <data name="locationZipCodeLabel" xml:space="preserve">
-    <value>locatie postcode</value>
+    <value> postcode</value>
   </data>
   <data name="locationZipCodeRequiredErrorMessage" xml:space="preserve">
-    <value>lcoatie postcode is verplicht </value>
+    <value> postcode is verplicht </value>
   </data>
   <data name="managerEmail" xml:space="preserve">
     <value>email van manager</value>
