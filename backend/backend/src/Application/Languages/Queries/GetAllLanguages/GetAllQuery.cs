@@ -32,7 +32,7 @@ public class GetAllQueryHandler : IRequestHandler<GetAllQuery, PagedList<Languag
 
     public async Task<PagedList<LanguageListDto>> Handle(GetAllQuery request, CancellationToken cancellationToken)
     {
-        var queryable = _dbContext.Languages.AsQueryable().AsNoTracking();
+        var queryable = _dbContext.Languages.AsQueryable();
         if (request.LanguageCode != null && request.LanguageCode != "")
         {
             queryable = queryable.Where(x => x.Code.StartsWith(request.LanguageCode));
