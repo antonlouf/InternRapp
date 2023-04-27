@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ACADEMICT_DESCRIPTION" xml:space="preserve">
+    <value>Met hetacADDemICTJuniorTrackintroduceertRealdolmeneenuniekprogrammametfocus oppasafgestudeerden. DetermacADDemICTstaatvooreenpasafgestudeerdediegepassioneerdisdoorICT enlevenslangwilleren.ElkjaarinvesteertRealdolmenineenkleinaantalhighpotentials.Tijdenseen intensievetrainingsperiodevan 3maanden bereidtRealdolmenhenvoorop hetlevenvaneenprofessioneleICT Consultant.BijRealdolmenwetenweookdateencarrièremeerisdaneenaaneenschakelingvanverschillendejobs. Hetiseenvoortdurendgroeiprocesen hetverwezenlijkenvanjouwprofessioneleambitiesterwijljejouwkennisvanzakentendienstesteltvanRealdolmen.Hetisbelangrijktewetendat"doorgroeimogelijkheden”geenlozebeloftenzijnvoorons. Je carrière kanzowelverticaalalshorizontaalevolueren.Ookinondersteunendefunctiesof in BusinessDevelopmentkanjijbijdragentothetgroeipadvanRealdolmen.Sowiesowordjebegeleiddoorervarencoaches die jehelpendejuistekeuzestemakenenjewordtondersteunddooreengrootaanbodleermogelijkheden.</value>
+  </data>
+  <data name="ACADEMICT_TITLE" xml:space="preserve">
+    <value>acADDemICT Junior Track</value>
+  </data>
   <data name="addButton" xml:space="preserve">
     <value>nieuw</value>
   </data>
@@ -131,6 +137,24 @@
   </data>
   <data name="cancelButtonText" xml:space="preserve">
     <value>annuleer</value>
+  </data>
+  <data name="COMPANY_DESCRIPTION" xml:space="preserve">
+    <value>Inetum-Realdolmen  is  lid  van  de  EuropeseInetumGroep  en  bedient  met  ongeveer  1.950 hooggeschoolde medewerkers in de Benelux meer dan 1.000 klanten op strategisch, tactisch en operationeel ICT-vlak.Inetum-Realdolmen realiseert in elke samenwerking het potentieel van mensen en organisaties en streeft ernaar ICT menselijk te maken. We zijn gedreven door technologische innovaties, maar  doen  dat  op  het tempo  van  ieders  ambitie,  gericht  op  resultaat  en  met  fundamenteel effect.Dit alles onder het bedrijfsmotto “NewChallenges, NewIdeas”.We hebben een sterke lokale verankering in België met vestigingen in Huizingen, Kontich, Gent, LeuvenenLummen. Samen maken we deel uit van de internationaleInetumGroep, een van de best presterende bedrijven op het gebied van digitale en IT-dienstverlening in de sector. De InetumGroep heeft zijn hoofdzetel in Parijs en is vooral actief in Frankrijk, Spanje, Portugal en 17 andere landen binnen en buiten Europa.</value>
+  </data>
+  <data name="COMPANY_TITLE" xml:space="preserve">
+    <value>Inetum-Realdolmen</value>
+  </data>
+  <data name="COMPANY_VALUES_DESCRIPTION" xml:space="preserve">
+    <value>Onze waarden zijn meer dan loze woorden. Ze zijn de fundamenten waarop we bouwen om “EmployerofChoice” te zijn voor onze medewerkers. Ze zijn de rode draad doorheen alles wat we doen om succesvol en uitmuntend te zijn.AmbitionOur ambition is to reach further and higher every day and to do our utmost for our clients with passion.We are proud of our craftsmanship and shared successes. We value each other and care about personal growth in order to realize the potential of people and organizations.Team SpiritCooperation and enthusiasm define our success. We appreciate each other's participation and contribution.  We  stimulate  open  dialogue.  Our  organization  encourages  idea  and  knowledge sharing in a wide professional network.CommitmentWe make clear and realisticagreements, andkeep our promises.As engaged employees, we are  all  ambassadors,  committed  to  deliver  a  unique  and  positive  customer  experience.  We always take responsibility and focus on results.InnovationDriven by creativity, we work together with an open mind to meet the challenges of tomorrow. We  optimize  existing  processes  and  find  innovative  solutions.  Wecocreatein  an  agile  and pragmatic  way  with  our  colleagues  and  partners  to  help  our  clients  to  differentiate  in  their market.Social responsibilityFor  us,  it  is  all  about  people.  We  welcome  and  leverage  individual  differences.  We  promote diversity.  We  invest  in  education  programs  and  social  partnerships.We  are  driven  by  our commitment to sustainable development.</value>
+  </data>
+  <data name="COMPANY_VALUES_TITLE" xml:space="preserve">
+    <value>Waarden</value>
+  </data>
+  <data name="COMPANY_VISION_DESCRIPTION" xml:space="preserve">
+    <value>VisieIn delokalemarktenendomeinenwaarinweactiefzijn,willenwedereferentiezijninzakegeïntegreerdeoplossingendie degeheleICT-levenscyclusondersteunen.•Referentie:  de  preferentiële  en  betrouwbare  keuze  voor  klanten,  partners  en werknemers•Lokaal: nabijheid tot onze klanten in de Benelux•Geïntegreerde  oplossingen:  volledige  ICT-aanbod  dat  de  hele  levenscyclus bestrijkt, inclusief infrastructuur, toepassingen en communicatie•Gehele  ICT-levenscyclus:  het  ondersteunen  van  alle  plan-build-run  (design-deploy-maintain) activiteitenMissie“We make ICT work for your business&amp; make IT more human again”.</value>
+  </data>
+  <data name="COMPANY_VISION_TITLE" xml:space="preserve">
+    <value>Onze Visie &amp; Missie</value>
   </data>
   <data name="confirmDeleteMessage" xml:space="preserve">
     <value>bent u zeker om te verwijderen?</value>
