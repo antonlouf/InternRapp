@@ -63,9 +63,10 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
         //    && (request.Dto.SchoolYear == null || request.Dto.SchoolYear.Count == 0 || request.Dto.SchoolYear.Contains(internschip.SchoolYear))
         //    && (request.Dto.LanguageId == null || request.Dto.LanguageId.Count == 0 || internschip.Translations.Any(trnsl => request.Dto.LanguageId.Contains(trnsl.LanguageId))))
         //    .ProjectTo<InternShipExportDto>(_iMapper.ConfigurationProvider)
+
         //    .ToListAsync();
 
-        //maak compare methode in DepartmentDTO klasse 
+        ////maak compare methode in DepartmentDTO klasse
         //var units = internShips
         //    .GroupBy(x => x.Department, new UnitEqualityComparer())
         //    //x => x, 
@@ -82,7 +83,8 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
 
         }
 
-        return units; //new List<IGrouping<DepartmentDto, InternShipListDto>> { };
+        return units;
+               //return new List<IGrouping<DepartmentDto, InternShipListDto>> { };
     }
 }
 public class UnitEqualityComparer : IEqualityComparer<DepartmentDto>
@@ -107,7 +109,7 @@ public class UnitEqualityComparer : IEqualityComparer<DepartmentDto>
 
 public class Exporting
 {
-    public void GenerateWordDoc(List<IGrouping<DepartmentDto, InternShipListDto>> internshipList)
+    public void GenerateWordDoc(List<IGrouping<DepartmentDto, InternShipListDto>> internshipList, InternshipExportRequestDto requestDto)
     {   
         const string templatePath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\backend\lib\template.docx"; //-> docm
         const string resultPath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\backend\lib\internships.docx";
@@ -118,13 +120,10 @@ public class Exporting
         var body = document.MainDocumentPart!.Document.Body;
         var allElements = body!.Elements().ToList();
 
-
-
         //fetch data from Resource files 
         //change language code depending on request 
         var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetName().Name == "WebUI").ToList();
         ResourceManager rm = new ResourceManager($"WebUI.Resources.nl", Assembly.LoadFile(@$"{assemblies[0].Location}"));
-        //wegstappen van absolute path 
 
 
         if (File.Exists(resultPath))
@@ -136,14 +135,14 @@ public class Exporting
                  {
                      {"TEMPLATE_TITLE", rm.GetString("TEMPLATE_TITLE")},
                      {"TEMPLATE_YEAR", "2022-2023"},
-                     {"COMPANY_TITLE", "Inetum-Realdolmen"},
-                     {"COMPANY_DESCRIPTION", "title"},
-                     {"COMPANY_VISION_TITLE", "vision"},
-                     {"COMPANY_VISION_DESCRIPTION", "title"},
-                     {"COMPANY_VALUES_TITLE", "values"},
-                     {"COMPANY_VALUES_DESCRIPTION", "title"},
-                     {"ACADEMICT_TITLE", "accademict"},
-                     {"ACADEMICT_DESCRIPTION", "title"},
+                     {"COMPANY_TITLE", rm.GetString("COMPANY_TITLE")},
+                     {"COMPANY_DESCRIPTION", rm.GetString("COMPANY_DESCRIPTION") },
+                     {"COMPANY_VISION_TITLE", rm.GetString("COMPANY_VISION_TITLE")},
+                     {"COMPANY_VISION_DESCRIPTION", rm.GetString("COMPANY_VISION_DESCRIPTION")},
+                     {"COMPANY_VALUES_TITLE", rm.GetString("COMPANY_VALUES_TITLE")},
+                     {"COMPANY_VALUES_DESCRIPTION", rm.GetString("COMPANY_VALUES_DESCRIPTION")},
+                     {"ACADEMICT_TITLE", rm.GetString("ACADEMICT_TITLE")},
+                     {"ACADEMICT_DESCRIPTION", rm.GetString("ACADEMICT_DESCRIPTION")},
                  };
 
         ReplaceParagraphs(allElements, commonReplacements);
@@ -157,7 +156,7 @@ public class Exporting
         DeleteParagraphs(newElements, toDeleteStrings);
 
         //update index table 
-        //document.MainDocumentPart!.DocumentSettingsPart!.Settings.Append(new UpdateFieldsOnOpen() { Val = true }); //dit update de velden maar toont nog steeds een update dialog
+        document.MainDocumentPart!.DocumentSettingsPart!.Settings.Append(new UpdateFieldsOnOpen() { Val = true }); //dit update de velden maar toont nog steeds een update dialog
         //dit update de velden maar toont nog steeds een update dialog, elke keer bij openen? 
 
         RemoveSdt(body);
@@ -165,6 +164,7 @@ public class Exporting
         // Save result document, not modifying the template
         document.Clone(resultPath);
 
+        //File.Copy(resultPath, resultPath2);
     }
 
     private void RemoveSdt(Body body)
@@ -442,18 +442,18 @@ public class Exporting
 
                     ReplaceParagraphs(internshipParagraphs, new Dictionary<string, string>()
                           {
-                              {"INTERNSHIP_TITLE", internship.InternShipId.ToString()},
-                              {"INTERNSHIP_ASSIGNMENT_TITLE", "title"},
-                              {"INTERNSHIP_ASSIGNMENT_DESCRIPTION", "title"},
-                              {"INTERNSHIP_KNOWLEDGE_TITLE", "title"},
-                              {"INTERNSHIP_KNOWLEDGE_DESCRIPTION", "title"},
+                              {"INTERNSHIP_TITLE", "InternRapp"},
+                              {"INTERNSHIP_ASSIGNMENT_TITLE", "Description of the assignment"},
+                              {"INTERNSHIP_ASSIGNMENT_DESCRIPTION", "Binnen een duikclub zijn er heel wat regels verbonden vooraleer iemand kan inschrijven voor een clubduik, bijvoorbeeld: medische keuring niet verlopen, verzekering in orde, genoeg kader aanwezig, indien iemand een proef wil doen de juiste instructeur aanwezig,… Heel wat duikclubs hebben nood aan een overzichtelijke tool om dit allemaal gepland te krijgen. In heel veel gevallen komen we tot ongewilde verassingen aan de waterkant.\r\n\r\nOm dit getackeld te krijgen wil duikclub Actina vzw een platform laten ontwikkelen om dit te automatiseren en de nodige regels af te checken bij inschrijving. We focussen in eerste instantie op 1 duikclub maar het doel is om het platform te laten gebruiken in de toekomst door bevriende clubs ook. Als VZW geniet de club als non- profit organisatie van sponsorship van Microsoft. Daarom willen we gans het platform ontwikkelen hosten in de Microsoft Azure cloud. We willen alles zo modulair mogelijk opbouwen zodat het simpel is later uitbreidingen te implementeren"},
+                              {"INTERNSHIP_KNOWLEDGE_TITLE", "Which knowledge and competences do you develop with this assignment"},
+                              {"INTERNSHIP_KNOWLEDGE_DESCRIPTION", "Technische en niet-technische oplijsting van de kennis en competenties die de stagiair zal verwerven gedurende de stage."},
                               {"INTERNSHIP_KNOWLEDGE_CONTENT", "title"},
                               {"INTERNSHIP_NEED_TO_KNOW_TITLE", "title"},
                               {"INTERNSHIP_NEED_TO_KNOW_DESCRIPTION", "title"},
                               {"INTERNSHIP_NEED_TO_KNOW_CONTENT", "title"},
                               {"INTERNSHIP_LOCATION_TITLE", "title"},
                               {"INTERNSHIP_LOCATION_DESCRIPTION", "title"},
-                              {"INTERNSHIP_LOCATION_CONTENT", "title"},
+                              {"INTERNSHIP_LOCATION_CONTENT", internship.Location.ToString()},
                               {"INTERNSHIP_COMMENTS", "title"},
                               {"INTERNSHIP_COMMENTS_CONTENT", "title"},
                           });

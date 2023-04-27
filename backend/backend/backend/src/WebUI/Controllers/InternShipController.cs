@@ -43,7 +43,7 @@ public class InternShipController : ControllerBase
     {
         var filteredData = await _mediator.Send(new GetExportInterShipQuery { Dto = dto });
         Exporting Exporting = new Exporting();
-        Exporting.GenerateWordDoc(filteredData);
+        Exporting.GenerateWordDoc(filteredData, dto);
         return Ok();
     }
 
