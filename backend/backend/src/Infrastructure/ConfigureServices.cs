@@ -9,7 +9,7 @@ using Microsoft.Extensions.Options;
 namespace Microsoft.Extensions.DependencyInjection;
 public static class ConfigureServices
 {
-    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IOptions<DatabaseConfigOption> dbConfig)
+    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, DatabaseConfigOption dbConfig)
     {
        
         //if (configuration.GetValue<bool>("UseInMemoryDatabase"))
@@ -20,7 +20,7 @@ public static class ConfigureServices
         //else
         //{
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(dbConfig.Value.ConnectionString,
+                options.UseSqlServer(dbConfig.ConnectionString,
                     builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         //}//
         //services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());

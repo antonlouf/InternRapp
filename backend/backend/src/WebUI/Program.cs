@@ -33,9 +33,10 @@ builder.Services.AddCors(options =>
                       });
 });
 
-builder.Services.Configure<DatabaseConfigOption>(builder.Configuration.GetSection("ConnectionStrings"));
-
-builder.Services.AddInfrastructureServices(Options.Create(builder.Configuration.GetSection("ConnectionStrings").Get<DatabaseConfigOption>()));
+//builder.Services.Configure<DatabaseConfigOption>(builder.Configuration.GetSection("ConnectionStrings"));
+var dbConfig = new DatabaseConfigOption();
+builder.Configuration.GetSection("ConnectionStrings").Bind(dbConfig);
+builder.Services.AddInfrastructureServices(dbConfig);
 
 builder.Services.AddLocalization(opt =>
 {
