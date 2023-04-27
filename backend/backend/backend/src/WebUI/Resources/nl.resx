@@ -210,6 +210,9 @@
   <data name="saveButtonText" xml:space="preserve">
     <value>opslaan</value>
   </data>
+  <data name="TEMPLATE_TITLE" xml:space="preserve">
+    <value>Intetum-Realdolmen Stagebundel</value>
+  </data>
   <data name="updateButtonText" xml:space="preserve">
     <value>bijwerk</value>
   </data>

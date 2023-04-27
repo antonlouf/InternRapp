@@ -1,6 +1,9 @@
-﻿using backend.Application.Common.Paging;
+﻿using System.Collections.Generic;
+using System.Linq;
+using backend.Application.Common.Paging;
 using backend.Application.InternShips.Commands.CreateInternShip;
 using backend.Application.InternShips.Commands.UpdateInternShip;
+using backend.Application.InternShips.Common;
 using backend.Application.InternShips.Queries.GetAllInternShips;
 using backend.Application.InternShips.Queries.GetExportInternShipData;
 using backend.Application.InternShips.Queries.getFilteredInternShip;
@@ -35,10 +38,13 @@ public class InternShipController : ControllerBase
         return Ok(await _mediator.Send(new GetFilteredQuery { Dto = dto }));
     }
 
-    [HttpGet("export")]
-    public async Task<IActionResult> Export([FromQuery] InternshipExportDto dto)
+    [HttpGet("export")] 
+    public async Task<IActionResult> Export([FromQuery] InternshipExportRequestDto dto)
     {
-        return Ok(await _mediator.Send(new GetExportInterShipQuery { Dto = dto }));
+        var filteredData = await _mediator.Send(new GetExportInterShipQuery { Dto = dto });
+        Exporting Exporting = new Exporting();
+        Exporting.GenerateWordDoc(filteredData);
+        return Ok();
     }
 
     [HttpPut]
