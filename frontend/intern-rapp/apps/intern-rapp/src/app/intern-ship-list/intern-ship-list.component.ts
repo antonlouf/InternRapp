@@ -58,8 +58,7 @@ import { DepartementItemWithMinimalData } from '../entities/depItemWithMinimalDa
     MatDialogModule,
   ],
   templateUrl: './intern-ship-list.component.html',
-  styleUrls: ['./intern-ship-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default,
+  styleUrls: ['./intern-ship-list.component.scss']
 })
 export class InternShipListComponent
   extends BaseList<InternshipItem>
@@ -101,7 +100,7 @@ export class InternShipListComponent
         tap((data) => {
           this.internshipService.entityTobeUpdated = data;
 
-          this.router.navigateByUrl('internships/create');
+          this.router.navigateByUrl('internships/create',{onSameUrlNavigation:'reload'});
         }),
         take(1),
         takeUntil(this.destroySubj$)
@@ -202,7 +201,7 @@ export class InternShipListComponent
     const year = new Date().getFullYear();
     const previousYear = year - 1;
     for (let i = 0; i < 20; i++) {
-      availableDates[i] = `${previousYear - i}-${year - i}`;
+      availableDates[i] = `${previousYear - i+1}-${year - i+1}`;
     }
     return of(availableDates);
   }

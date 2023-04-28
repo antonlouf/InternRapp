@@ -71,3 +71,13 @@ margin-left: 75%;
 width: 100%;
 }
 
+
+.tab-label-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tab-label-text {
+  margin-right: 12px;
+}

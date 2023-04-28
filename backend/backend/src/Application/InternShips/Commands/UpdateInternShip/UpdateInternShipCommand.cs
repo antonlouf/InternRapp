@@ -32,7 +32,7 @@ public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternSh
     {
         var convertedLocations = request.Locations.Select(x => new Location() { City = x.City, HouseNumber = x.Housenumber, Id = x.Id, StreetName = x.Streetname, ZipCode = x.Zipcode }).ToList();
         _dbContext.Locations.UpdateRange(convertedLocations);
-        var internShip = await _dbContext.InternShips.Include(x=>x.Locations).SingleOrDefaultAsync(x => x.Id == request.InternShipId);
+        var internShip = await _dbContext.InternShips.Include(x=>x.Locations).Include(x=>x.Translations).SingleOrDefaultAsync(x => x.Id == request.InternShipId);
         internShip.MaxStudents = request.MaxCountOfStudents;
         internShip.SchoolYear = request.SchoolYear;
         internShip.RequiredTrainingType = request.TrainingType;
@@ -40,9 +40,17 @@ public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternSh
         internShip.UnitId = request.UnitId;
         internShip.CurrentCountOfStudents = request.CurrentCountOfStudents;
         internShip.Translations = new List<InternShipContentTranslation>();
-        
+        var ids=request.Versions.Select(x=>x.TranslationId).Where(x=>x!=null).ToList();
+        var existingTranslationsTobeDeleted=internShip.Translations.Select(x => x.Id).Where(x => !ids.Contains(x)).ToList();
+        internShip.Translations.Where(x => existingTranslationsTobeDeleted.Contains(x.Id)).ToList().ForEach(x =>
+        {
+            internShip.Translations.Remove(x);
+        });
+
+
         foreach (var sendedVersion in request.Versions)
         {
+            
             if (sendedVersion.TranslationId!=null)
             {
                 internShip.Translations.Add(new()

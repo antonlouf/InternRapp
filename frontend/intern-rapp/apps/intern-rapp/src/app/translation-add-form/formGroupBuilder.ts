@@ -48,7 +48,7 @@ translationId:(x as FormGroup).controls['translationId'].value,
 export function buildFormGroupForTranslations(
   data: InternshipTranslationUpdateDto | undefined,
   languageId: number | undefined = undefined,
-  languageName: string | undefined = undefined
+  languageCode: string | undefined = undefined
 ) {
   return new FormGroup({
     titleContent: new FormControl(data?.titleContent ?? '', [
@@ -69,7 +69,7 @@ export function buildFormGroupForTranslations(
     languageId: new FormControl(data?.language.id ?? languageId, [
       Validators.required,
     ]),
-    languageName: new FormControl(data?.language.name ?? languageName, [
+    languageCode: new FormControl(data?.language.name ?? languageCode, [
       Validators.required,
     ]),
     translationId: new FormControl(data?.translationId ?? 0, [

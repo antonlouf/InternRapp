@@ -189,9 +189,9 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
     const availableDates = [];
     const year = new Date().getFullYear();
     const previousYear = year - 1;
-    availableDates[0] = `${year}-${year+1}`;
+    availableDates[0] = `${year}-${year + 1}`;
     for (let i = 1; i < 21; i++) {
-      availableDates[i] = `${previousYear - i+1}-${year - i+1}`;
+      availableDates[i] = `${previousYear - i + 1}-${year - i + 1}`;
     }
     return availableDates;
   }
@@ -204,6 +204,7 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
     return (this.addInternshipForm?.controls['translateTabs'] as FormArray)
       .controls;
   }
+ 
   public get tabIsInvalid() {
     let isInvalid = false;
     (
@@ -286,11 +287,8 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
         .pipe(take(1), takeUntil(this.destrojSubj$))
         .subscribe();
     }
- const navigationExtras: NavigationExtras = {
-   queryParams: { timestamp: new Date().getTime() },
- };
-
-    this.router.navigateByUrl('/internships', navigationExtras);
+  
+    this.router.navigateByUrl('/internships', {onSameUrlNavigation:'reload'});
   }
   private mapToSubmittableNewInternshipObject() {
     const internShipToBeReturned: CreateInternship | undefined = {
@@ -308,7 +306,6 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
     return internShipToBeReturned;
   }
   private mapToSubmittableUpdatedInternshipObject() {
-   
     const internShipToBeReturned: InternshipUpdateDto | undefined = {
       internShipId: this.addInternshipForm?.controls['internshipId'].value ?? 0,
       currentCountOfStudents:
@@ -324,4 +321,30 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
     };
     return internShipToBeReturned;
   }
+  public deleteTranslation(id: number,index:number) {
+
+    if (id !== 0) {
+    (this.addInternshipForm?.controls['translateTabs'] as FormArray).controls =
+      this.tabs.filter((x) => x.getRawValue()['translationId'] !== id);
+       
+    }
+    else {
+      let controlTobeDeleted: AbstractControl<any, any>
+      if (this.tabs !== undefined) {
+        controlTobeDeleted = this.tabs[index]    
+      }
+       (
+         this.addInternshipForm?.controls['translateTabs'] as FormArray
+       ).controls = this.tabs.filter(
+         (x) => x.getRawValue()['languageCode'] !== controlTobeDeleted.getRawValue()['languageCode']
+        );
+      
+       
+    }
+   
+  }
+  public getTranslationId(abstractControl: AbstractControl) {
+return (abstractControl as FormGroup).getRawValue()['translationId']
+  }
 }
+
