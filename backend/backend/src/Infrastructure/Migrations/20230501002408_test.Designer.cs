@@ -12,8 +12,8 @@ using backend.Infrastructure.Persistence;
 namespace backend.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230426124935_initial")]
-    partial class initial
+    [Migration("20230501002408_test")]
+    partial class test
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -202,9 +202,6 @@ namespace backend.Infrastructure.Migrations
                     b.HasIndex("Code")
                         .IsUnique();
 
-                    b.HasIndex("Name")
-                        .IsUnique();
-
                     b.ToTable("Languages");
                 });
 
@@ -250,17 +247,17 @@ namespace backend.Infrastructure.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("DepartmentId")
+                    b.Property<int>("LanguageId")
                         .HasColumnType("int");
 
-                    b.Property<int>("LanguageId")
+                    b.Property<int>("UnitId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DepartmentId");
-
                     b.HasIndex("LanguageId");
+
+                    b.HasIndex("UnitId");
 
                     b.ToTable("PrefaceTranslation");
                 });
@@ -282,13 +279,11 @@ namespace backend.Infrastructure.Migrations
 
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
                 {
-                    b.HasOne("backend.Domain.Entities.Department", "Unit")
-                        .WithMany()
+                    b.HasOne("backend.Domain.Entities.Department", null)
+                        .WithMany("Internships")
                         .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Unit");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.InternShipContentTranslation", b =>
@@ -300,7 +295,7 @@ namespace backend.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("backend.Domain.Entities.Language", "Language")
-                        .WithMany()
+                        .WithMany("InternshipTranslations")
                         .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -312,28 +307,40 @@ namespace backend.Infrastructure.Migrations
 
             modelBuilder.Entity("backend.Domain.Entities.PrefaceTranslation", b =>
                 {
-                    b.HasOne("backend.Domain.Entities.Department", null)
-                        .WithMany("PrefaceTranslations")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("backend.Domain.Entities.Language", "Language")
-                        .WithMany()
+                        .WithMany("PrefaceTranslations")
                         .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("backend.Domain.Entities.Department", "Unit")
+                        .WithMany("PrefaceTranslations")
+                        .HasForeignKey("UnitId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Language");
+
+                    b.Navigation("Unit");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Department", b =>
                 {
+                    b.Navigation("Internships");
+
                     b.Navigation("PrefaceTranslations");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
                 {
                     b.Navigation("Translations");
+                });
+
+            modelBuilder.Entity("backend.Domain.Entities.Language", b =>
+                {
+                    b.Navigation("InternshipTranslations");
+
+                    b.Navigation("PrefaceTranslations");
                 });
 #pragma warning restore 612, 618
         }

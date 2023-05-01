@@ -16,7 +16,6 @@ public class InternShipConfiguration : IEntityTypeConfiguration<InternShip>
         builder.Property(x=>x.RequiredTrainingType).IsRequired();
         builder.HasIndex(x => new {x.SchoolYear});
         builder.Property(x=>x.SchoolYear).IsRequired();
-        builder.HasOne(x => x.Unit);
         builder.Property(x => x.CurrentCountOfStudents).HasConversion(v => (byte) v,
             v => v)
             .IsRequired();

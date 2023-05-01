@@ -16,6 +16,8 @@ public class LanguageConfiguration : IEntityTypeConfiguration<Language>
         builder.Property(x => x.Code).IsRequired().HasMaxLength(100);
         builder.HasIndex(x => x.Code).IsUnique();
         builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
-        builder.HasIndex(x => x.Name).IsUnique();
+        builder.HasMany(x=>x.InternshipTranslations).WithOne(x=>x.Language).OnDelete(DeleteBehavior.Cascade);
+        builder.HasMany(x => x.PrefaceTranslations).WithOne(x=>x.Language).OnDelete(DeleteBehavior.Cascade);
+
     }
 }

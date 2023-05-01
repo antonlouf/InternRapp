@@ -101,14 +101,14 @@ namespace backend.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LanguageId = table.Column<int>(type: "int", nullable: false),
-                    DepartmentId = table.Column<int>(type: "int", nullable: true)
+                    UnitId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PrefaceTranslation", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PrefaceTranslation_Departments_DepartmentId",
-                        column: x => x.DepartmentId,
+                        name: "FK_PrefaceTranslation_Departments_UnitId",
+                        column: x => x.UnitId,
                         principalTable: "Departments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -209,20 +209,14 @@ namespace backend.Infrastructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Languages_Name",
-                table: "Languages",
-                column: "Name",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PrefaceTranslation_DepartmentId",
-                table: "PrefaceTranslation",
-                column: "DepartmentId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_PrefaceTranslation_LanguageId",
                 table: "PrefaceTranslation",
                 column: "LanguageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PrefaceTranslation_UnitId",
+                table: "PrefaceTranslation",
+                column: "UnitId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Translations_InternShipId",

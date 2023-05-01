@@ -111,6 +111,7 @@ export class DepartmentUpdateComponent implements OnInit, OnDestroy {
           map((data) => data.items)
         );
     this.data.prefaceTranslations?.forEach((x) => {
+      debugger;
       const controls = (this.updateForm?.controls['translateTabs'] as FormArray)
         .controls;
       controls.push(

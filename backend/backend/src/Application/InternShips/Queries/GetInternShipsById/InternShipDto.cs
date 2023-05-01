@@ -27,7 +27,7 @@ public class InternShipDto:IMapFrom<InternShip>
                     .ForMember(dest => dest.MaxCountOfStudents, opt => opt.MapFrom(src => src.MaxStudents))
                     .ForMember(dest => dest.Versions, opt => opt.MapFrom(src => src.Translations))
                     .ForMember(dest => dest.TrainingType, opt => opt.MapFrom(src => src.RequiredTrainingType))
-                    .ForMember(dest => dest.UnitId, opt => opt.MapFrom(src => src.Unit.Id));
+                    .ForMember(dest => dest.UnitId, opt => opt.MapFrom(src => src.UnitId));
                     
 
 

@@ -8,7 +8,7 @@ using backend.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace backend.Infrastructure.Persistence.Configurations;
-public class UnitConfiguration : IEntityTypeConfiguration<Department>
+public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
 {
     public void Configure(EntityTypeBuilder<Department> builder)
     {
@@ -19,6 +19,9 @@ public class UnitConfiguration : IEntityTypeConfiguration<Department>
         builder.HasIndex(x => x.Name);
         
         builder.Property(x=>x.ManagerEmails).UsePropertyAccessMode(PropertyAccessMode.PreferProperty).HasConversion(v=>string.Join(',',v),x=>x.Split(',',StringSplitOptions.RemoveEmptyEntries).ToList());
-        builder.HasMany(x => x.PrefaceTranslations).WithOne().OnDelete(DeleteBehavior.Cascade);
+        builder.HasMany(x => x.PrefaceTranslations).WithOne(x=>x.Unit).HasForeignKey(x=>x.UnitId).OnDelete(DeleteBehavior.Cascade);
+       builder.HasMany(x => x.Internships).WithOne(x=>x.Unit).OnDelete(DeleteBehavior.Cascade);
+
+
     }
 }

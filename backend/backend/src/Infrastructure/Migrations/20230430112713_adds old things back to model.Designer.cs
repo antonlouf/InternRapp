@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using backend.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using backend.Infrastructure.Persistence;
 namespace backend.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230430112713_adds old things back to model")]
+    partial class addsoldthingsbacktomodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,11 +112,16 @@ namespace backend.Infrastructure.Migrations
                     b.Property<int>("UnitId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UnitId1")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("SchoolYear");
 
                     b.HasIndex("UnitId");
+
+                    b.HasIndex("UnitId1");
 
                     b.ToTable("InternShips");
                 });
@@ -247,12 +255,17 @@ namespace backend.Infrastructure.Migrations
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("LanguageId1")
+                        .HasColumnType("int");
+
                     b.Property<int>("UnitId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("LanguageId");
+
+                    b.HasIndex("LanguageId1");
 
                     b.HasIndex("UnitId");
 
@@ -276,11 +289,15 @@ namespace backend.Infrastructure.Migrations
 
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
                 {
-                    b.HasOne("backend.Domain.Entities.Department", "Unit")
+                    b.HasOne("backend.Domain.Entities.Department", null)
                         .WithMany("Internships")
                         .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("backend.Domain.Entities.Department", "Unit")
+                        .WithMany()
+                        .HasForeignKey("UnitId1");
 
                     b.Navigation("Unit");
                 });
@@ -293,34 +310,34 @@ namespace backend.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("backend.Domain.Entities.Language", "Language")
+                    b.HasOne("backend.Domain.Entities.Language", null)
                         .WithMany("InternshipTranslations")
                         .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("InternShip");
-
-                    b.Navigation("Language");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.PrefaceTranslation", b =>
                 {
-                    b.HasOne("backend.Domain.Entities.Language", "Language")
+                    b.HasOne("backend.Domain.Entities.Language", null)
                         .WithMany("PrefaceTranslations")
                         .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("backend.Domain.Entities.Department", "Unit")
+                    b.HasOne("backend.Domain.Entities.Language", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageId1");
+
+                    b.HasOne("backend.Domain.Entities.Department", null)
                         .WithMany("PrefaceTranslations")
                         .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Language");
-
-                    b.Navigation("Unit");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Department", b =>

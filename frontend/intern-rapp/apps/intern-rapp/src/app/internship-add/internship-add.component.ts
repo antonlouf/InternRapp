@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   OnDestroy,
   OnInit,
@@ -85,7 +86,8 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private locationService: LocationService,
     private internShipService: InternshipService,
-    private router: Router
+    private router: Router,
+    private changeDetectorRef:ChangeDetectorRef
   ) {}
 
   public unitObs$: Observable<DepartementItemWithMinimalData[]> | undefined;
@@ -254,6 +256,7 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
                   data !== undefined ? data.code?.toString() : undefined
                 )
               );
+              this.changeDetectorRef.markForCheck()
             })
           );
         }),

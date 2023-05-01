@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using backend.Application.Common.Interfaces;
 using backend.Application.Common.Mappings;
 using backend.Application.InternShips.Common;
 using backend.Application.Units.Queries.GetAllUnits;
@@ -25,7 +26,8 @@ public class TranslationDto : IMapFrom<InternShipContentTranslation>
     public void Mapping(Profile profile)
     {
         profile.CreateMap<InternShipContentTranslation, TranslationDto>()
-            .ForMember(dest => dest.Language, opt => opt.MapFrom(src => src.Language))
+            .ForMember(dest => dest.Language, opt => opt.MapFrom(src=>src.Language))
             .ForMember(x => x.TranslationId, opt => opt.MapFrom(src => src.Id));
     }
+ 
 }

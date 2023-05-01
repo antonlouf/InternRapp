@@ -10,5 +10,7 @@ public class PrefaceTranslation
     public int Id { get; set; }
     public string Content { get; set; }
     public Language Language { get; set; }
+    public Department Unit { get; set; }
     public int LanguageId { get; set; }
+    public int UnitId{ get; set; }
 }

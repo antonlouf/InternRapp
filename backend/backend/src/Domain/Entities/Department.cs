@@ -12,7 +12,7 @@ public class Department
     //public string CreatorEmail { get; set; }
     public IList<PrefaceTranslation> PrefaceTranslations { get; set; }
     public string Name { get; set; }
-   
+    public IList<InternShip>    Internships{ get; set; }
     private string _managerEmails;
     
     public List<string> ManagerEmails
