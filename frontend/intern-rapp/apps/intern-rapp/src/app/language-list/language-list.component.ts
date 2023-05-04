@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DepartmentItem } from '../entities/departmentItem';
 import { LanguageService } from '../services/language.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PaginationFilterRequest } from '../entities/paginationFilterRequest';
 import { ResourceItemPagingResponse } from '../entities/resourceItemPagingResponse';
 import { filter, Observable, switchMap, Subject, tap, map } from 'rxjs';
-import { CreateDepartment } from '../entities/CreateDepartment';
 import { BaseList } from '../baselist/baseList';
 import { LanguageItem } from '../entities/languageItem';
 import { CreateLanguage } from '../entities/createLanguage';
@@ -30,8 +28,8 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './language-list.component.html',
   styleUrls: ['./language-list.component.scss'],
 })
-export class LanguageListComponent extends BaseList<LanguageItem>{
-  public deleteSubject=new Subject<number>();
+export class LanguageListComponent extends BaseList<LanguageItem> implements OnInit{
+  public deleteSubject=new Subject<number>()
   public addSubject=new Subject<CreateLanguage|undefined>();
   public updateSubject=new Subject<LanguageItem>();
   
@@ -44,13 +42,13 @@ export class LanguageListComponent extends BaseList<LanguageItem>{
    closeOnNavigation:true,
    disableClose:false,
    hasBackdrop:true,
-   position:{top:'250px',right:'500px'}
+   position:{top:'250px',right:'1200px'}
   }
   getGridItems$(paginationFilterRequest: PaginationFilterRequest): Observable<ResourceItemPagingResponse<LanguageItem>> {
     return this.languageService.filterAndPaginateLanguages(paginationFilterRequest)
   }
     ngOnInit(): void {
-      this.filters=[{label:"Language name",name:"filterValue",type:FilterType.Text,observable:undefined}];
+      this.filters=[{label:"Language name",name:"filterValue",type:FilterType.Text,optionBuilder:(items:unknown[])=>undefined,observable:undefined}];
       const delete$=this.configureDelete$();
       const update$=this.configureUpdate$();
       const add$=this.configureAdd$();
@@ -96,18 +94,17 @@ export class LanguageListComponent extends BaseList<LanguageItem>{
             }
   
     filterUpdating(filter: {}){
-      let filterString=""
-      const record=filter as Record<string,never>
+      const record = filter as Record<string, never>
+      const activeFilters: Record<string, unknown> = {};
        this.filters?.forEach(x=>{
-         filterString+=`unit:${record[x.name]},`
+         activeFilters['languageCode']=`${record[x.name]}`
        })
-       filterString = filterString.slice(0,filterString.length-1)
-       this.filterUpdated(filterString)
+       this.filterUpdated(activeFilters)
     }
-    addDepartment(){
+    addLanguage(){
     this.addSubject.next(undefined)
     }
-  updateDepartment=(item: DepartmentItem)=>{
+  updateLanguage=(item: LanguageItem)=>{
   this.updateSubject.next(item)
   }
   delete(id: number){ 

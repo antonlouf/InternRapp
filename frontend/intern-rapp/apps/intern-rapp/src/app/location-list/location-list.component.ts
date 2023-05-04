@@ -40,7 +40,7 @@ export class LocationListComponent extends BaseList<LocationItem> {
    closeOnNavigation:true,
    disableClose:false,
    hasBackdrop:true,
-   position:{top:'150px',right:'500px'}
+   position:{top:'150px',right:'1200px'}
   }
 
   //Locations ophalen met filter 
@@ -49,7 +49,7 @@ export class LocationListComponent extends BaseList<LocationItem> {
   }
 
   ngOnInit(): void {
-    this.filters=[{label:"location name",name:"filterValue",type:FilterType.Text,observable:undefined}];
+    this.filters=[{label:"location name",name:"filterValue",type:FilterType.Text,observable:undefined,optionBuilder:(item:unknown[])=>undefined}];
     const delete$=this.configureDelete$();
     const update$=this.configureUpdate$();
     const add$=this.configureAdd$();
@@ -73,8 +73,7 @@ export class LocationListComponent extends BaseList<LocationItem> {
   private configureUpdate$() {
     return this.updateSubject.pipe(switchMap(data => 
       {
-        //open een dialog popup en geef de geklikte location door aan update popup component
-        //zodat de data ervan getoond kan worden
+       
       const dialogRef= this.dialog.open(LocationUpdatePopupComponent, this.popUpConfig) 
       dialogRef.componentInstance.data=data
       return dialogRef.afterClosed().pipe(map(confirm=>confirm ? data : undefined )
@@ -101,13 +100,12 @@ export class LocationListComponent extends BaseList<LocationItem> {
 
    //filter nog niet begrepen----
   filterUpdating(filter: {}){
-    let filterString=""
-    const record=filter as Record<string,never>
+    const record = filter as Record<string, never>
+    const activeFilters: Record<string, unknown> = {};
      this.filters?.forEach(x=>{
-       filterString+=`unit:${record[x.name]},`
+       activeFilters['city']=`${record[x.name]}`
      })
-     filterString = filterString.slice(0,filterString.length-1)
-     this.filterUpdated(filterString)
+     this.filterUpdated(activeFilters)
   }
 
   //Wanneer geklikt wordt op addLocation dan worden de gepredefinieerde observers uitgevoerd

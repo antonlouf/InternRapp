@@ -1,13 +1,6 @@
-
- 
-       
-        <div style="display: flex;justify-content: space-between;align-items: center; border: 5px solid whitesmoke;">
-               
-     
-        
+<div style="display: flex;justify-content: space-between;align-items: center; border: 5px solid whitesmoke;">
               <div class="nav-item" style="align-items: flex-start;">
                 <a    href="https://bulma.io" >
-                   
                     <!-- <img
                     style="width: 200px;height: 1000px; z-index: -1;"
                     src="https://www.realdolmen.com/themes/custom/itr_theme/images/dest/svg/sprite/individual/logo.svg"
@@ -22,58 +15,45 @@
                        </a>
                      </div>
                      <div  class="nav-item">  
-                       <a class="navbar-item" routerLinkActive="active" [routerLink]="'[stages]'" style="font-size: 20px" >
+                       <a class="navbar-item" routerLinkActive="active" routerLink="/internships"  >
                         {{'internships'|translate}}
 
                        </a>
                      </div>
                      <div class="nav-item">
-                         <a class="navbar-item"  routerLinkActive="active" [routerLink]="'[events]'" style="font-size: 20px" >
+                         <a class="navbar-item"  routerLinkActive="active"   >
                           {{'events'|translate}}
 
                          </a>
                      </div>
                      <div class="nav-item">
-                     <a class="navbar-item" routerLinkActive="active" routerLink="/locations"  style="font-size: 20px" >
+                     <a class="navbar-item" routerLinkActive="active" routerLink="/locations"   >
                       {{'locations'|translate}}
 
                      </a>
                      </div>
                      <div class="nav-item">
-                         <a class="navbar-item" routerLinkActive="active" [routerLink]="'[users]'"  style="font-size: 20px">
+                         <a class="navbar-item" routerLinkActive="active"   >
                          {{'users'|translate}}
                           
                          </a>
                          </div>
-                         <div class="nav-item">
-                         <a class="navbar-item" routerLinkActive="active" [routerLink]="'[newinternship]'" style="font-size: 20px" >
-                          {{'newInternShip'|translate}}
-
-                         </a>
-                     </div>
+                  
                      <div class="nav-item">
-                      <a class="navbar-item" routerLinkActive="active" routerLink="/language" style="font-size: 20px" >
+                      <a class="navbar-item" routerLinkActive="active" routerLink="/languages"  >
                        {{'language'|translate}}
 
                       </a>
                   </div>
                      <div class="language-dropdown">
                       <intern-rapp-language-dropdown
-                      >
-            
+                      >         
                       </intern-rapp-language-dropdown>
                      </div>
                      <div class="nav-item" style="align-items: flex-end;">
                      <button  type="button" style="background-color:#00b5ad;border-radius: 20px;border:none;padding: 10px;">
                         <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp; Logout
                      </button>
-                     </div>
-                  
+                     </div>                  
                  </div>
-                 <router-outlet></router-outlet>
-                
-
-    
-                       
-
-        
+<router-outlet></router-outlet>

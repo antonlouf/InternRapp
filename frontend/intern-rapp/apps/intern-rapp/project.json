@@ -17,7 +17,12 @@
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/intern-rapp/src/favicon.ico",
-          "apps/intern-rapp/src/assets"
+          "apps/intern-rapp/src/assets",
+          {
+            "glob": "**/*",
+            "input": "./node_modules/@kolkov/angular-editor/assets/",
+            "output": "./assets/fonts/"
+          }
         ],
         "styles": ["apps/intern-rapp/src/styles.scss"],
         "scripts": []

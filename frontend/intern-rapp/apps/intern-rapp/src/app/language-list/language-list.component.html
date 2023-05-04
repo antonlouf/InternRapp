@@ -10,26 +10,26 @@
 <ng-template
 internRappItemsTmpl let-items 
 >
-<button (click)="addDepartment()" class="align-right save-button-above-list"  >
+<button (click)="addLanguage()" class="align-right save-button-above-list"  >
   <div class="flex-row center-flex-items" >
     <div>    <mat-icon>add</mat-icon></div>
-    <div>{{'addButton'|translate}}</div>
+    <!-- <div>{{'addButton'|translate}}</div> -->
   </div>
 </button>
   <mat-list >
 
     <mat-list-item  *ngFor="let item of items">
       <div class="flex-row" >
-        <div class="flex-begin">{{item.name}}</div>
+        <div class="flex-begin">{{item.code}}-{{item.name}}</div>
         <div class="flex-end">
           <div class="flex-row ">
             <div >     
-               <button (click)="delete(item.id)"   class="cancel-button"   mat-fab color="primary" aria-label="Example icon button with a delete icon">
-              <mat-icon>delete</mat-icon>
+               <button mat-icon-button  (click)="delete(item.id)"   class="cancel-button"   mat-fab color="primary" aria-label="Example icon button with a delete icon">
+              <mat-icon >delete</mat-icon>
             </button>
           </div>
             <div>
-              <button (click)="updateDepartment(item)" class="save-button" color="primary" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+              <button (click)="updateLanguage(item)" class="save-button" color="primary" mat-fab color="primary" aria-label="Example icon button with a delete icon">
                 <mat-icon>edit</mat-icon>
               </button>
             </div>

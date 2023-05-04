@@ -18,7 +18,7 @@ export class LocationService {
    private baseSuffixApi="/api/Location";
 
    filterAndPaginateLocations$(filterPaginationRequest: PaginationFilterRequest){
-    return this.http.get<ResourceItemPagingResponse<LocationItem>>(APIConfiguration.baseString+`${this.baseSuffixApi}?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&Filter=${filterPaginationRequest.filterString}`)
+    return this.http.get<ResourceItemPagingResponse<LocationItem>>(APIConfiguration.baseString+`${this.baseSuffixApi}?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&${filterPaginationRequest.filterString}`)
     .pipe(catchError((err,caught)=>caught))
   }
 

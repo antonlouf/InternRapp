@@ -1,6 +1,6 @@
 <div  >
 
-<div   style=" margin-left: 1%;margin-top: 2%;justify-content: center;text-align: center;">
+<div   class="heading">
     <div mat-dialog-title select="[heading]">
         {{'addDepartmentHeader' |translate}}
     </div>
@@ -11,11 +11,11 @@
 <mat-divider></mat-divider>
 
 <mat-dialog-content class="mat-typography">
-<form [formGroup]="addForm">
+<form *ngIf="addUnitForm" [formGroup]="addUnitForm">
     <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>{{'departmentNameLabel' |translate}}</mat-label>
         <input matInput type="text" formControlName="departmentName">
-        <mat-error *ngIf="addForm.controls.departmentName.touched&&addForm.controls.departmentName.hasError">
+        <mat-error >
             {{'departmentNameEmptyErrorMessage' |translate}}
         </mat-error>
     </mat-form-field>
@@ -48,6 +48,20 @@
 
     </mat-autocomplete>
 </mat-form-field>
+    <div class="add-translation-button">
+      <button mat-icon-button (click)="addLanguage()" class="align-to-top-right">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+<mat-tab-group mat-align-tabs="center" backgroundColor="primary" formArrayName="translateTabs">
+  <mat-tab *ngFor="let tab of tabs" label="{{getFormGroupOutOfAbstractControl(tab).controls['languageName'].value}}">
+    <intern-rapp-preface-translation-form [unitPrefaceTranslationForm]="getFormGroupOutOfAbstractControl(tab)">
+
+    </intern-rapp-preface-translation-form>
+  </mat-tab>
+
+</mat-tab-group>
+
 
 
 </form>
@@ -59,18 +73,20 @@
 <mat-dialog-actions align="center">
    <div class="flex-row">
     <div>
-        <button class="save-button flex-row-cancel-save-update" (click)="closeDialog(true)" [disabled]="!addForm.valid||managerEmailsTobeAdded.length<=0" >
-            
-        <div><mat-icon>save</mat-icon></div>
+        <button [disabled]="this.addUnitForm?.invalid||tabsArrayLength<1||tabIsInvalid||managerEmailsTobeAdded.length<=0" type="button"   class="save-button flex-row-cancel-save-update"
+          mat-icon-button (click)="closeDialog(true)">
+          <mat-icon>save</mat-icon>
+        
         <div>{{'saveButtonText'|translate}}</div>
         </button>
     </div>
     <div>
-  
-       <button class="cancel-button   flex-row-cancel-save-update"  (click)="closeDialog(false)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
-        <div>
+  <div>
+
+  </div>
+       <button mat-icon-button class="cancel-button flex-row-cancel-save-update"  (click)="closeDialog(false)" type="button" mat-fab color="primary" aria-label="Example icon button with a delete icon">
             <mat-icon>cancel</mat-icon> 
-        </div>        
+
             <div>
               {{'cancelButtonText'|translate}}
             </div>

@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="addButton" xml:space="preserve">
+    <value>nieuw</value>
+  </data>
+  <data name="addDepartmentHeader" xml:space="preserve">
+    <value>voeg een departement toe</value>
+  </data>
+  <data name="addInternshipTitle" xml:space="preserve">
+    <value>Stage toevoegen</value>
+  </data>
+  <data name="addLanguageHeader" xml:space="preserve">
+    <value>voeg een nieuwe taal toe</value>
+  </data>
+  <data name="addLocationHeader" xml:space="preserve">
+    <value>een locatie toevoegen</value>
+  </data>
+  <data name="Bachelor" xml:space="preserve">
+    <value>Bachelor</value>
+  </data>
+  <data name="cancelButtonText" xml:space="preserve">
+    <value>annuleren</value>
+  </data>
+  <data name="commentLabel" xml:space="preserve">
+    <value>commentaar</value>
+  </data>
+  <data name="confirmDeleteMessage" xml:space="preserve">
+    <value>bent u zeker om te verwijderen?</value>
+  </data>
+  <data name="contentLabel" xml:space="preserve">
+    <value>inhoud</value>
+  </data>
+  <data name="currentCountOfStudentsErrorMessage" xml:space="preserve">
+    <value>Vul een positief getal</value>
+  </data>
+  <data name="currentCountOfStudentsLabel" xml:space="preserve">
+    <value>Aantal studenten die de dit stage zullen doen</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>verwijder</value>
+  </data>
+  <data name="deleteButton" xml:space="preserve">
+    <value>verwijderen</value>
+  </data>
+  <data name="department" xml:space="preserve">
+    <value>departement</value>
+  </data>
+  <data name="departmentNameEmptyErrorMessage" xml:space="preserve">
+    <value>de departement naam is verplicht in te vullen</value>
+  </data>
+  <data name="departmentNameLabel" xml:space="preserve">
+    <value>departement naam</value>
+  </data>
+  <data name="departments" xml:space="preserve">
+    <value>departementen</value>
+  </data>
+  <data name="descriptionLabel" xml:space="preserve">
+    <value>beschrijving</value>
+  </data>
+  <data name="editButton" xml:space="preserve">
+    <value>bijwerken</value>
+  </data>
+  <data name="En" xml:space="preserve">
+    <value>Engels</value>
+  </data>
+  <data name="events" xml:space="preserve">
+    <value>beurzen</value>
+  </data>
+  <data name="Fr" xml:space="preserve">
+    <value>Frans</value>
+  </data>
+  <data name="internship" xml:space="preserve">
+    <value>stage</value>
+  </data>
+  <data name="internships" xml:space="preserve">
+    <value>Stages</value>
+  </data>
+  <data name="knowledgeToDevelopLabel" xml:space="preserve">
+    <value>kennis dat opgedaan zal worden</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>taal</value>
+  </data>
+  <data name="languageCodeLabel" xml:space="preserve">
+    <value>taalcode</value>
+  </data>
+  <data name="languageCodeRequiredErrorMessage" xml:space="preserve">
+    <value>de taalcode is verplicht.</value>
+  </data>
+  <data name="languageLabel" xml:space="preserve">
+    <value>taal</value>
+  </data>
+  <data name="languageNameLabel" xml:space="preserve">
+    <value>taal</value>
+  </data>
+  <data name="languageNameRequiredErrorMessage" xml:space="preserve">
+    <value>De taal is verplicht om in te vullen</value>
+  </data>
+  <data name="locationCityLabel" xml:space="preserve">
+    <value> stad</value>
+  </data>
+  <data name="locationFieldEmptyMessage" xml:space="preserve">
+    <value>kies een locatie aub</value>
+  </data>
+  <data name="locationFieldLabel" xml:space="preserve">
+    <value>locatie</value>
+  </data>
+  <data name="locationHouseNumberLabel" xml:space="preserve">
+    <value>huisnummer</value>
+  </data>
+  <data name="locationLabel" xml:space="preserve">
+    <value>locatie</value>
+  </data>
+  <data name="locations" xml:space="preserve">
+    <value>locaties</value>
+  </data>
+  <data name="locationStreetNameLabel" xml:space="preserve">
+    <value> straatnaam </value>
+  </data>
+  <data name="locationStreetRequiredErrorMessage" xml:space="preserve">
+    <value> straatnaam is verplicht </value>
+  </data>
+  <data name="locationZipCodeLabel" xml:space="preserve">
+    <value> postcode</value>
+  </data>
+  <data name="locationZipCodeRequiredErrorMessage" xml:space="preserve">
+    <value> postcode is verplicht </value>
+  </data>
+  <data name="managerEmail" xml:space="preserve">
+    <value>email van manager</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>Master</value>
+  </data>
+  <data name="MasterAfterBachelor" xml:space="preserve">
+    <value>Master na Bachelor</value>
+  </data>
+  <data name="MasterAfterMaster" xml:space="preserve">
+    <value>Master na Master</value>
+  </data>
+  <data name="maxCountOfStudentsLabel" xml:space="preserve">
+    <value>Maximaal aantal toegelaten studenten</value>
+  </data>
+  <data name="maxStudentsErrorMessage" xml:space="preserve">
+    <value>Vul een positief getal</value>
+  </data>
+  <data name="neededKnowledgeLabel" xml:space="preserve">
+    <value>minimum kennis om dit stage tot een goed einde te brengen</value>
+  </data>
+  <data name="neededKnowledgeLabelErrorMessage" xml:space="preserve">
+    <value>vul de minimum kennis in om dit stage tot een goed einde te brengen</value>
+  </data>
+  <data name="newInternShip" xml:space="preserve">
+    <value>nieuw stageopdracht</value>
+  </data>
+  <data name="Nl" xml:space="preserve">
+    <value>Nederlands</value>
+  </data>
+  <data name="saveButtonText" xml:space="preserve">
+    <value>opslaan</value>
+  </data>
+  <data name="schoolyearErrorMessage" xml:space="preserve">
+    <value>de schooljaar is verplicht</value>
+  </data>
+  <data name="schoolYearLabel" xml:space="preserve">
+    <value>schooljaar</value>
+  </data>
+  <data name="titleContentLabel" xml:space="preserve">
+    <value>titel</value>
+  </data>
+  <data name="titleContentLabetitleContent" xml:space="preserve">
+    <value>titel</value>
+  </data>
+  <data name="trainingTypeLabel" xml:space="preserve">
+    <value>vereist type opleiding</value>
+  </data>
+  <data name="unitEmptyErrorMessage" xml:space="preserve">
+    <value>de departement is verplicht</value>
+  </data>
+  <data name="unitNameLabel" xml:space="preserve">
+    <value>afdeling</value>
+  </data>
+  <data name="updateButtonText" xml:space="preserve">
+    <value>bijwerken</value>
+  </data>
+  <data name="updateDepartmentHeader" xml:space="preserve">
+    <value>departement bijwerken</value>
+  </data>
+  <data name="updateLanguageHeader" xml:space="preserve">
+    <value>taal bijwerken</value>
+  </data>
+  <data name="updateLocationHeader" xml:space="preserve">
+    <value>pas locatie aan </value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>Gebruikers</value>
+  </data>
+</root>

@@ -1,18 +1,17 @@
 {
   "ExpandedNodes": [
     "",
-    "\\backend",
-    "\\backend\\src",
-    "\\backend\\src\\Application",
-    "\\backend\\src\\Application\\Units",
-    "\\backend\\src\\Application\\Units\\Queries",
-    "\\backend\\src\\Application\\Units\\Queries\\GetAllUnits",
-    "\\backend\\src\\Infrastructure",
-    "\\backend\\src\\Infrastructure\\Persistence",
-    "\\backend\\src\\Infrastructure\\Persistence\\Configurations",
-    "\\backend\\src\\WebUI",
-    "\\backend\\src\\WebUI\\Controllers"
+    "\\src",
+    "\\src\\Application",
+    "\\src\\Application\\Units",
+    "\\src\\Application\\Units\\Queries",
+    "\\src\\Application\\Units\\Queries\\GetAllUnits",
+    "\\src\\Domain",
+    "\\src\\Domain\\Entities",
+    "\\src\\Infrastructure",
+    "\\src\\Infrastructure\\Migrations",
+    "\\unit tests"
   ],
-  "SelectedNode": "\\backend\\src\\Application\\Units\\Queries\\GetAllUnits\\GetAllQuery.cs",
+  "SelectedNode": "\\src\\Infrastructure\\Migrations\\20230501003605_after test.cs",
   "PreviewInSolutionExplorer": false
 }
