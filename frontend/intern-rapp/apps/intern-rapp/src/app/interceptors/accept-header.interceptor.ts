@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, LOCALE_ID, Optional } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -6,12 +6,11 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LOCALE_ID } from '../injectionTokens/LOCALE_ID';
 
 @Injectable()
 export class AcceptHeaderInterceptor implements HttpInterceptor {
 
-  constructor(@Inject(LOCALE_ID) private localId: string) {}
+  constructor(@Optional() @Inject(LOCALE_ID) private localId: string) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle( request.clone({

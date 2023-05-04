@@ -6,8 +6,9 @@ html, body { height: 100%;
 
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.active{
-    color:#00b5ad ;
+.active {
+   color: #00b5ad;
+    
 }
 .cancel-button{
     background-color:hsl(0, 87%, 59%);
@@ -24,7 +25,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     gap: 2px;
 }
 .save-button-above-list{
-    background-color:green;
-    color: white;
-    border-radius: 8px;
+    // background-color:green;
+    color: green;
+   
+    // border-radius: 0px;
+}
+button{
+    border-radius: 0%;
+    border: none;
+    text-shadow: none;
+    box-shadow: none;
+}
+mat-icon{
+    text-shadow: none;
+        box-shadow: none;
+}
+mat-divider{
+    color: black;
+    background-color:black;
 }

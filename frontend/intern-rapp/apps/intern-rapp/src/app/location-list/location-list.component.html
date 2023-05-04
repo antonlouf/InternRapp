@@ -9,11 +9,10 @@
 <ng-template
 internRappItemsTmpl let-items 
 >
-<button (click)="addLocation()" class="align-right save-button-above-list"  >
-  <div class="flex-row center-flex-items" >
-    <div>    <mat-icon>add</mat-icon></div>
-    <div>{{'addButton'|translate}}</div>
-  </div>
+<button mat-icon-button (click)="addLocation()" class="align-right save-button-above-list"  >
+  
+    <mat-icon>add</mat-icon>
+    <!-- <div>{{'addButton'|translate}}</div> -->
 </button>
 
   <mat-list >
