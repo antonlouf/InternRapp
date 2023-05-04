@@ -59,7 +59,7 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
                         Content=x.Content,
                         Description = x.Description,
                         Id = x.Id,
-                        InternShipId = x.Id,
+                        InternShipId = x.InternShipId,
                         KnowledgeToDevelop=x.KnowledgeToDevelop,
                         NeededKnowledge= x.NeededKnowledge,
                         TitleContent=x.TitleContent,
