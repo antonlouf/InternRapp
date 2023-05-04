@@ -17,7 +17,7 @@ public class UnitConfiguration : IEntityTypeConfiguration<Department>
                                     .HasMaxLength(100)
                                     .IsRequired();
         builder.HasIndex(x => x.Name);
-        
+        builder.HasMany(dep => dep.InternShips).WithOne(intrshp => intrshp.Unit).HasForeignKey(intrshp=> intrshp.UnitId).OnDelete(DeleteBehavior.Cascade); //has foreign key van Internships.id
         builder.Property(x=>x.ManagerEmails).UsePropertyAccessMode(PropertyAccessMode.PreferProperty).HasConversion(v=>string.Join(',',v),x=>x.Split(',',StringSplitOptions.RemoveEmptyEntries).ToList());
         
     }

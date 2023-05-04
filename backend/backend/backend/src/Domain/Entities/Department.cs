@@ -12,6 +12,8 @@ public class Department
     public string Name { get; set; }
     private string _managerEmails;
 
+    public List<InternShip> InternShips { get; set; }
+
     public List<string> ManagerEmails
     {
         get { return _managerEmails.Split(',').ToList(); }

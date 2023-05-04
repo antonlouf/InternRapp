@@ -12,17 +12,38 @@ public class InternShipExportDto
     public string SchoolYear { get; set; }
     public TrainingType TrainingType { get; set; }
     public LocationDto Location { get; set; } //vertalen?
-    public DepartmentDto Department { get; set; } //om op te groupen 
+
+    //public DepartmentDto Department { get; set; } //om op te groupen 
     //dit is rechtstreeks te mappen van Internships -> InternshipsExportDto
 
-    public InternShipContentTranslation Version { get; set; } //neem hierin de language en map naar TranslationDto
+    //public InternShipContentTranslation Version { get; set; } //neem hierin de language en map naar TranslationDto
+    //public IList<TranslationDto> Translations { get; set; }
     public TranslationDto Translation { get; set; }
+
+    //public void Mapping(Profile profile)
+    //{
+    //    profile.CreateMap<InternShip, InternShipExportDto>()
+    //        .ConvertUsing((source, _, context) =>
+    //        {
+    //            return new InternShipExportDto
+    //            {
+    //                SchoolYear = source.SchoolYear,
+    //                TrainingType = source.RequiredTrainingType,
+    //                Translation = 
+    //            };
+    //        });
+    //}
+
+    //public void Mapping(Profile profile)
+    //{
+    //    //profile.CreateMap<UnitExportDto, InternShipExportDto>();
+
+    //    profile.CreateMap<InternShip, InternShipExportDto>()
+    //       // .ForMember(dest => dest.;
+    //    //   .ForMember(pts => pts.PropertyName, opt => opt.MapFrom(ps => ps.Property.PropertyName));
+    //    profile.CreateMap<TranslationDto, IList<InternShipContentTranslation>>()
+    //}
     //Dit via select of andere mapping 
 
-    public void Mapping(Profile profile)
-    {
-        profile.CreateMap<InternShip, InternShipExportDto>()
-            .ForMember(dest => dest.Department.Id, opt => opt.MapFrom(src => src.Unit.Id));
-        //profile.CreateMap<InternShipContentTranslation, InternShipExportDto>();
-    }
+
 }

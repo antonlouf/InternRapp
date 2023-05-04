@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using backend.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using backend.Infrastructure.Persistence;
 namespace backend.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230502085910_improved units")]
+    partial class improvedunits
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,10 +110,7 @@ namespace backend.Infrastructure.Migrations
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<byte>("CurrentCountOfStudents")
                         .HasColumnType("tinyint");
@@ -191,6 +191,8 @@ namespace backend.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("InternShipId");
+
+                    b.HasIndex("LanguageId");
 
                     b.ToTable("Translations");
                 });
@@ -277,6 +279,12 @@ namespace backend.Infrastructure.Migrations
 
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
                 {
+                    b.HasOne("backend.Domain.Entities.Department", null)
+                        .WithMany("InternShips")
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("backend.Domain.Entities.Location", "Location")
                         .WithMany()
                         .HasForeignKey("LocationId")
@@ -284,7 +292,7 @@ namespace backend.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("backend.Domain.Entities.Department", "Unit")
-                        .WithMany("InternShips")
+                        .WithMany()
                         .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -296,7 +304,7 @@ namespace backend.Infrastructure.Migrations
 
             modelBuilder.Entity("backend.Domain.Entities.InternShipContentTranslation", b =>
                 {
-                    b.HasOne("backend.Domain.Entities.Language", "Language")
+                    b.HasOne("backend.Domain.Entities.Language", null)
                         .WithMany("Translations")
                         .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -305,6 +313,12 @@ namespace backend.Infrastructure.Migrations
                     b.HasOne("backend.Domain.Entities.InternShip", "InternShip")
                         .WithMany("Translations")
                         .HasForeignKey("InternShipId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("backend.Domain.Entities.Language", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

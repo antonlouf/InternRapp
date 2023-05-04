@@ -18,7 +18,5 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
         builder.Property(x => x.HouseNumber).IsRequired();
         builder.Property(x => x.ZipCode).IsRequired().HasMaxLength(8);
 
-
-
     }
 }

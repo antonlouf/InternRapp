@@ -15,8 +15,8 @@ public class InternShipContentTranslation
     public string Location { get; set; }
     public string Comment { get; set; }
     public string Content { get; set; }
-    public InternShip InternShip { get; set; }
+    public InternShip InternShip { get; set; } //weg 
     public int InternShipId { get; set; }
-    public Language Language { get; set; }
+    public Language Language { get; set; } //weg 
     public int LanguageId { get; set; }
 }

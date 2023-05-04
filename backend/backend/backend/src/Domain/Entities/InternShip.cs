@@ -9,11 +9,11 @@ namespace backend.Domain.Entities;
 public class InternShip
 {
     public int Id { get; set; }
-    public Department Unit { get; set; }
+    public Department Unit { get; set; } // weg doen, niet mogelijk maken op parent aan te passen 
     public int UnitId { get; set; }
     public string SchoolYear { get; set; }
     public byte MaxStudents  { get; set; }
-    public Location Location { get; set; }
+    public Location Location { get; set; } //weg
     public int LocationId { get; set; }
     public byte CurrentCountOfStudents { get; set; }
     public TrainingType RequiredTrainingType { get; set; }

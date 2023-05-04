@@ -16,10 +16,11 @@ public class InternShipConfiguration : IEntityTypeConfiguration<InternShip>
         builder.Property(x=>x.RequiredTrainingType).IsRequired();
         builder.HasIndex(x => new {x.SchoolYear});
         builder.Property(x=>x.SchoolYear).IsRequired();
-        builder.HasOne(x => x.Unit);
+        //builder.HasOne(x => x.Unit); // dit zou weg moeten en Id in de plaats 
         builder.Property(x => x.CurrentCountOfStudents).IsRequired();
-        builder.HasOne(x => x.Location);
+        builder.HasOne(x => x.Location); 
         builder.Property(x=>x.MaxStudents).IsRequired();
-        builder.HasMany(x => x.Translations).WithOne(x => x.InternShip);
+
+        builder.HasMany(x => x.Translations).WithOne(x => x.InternShip).OnDelete(DeleteBehavior.Cascade);
     }
 }

@@ -20,8 +20,8 @@ public class InternShipContentTranslationConfiguration : IEntityTypeConfiguratio
         builder.Property(x => x.Location).IsRequired().HasMaxLength(250);
         builder.Property(x => x.Comment).IsRequired().HasMaxLength(250);
         builder.Property(x => x.Content).IsRequired().HasMaxLength(250);
-        builder.HasOne(x => x.InternShip);
-        builder.HasOne(x => x.Language);
+        //builder.HasOne(x => x.InternShip);
+        //builder.HasOne(x => x.Language);
 
 
     }

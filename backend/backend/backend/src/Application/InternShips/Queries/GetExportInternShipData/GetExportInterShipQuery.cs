@@ -1,39 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using backend.Application.Common.Interfaces;
-using backend.Application.Common.Mappings;
-using backend.Application.Common.Models;
-using backend.Application.Common.Paging;
 using backend.Application.InternShips.Common;
 using backend.Application.InternShips.Queries.GetAllInternShips;
-using backend.Application.InternShips.Queries.getFilteredInternShip;
-using backend.Application.Units.Queries.GetAllUnits;
 using backend.Domain.Entities;
 using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.CustomProperties;
-using DocumentFormat.OpenXml.Drawing.Diagrams;
-using DocumentFormat.OpenXml.Office2013.Word;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace backend.Application.InternShips.Queries.GetExportInternShipData;
-public class GetExportInterShipQuery : IRequest<List<IGrouping<DepartmentDto, InternShipListDto>>>
+public class GetExportInterShipQuery : IRequest<List<UnitExportDto>>
 {
     public InternshipExportRequestDto Dto { get; set; }
 }
 
-public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShipQuery, List<IGrouping<DepartmentDto, InternShipListDto>>>
+public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShipQuery, List<UnitExportDto>>
 {
     private readonly IApplicationDbContext _dbContext;
     private IMapper _iMapper;
@@ -44,47 +31,201 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
         _iMapper = iMapper;
     }
 
-    public async Task<List<IGrouping<DepartmentDto, InternShipListDto>>> Handle(GetExportInterShipQuery request, CancellationToken cancellationToken)
+    public async Task<List<UnitExportDto>> Handle(GetExportInterShipQuery request, CancellationToken cancellationToken)
     {
-        //filter en group op unit Id en uiteindelijk wil ik ExportDTO's / unitDTo's 
-        var internShips = await _dbContext.InternShips
-        .Where(internschip => (request.Dto.UnitId == null || request.Dto.UnitId.Count == 0 || request.Dto.UnitId.Contains(internschip.UnitId))
-            && (request.Dto.SchoolYear == null || request.Dto.SchoolYear.Count == 0 || request.Dto.SchoolYear.Contains(internschip.SchoolYear))
-            && (request.Dto.LanguageId == null || request.Dto.LanguageId.Count == 0 || internschip.Translations.Any(trnsl => request.Dto.LanguageId.Contains(trnsl.LanguageId))))
-            .ProjectTo<InternShipListDto>(_iMapper.ConfigurationProvider)
-            .ToListAsync(); //--->werkende versie
-        var units = internShips
-           .GroupBy(x => x.Unit, new UnitEqualityComparer())
-           .ToList();
+
+        //if (string.IsNullOrEmpty(request.Dto.SchoolYear) || request.Dto.LanguageId == 0) //verder uitwerken 
+        //{
+        //    return new List<UnitExportDto>();
+        //}
+
+        //&& unit.InternShips.All(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId))
+
+        //Filter on Units and only the internships who have a translation language of request language 
+        var units = await _dbContext.Departments
+            .Where(unit => (request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(unit.Id)) 
+            && unit.InternShips.Any(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)))
+            .Select(x => new UnitExportDto()
+            {
+                Name = x.Name,
+                InternShipsDtos = x.InternShips.Where(intrshp => intrshp.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)).Select(x => new InternShipExportDto()
+                {
+                    SchoolYear = x.SchoolYear,
+                    Location = _iMapper.Map<LocationDto>(x.Location),
+                    TrainingType = x.RequiredTrainingType,
+                    Translation = x.Translations.Select(x=>new TranslationDto()
+                    {
+                        Comment = x.Comment,
+                        Content=x.Content,
+                        Description = x.Description,
+                        Id = x.Id,
+                        InternShipId = x.Id,
+                        KnowledgeToDevelop=x.KnowledgeToDevelop,
+                        NeededKnowledge= x.NeededKnowledge,
+                        TitleContent=x.TitleContent,
+
+                    }).First()
+                }).ToList()
+            }).ToListAsync();
+                    //.Where(unit => request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(unit.Id) //als er geen meegegeven wordt, toon dan alle
+                    //&& unit.InternShips.All(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)));
+
+        //var units = from deps in _dbContext.Departments.Where(x => request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(x.Id))
+        //            join intrshps in _dbContext.InternShips
+        //            on deps.Id equals intrshps.UnitId
+        //            join trnsl in _dbContext.Translations.Where(x => x.LanguageId == request.Dto.LanguageId)
+        //            on intrshps.Id equals trnsl.InternShipId
+        //            into trnsl2 
+        //            select new UnitExportDto()
+        //            {
+        //                Name = deps == null ? null : deps.Name,
+        //                InternShipsDtos = trnsl2.Select(x => new InternShipExportDto()
+        //                {
+
+        //                    Translation = new TranslationDto()
+        //                    {
+
+        //                        Content = x.Content,
+        //                    },
+        //                    //SchoolYear = x.InternShip.SchoolYear
+        //                }).ToList()
+        //            };
+
+        //var test = units.ToList();
+
+                    //Geef de unit waarvan de unit met internships met zijn translaties overeenkomt met al 
+                    //mss selecten omdat unit gewijzigd moet worden -> filtered op intrnshps 
+
+                    //.Include(unit => unit.InternShips)
+                    //.ThenInclude(x => x.Translations)
+                    //.ToListAsync();
+
+                    /*
+                    .Select(unit => new UnitExportDto()
+                    {
+                        Name = unit.Name,
+                        InternShipsDtos = unit.InternShips
+
+                        //.Where(internship => internship.SchoolYear == request.Dto.SchoolYear)
+
+                        .Select(internship =>
+                             new InternShipExportDto() //per internships?
+                             {
+                                 SchoolYear = internship.SchoolYear,
+                                 Location = new LocationDto()
+                                 {
+                                     id = internship.Location.Id,
+                                     city = internship.Location.City,
+                                     zipcode = internship.Location.ZipCode,
+                                     streetname = internship.Location.StreetName,
+                                     housenumber = internship.Location.HouseNumber,
+                                 },
+                                 TrainingType = internship.RequiredTrainingType,
+                                 Translation = internship.Translations
+                                 .Where(trnsl => trnsl.Language.Id == request.Dto.LanguageId)
+                                 .Select(trnsl => new TranslationDto()
+                                 {
+                                     Id = trnsl.Id,
+                                     //Language = new Lang x.Translations.FirstOrDefault(y => y.Language.Id == request.Dto.LanguageId).LanguageId
+                                     //Content = internship.Translations.First(trnsl => trnsl.Language.Id == request.Dto.LanguageId).Content
+                                 }).Single()
+                             }
+                         ).ToList()
+                    }).ToListAsync();
+
+                    */
 
 
-        //var internShips = await _dbContext.InternShips
-        //.Where(internschip => (request.Dto.UnitId == null || request.Dto.UnitId.Count == 0 || request.Dto.UnitId.Contains(internschip.UnitId))
-        //    && (request.Dto.SchoolYear == null || request.Dto.SchoolYear.Count == 0 || request.Dto.SchoolYear.Contains(internschip.SchoolYear))
-        //    && (request.Dto.LanguageId == null || request.Dto.LanguageId.Count == 0 || internschip.Translations.Any(trnsl => request.Dto.LanguageId.Contains(trnsl.LanguageId))))
-        //    .ProjectTo<InternShipExportDto>(_iMapper.ConfigurationProvider)
 
-        //    .ToListAsync();
-
-        ////maak compare methode in DepartmentDTO klasse
-        //var units = internShips
-        //    .GroupBy(x => x.Department, new UnitEqualityComparer())
-        //    //x => x, 
-        //    //(key, values) => new UnitExportDto { 
-        //    //    Name = key.Name, 
-        //    //    InternShips = values
-        //    //        .Select(internShip => _iMapper.Map<InternShip, InternShipExportDto>(internShip))
-        //    //        .AsEnumerable()
-        //    //}, new UnitEqualityComparer())
-        //    .ToList();
-
-        foreach (var item in internShips)
+        foreach (var item in units)
         {
 
         }
 
-        return units;
-               //return new List<IGrouping<DepartmentDto, InternShipListDto>> { };
+
+
+
+
+        //var p = _dbContext.Departments.Where(x => x.InternShips.Any(y => request.Dto.SchoolYear.Contains(y.SchoolYear)));
+
+        //_dbContext.Departments.Select(x => new UnitExportDto())
+
+        //}).ToListAsync(); //--->werkende versie
+        //var units = internShips
+        //   .GroupBy(x => x.Unit, new UnitEqualityComparer())
+        //   .ToList();
+
+        // 
+
+
+        //var internShips = _dbContext.InternShips.AsQueryable();
+
+        //    internShips = internShips.Include(x => x.Translations.Where(y => y.LanguageId == request.Dto.LanguageId))
+        //    .Include(z => z.Unit);
+        ////liever als laatst doen en op unit -> internship 
+
+        //if (request.Dto.UnitId != null || request.Dto.UnitId.Any())
+        //{
+        //    internShips = internShips.Where(internschip => request.Dto.UnitId.Contains(internschip.UnitId));
+        //}
+
+        //var internshipsQuery = await internShips.ToListAsync();
+
+
+
+        //Filter opbouwen van Departments to UnitExportDto 
+        //var units = _dbContext.Departments.AsQueryable();
+
+        ////Fix wanneer unitId leeg is 
+
+        //if (request.Dto.UnitId != null || request.Dto.UnitId.Any())
+        //{
+        //    units = units.Include(unit => unit.InternShips.Where(internschip => request.Dto.UnitId.Contains(internschip.UnitId)));
+        //}
+
+        //var unitsQuery = await units.ToListAsync();
+
+
+
+        //units.Include(q => q.)
+
+        //.Where(internschip => (request.Dto.UnitId == null || request.Dto.UnitId.Count == 0 || request.Dto.UnitId.Contains(internschip.UnitId))
+        //    && (request.Dto.SchoolYear == null || request.Dto.SchoolYear.Count == 0 || request.Dto.SchoolYear.Contains(internschip.SchoolYear))
+        //    && (request.Dto.LanguageId == null || request.Dto.LanguageId.Count == 0 || internschip.Translations.Any(trnsl => request.Dto.LanguageId.Contains(trnsl.LanguageId))))
+        //    .ProjectTo<InternShipExportDto>(_iMapper.ConfigurationProvider) // -> Filtered internships 
+        //    .ToListAsync();
+
+        //maak compare methode in DepartmentDTO klasse
+        //var units = internShips
+        //    .Select(y => new InternShipExportDto
+        //    {
+        //        Department = y.Department,
+        //        Location = y.Location,
+        //        SchoolYear = y.SchoolYear,
+        //        TrainingType = y.TrainingType,
+        //        Translations = y.Translations,
+        //        Translation = new TranslationDto
+        //        {
+        //            Content = y.Translations.Where(trnsl => request.Dto.LanguageId.Contains(trnsl.Language.Id))
+
+        //        }
+        //    })
+        //    .GroupBy(x => x.Department, new UnitEqualityComparer())
+        //    x => x, 
+        //    (key, values) => new UnitExportDto
+        //    {
+        //        Name = key.Name,
+        //        InternShips = values
+        //            .Select(internShip => _iMapper.Map<InternShip, InternShipExportDto>(internShip))
+        //            .AsEnumerable()
+        //    }, new UnitEqualityComparer())
+
+        //    .ToList();
+
+
+        return new List<UnitExportDto> { };
+
+
     }
 }
 public class UnitEqualityComparer : IEqualityComparer<DepartmentDto>
@@ -109,8 +250,8 @@ public class UnitEqualityComparer : IEqualityComparer<DepartmentDto>
 
 public class Exporting
 {
-    public void GenerateWordDoc(List<IGrouping<DepartmentDto, InternShipListDto>> internshipList, InternshipExportRequestDto requestDto)
-    {   
+    public void GenerateWordDoc(List<UnitExportDto> unitExportList, InternshipExportRequestDto requestDto)
+    {
         const string templatePath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\backend\lib\template.docx"; //-> docm
         const string resultPath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\backend\lib\internships.docx";
         const string resultPath2 = @"C:\Users\ALFCP98\source\repos\HelloWorld\HelloWorld\bin\Debug\net6.0\OpenXmlExample2.docx";
@@ -149,7 +290,7 @@ public class Exporting
 
         ExtractParagraphs(allElements, "UNIT_TITLE", "UNIT_END", out var unitStartPosition, out var templateUnitParagraphs);
 
-        InsertUnitParagraphs(body, internshipList, templateUnitParagraphs, unitStartPosition);
+        InsertUnitParagraphs(body, unitExportList, templateUnitParagraphs, unitStartPosition);
 
         var newElements = body!.Elements().ToList();
         List<string> toDeleteStrings = new List<string>() { "INTERNSHIP_END", "UNIT_END" };
@@ -321,7 +462,7 @@ public class Exporting
                     var correctTextElements = new List<DocumentFormat.OpenXml.Wordprocessing.Text>();
                     var exists = true; //vermijd nulpointer error bij laatste moveNext()
                     var matchingChars = 0;
-                    
+
                     // wanneer letter van textElement overeenkomt met dictionary key 
                     //loop over IN TERN SHIP (textElements) 
                     // remaningKey = "INTERNSHIP-COMMENTS-CONTENT"
@@ -404,20 +545,20 @@ public class Exporting
         }
     }
 
-    public void InsertUnitParagraphs(BodyType body, List<IGrouping<DepartmentDto, InternShipListDto>> UnitList, List<OpenXmlElement> templateUnitParagraphs, int unitStartPosition)
+    public void InsertUnitParagraphs(BodyType body, List<UnitExportDto> unitList, List<OpenXmlElement> templateUnitParagraphs, int unitStartPosition)
     {
 
-       /* foreach (var group in UnitList)
-        {
-            var unit = group.Key;
-            foreach (var internShip in group)
-            {
-               
-            }
-        } */
+        /* foreach (var group in UnitList)
+         {
+             var unit = group.Key;
+             foreach (var internShip in group)
+             {
+
+             }
+         } */
 
         //moet ik dat nu nog reversen? in welke volgorde moeten de units komen? 
-        var reversedUnits = Reversed(UnitList); //units 
+        var reversedUnits = Reversed(unitList); //units 
 
         for (var unitIndex = 0; unitIndex < reversedUnits.Count; unitIndex++) //Nieuwe lijst in omgekeerde volgorde 
         {
@@ -426,27 +567,26 @@ public class Exporting
 
             ReplaceParagraphs(unitElements, new Dictionary<string, string>()
                     {
-                        {"UNIT_TITLE", unit.Key.Name},
-                        {"UNIT_DESCRIPTION", unit.Key.Name}, //change 
+                        {"UNIT_TITLE", unit.Name},
+                        {"UNIT_DESCRIPTION", unit.Name}, //change 
                     });
 
             ExtractParagraphs(unitElements, "INTERNSHIP_TITLE", "INTERNSHIP_END", out var internshipStartPosition, out var templateInternshipParagraphs);
 
             unitElements.RemoveRange(internshipStartPosition, templateInternshipParagraphs.Count); //Delete niet ingevulde internship template  
 
-            foreach (var internship in unit) 
+            foreach (var internship in /* unit.InternShipsDtos */ new List<InternShipExportDto>())
             {
-                foreach (var trnsl in internship.Versions)
-                {
-                    var internshipParagraphs = CloneELements(templateInternshipParagraphs);
 
-                    ReplaceParagraphs(internshipParagraphs, new Dictionary<string, string>()
+                var internshipParagraphs = CloneELements(templateInternshipParagraphs);
+
+                ReplaceParagraphs(internshipParagraphs, new Dictionary<string, string>()
                           {
-                              {"INTERNSHIP_TITLE", "InternRapp"},
+                              {"INTERNSHIP_TITLE", internship.Translation.TitleContent},
                               {"INTERNSHIP_ASSIGNMENT_TITLE", "Description of the assignment"},
-                              {"INTERNSHIP_ASSIGNMENT_DESCRIPTION", "Binnen een duikclub zijn er heel wat regels verbonden vooraleer iemand kan inschrijven voor een clubduik, bijvoorbeeld: medische keuring niet verlopen, verzekering in orde, genoeg kader aanwezig, indien iemand een proef wil doen de juiste instructeur aanwezig,… Heel wat duikclubs hebben nood aan een overzichtelijke tool om dit allemaal gepland te krijgen. In heel veel gevallen komen we tot ongewilde verassingen aan de waterkant.\r\n\r\nOm dit getackeld te krijgen wil duikclub Actina vzw een platform laten ontwikkelen om dit te automatiseren en de nodige regels af te checken bij inschrijving. We focussen in eerste instantie op 1 duikclub maar het doel is om het platform te laten gebruiken in de toekomst door bevriende clubs ook. Als VZW geniet de club als non- profit organisatie van sponsorship van Microsoft. Daarom willen we gans het platform ontwikkelen hosten in de Microsoft Azure cloud. We willen alles zo modulair mogelijk opbouwen zodat het simpel is later uitbreidingen te implementeren"},
-                              {"INTERNSHIP_KNOWLEDGE_TITLE", "Which knowledge and competences do you develop with this assignment"},
-                              {"INTERNSHIP_KNOWLEDGE_DESCRIPTION", "Technische en niet-technische oplijsting van de kennis en competenties die de stagiair zal verwerven gedurende de stage."},
+                              {"INTERNSHIP_ASSIGNMENT_DESCRIPTION", ""},
+                              {"INTERNSHIP_KNOWLEDGE_TITLE", ""},
+                              {"INTERNSHIP_KNOWLEDGE_DESCRIPTION", ""},
                               {"INTERNSHIP_KNOWLEDGE_CONTENT", "title"},
                               {"INTERNSHIP_NEED_TO_KNOW_TITLE", "title"},
                               {"INTERNSHIP_NEED_TO_KNOW_DESCRIPTION", "title"},
@@ -458,8 +598,8 @@ public class Exporting
                               {"INTERNSHIP_COMMENTS_CONTENT", "title"},
                           });
 
-                    unitElements.InsertRange(internshipStartPosition, internshipParagraphs); //toevoegen van internshipParagraaf lijst in unit paragrafen 
-                }
+                unitElements.InsertRange(internshipStartPosition, internshipParagraphs); //toevoegen van internshipParagraaf lijst in unit paragrafen 
+
             }
 
             //add new break
