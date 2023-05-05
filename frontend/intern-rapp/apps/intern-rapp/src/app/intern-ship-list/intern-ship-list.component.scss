@@ -37,7 +37,7 @@
 }
 
 .align-right{
-margin-left: 97%;
+margin-left: 95%;
 }
 .material-symbols-outlined {
     font-variation-settings:
@@ -45,4 +45,13 @@ margin-left: 97%;
     'wght' 400,
     'GRAD' 0,
     'opsz' 48
+  }
+  input{
+    border: none;
+    
+  }
+  .buttons-above-list{
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
   }
