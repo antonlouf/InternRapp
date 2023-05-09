@@ -252,6 +252,9 @@
   <data name="managerEmail" xml:space="preserve">
     <value>courriel du directeur</value>
   </data>
+  <data name="managerEmailsLabel" xml:space="preserve">
+    <value>le(s) courriel(s) des responsables</value>
+  </data>
   <data name="Master" xml:space="preserve">
     <value>Master</value>
   </data>

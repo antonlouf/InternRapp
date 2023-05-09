@@ -255,6 +255,9 @@
   <data name="managerEmail" xml:space="preserve">
     <value>manager email</value>
   </data>
+  <data name="managerEmailsLabel" xml:space="preserve">
+    <value>the email(s) of the managers</value>
+  </data>
   <data name="Master" xml:space="preserve">
     <value>Master</value>
   </data>

@@ -32,6 +32,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { DepartmentUpdate } from '../entities/departmentUpdate';
 import { DepartmentItemDetail } from '../entities/departmentItemDetail';
 import { convertFormsArrayToObjectForUpdatedUnit } from '../preface-translation-form/buildFormGroupForPrefaceTranslation';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'intern-rapp-unit-list',
@@ -50,6 +51,7 @@ import { convertFormsArrayToObjectForUpdatedUnit } from '../preface-translation-
     BaselistComponent,
     DeletePopupComponent,
     TranslateModule,
+    MatCheckboxModule,
   ],
   templateUrl: './unit-list.component.html',
   styleUrls: ['./unit-list.component.scss'],
@@ -63,7 +65,7 @@ export class UnitListComponent
   public deleteSubject = new Subject<number>();
   public addSubject = new Subject<CreateDepartment | undefined>();
   public updateSubject = new Subject<number>();
-
+  private selectedIds: number[] = [];
   constructor(
     private unitService: DepartmentService,
     public dialog: MatDialog
@@ -119,13 +121,11 @@ export class UnitListComponent
   }
 
   private configureUpdate$() {
-    
     return this.updateSubject.pipe(
       switchMap((id) => {
         return this.unitService.getById(id);
       }),
       switchMap((data) => {
-        
         const dialogRef = this.dialog.open(
           DepartmentUpdateComponent,
           this.popUpConfig
@@ -136,8 +136,10 @@ export class UnitListComponent
           .pipe(map((confirm) => (confirm ? confirm : undefined)));
       }),
       filter((id) => !!id),
-      switchMap((depItem) =>  this.unitService.updateDepartment(depItem as DepartmentUpdate)));
-      
+      switchMap((depItem) =>
+        this.unitService.updateDepartment(depItem as DepartmentUpdate)
+      )
+    );
   }
 
   private configureAdd$() {
@@ -162,9 +164,9 @@ export class UnitListComponent
 
   filterUpdating(filter: {}) {
     const record = filter as Record<string, never>;
-     const activeFilters: Record<string, unknown> = {};
+    const activeFilters: Record<string, unknown> = {};
     this.filters?.forEach((x) => {
-      activeFilters['unitName']= `${record[x.name]}`;
+      activeFilters['unitName'] = `${record[x.name]}`;
     });
 
     this.filterUpdated(activeFilters);
@@ -178,5 +180,12 @@ export class UnitListComponent
   };
   delete(id: number) {
     this.deleteSubject.next(id);
+  }
+  public addToSelectedUnits(completed: boolean, id: number) {
+    if (!completed) {
+      this.selectedIds = this.selectedIds.filter((x) => x !== id);
+      return;
+    }
+    this.selectedIds.push(id);
   }
 }
