@@ -186,8 +186,14 @@
   <data name="Fr" xml:space="preserve">
     <value>français</value>
   </data>
+  <data name="FreeUsedPlacesLabel" xml:space="preserve">
+    <value>sièges libres/occupés</value>
+  </data>
   <data name="internship" xml:space="preserve">
     <value>stage</value>
+  </data>
+  <data name="internshipNameColumnLabel" xml:space="preserve">
+    <value>le nom de l'assignation</value>
   </data>
   <data name="internships" xml:space="preserve">
     <value>stages</value>

@@ -57,7 +57,18 @@ margin-left: 95%;
         flex-direction: row;
         gap: 20px;
   }
-  .label {
+
+  .internship-name{
+    margin-left: 1.25%;
+      // font-weight: bold;
+  }
+  .unit-name{
+    margin-right: 2%
+  }
+  .flex-row-columns{
+    display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
       font-weight: bold;
-      margin-right: 10px;
+      font-size: large;
   }

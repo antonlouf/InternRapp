@@ -186,8 +186,14 @@
   <data name="Fr" xml:space="preserve">
     <value>French</value>
   </data>
+  <data name="FreeUsedPlacesLabel" xml:space="preserve">
+    <value>free/occupied places</value>
+  </data>
   <data name="internship" xml:space="preserve">
     <value>internship</value>
+  </data>
+  <data name="internshipNameColumnLabel" xml:space="preserve">
+    <value>The name of the internship</value>
   </data>
   <data name="internships" xml:space="preserve">
     <value>internships</value>
@@ -293,6 +299,9 @@
   </data>
   <data name="unitEmptyErrorMessage" xml:space="preserve">
     <value>The unit is required</value>
+  </data>
+  <data name="Unitname" xml:space="preserve">
+    <value />
   </data>
   <data name="unitNameLabel" xml:space="preserve">
     <value>unit</value>

@@ -186,8 +186,14 @@
   <data name="Fr" xml:space="preserve">
     <value>Frans</value>
   </data>
+  <data name="FreeUsedPlacesLabel" xml:space="preserve">
+    <value>vrij/bezet plaatsen</value>
+  </data>
   <data name="internship" xml:space="preserve">
     <value>stage</value>
+  </data>
+  <data name="internshipNameColumnLabel" xml:space="preserve">
+    <value>de  naam van de opdracht</value>
   </data>
   <data name="internships" xml:space="preserve">
     <value>Stages</value>
