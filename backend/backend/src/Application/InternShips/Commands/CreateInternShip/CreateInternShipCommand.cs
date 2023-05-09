@@ -44,11 +44,9 @@ public class CreateInternShipCommandHandler : AsyncRequestHandler<CreateInternSh
                 InternShipId = result.Entity.Id,
                 Comment = request.Versions[i].Comment,
                 Description = request.Versions[i].Description,
-                Content = request.Versions[i].Content,
                 KnowledgeToDevelop = request.Versions[i].KnowledgeToDevelop,
                 NeededKnowledge = request.Versions[i].NeededKnowledge,
                 TitleContent = request.Versions[i].TitleContent,
-                Location= request.Versions[i].Location,
                 LanguageId = request.Versions[i].LanguageId,
                 
             });

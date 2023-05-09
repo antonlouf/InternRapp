@@ -61,31 +61,14 @@
    </div>
 
 </div>
+
+
 <div>
 <div class="flex-row">
+
     <div>
-        <div class="editor">
-  
-            <div >
-                <mat-label> {{'locationLabel'|translate}}</mat-label>
-            </div>
-        <div>
-        <angular-editor  formControlName="location" [config]="editorConfig"></angular-editor>
-    
-        <div>
-            <mat-error *ngIf="internshipTranslationForm.controls['location'].dirty && internshipTranslationForm.controls['location'].invalid">
-                {{'locationLabelErrorMessage' |translate}}
-            </mat-error>
-        </div>
-        </div>
-    
-    </div>
-    </div>
-    <div>
-        <div class="flew-row">
-            <div>
-                <div class="editor">
-  
+    <div class="editor">
+
                     <div >
                         <mat-label> {{'commentLabel'|translate}}</mat-label>
                     </div>
@@ -96,81 +79,33 @@
                     <mat-error *ngIf="internshipTranslationForm.controls['comment'].dirty && internshipTranslationForm.controls['comment'].invalid">
                         {{'commentLabelErrorMessage' |translate}}
                     </mat-error>
-                </div>
-                </div>
             
             </div>
-            </div>
+            
             
         </div>
        
     </div>
-</div>
-
-
-  
- </div>
- <div>
- 
- </div>
-<div >
-   
-</div>
-<div >
-        
-   
-<div class="flex-row">
-    <div>
-        <div class="editor">
-  
-            <div >
-                <mat-label> {{'contentLabel'|translate}}</mat-label>
-            </div>
-        <div>
-        <angular-editor  formControlName="content" [config]="editorConfig"></angular-editor>
-    
-        <div>
-            <mat-error *ngIf="internshipTranslationForm.controls['content'].dirty && internshipTranslationForm.controls['content'].invalid">
-                {{'contentLabelErrorMessage' |translate}}
-            </mat-error>
-        </div>
-        </div>
-    
     </div>
-    </div>
-    <div>
-        <div class="editor">
-  
-            <div >
+<div>
+    <div class="editor">
+            <div>
                 <mat-label> {{'neededKnowledgeLabel'|translate}}</mat-label>
             </div>
-        <div>
-        <angular-editor  formControlName="neededKnowledge" [config]="editorConfig"></angular-editor>
-    
-        <div>
-            <mat-error *ngIf="internshipTranslationForm.controls['neededKnowledge'].dirty && internshipTranslationForm.controls['neededKnowledge'].invalid">
-                {{'neededKnowledgeLabelErrorMessage' |translate}}
-            </mat-error>
+            <div>
+                <angular-editor formControlName="neededKnowledge" [config]="editorConfig"></angular-editor>
+        
+                <div>
+                    <mat-error
+                        *ngIf="internshipTranslationForm.controls['neededKnowledge'].dirty && internshipTranslationForm.controls['neededKnowledge'].invalid">
+                        {{'neededKnowledgeLabelErrorMessage' |translate}}
+                    </mat-error>
+                </div>
+            </div>
+        
         </div>
-        </div>
-    
-    </div>
-    </div>
 </div>
-   
-
+ </div>
 </div>
-    </div>
-   
-
-
-    
-
-
-
-  
-
- 
-
-   
+</div> 
 </form>

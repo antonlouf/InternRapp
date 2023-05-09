@@ -174,6 +174,9 @@
   <data name="descriptionLabel" xml:space="preserve">
     <value>description</value>
   </data>
+  <data name="descriptionLabelErrorMessage" xml:space="preserve">
+    <value>The description of  the internship may not be null and   longer  greater than 1000 characters</value>
+  </data>
   <data name="editButton" xml:space="preserve">
     <value>edit</value>
   </data>
@@ -200,6 +203,9 @@
   </data>
   <data name="knowledgeToDevelopLabel" xml:space="preserve">
     <value>knowledge to develop</value>
+  </data>
+  <data name="knowledgeToDevelopLabelErrorMessage" xml:space="preserve">
+    <value>the knowledge needed for the internship may not be null or greater than 1000 characters</value>
   </data>
   <data name="language" xml:space="preserve">
     <value>language</value>
@@ -299,6 +305,9 @@
   </data>
   <data name="titleContentLabel" xml:space="preserve">
     <value>title</value>
+  </data>
+  <data name="titleContentLabelErrorMessage" xml:space="preserve">
+    <value>The name of the internship could not be empty</value>
   </data>
   <data name="trainingTypeLabel" xml:space="preserve">
     <value>required training type</value>

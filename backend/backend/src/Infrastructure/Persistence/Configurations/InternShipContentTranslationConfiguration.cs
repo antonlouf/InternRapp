@@ -18,9 +18,8 @@ public class InternShipContentTranslationConfiguration : IEntityTypeConfiguratio
         builder.Property(x => x.Description).IsRequired().HasMaxLength(350);
         builder.Property(x => x.KnowledgeToDevelop).IsRequired().HasMaxLength(250);
         builder.Property(x => x.NeededKnowledge).IsRequired().HasMaxLength(250);
-        builder.Property(x => x.Location).IsRequired().HasMaxLength(250);
+       
         builder.Property(x => x.Comment).IsRequired().HasMaxLength(250);
-        builder.Property(x => x.Content).IsRequired().HasMaxLength(250);
 
         var trnslNl = new InternShipContentTranslation
         {
@@ -31,7 +30,6 @@ public class InternShipContentTranslationConfiguration : IEntityTypeConfiguratio
             Comment = $"<p>required diploma for this internship is: {TrainingType.Bachelor}<p>",
             NeededKnowledge = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n\t<li>With some styling</li>\r\n\t<li>And some more styling</li>\r\n\t<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
             InternShipId = 1,
-            Content="blabla",
             Location = "new location",
             LanguageId=1
             
@@ -50,7 +48,6 @@ public class InternShipContentTranslationConfiguration : IEntityTypeConfiguratio
             LanguageId = 3,
             NeededKnowledge = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n\t<li>With some styling</li>\r\n\t<li>And some more styling</li>\r\n\t<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
             InternShipId = 1,
-            Content = "blabla",
             Location = "new location"
 
 
@@ -68,7 +65,6 @@ public class InternShipContentTranslationConfiguration : IEntityTypeConfiguratio
             LanguageId = 2,
             NeededKnowledge = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n\t<li>With some styling</li>\r\n\t<li>And some more styling</li>\r\n\t<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
             InternShipId=1,
-            Content = "blabla",
             Location="new location"
 
 
