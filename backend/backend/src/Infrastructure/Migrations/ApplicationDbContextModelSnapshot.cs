@@ -35,50 +35,16 @@ namespace backend.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("ManagerDepartmentId")
-                        .HasColumnType("int");
-
                     b.Property<Guid>("ObjectIdentifier")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasAlternateKey("Email");
 
-                    b.HasIndex("ManagerDepartmentId");
-
                     b.HasIndex("ObjectIdentifier");
 
                     b.ToTable("ApplicationUsers");
-                });
-
-            modelBuilder.Entity("backend.Domain.Entities.Contributor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AppUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DepartmentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TypeOfContributor")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.ToTable("Contributor");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Department", b =>
@@ -102,6 +68,26 @@ namespace backend.Infrastructure.Migrations
                     b.HasIndex("Name");
 
                     b.ToTable("Departments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ManagerEmails = "anton.louf@student.ehb.be",
+                            Name = ".net"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ManagerEmails = "anton.louf@student.ehb.be",
+                            Name = "Java"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ManagerEmails = "anton.louf@student.ehb.be",
+                            Name = "Low Code"
+                        });
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
@@ -114,9 +100,6 @@ namespace backend.Infrastructure.Migrations
 
                     b.Property<byte>("CurrentCountOfStudents")
                         .HasColumnType("tinyint");
-
-                    b.Property<int>("LocationId")
-                        .HasColumnType("int");
 
                     b.Property<byte>("MaxStudents")
                         .HasColumnType("tinyint");
@@ -133,26 +116,51 @@ namespace backend.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LocationId");
-
                     b.HasIndex("SchoolYear");
 
                     b.HasIndex("UnitId");
 
                     b.ToTable("InternShips");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CurrentCountOfStudents = (byte)0,
+                            MaxStudents = (byte)10,
+                            RequiredTrainingType = 0,
+                            SchoolYear = "2023-2024",
+                            UnitId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CurrentCountOfStudents = (byte)0,
+                            MaxStudents = (byte)10,
+                            RequiredTrainingType = 1,
+                            SchoolYear = "2023-2024",
+                            UnitId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CurrentCountOfStudents = (byte)0,
+                            MaxStudents = (byte)15,
+                            RequiredTrainingType = 2,
+                            SchoolYear = "2023-2024",
+                            UnitId = 3
+                        });
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.InternShipContentTranslation", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Comment")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Content")
+                    b.Property<string>("Comment")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
@@ -173,11 +181,6 @@ namespace backend.Infrastructure.Migrations
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Location")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
                     b.Property<string>("NeededKnowledge")
                         .IsRequired()
                         .HasMaxLength(250)
@@ -192,7 +195,81 @@ namespace backend.Infrastructure.Migrations
 
                     b.HasIndex("InternShipId");
 
+                    b.HasIndex("LanguageId");
+
                     b.ToTable("Translations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 3,
+                            Comment = "<p>required diploma for this internship is: MasterAfterMaster<p>",
+                            Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p>",
+                            InternShipId = 3,
+                            KnowledgeToDevelop = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
+                            LanguageId = 3,
+                            NeededKnowledge = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
+                            TitleContent = "Android App"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Comment = "<p>required diploma for this internship is: Master<p>",
+                            Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p>",
+                            InternShipId = 2,
+                            KnowledgeToDevelop = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
+                            LanguageId = 2,
+                            NeededKnowledge = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
+                            TitleContent = "Mobile App"
+                        },
+                        new
+                        {
+                            Id = 1,
+                            Comment = "<p>required diploma for this internship is: Bachelor<p>",
+                            Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p>",
+                            InternShipId = 1,
+                            KnowledgeToDevelop = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
+                            LanguageId = 1,
+                            NeededKnowledge = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
+                            TitleContent = "InternRapp"
+                        });
+                });
+
+            modelBuilder.Entity("backend.Domain.Entities.InternShipLocation", b =>
+                {
+                    b.Property<int>("InternShipId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LocationsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("InternShipId", "LocationsId");
+
+                    b.HasIndex("LocationsId");
+
+                    b.ToTable("InternShipLocation");
+
+                    b.HasData(
+                        new
+                        {
+                            InternShipId = 1,
+                            LocationsId = 1
+                        },
+                        new
+                        {
+                            InternShipId = 1,
+                            LocationsId = 2
+                        },
+                        new
+                        {
+                            InternShipId = 1,
+                            LocationsId = 3
+                        },
+                        new
+                        {
+                            InternShipId = 2,
+                            LocationsId = 1
+                        });
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Language", b =>
@@ -203,6 +280,11 @@ namespace backend.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -210,10 +292,30 @@ namespace backend.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
+                    b.HasIndex("Code")
                         .IsUnique();
 
                     b.ToTable("Languages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 2,
+                            Code = "eng",
+                            Name = "engels"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Code = "fr",
+                            Name = "frans"
+                        },
+                        new
+                        {
+                            Id = 1,
+                            Code = "nl",
+                            Name = "nederlands"
+                        });
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Location", b =>
@@ -232,6 +334,9 @@ namespace backend.Infrastructure.Migrations
                     b.Property<int>("HouseNumber")
                         .HasColumnType("int");
 
+                    b.Property<int?>("InternShipId")
+                        .HasColumnType("int");
+
                     b.Property<string>("StreetName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -244,67 +349,108 @@ namespace backend.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("InternShipId");
+
                     b.ToTable("Locations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            City = "Huizingen",
+                            HouseNumber = 42,
+                            StreetName = "Vaucampslaan",
+                            ZipCode = "1654"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            City = "Gent",
+                            HouseNumber = 4,
+                            StreetName = "Gaston Crommenlaan",
+                            ZipCode = "9050"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            City = "Kontich",
+                            HouseNumber = 26,
+                            StreetName = "Prins Boudewijnlaan",
+                            ZipCode = "2550"
+                        });
                 });
 
-            modelBuilder.Entity("backend.Domain.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("backend.Domain.Entities.PrefaceTranslation", b =>
                 {
-                    b.HasOne("backend.Domain.Entities.Department", "ManagerDepartment")
-                        .WithMany()
-                        .HasForeignKey("ManagerDepartmentId");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Navigation("ManagerDepartment");
-                });
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-            modelBuilder.Entity("backend.Domain.Entities.Contributor", b =>
-                {
-                    b.HasOne("backend.Domain.Entities.ApplicationUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasOne("backend.Domain.Entities.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int");
 
-                    b.Navigation("AppUser");
+                    b.Property<int>("UnitId")
+                        .HasColumnType("int");
 
-                    b.Navigation("Department");
+                    b.HasKey("Id");
+
+                    b.HasIndex("LanguageId");
+
+                    b.HasIndex("UnitId");
+
+                    b.ToTable("PrefaceTranslations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Content = "Dit is het voorwoord voor de .net competence center",
+                            LanguageId = 1,
+                            UnitId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Content = "Dit is het voorwoord voor het Java departement center",
+                            LanguageId = 1,
+                            UnitId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Content = "Dit is het voorwoord voor het Low Code departement center",
+                            LanguageId = 1,
+                            UnitId = 3
+                        });
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
                 {
-                    b.HasOne("backend.Domain.Entities.Location", "Location")
-                        .WithMany()
-                        .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("backend.Domain.Entities.Department", "Unit")
-                        .WithMany("InternShips")
+                        .WithMany("Internships")
                         .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Location");
 
                     b.Navigation("Unit");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.InternShipContentTranslation", b =>
                 {
-                    b.HasOne("backend.Domain.Entities.Language", "Language")
-                        .WithMany("Translations")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("backend.Domain.Entities.InternShip", "InternShip")
                         .WithMany("Translations")
                         .HasForeignKey("InternShipId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("backend.Domain.Entities.Language", "Language")
+                        .WithMany("InternshipTranslations")
+                        .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -313,19 +459,77 @@ namespace backend.Infrastructure.Migrations
                     b.Navigation("Language");
                 });
 
+            modelBuilder.Entity("backend.Domain.Entities.InternShipLocation", b =>
+                {
+                    b.HasOne("backend.Domain.Entities.InternShip", "InternShip")
+                        .WithMany("InternShipLocations")
+                        .HasForeignKey("InternShipId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("backend.Domain.Entities.Location", "Location")
+                        .WithMany("InternShipLocations")
+                        .HasForeignKey("LocationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("InternShip");
+
+                    b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("backend.Domain.Entities.Location", b =>
+                {
+                    b.HasOne("backend.Domain.Entities.InternShip", null)
+                        .WithMany("Locations")
+                        .HasForeignKey("InternShipId");
+                });
+
+            modelBuilder.Entity("backend.Domain.Entities.PrefaceTranslation", b =>
+                {
+                    b.HasOne("backend.Domain.Entities.Language", "Language")
+                        .WithMany("PrefaceTranslations")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("backend.Domain.Entities.Department", "Unit")
+                        .WithMany("PrefaceTranslations")
+                        .HasForeignKey("UnitId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Language");
+
+                    b.Navigation("Unit");
+                });
+
             modelBuilder.Entity("backend.Domain.Entities.Department", b =>
                 {
-                    b.Navigation("InternShips");
+                    b.Navigation("Internships");
+
+                    b.Navigation("PrefaceTranslations");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
                 {
+                    b.Navigation("InternShipLocations");
+
+                    b.Navigation("Locations");
+
                     b.Navigation("Translations");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Language", b =>
                 {
-                    b.Navigation("Translations");
+                    b.Navigation("InternshipTranslations");
+
+                    b.Navigation("PrefaceTranslations");
+                });
+
+            modelBuilder.Entity("backend.Domain.Entities.Location", b =>
+                {
+                    b.Navigation("InternShipLocations");
                 });
 #pragma warning restore 612, 618
         }

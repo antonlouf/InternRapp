@@ -276,27 +276,6 @@
   <data name="saveButtonText" xml:space="preserve">
     <value>sauver</value>
   </data>
-  <data name="schoolyearErrorMessage" xml:space="preserve">
-    <value>L'année scolaire est obligatoire</value>
-  </data>
-  <data name="schoolYearLabel" xml:space="preserve">
-    <value>l'année scolaire</value>
-  </data>
-  <data name="titleContentLabel" xml:space="preserve">
-    <value>titre</value>
-  </data>
-  <data name="trainingTypeLabel" xml:space="preserve">
-    <value>type de formation requise</value>
-  </data>
-  <data name="unitEmptyErrorMessage" xml:space="preserve">
-    <value>L'unité est requise</value>
-  </data>
-  <data name="unitNameLabel" xml:space="preserve">
-    <value>département</value>
-  </data>
-  <data name="TEMPLATE_TITLE" xml:space="preserve">
-    <value>Intetum-Realdolmen </value>
-  </data>
   <data name="updateButtonText" xml:space="preserve">
     <value>mise à jour</value>
   </data>

@@ -91,19 +91,20 @@
           }
         }
       },
-      "DocX/2.4.0": {
+      "DocumentFormat.OpenXml/2.20.0": {
         "type": "package",
         "dependencies": {
-          "System.Drawing.Common": "[5.0.2]",
-          "System.IO.Packaging": "[4.5.0]"
+          "System.IO.Packaging": "4.7.0"
         },
         "compile": {
-          "lib/net5.0/Xceed.Document.NET5.dll": {},
-          "lib/net5.0/Xceed.Words.NET5.dll": {}
+          "lib/net6.0/DocumentFormat.OpenXml.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net5.0/Xceed.Document.NET5.dll": {},
-          "lib/net5.0/Xceed.Words.NET5.dll": {}
+          "lib/net6.0/DocumentFormat.OpenXml.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Duende.IdentityServer/6.0.4": {
@@ -1442,13 +1443,13 @@
           }
         }
       },
-      "System.Drawing.Common/5.0.2": {
+      "System.Drawing.Common/5.0.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Win32.SystemEvents": "5.0.0"
         },
         "compile": {
-          "ref/netcoreapp3.0/System.Drawing.Common.dll": {
+          "ref/netcoreapp3.0/_._": {
             "related": ".xml"
           }
         },
@@ -1526,7 +1527,7 @@
           }
         }
       },
-      "System.IO.Packaging/4.5.0": {
+      "System.IO.Packaging/4.7.0": {
         "type": "package",
         "compile": {
           "ref/netstandard2.0/System.IO.Packaging.dll": {
@@ -1534,7 +1535,9 @@
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.IO.Packaging.dll": {}
+          "lib/netstandard2.0/System.IO.Packaging.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Memory/4.5.4": {
@@ -1878,7 +1881,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
-          "DocX": "2.4.0",
+          "DocumentFormat.OpenXml": "2.20.0",
           "FluentValidation.DependencyInjectionExtensions": "10.3.4",
           "MediatR.Extensions.Microsoft.DependencyInjection": "9.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.0-rc.2.22472.11",
@@ -1909,7 +1912,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "CsvHelper": "15.0.10",
-          "DocX": "2.4.0",
+          "DocumentFormat.OpenXml": "2.20.0",
           "Microsoft.AspNetCore.ApiAuthorization.IdentityServer": "7.0.0-rc.2.22476.2",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "7.0.0-rc.2.22476.2",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.0-rc.2.22476.2",
@@ -2024,23 +2027,28 @@
         "lib/netstandard2.1/CsvHelper.xml"
       ]
     },
-    "DocX/2.4.0": {
-      "sha512": "c02FW0keXYEWJGqA0+5z10lm/GFYsutnXaiDC34l9mwHliAXc1y5NO3q4cawGfY34wgAhMgS1vC2mOi6zgGUqA==",
+    "DocumentFormat.OpenXml/2.20.0": {
+      "sha512": "+oFMsEppo/W6KpGTRXaJl2jTFYn9zeon4FaZuDoCijQ1/0JaPENaCef7d4Y3f8v116eKhVBwd4Ya+/NDglxkjw==",
       "type": "package",
-      "path": "docx/2.4.0",
-      "hasTools": true,
+      "path": "documentformat.openxml/2.20.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "LICENSE.txt",
-        "Xceed_Logo_Retina-400x400.png",
-        "docx.2.4.0.nupkg.sha512",
-        "docx.nuspec",
-        "lib/net40/Xceed.Document.NET.dll",
-        "lib/net40/Xceed.Words.NET.dll",
-        "lib/net5.0/Xceed.Document.NET5.dll",
-        "lib/net5.0/Xceed.Words.NET5.dll",
-        "tools/install.ps1"
+        "documentformat.openxml.2.20.0.nupkg.sha512",
+        "documentformat.openxml.nuspec",
+        "icon.png",
+        "lib/net35/DocumentFormat.OpenXml.dll",
+        "lib/net35/DocumentFormat.OpenXml.xml",
+        "lib/net40/DocumentFormat.OpenXml.dll",
+        "lib/net40/DocumentFormat.OpenXml.xml",
+        "lib/net46/DocumentFormat.OpenXml.dll",
+        "lib/net46/DocumentFormat.OpenXml.xml",
+        "lib/net6.0/DocumentFormat.OpenXml.dll",
+        "lib/net6.0/DocumentFormat.OpenXml.xml",
+        "lib/netstandard1.3/DocumentFormat.OpenXml.dll",
+        "lib/netstandard1.3/DocumentFormat.OpenXml.xml",
+        "lib/netstandard2.0/DocumentFormat.OpenXml.dll",
+        "lib/netstandard2.0/DocumentFormat.OpenXml.xml"
       ]
     },
     "Duende.IdentityServer/6.0.4": {
@@ -4126,10 +4134,10 @@
         "version.txt"
       ]
     },
-    "System.Drawing.Common/5.0.2": {
-      "sha512": "rvr/M1WPf24ljpvvrVd74+NdjRUJu1bBkspkZcnzSZnmAUQWSvanlQ0k/hVHk+cHufZbZfu7vOh/vYc0q5Uu/A==",
+    "System.Drawing.Common/5.0.0": {
+      "sha512": "SztFwAnpfKC8+sEKXAFxCBWhKQaEd97EiOL7oZJZP56zbqnLpmxACWA8aGseaUExciuEAUuR9dY8f7HkTRAdnw==",
       "type": "package",
-      "path": "system.drawing.common/5.0.2",
+      "path": "system.drawing.common/5.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4162,7 +4170,7 @@
         "runtimes/win/lib/netcoreapp2.0/System.Drawing.Common.dll",
         "runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll",
         "runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.xml",
-        "system.drawing.common.5.0.2.nupkg.sha512",
+        "system.drawing.common.5.0.0.nupkg.sha512",
         "system.drawing.common.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -4358,25 +4366,28 @@
         "system.io.nuspec"
       ]
     },
-    "System.IO.Packaging/4.5.0": {
-      "sha512": "OjtW5pGp1E7KE3ontBrzy+nSFJCM6pcbVDdo3gg4DauTfdtZKdeKvMVlADF4fSY+OfXWUp4qCvOSxIltt37LbA==",
+    "System.IO.Packaging/4.7.0": {
+      "sha512": "9VV4KAbgRQZ79iEoG40KIeZy38O30oWwewScAST879+oki8g/Wa2HXZQgrhDDxQM4GkP1PnRJll05NMiVPbYAw==",
       "type": "package",
-      "path": "system.io.packaging/4.5.0",
+      "path": "system.io.packaging/4.7.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net46/System.IO.Packaging.dll",
+        "lib/net46/System.IO.Packaging.xml",
         "lib/netstandard1.3/System.IO.Packaging.dll",
+        "lib/netstandard1.3/System.IO.Packaging.xml",
         "lib/netstandard2.0/System.IO.Packaging.dll",
+        "lib/netstandard2.0/System.IO.Packaging.xml",
         "ref/net46/System.IO.Packaging.dll",
         "ref/net46/System.IO.Packaging.xml",
         "ref/netstandard1.3/System.IO.Packaging.dll",
         "ref/netstandard1.3/System.IO.Packaging.xml",
         "ref/netstandard2.0/System.IO.Packaging.dll",
         "ref/netstandard2.0/System.IO.Packaging.xml",
-        "system.io.packaging.4.5.0.nupkg.sha512",
+        "system.io.packaging.4.7.0.nupkg.sha512",
         "system.io.packaging.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -5417,7 +5428,6 @@
   "projectFileDependencyGroups": {
     "net7.0": [
       "CommonReadModels >= 1.0.0",
-      "DocX >= 2.4.0",
       "FluentValidation.AspNetCore >= 10.3.4",
       "Microsoft.AspNetCore.ApiAuthorization.IdentityServer >= 7.0.0-rc.2.22476.2",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 7.0.0-rc.2.22476.2",
@@ -5435,19 +5445,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\RGTCP77\\.nuget\\packages\\": {}
+    "C:\\Users\\ALFCP98\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\RGTCP77\\project\\InternRApp\\backend\\backend\\src\\WebUI\\WebUI.csproj",
+      "projectUniqueName": "C:\\Users\\ALFCP98\\source\\repos\\InternRApp\\backend\\backend\\src\\WebUI\\WebUI.csproj",
       "projectName": "WebUI",
-      "projectPath": "C:\\Users\\RGTCP77\\project\\InternRApp\\backend\\backend\\src\\WebUI\\WebUI.csproj",
-      "packagesPath": "C:\\Users\\RGTCP77\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\RGTCP77\\project\\InternRApp\\backend\\backend\\src\\WebUI\\obj\\",
+      "projectPath": "C:\\Users\\ALFCP98\\source\\repos\\InternRApp\\backend\\backend\\src\\WebUI\\WebUI.csproj",
+      "packagesPath": "C:\\Users\\ALFCP98\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ALFCP98\\source\\repos\\InternRApp\\backend\\backend\\src\\WebUI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\RGTCP77\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ALFCP98\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5461,14 +5471,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\RGTCP77\\project\\InternRApp\\backend\\backend\\CommonReadModels\\CommonReadModels.csproj": {
-              "projectPath": "C:\\Users\\RGTCP77\\project\\InternRApp\\backend\\backend\\CommonReadModels\\CommonReadModels.csproj"
+            "C:\\Users\\ALFCP98\\source\\repos\\InternRApp\\backend\\backend\\CommonReadModels\\CommonReadModels.csproj": {
+              "projectPath": "C:\\Users\\ALFCP98\\source\\repos\\InternRApp\\backend\\backend\\CommonReadModels\\CommonReadModels.csproj"
             },
-            "C:\\Users\\RGTCP77\\project\\InternRApp\\backend\\backend\\src\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\RGTCP77\\project\\InternRApp\\backend\\backend\\src\\Application\\Application.csproj"
+            "C:\\Users\\ALFCP98\\source\\repos\\InternRApp\\backend\\backend\\src\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\ALFCP98\\source\\repos\\InternRApp\\backend\\backend\\src\\Application\\Application.csproj"
             },
-            "C:\\Users\\RGTCP77\\project\\InternRApp\\backend\\backend\\src\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\RGTCP77\\project\\InternRApp\\backend\\backend\\src\\Infrastructure\\Infrastructure.csproj"
+            "C:\\Users\\ALFCP98\\source\\repos\\InternRApp\\backend\\backend\\src\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\ALFCP98\\source\\repos\\InternRApp\\backend\\backend\\src\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }
@@ -5483,10 +5493,6 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
-          "DocX": {
-            "target": "Package",
-            "version": "[2.4.0, )"
-          },
           "FluentValidation.AspNetCore": {
             "target": "Package",
             "version": "[10.3.4, )"
@@ -5555,7 +5561,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

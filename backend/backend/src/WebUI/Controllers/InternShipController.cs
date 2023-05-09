@@ -23,15 +23,15 @@ public class InternShipController : ControllerBase
     public async Task<IActionResult> Create([FromBody] InternShipCreateDto dto)
     {
 
-        await _mediator.Send(new CreateInternShipCommand() 
-        { 
-            CurrentCountOfStudents=dto.CurrentCountOfStudents,
-            Locations=dto.Locations,
-            MaxCountOfStudents=dto.MaxCountOfStudents,
-            TrainingType=dto.TrainingType,
-            SchoolYear=dto.SchoolYear,
-            UnitId=dto.UnitId,
-            Versions=dto.Versions 
+        await _mediator.Send(new CreateInternShipCommand()
+        {
+            CurrentCountOfStudents = dto.CurrentCountOfStudents,
+            Locations = dto.Locations,
+            MaxCountOfStudents = dto.MaxCountOfStudents,
+            TrainingType = dto.TrainingType,
+            SchoolYear = dto.SchoolYear,
+            UnitId = dto.UnitId,
+            Versions = dto.Versions
         });
         return Ok();
     }
@@ -45,37 +45,39 @@ public class InternShipController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetFiltered([FromQuery] InternShipFilteredDto dto)
     {
-       
-        return Ok(await _mediator.Send(new GetFilteredQuery() { PageIndex=dto.PageIndex,PageSize=dto.PageSize,LanguageIds=dto.LanguageIds,SchoolYear=dto.SchoolYear,UnitIds=dto.UnitIds }));
+
+        return Ok(await _mediator.Send(new GetFilteredQuery() { PageIndex = dto.PageIndex, PageSize = dto.PageSize, LanguageIds = dto.LanguageIds, SchoolYear = dto.SchoolYear, UnitIds = dto.UnitIds }));
     }
 
     [HttpGet("export")]
-    public async Task<IActionResult> Export([FromQuery] InternshipExportDto dto)
+    public async Task<IActionResult> Export([FromQuery] InternshipExportRequestDto request)
     {
-        
-        return Ok(await _mediator.Send(new GetExportInterShipQuery() { Dto = dto }));
+        var filteredData = await _mediator.Send(new GetExportInterShipQuery() { Dto = request });
+        Exporting Exporting = new Exporting();
+        //Exporting.GenerateWordDoc(filteredData, dto);
+        return Ok();
     }
 
     [HttpPut]
     public async Task<IActionResult> Update(InternShipUpdateDto dto)
     {
-        await _mediator.Send(new UpdateInternShipCommand() 
-                                                    { 
-            Versions=dto.Versions,
-            CurrentCountOfStudents=dto.CurrentCountOfStudents,  
-            InternShipId=dto.InternShipId,
-            Locations=dto.Locations,
-            MaxCountOfStudents= dto.MaxCountOfStudents,
-            SchoolYear=dto.SchoolYear,
-            TrainingType=dto.TrainingType,
-            UnitId=dto.UnitId,
+        await _mediator.Send(new UpdateInternShipCommand()
+        {
+            Versions = dto.Versions,
+            CurrentCountOfStudents = dto.CurrentCountOfStudents,
+            InternShipId = dto.InternShipId,
+            Locations = dto.Locations,
+            MaxCountOfStudents = dto.MaxCountOfStudents,
+            SchoolYear = dto.SchoolYear,
+            TrainingType = dto.TrainingType,
+            UnitId = dto.UnitId,
         });
         return Ok();
     }
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {
-        await _mediator.Send(new DeleteInternshipCommand() { Id=id });
+        await _mediator.Send(new DeleteInternshipCommand() { Id = id });
         return Ok();
     }
 

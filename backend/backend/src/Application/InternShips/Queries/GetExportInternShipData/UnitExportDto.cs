@@ -7,6 +7,7 @@ using AutoMapper;
 using backend.Application.Common.Mappings;
 using backend.Application.InternShips.Common;
 using backend.Application.InternShips.Queries.GetAllInternShips;
+using backend.Application.Units.Common;
 using backend.Domain.Entities;
 using backend.Domain.Enums;
 
@@ -19,6 +20,7 @@ public class UnitExportDto //unitListDTO met bijbehorende internships
     //public List<int> InternShipId { get; set; } 
 
     public string Name { get; set; }
+    public PrefaceTranslationDto PrefaceDto { get; set; }
     //public List<InternShipListDto> InternShips { get; set; }
     public List<InternShipExportDto> InternShipsDtos { get; set; }
 

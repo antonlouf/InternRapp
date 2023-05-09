@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\RGTCP77\\project\\InternRApp\\backend\\backend\\src\\Domain\\Domain.csproj": {}
+    "C:\\Users\\ALFCP98\\source\\repos\\InternRApp\\backend\\backend\\src\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\RGTCP77\\project\\InternRApp\\backend\\backend\\src\\Domain\\Domain.csproj": {
+    "C:\\Users\\ALFCP98\\source\\repos\\InternRApp\\backend\\backend\\src\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\RGTCP77\\project\\InternRApp\\backend\\backend\\src\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\ALFCP98\\source\\repos\\InternRApp\\backend\\backend\\src\\Domain\\Domain.csproj",
         "projectName": "backend.Domain",
-        "projectPath": "C:\\Users\\RGTCP77\\project\\InternRApp\\backend\\backend\\src\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\RGTCP77\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\RGTCP77\\project\\InternRApp\\backend\\backend\\src\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\ALFCP98\\source\\repos\\InternRApp\\backend\\backend\\src\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\ALFCP98\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ALFCP98\\source\\repos\\InternRApp\\backend\\backend\\src\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\RGTCP77\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ALFCP98\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

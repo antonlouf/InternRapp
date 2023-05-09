@@ -7,6 +7,7 @@ using AutoMapper.QueryableExtensions;
 using backend.Application.Common.Interfaces;
 using backend.Application.InternShips.Common;
 using backend.Application.InternShips.Queries.GetAllInternShips;
+using backend.Application.InternShips.Queries.GetInternShipById;
 using backend.Domain.Entities;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
@@ -43,32 +44,35 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
 
         //Filter on Units and only the internships who have a translation language of request language 
         var units = await _dbContext.Departments
-            .Where(unit => (request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(unit.Id)) 
-            && unit.InternShips.Any(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)))
+            .Where(unit => (request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(unit.Id))
+            && unit.Internships.Any(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)))
+
+            
             .Select(x => new UnitExportDto()
             {
                 Name = x.Name,
-                InternShipsDtos = x.InternShips.Where(intrshp => intrshp.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)).Select(x => new InternShipExportDto()
+                InternShipsDtos = x.Internships.Where(intrshp => intrshp.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)).Select(x => new InternShipExportDto()
                 {
                     SchoolYear = x.SchoolYear,
-                    Location = _iMapper.Map<LocationDto>(x.Location),
+                    Locations = _iMapper.Map<IList<LocationDto>>(x.Locations),
                     TrainingType = x.RequiredTrainingType,
-                    Translation = x.Translations.Select(x=>new TranslationDto()
+                    Translation = x.Translations.Select(trnslDto => new TranslationDto()
                     {
-                        Comment = x.Comment,
-                        Content=x.Content,
-                        Description = x.Description,
-                        Id = x.Id,
-                        InternShipId = x.InternShipId,
-                        KnowledgeToDevelop=x.KnowledgeToDevelop,
-                        NeededKnowledge= x.NeededKnowledge,
-                        TitleContent=x.TitleContent,
+                        TranslationId = trnslDto.Id,
+                        TitleContent = trnslDto.TitleContent,
+                        Comment = trnslDto.Comment,
+                        Description = trnslDto.Description,
+                        KnowledgeToDevelop = trnslDto.KnowledgeToDevelop,
+                        NeededKnowledge = trnslDto.NeededKnowledge,
 
                     }).First()
                 }).ToList()
             }).ToListAsync();
-                    //.Where(unit => request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(unit.Id) //als er geen meegegeven wordt, toon dan alle
-                    //&& unit.InternShips.All(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)));
+
+            
+
+        //.Where(unit => request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(unit.Id) //als er geen meegegeven wordt, toon dan alle
+        //&& unit.InternShips.All(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)));
 
         //var units = from deps in _dbContext.Departments.Where(x => request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(x.Id))
         //            join intrshps in _dbContext.InternShips
@@ -81,10 +85,8 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
         //                Name = deps == null ? null : deps.Name,
         //                InternShipsDtos = trnsl2.Select(x => new InternShipExportDto()
         //                {
-
         //                    Translation = new TranslationDto()
         //                    {
-
         //                        Content = x.Content,
         //                    },
         //                    //SchoolYear = x.InternShip.SchoolYear
@@ -93,47 +95,47 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
 
         //var test = units.ToList();
 
-                    //Geef de unit waarvan de unit met internships met zijn translaties overeenkomt met al 
-                    //mss selecten omdat unit gewijzigd moet worden -> filtered op intrnshps 
+        //Geef de unit waarvan de unit met internships met zijn translaties overeenkomt met al 
+        //mss selecten omdat unit gewijzigd moet worden -> filtered op intrnshps 
 
-                    //.Include(unit => unit.InternShips)
-                    //.ThenInclude(x => x.Translations)
-                    //.ToListAsync();
+        //.Include(unit => unit.InternShips)
+        //.ThenInclude(x => x.Translations)
+        //.ToListAsync();
 
-                    /*
-                    .Select(unit => new UnitExportDto()
-                    {
-                        Name = unit.Name,
-                        InternShipsDtos = unit.InternShips
+        /*
+        .Select(unit => new UnitExportDto()
+        {
+            Name = unit.Name,
+            InternShipsDtos = unit.InternShips
 
-                        //.Where(internship => internship.SchoolYear == request.Dto.SchoolYear)
+            //.Where(internship => internship.SchoolYear == request.Dto.SchoolYear)
 
-                        .Select(internship =>
-                             new InternShipExportDto() //per internships?
-                             {
-                                 SchoolYear = internship.SchoolYear,
-                                 Location = new LocationDto()
-                                 {
-                                     id = internship.Location.Id,
-                                     city = internship.Location.City,
-                                     zipcode = internship.Location.ZipCode,
-                                     streetname = internship.Location.StreetName,
-                                     housenumber = internship.Location.HouseNumber,
-                                 },
-                                 TrainingType = internship.RequiredTrainingType,
-                                 Translation = internship.Translations
-                                 .Where(trnsl => trnsl.Language.Id == request.Dto.LanguageId)
-                                 .Select(trnsl => new TranslationDto()
-                                 {
-                                     Id = trnsl.Id,
-                                     //Language = new Lang x.Translations.FirstOrDefault(y => y.Language.Id == request.Dto.LanguageId).LanguageId
-                                     //Content = internship.Translations.First(trnsl => trnsl.Language.Id == request.Dto.LanguageId).Content
-                                 }).Single()
-                             }
-                         ).ToList()
-                    }).ToListAsync();
+            .Select(internship =>
+                 new InternShipExportDto() //per internships?
+                 {
+                     SchoolYear = internship.SchoolYear,
+                     Location = new LocationDto()
+                     {
+                         id = internship.Location.Id,
+                         city = internship.Location.City,
+                         zipcode = internship.Location.ZipCode,
+                         streetname = internship.Location.StreetName,
+                         housenumber = internship.Location.HouseNumber,
+                     },
+                     TrainingType = internship.RequiredTrainingType,
+                     Translation = internship.Translations
+                     .Where(trnsl => trnsl.Language.Id == request.Dto.LanguageId)
+                     .Select(trnsl => new TranslationDto()
+                     {
+                         Id = trnsl.Id,
+                         //Language = new Lang x.Translations.FirstOrDefault(y => y.Language.Id == request.Dto.LanguageId).LanguageId
+                         //Content = internship.Translations.First(trnsl => trnsl.Language.Id == request.Dto.LanguageId).Content
+                     }).Single()
+                 }
+             ).ToList()
+        }).ToListAsync();
 
-                    */
+        */
 
 
 
@@ -593,7 +595,7 @@ public class Exporting
                               {"INTERNSHIP_NEED_TO_KNOW_CONTENT", "title"},
                               {"INTERNSHIP_LOCATION_TITLE", "title"},
                               {"INTERNSHIP_LOCATION_DESCRIPTION", "title"},
-                              {"INTERNSHIP_LOCATION_CONTENT", internship.Location.ToString()},
+                              {"INTERNSHIP_LOCATION_CONTENT", internship.Locations.ToString()},
                               {"INTERNSHIP_COMMENTS", "title"},
                               {"INTERNSHIP_COMMENTS_CONTENT", "title"},
                           });

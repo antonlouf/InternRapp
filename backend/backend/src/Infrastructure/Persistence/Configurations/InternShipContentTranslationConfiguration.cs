@@ -17,9 +17,7 @@ public class InternShipContentTranslationConfiguration : IEntityTypeConfiguratio
         builder.Property(x => x.Description).IsRequired().HasMaxLength(350);
         builder.Property(x => x.KnowledgeToDevelop).IsRequired().HasMaxLength(250);
         builder.Property(x => x.NeededKnowledge).IsRequired().HasMaxLength(250);
-        builder.Property(x => x.Location).IsRequired().HasMaxLength(250);
         builder.Property(x => x.Comment).IsRequired().HasMaxLength(250);
-        builder.Property(x => x.Content).IsRequired().HasMaxLength(250);
      
 
 

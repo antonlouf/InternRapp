@@ -2,6 +2,7 @@
 using backend.Application.Common.Mappings;
 using backend.Application.InternShips.Common;
 using backend.Application.InternShips.Queries.GetAllInternShips;
+using backend.Application.InternShips.Queries.GetInternShipById;
 using backend.Domain.Entities;
 using backend.Domain.Enums;
 
@@ -11,7 +12,7 @@ public class InternShipExportDto
 {
     public string SchoolYear { get; set; }
     public TrainingType TrainingType { get; set; }
-    public LocationDto Location { get; set; } //vertalen?
+    public IList<LocationDto> Locations { get; set; } //vertalen?
 
     //public DepartmentDto Department { get; set; } //om op te groupen 
     //dit is rechtstreeks te mappen van Internships -> InternshipsExportDto
