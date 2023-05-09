@@ -20,96 +20,150 @@ import { ItemsTmplDirective } from '../items-tmpl.directive';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'intern-rapp-language-list',
   standalone: true,
-  imports: [CommonModule,MatDividerModule,MatIconModule,MatListModule,BaselistComponent,TranslateModule,ItemsTmplDirective,ReactiveFormsModule,HttpClientModule,MatDialogModule],
+  imports: [
+    CommonModule,
+    MatDividerModule,
+    MatIconModule,
+    MatListModule,
+    BaselistComponent,
+    TranslateModule,
+    ItemsTmplDirective,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatDialogModule,
+    MatCheckboxModule,
+  ],
   templateUrl: './language-list.component.html',
   styleUrls: ['./language-list.component.scss'],
 })
-export class LanguageListComponent extends BaseList<LanguageItem> implements OnInit{
-  public deleteSubject=new Subject<number>()
-  public addSubject=new Subject<CreateLanguage|undefined>();
-  public updateSubject=new Subject<LanguageItem>();
-  
-  constructor(private languageService: LanguageService,public dialog: MatDialog){
-    super()
+export class LanguageListComponent
+  extends BaseList<LanguageItem>
+  implements OnInit
+{
+  public deleteSubject = new Subject<number>();
+  public addSubject = new Subject<CreateLanguage | undefined>();
+  public updateSubject = new Subject<LanguageItem>();
+  private selectedIds: number[] = [];
+  constructor(
+    private languageService: LanguageService,
+    public dialog: MatDialog
+  ) {
+    super();
   }
-  
-  private  popUpConfig={
+
+  private popUpConfig = {
     width: '400px',
-   closeOnNavigation:true,
-   disableClose:false,
-   hasBackdrop:true,
-   position:{top:'250px',right:'1200px'}
+    closeOnNavigation: true,
+    disableClose: false,
+    hasBackdrop: true,
+    position: { top: '250px', right: '1200px' },
+  };
+  getGridItems$(
+    paginationFilterRequest: PaginationFilterRequest
+  ): Observable<ResourceItemPagingResponse<LanguageItem>> {
+    return this.languageService.filterAndPaginateLanguages(
+      paginationFilterRequest
+    );
   }
-  getGridItems$(paginationFilterRequest: PaginationFilterRequest): Observable<ResourceItemPagingResponse<LanguageItem>> {
-    return this.languageService.filterAndPaginateLanguages(paginationFilterRequest)
-  }
-    ngOnInit(): void {
-      this.filters=[{label:"Language name",name:"filterValue",type:FilterType.Text,optionBuilder:(items:unknown[])=>undefined,observable:undefined}];
-      const delete$=this.configureDelete$();
-      const update$=this.configureUpdate$();
-      const add$=this.configureAdd$();
-      this.configureItems([delete$,update$,add$])
-    } 
-  
-    private configureDelete$(){
-  return this.deleteSubject.pipe(switchMap(id => 
-    {
-    const dialogRef= this.dialog.open(DeletePopupComponent, this.popUpConfig) 
-    dialogRef.componentInstance.title="language"
-    return dialogRef.afterClosed().pipe(map(confirm=>confirm ? id : undefined )
-  )})
-  ,filter(id => !!id) //undefined checken 
-  ,switchMap(id =>  this.languageService.deleteLanguage(id)))
-    }
-    private configureUpdate$(){
-      return this.updateSubject.pipe(switchMap(data => 
-        {
-        const dialogRef= this.dialog.open(LanguageUpdatePopupComponent, this.popUpConfig) 
-        dialogRef.componentInstance.data=data
-        return dialogRef.afterClosed().pipe(map(confirm=>confirm ? data : undefined )
-      )})
-      ,filter(id => !!id)
-      ,switchMap(languageItem=>{ 
-        console.log(languageItem)
-        return this.languageService.updateLanguage(languageItem)
-        }))
-        }
-  
-        private configureAdd$(){
-          return this.addSubject.pipe(switchMap(data => 
-            {
-            const dialogRef= this.dialog.open(LanguageAddPopupComponent, this.popUpConfig) 
-            return dialogRef.afterClosed().pipe(map(confirm=> confirm!==undefined ? confirm : undefined
-               )
-          )})
-          ,filter(id => !!id)
-          ,switchMap(langItem => 
-            {
-            return  this.languageService.addLanguage(langItem)
-            }))
-            }
-  
-    filterUpdating(filter: {}){
-      const record = filter as Record<string, never>
-      const activeFilters: Record<string, unknown> = {};
-       this.filters?.forEach(x=>{
-         activeFilters['languageCode']=`${record[x.name]}`
-       })
-       this.filterUpdated(activeFilters)
-    }
-    addLanguage(){
-    this.addSubject.next(undefined)
-    }
-  updateLanguage=(item: LanguageItem)=>{
-  this.updateSubject.next(item)
-  }
-  delete(id: number){ 
-     this.deleteSubject.next(id)
+  ngOnInit(): void {
+    this.filters = [
+      {
+        label: 'languageCodeLabel',
+        name: 'filterValue',
+        type: FilterType.Text,
+        optionBuilder: (items: unknown[]) => undefined,
+        observable: undefined,
+      },
+    ];
+    const delete$ = this.configureDelete$();
+    const update$ = this.configureUpdate$();
+    const add$ = this.configureAdd$();
+    this.configureItems([delete$, update$, add$]);
   }
 
+  private configureDelete$() {
+    return this.deleteSubject.pipe(
+      switchMap((id) => {
+        const dialogRef = this.dialog.open(
+          DeletePopupComponent,
+          this.popUpConfig
+        );
+        dialogRef.componentInstance.title = 'language';
+        return dialogRef
+          .afterClosed()
+          .pipe(map((confirm) => (confirm ? id : undefined)));
+      }),
+      filter((id) => !!id), //undefined checken
+      switchMap((id) => this.languageService.deleteLanguage(id))
+    );
+  }
+  private configureUpdate$() {
+    return this.updateSubject.pipe(
+      switchMap((data) => {
+        const dialogRef = this.dialog.open(
+          LanguageUpdatePopupComponent,
+          this.popUpConfig
+        );
+        dialogRef.componentInstance.data = data;
+        return dialogRef
+          .afterClosed()
+          .pipe(map((confirm) => (confirm ? data : undefined)));
+      }),
+      filter((id) => !!id),
+      switchMap((languageItem) => {
+        console.log(languageItem);
+        return this.languageService.updateLanguage(languageItem);
+      })
+    );
+  }
 
+  private configureAdd$() {
+    return this.addSubject.pipe(
+      switchMap((data) => {
+        const dialogRef = this.dialog.open(
+          LanguageAddPopupComponent,
+          this.popUpConfig
+        );
+        return dialogRef
+          .afterClosed()
+          .pipe(
+            map((confirm) => (confirm !== undefined ? confirm : undefined))
+          );
+      }),
+      filter((id) => !!id),
+      switchMap((langItem) => {
+        return this.languageService.addLanguage(langItem);
+      })
+    );
+  }
+
+  filterUpdating(filter: {}) {
+    const record = filter as Record<string, never>;
+    const activeFilters: Record<string, unknown> = {};
+    this.filters?.forEach((x) => {
+      activeFilters['languageCode'] = `${record[x.name]}`;
+    });
+    this.filterUpdated(activeFilters);
+  }
+  addLanguage() {
+    this.addSubject.next(undefined);
+  }
+  updateLanguage = (item: LanguageItem) => {
+    this.updateSubject.next(item);
+  };
+  delete(id: number) {
+    this.deleteSubject.next(id);
+  }
+  public addToSelectedLanguages(completed: boolean, id: number) {
+    if (!completed) {
+      this.selectedIds = this.selectedIds.filter((x) => x !== id);
+      return;
+    }
+    this.selectedIds.push(id);
+  }
 }
