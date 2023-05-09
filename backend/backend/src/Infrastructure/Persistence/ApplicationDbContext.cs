@@ -35,12 +35,12 @@ public class ApplicationDbContext : DbContext,IApplicationDbContext
     public DbSet<InternShipContentTranslation> Translations=>Set<InternShipContentTranslation>();
 
     public DbSet<PrefaceTranslation> PrefaceTranslations => Set<PrefaceTranslation>();
-
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
         base.OnModelCreating(builder);
+
     }
 
 

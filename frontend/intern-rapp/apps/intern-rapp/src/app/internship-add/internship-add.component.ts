@@ -13,6 +13,7 @@ import {
   Validators,
   FormArray,
   AbstractControl,
+  MaxValidator,
 } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';

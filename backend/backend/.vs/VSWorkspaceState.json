@@ -3,14 +3,15 @@
     "",
     "\\src",
     "\\src\\Application",
-    "\\src\\Application\\Units",
-    "\\src\\Application\\Units\\Queries",
-    "\\src\\Application\\Units\\Queries\\GetAllUnits",
+    "\\src\\Application\\InternShips",
+    "\\src\\Application\\InternShips\\Commands",
+    "\\src\\Application\\InternShips\\Commands\\CreateInternShip",
     "\\src\\Domain",
     "\\src\\Domain\\Entities",
     "\\src\\Infrastructure",
-    "\\src\\Infrastructure\\Migrations",
-    "\\unit tests"
+    "\\src\\Infrastructure\\Persistence",
+    "\\src\\Infrastructure\\Persistence\\Configurations"
   ],
+  "SelectedNode": "\\src\\Infrastructure\\Persistence\\Configurations\\DepartmentConfiguration.cs",
   "PreviewInSolutionExplorer": false
 }

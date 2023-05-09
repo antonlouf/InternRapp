@@ -30,9 +30,11 @@ internRappItemsTmpl let-items
         <div>
           <mat-checkbox (change)="addToSelectedInternships($event.checked,item.id)"></mat-checkbox>
         </div>
-        <div>
-          {{item.title}}
-        </div>
+      <div style="display: flex; flex-direction: column; align-items: flex-start;">
+        <div style="font-weight: bold;">titel</div>
+        <div>{{item.title}}</div>
+      </div>
+        
         <div class="flex-begin">
           <span class="material-symbols-outlined" style="color:red" *ngFor="let availablePlace of [].constructor(item.currentCountOfStudents)">
             person

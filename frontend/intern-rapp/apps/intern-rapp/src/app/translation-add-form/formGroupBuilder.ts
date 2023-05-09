@@ -1,4 +1,4 @@
-import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray, MaxValidator } from '@angular/forms';
 import { InternshipTranslation } from '../entities/internshipTranslation';
 import { InternshipTranslationUpdateDto } from '../entities/internshipTranslationUpdateDto';
 import { InternshipTranslationUpdatePostDto } from '../entities/internshipTranslationUpdatePostDto';
@@ -56,26 +56,31 @@ export function buildFormGroupForTranslations(
     ]),
     description: new FormControl(data?.description ?? '', [
       Validators.required,
+      Validators.maxLength(1000),
     ]),
     knowledgeToDevelop: new FormControl(data?.knowledgeToDevelop ?? '', [
       Validators.required,
+      Validators.maxLength(1000),
     ]),
     location: new FormControl(data?.location ?? '', [Validators.required]),
     comment: new FormControl(data?.comment ?? '', [Validators.required]),
     content: new FormControl(data?.content ?? '', [Validators.required]),
     neededKnowledge: new FormControl(data?.neededKnowledge ?? '', [
       Validators.required,
+      Validators.maxLength(1000),
     ]),
     languageId: new FormControl(data?.language.id ?? languageId, [
       Validators.required,
+      Validators.maxLength(1000),
     ]),
     languageCode: new FormControl(data?.language.name ?? languageCode, [
       Validators.required,
+      Validators.maxLength(1000),
     ]),
     translationId: new FormControl(data?.translationId ?? 0, [
       Validators.required,
+      Validators.maxLength(1000),
     ]),
-    
   });
 }
 

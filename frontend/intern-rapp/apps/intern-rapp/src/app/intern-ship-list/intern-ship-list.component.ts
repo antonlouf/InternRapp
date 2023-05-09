@@ -251,9 +251,9 @@ export class InternShipListComponent
   }
   public copyInternship() {
     this.internshipService.copyToNextYear(this.selectedIds).pipe(tap(() => {
-      this.router.navigateByUrl('/internships', {
-        onSameUrlNavigation: 'reload',
-      });
+      // this.router.navigateByUrl('/internships', {
+      //   onSameUrlNavigation: 'reload',
+      // });
     }),take(1),takeUntil(this.destroySubj$)).subscribe()
   }
   delete(id: number) {
