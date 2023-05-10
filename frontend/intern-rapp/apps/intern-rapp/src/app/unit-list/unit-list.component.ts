@@ -90,11 +90,12 @@ export class UnitListComponent
   ngOnInit(): void {
     this.filters = [
       {
-        label: 'Department name',
+        label: 'departmentNameLabel',
         name: 'filterValue',
         type: FilterType.Text,
         observable: undefined,
         optionBuilder: (items: unknown[]) => undefined,
+        defaultValue: undefined,
       },
     ];
     const delete$ = this.configureDelete$();

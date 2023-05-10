@@ -159,6 +159,7 @@ export class InternShipListComponent
           optionBuilder.push(value.id);
           return optionBuilder;
         },
+        defaultValue:undefined
       },
       {
         label: 'unitNameLabel',
@@ -184,6 +185,7 @@ export class InternShipListComponent
           optionBuilder.push(value.id);
           return optionBuilder;
         },
+        defaultValue:undefined
       },
       {
         label: 'schoolYearLabel',
@@ -198,10 +200,22 @@ export class InternShipListComponent
           optionBuilder.push(item);
           return optionBuilder;
         },
+        defaultValue:this.calculateCurrentSchoolyear()
       },
     ];
 
     this.configureItems([this.configureDelete$()]);
+  }
+  private calculateCurrentSchoolyear() {
+    const date=new Date()
+    const year = date.getFullYear();
+    const month = date.getMonth()
+    if (month <= 6) {
+      return `${year-1}-${year}`
+    }
+    else {
+      return `${year}-${year + 1}`;
+    }
   }
   private availableDatesAsObservable() {
     const availableDates = [];

@@ -166,7 +166,7 @@
     <value>the department name is required</value>
   </data>
   <data name="departmentNameLabel" xml:space="preserve">
-    <value>departement Name</value>
+    <value>department</value>
   </data>
   <data name="departments" xml:space="preserve">
     <value>departments</value>

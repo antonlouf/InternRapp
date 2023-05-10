@@ -5,13 +5,12 @@
     "\\src\\Application",
     "\\src\\Application\\InternShips",
     "\\src\\Application\\InternShips\\Commands",
-    "\\src\\Application\\InternShips\\Commands\\CreateInternShip",
-    "\\src\\Domain",
-    "\\src\\Domain\\Entities",
-    "\\src\\Infrastructure",
-    "\\src\\Infrastructure\\Persistence",
-    "\\src\\Infrastructure\\Persistence\\Configurations"
+    "\\src\\Application\\InternShips\\Commands\\UpdateInternShip",
+    "\\src\\Application\\InternShips\\Common",
+    "\\src\\WebUI",
+    "\\src\\WebUI\\Resources",
+    "\\unit tests"
   ],
-  "SelectedNode": "\\src\\Infrastructure\\Persistence\\Configurations\\DepartmentConfiguration.cs",
+  "SelectedNode": "\\src\\WebUI\\Resources\\nl.resx",
   "PreviewInSolutionExplorer": false
 }

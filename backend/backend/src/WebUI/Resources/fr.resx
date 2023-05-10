@@ -166,7 +166,7 @@
     <value>le nom du département est obligatoire</value>
   </data>
   <data name="departmentNameLabel" xml:space="preserve">
-    <value>nom du département</value>
+    <value>département</value>
   </data>
   <data name="departments" xml:space="preserve">
     <value>départements</value>

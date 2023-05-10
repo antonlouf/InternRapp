@@ -74,6 +74,7 @@ export class LocationListComponent extends BaseList<LocationItem> {
         type: FilterType.Text,
         observable: undefined,
         optionBuilder: (item: unknown[]) => undefined,
+        defaultValue:undefined
       },
     ];
     const delete$ = this.configureDelete$();

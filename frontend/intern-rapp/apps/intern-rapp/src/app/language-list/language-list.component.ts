@@ -78,6 +78,7 @@ export class LanguageListComponent
         type: FilterType.Text,
         optionBuilder: (items: unknown[]) => undefined,
         observable: undefined,
+        defaultValue:undefined
       },
     ];
     const delete$ = this.configureDelete$();

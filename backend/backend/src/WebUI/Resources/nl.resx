@@ -166,7 +166,7 @@
     <value>de departement naam is verplicht in te vullen</value>
   </data>
   <data name="departmentNameLabel" xml:space="preserve">
-    <value>departement naam</value>
+    <value>departement</value>
   </data>
   <data name="departments" xml:space="preserve">
     <value>departementen</value>
