@@ -132,6 +132,9 @@
   <data name="addLocationHeader" xml:space="preserve">
     <value>ajouter un lieu</value>
   </data>
+  <data name="and" xml:space="preserve">
+    <value>en</value>
+  </data>
   <data name="Bachelor" xml:space="preserve">
     <value>Bachelier</value>
   </data>
@@ -186,11 +189,20 @@
   <data name="events" xml:space="preserve">
     <value>Evénements</value>
   </data>
+  <data name="fieldRequiredErrorMessage" xml:space="preserve">
+    <value>Ceci est obligatoire</value>
+  </data>
   <data name="Fr" xml:space="preserve">
     <value>français</value>
   </data>
   <data name="FreeUsedPlacesLabel" xml:space="preserve">
     <value>sièges libres/occupés</value>
+  </data>
+  <data name="greaterThanMaxStudentsErrorMessage" xml:space="preserve">
+    <value>Le nombre d'étudiants participant au stage ne doit pas dépasser le nombre maximum autorisé.</value>
+  </data>
+  <data name="GreaterThanParamLimitError" xml:space="preserve">
+    <value>Vous devez saisir un nombre compris entre 0 et 15.</value>
   </data>
   <data name="internship" xml:space="preserve">
     <value>stage</value>

@@ -138,6 +138,9 @@ export class InternShipListComponent
     );
   }
   ngOnInit(): void {
+    const activeFilters: Record<string, unknown> = {};
+    activeFilters['schoolYear']=this.calculateCurrentSchoolyear()
+     this.filterUpdated(activeFilters);
     this.filters = [
       {
         label: 'languageNameLabel',
@@ -159,7 +162,7 @@ export class InternShipListComponent
           optionBuilder.push(value.id);
           return optionBuilder;
         },
-        defaultValue:undefined
+        defaultValue: undefined,
       },
       {
         label: 'unitNameLabel',
@@ -185,7 +188,7 @@ export class InternShipListComponent
           optionBuilder.push(value.id);
           return optionBuilder;
         },
-        defaultValue:undefined
+        defaultValue: undefined,
       },
       {
         label: 'schoolYearLabel',
@@ -200,7 +203,7 @@ export class InternShipListComponent
           optionBuilder.push(item);
           return optionBuilder;
         },
-        defaultValue:this.calculateCurrentSchoolyear()
+        defaultValue: this.calculateCurrentSchoolyear(),
       },
     ];
 
