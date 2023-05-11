@@ -259,6 +259,7 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
               const controls = (
                 this.addInternshipForm?.controls['translateTabs'] as FormArray
               ).controls;
+              debugger
               controls.push(
                 buildFormGroupForTranslations(
                   undefined,

@@ -69,7 +69,7 @@ export function buildFormGroupForTranslations(
       Validators.required,
       Validators.maxLength(1000),
     ]),
-    languageCode: new FormControl(data?.language.name ?? languageCode, [
+    languageCode: new FormControl(data?.language.code ?? languageCode, [
       Validators.required,
       Validators.maxLength(1000),
     ]),

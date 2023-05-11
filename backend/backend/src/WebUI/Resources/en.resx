@@ -144,6 +144,9 @@
   <data name="commentLabel" xml:space="preserve">
     <value>comment</value>
   </data>
+  <data name="commentLabelErrorMessage" xml:space="preserve">
+    <value>The comment could not empty or greater than 1000 characters</value>
+  </data>
   <data name="confirmDeleteMessage" xml:space="preserve">
     <value>Are you sure to delete? </value>
   </data>
