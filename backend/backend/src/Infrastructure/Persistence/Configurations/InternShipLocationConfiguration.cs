@@ -25,8 +25,7 @@ public class InternShipLocationConfiguration : IEntityTypeConfiguration<InternSh
             .WithMany(y => y.InternShipLocations)
             .HasForeignKey(x => x.LocationsId);
 
-        
-        
+        //https://www.entityframeworktutorial.net/efcore/configure-many-to-many-relationship-in-ef-core.aspx
 
         /*
         builder

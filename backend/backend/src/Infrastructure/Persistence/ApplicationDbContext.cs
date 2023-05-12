@@ -3,6 +3,7 @@ using System.Runtime.Intrinsics.X86;
 using backend.Application.Common.Interfaces;
 using backend.Domain.Entities;
 using backend.Domain.Enums;
+using DocumentFormat.OpenXml.Drawing.Charts;
 using Duende.IdentityServer.EntityFramework.Options;
 using MediatR;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
@@ -37,9 +38,16 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     public DbSet<PrefaceTranslation> PrefaceTranslations => Set<PrefaceTranslation>();
     public DbSet<InternShipContentTranslation> Translations => Set<InternShipContentTranslation>();
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.EnableSensitiveDataLogging();
+    }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+
 
         base.OnModelCreating(builder);
 
@@ -94,6 +102,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             Name = "frans"
         };
 
+        /*
         var internRappTrnslNl = new InternShipContentTranslation
         {
             Id = 1,
@@ -129,7 +138,9 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             LanguageId = 3,
             InternShipId = 3,
         };
+        */
 
+        /*
         var internRapp = new InternShip
         {
             Id = 1,
@@ -186,6 +197,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             InternShipId = 2,
             LocationsId = 1,
         };
+        */
 
         var microsoftCompetence = new Department
         {
@@ -208,6 +220,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             ManagerEmails = new List<string> { "anton.louf@student.ehb.be" },
         };
 
+        /*
         var microsoftPrefaceNl = new PrefaceTranslation
         {
             Id = 1,
@@ -230,7 +243,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             Content = "Dit is het voorwoord voor het Low Code departement center",
             UnitId = 3,
             LanguageId = 1,
-        };
+        }; */
 
         //languages
         builder.Entity<Language>().HasData(langEng, langFr, langNl);
@@ -238,20 +251,93 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         //Locations
         builder.Entity<Location>().HasData(locationHuizingen, locationGent, locationKontich);
 
-        //Translations
-        builder.Entity<InternShipContentTranslation>().HasData(androidAppTrnslEng, mobileAppTrnsFr, internRappTrnslNl);
+        //loop to make new internships with different translations
+        int trnslIndex = 1;
+        int unitIndex = 1;
+        string prefaceDescrNl = "Dit is een standaard descriptie horende bij een unit";
+        string prefaceDescrFr = "Ce ici c'est un description standard d un departement";
+        string prefaceDescrEng = "This is a standard description for a unit";
+        string prefaceDescr = "";
 
-        //Internships
-        builder.Entity<InternShip>().HasData(internRapp, mobileApp, androidApp);
         
-        //InternShipLocations
-        builder.Entity<InternShipLocation>().HasData(internRappHuizingen, internRappGent, internRappKontich, mobileAppHuizingen);
+        for (int intrnShipIndex = 0; intrnShipIndex < 10; intrnShipIndex++)
+        {
+            var index = (intrnShipIndex % 3) + 1;
 
-        //Prefaces
-        builder.Entity<PrefaceTranslation>().HasData(microsoftPrefaceNl, javaPrefaceNl, lowCodePrefaceNl);
+            //make internship and go to next internship in next unit 
+            var standardInternShip = new InternShip
+            {
+                Id = intrnShipIndex + 1,
+                CurrentCountOfStudents = 0,
+                MaxStudents = 10,
+                RequiredTrainingType = TrainingType.Bachelor,
+                SchoolYear = "2023-2024",
+                UnitId = index,
+            };
+
+            //for lus waarbij internship meerdere locations heeft
+            var standardInternShipLocation = new InternShipLocation
+            {
+                InternShipId = standardInternShip.Id,
+                LocationsId = index,
+            };
+
+            //InternShipLocations
+            builder.Entity<InternShipLocation>().HasData(standardInternShipLocation);
+
+            //4 x 1 trnsl 
+            //loop eerste keer 1 trnsl, tweede intrsnship 2 trnslaties, derde intrship x 3trnsl, --- > restart  
+            for (int langIndex = 0; langIndex <= (standardInternShip.Id % 3) + 1; langIndex++)
+            {
+                var standardTrnsl = new InternShipContentTranslation
+                {
+                    Id = trnslIndex, //steeds hoger 
+                    TitleContent = "standard",
+                    Description = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p></body></html>",
+                    KnowledgeToDevelop = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n\t<li>With some styling</li>\r\n\t<li>And some more styling</li>\r\n\t<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p></body></html>",
+                    NeededKnowledge = @"<html><body style=""font-family:Verdana; font-size:14.5px"">><p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n\t<li>With some styling</li>\r\n\t<li>And some more styling</li>\r\n\t<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p></body></html>",
+                    Comment = $@"<html><body style=""font-family:Verdana; font-size:14.5px""><p>required diploma for this internship is: {TrainingType.Bachelor}<p></body></html>", //+1 of random
+                    LanguageId = langIndex + 1,
+                    InternShipId = standardInternShip.Id,
+                };
+
+                if (unitIndex <= 3)
+                {
+                    //loop over prefaces of units 
+                    switch (langIndex)
+                    {
+                        case 1: prefaceDescr = prefaceDescrNl; break;
+                        case 2: prefaceDescr = prefaceDescrFr; break;
+                        case 3: prefaceDescr = prefaceDescrEng; break;
+                    }
+                    var standardPrefaceTrnsl = new PrefaceTranslation
+                    {
+                        Id = trnslIndex, //check?
+                        Content = prefaceDescr,
+                        UnitId = index,
+                        LanguageId = langIndex + 1,
+                    };
+                    //Prefaces
+                    builder.Entity<PrefaceTranslation>().HasData(standardPrefaceTrnsl);
+                }
+
+                trnslIndex++;
+
+
+                //Translations
+                builder.Entity<InternShipContentTranslation>().HasData(standardTrnsl);
+
+            }
+            unitIndex++;
+
+            //Internships
+            builder.Entity<InternShip>().HasData(standardInternShip);
+        }
+        
 
         //Departments
         builder.Entity<Department>().HasData(microsoftCompetence, javaUnit, lowCodeUnit);
+
     }
 
 

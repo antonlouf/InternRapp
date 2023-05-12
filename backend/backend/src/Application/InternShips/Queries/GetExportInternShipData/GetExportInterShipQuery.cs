@@ -1,13 +1,16 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Metadata;
 using System.Resources;
+using System.Text.RegularExpressions;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using backend.Application.Common.Interfaces;
 using backend.Application.InternShips.Common;
 using backend.Application.InternShips.Queries.GetAllInternShips;
 using backend.Application.InternShips.Queries.GetInternShipById;
+using backend.Application.Units.Common;
 using backend.Domain.Entities;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
@@ -35,22 +38,21 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
     public async Task<List<UnitExportDto>> Handle(GetExportInterShipQuery request, CancellationToken cancellationToken)
     {
 
-        //if (string.IsNullOrEmpty(request.Dto.SchoolYear) || request.Dto.LanguageId == 0) //verder uitwerken 
-        //{
-        //    return new List<UnitExportDto>();
-        //}
-
-        //&& unit.InternShips.All(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId))
-
         //Filter on Units and only the internships who have a translation language of request language 
         var units = await _dbContext.Departments
             .Where(unit => (request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(unit.Id))
-            && unit.Internships.Any(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)))
+            && unit.Internships.Any(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId))) //gecheckt -> werkt 
 
-            
             .Select(x => new UnitExportDto()
             {
                 Name = x.Name,
+                PrefaceDto = x.PrefaceTranslations.Where(unit => unit.LanguageId == request.Dto.LanguageId)
+                .Select(unit => new PrefaceTranslationDto()
+                {
+                    TranslationId = unit.Id,
+                    Content = unit.Content,
+                    Language = _iMapper.Map<LanguageListDto>(unit.Language),
+                }).Single(),
                 InternShipsDtos = x.Internships.Where(intrshp => intrshp.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)).Select(x => new InternShipExportDto()
                 {
                     SchoolYear = x.SchoolYear,
@@ -67,76 +69,8 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
 
                     }).First()
                 }).ToList()
-            }).ToListAsync();
-
-            
-
-        //.Where(unit => request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(unit.Id) //als er geen meegegeven wordt, toon dan alle
-        //&& unit.InternShips.All(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)));
-
-        //var units = from deps in _dbContext.Departments.Where(x => request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(x.Id))
-        //            join intrshps in _dbContext.InternShips
-        //            on deps.Id equals intrshps.UnitId
-        //            join trnsl in _dbContext.Translations.Where(x => x.LanguageId == request.Dto.LanguageId)
-        //            on intrshps.Id equals trnsl.InternShipId
-        //            into trnsl2 
-        //            select new UnitExportDto()
-        //            {
-        //                Name = deps == null ? null : deps.Name,
-        //                InternShipsDtos = trnsl2.Select(x => new InternShipExportDto()
-        //                {
-        //                    Translation = new TranslationDto()
-        //                    {
-        //                        Content = x.Content,
-        //                    },
-        //                    //SchoolYear = x.InternShip.SchoolYear
-        //                }).ToList()
-        //            };
-
-        //var test = units.ToList();
-
-        //Geef de unit waarvan de unit met internships met zijn translaties overeenkomt met al 
-        //mss selecten omdat unit gewijzigd moet worden -> filtered op intrnshps 
-
-        //.Include(unit => unit.InternShips)
-        //.ThenInclude(x => x.Translations)
-        //.ToListAsync();
-
-        /*
-        .Select(unit => new UnitExportDto()
-        {
-            Name = unit.Name,
-            InternShipsDtos = unit.InternShips
-
-            //.Where(internship => internship.SchoolYear == request.Dto.SchoolYear)
-
-            .Select(internship =>
-                 new InternShipExportDto() //per internships?
-                 {
-                     SchoolYear = internship.SchoolYear,
-                     Location = new LocationDto()
-                     {
-                         id = internship.Location.Id,
-                         city = internship.Location.City,
-                         zipcode = internship.Location.ZipCode,
-                         streetname = internship.Location.StreetName,
-                         housenumber = internship.Location.HouseNumber,
-                     },
-                     TrainingType = internship.RequiredTrainingType,
-                     Translation = internship.Translations
-                     .Where(trnsl => trnsl.Language.Id == request.Dto.LanguageId)
-                     .Select(trnsl => new TranslationDto()
-                     {
-                         Id = trnsl.Id,
-                         //Language = new Lang x.Translations.FirstOrDefault(y => y.Language.Id == request.Dto.LanguageId).LanguageId
-                         //Content = internship.Translations.First(trnsl => trnsl.Language.Id == request.Dto.LanguageId).Content
-                     }).Single()
-                 }
-             ).ToList()
-        }).ToListAsync();
-
-        */
-
+            })
+            .ToListAsync();
 
 
         foreach (var item in units)
@@ -144,130 +78,33 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
 
         }
 
+        //export? 
+        //GenerateWordDoc(units, request.Dto);
 
-
-
-
-        //var p = _dbContext.Departments.Where(x => x.InternShips.Any(y => request.Dto.SchoolYear.Contains(y.SchoolYear)));
-
-        //_dbContext.Departments.Select(x => new UnitExportDto())
-
-        //}).ToListAsync(); //--->werkende versie
-        //var units = internShips
-        //   .GroupBy(x => x.Unit, new UnitEqualityComparer())
-        //   .ToList();
-
-        // 
-
-
-        //var internShips = _dbContext.InternShips.AsQueryable();
-
-        //    internShips = internShips.Include(x => x.Translations.Where(y => y.LanguageId == request.Dto.LanguageId))
-        //    .Include(z => z.Unit);
-        ////liever als laatst doen en op unit -> internship 
-
-        //if (request.Dto.UnitId != null || request.Dto.UnitId.Any())
-        //{
-        //    internShips = internShips.Where(internschip => request.Dto.UnitId.Contains(internschip.UnitId));
-        //}
-
-        //var internshipsQuery = await internShips.ToListAsync();
-
-
-
-        //Filter opbouwen van Departments to UnitExportDto 
-        //var units = _dbContext.Departments.AsQueryable();
-
-        ////Fix wanneer unitId leeg is 
-
-        //if (request.Dto.UnitId != null || request.Dto.UnitId.Any())
-        //{
-        //    units = units.Include(unit => unit.InternShips.Where(internschip => request.Dto.UnitId.Contains(internschip.UnitId)));
-        //}
-
-        //var unitsQuery = await units.ToListAsync();
-
-
-
-        //units.Include(q => q.)
-
-        //.Where(internschip => (request.Dto.UnitId == null || request.Dto.UnitId.Count == 0 || request.Dto.UnitId.Contains(internschip.UnitId))
-        //    && (request.Dto.SchoolYear == null || request.Dto.SchoolYear.Count == 0 || request.Dto.SchoolYear.Contains(internschip.SchoolYear))
-        //    && (request.Dto.LanguageId == null || request.Dto.LanguageId.Count == 0 || internschip.Translations.Any(trnsl => request.Dto.LanguageId.Contains(trnsl.LanguageId))))
-        //    .ProjectTo<InternShipExportDto>(_iMapper.ConfigurationProvider) // -> Filtered internships 
-        //    .ToListAsync();
-
-        //maak compare methode in DepartmentDTO klasse
-        //var units = internShips
-        //    .Select(y => new InternShipExportDto
-        //    {
-        //        Department = y.Department,
-        //        Location = y.Location,
-        //        SchoolYear = y.SchoolYear,
-        //        TrainingType = y.TrainingType,
-        //        Translations = y.Translations,
-        //        Translation = new TranslationDto
-        //        {
-        //            Content = y.Translations.Where(trnsl => request.Dto.LanguageId.Contains(trnsl.Language.Id))
-
-        //        }
-        //    })
-        //    .GroupBy(x => x.Department, new UnitEqualityComparer())
-        //    x => x, 
-        //    (key, values) => new UnitExportDto
-        //    {
-        //        Name = key.Name,
-        //        InternShips = values
-        //            .Select(internShip => _iMapper.Map<InternShip, InternShipExportDto>(internShip))
-        //            .AsEnumerable()
-        //    }, new UnitEqualityComparer())
-
-        //    .ToList();
-
-
-        return new List<UnitExportDto> { };
-
-
-    }
-}
-public class UnitEqualityComparer : IEqualityComparer<DepartmentDto>
-{
-    public bool Equals(DepartmentDto x, DepartmentDto y)
-    {
-        if (x == null || y == null)
-        {
-            return false;
-        }
-        return x.Id == y.Id;
+        return new List<UnitExportDto>() { };
+        //return units;
     }
 
-    public int GetHashCode([DisallowNull] DepartmentDto obj)
-    {
-        return obj.Id.GetHashCode();
-    }
-}
+    //Export logica in private methode en exposed public methode 
+    //Roep hier de interface aan 
 
-//Export logica in private methode en exposed public methode 
-//Roep hier de interface aan 
-
-public class Exporting
-{
     public void GenerateWordDoc(List<UnitExportDto> unitExportList, InternshipExportRequestDto requestDto)
     {
         const string templatePath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\backend\lib\template.docx"; //-> docm
         const string resultPath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\backend\lib\internships.docx";
-        const string resultPath2 = @"C:\Users\ALFCP98\source\repos\HelloWorld\HelloWorld\bin\Debug\net6.0\OpenXmlExample2.docx";
 
         WordprocessingDocument document = WordprocessingDocument.CreateFromTemplate(templatePath);
-
         var body = document.MainDocumentPart!.Document.Body;
         var allElements = body!.Elements().ToList();
 
-        //fetch data from Resource files 
+        int altChunckId = 0;
+        int index = 0;
+
+        //fetch static content from resource files 
         //change language code depending on request 
         var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetName().Name == "WebUI").ToList();
-        ResourceManager rm = new ResourceManager($"WebUI.Resources.nl", Assembly.LoadFile(@$"{assemblies[0].Location}"));
-
+        var langCode = _dbContext.Languages.Where(lang => lang.Id == requestDto.LanguageId).Single().Code;
+        ResourceManager rm = new ResourceManager($"WebUI.Resources.{langCode}", Assembly.LoadFile(@$"{assemblies[0].Location}"));
 
         if (File.Exists(resultPath))
         {
@@ -277,22 +114,22 @@ public class Exporting
         Dictionary<string, string> commonReplacements = new Dictionary<string, string>()
                  {
                      {"TEMPLATE_TITLE", rm.GetString("TEMPLATE_TITLE")},
-                     {"TEMPLATE_YEAR", "2022-2023"},
+                     {"TEMPLATE_YEAR", requestDto.SchoolYear},
                      {"COMPANY_TITLE", rm.GetString("COMPANY_TITLE")},
-                     {"COMPANY_DESCRIPTION", rm.GetString("COMPANY_DESCRIPTION") },
-                     {"COMPANY_VISION_TITLE", rm.GetString("COMPANY_VISION_TITLE")},
-                     {"COMPANY_VISION_DESCRIPTION", rm.GetString("COMPANY_VISION_DESCRIPTION")},
-                     {"COMPANY_VALUES_TITLE", rm.GetString("COMPANY_VALUES_TITLE")},
-                     {"COMPANY_VALUES_DESCRIPTION", rm.GetString("COMPANY_VALUES_DESCRIPTION")},
-                     {"ACADEMICT_TITLE", rm.GetString("ACADEMICT_TITLE")},
-                     {"ACADEMICT_DESCRIPTION", rm.GetString("ACADEMICT_DESCRIPTION")},
+                     {"COMPANY_DESCRIPTION", rm.GetString("COMPANY_DESCRIPTION")},
+                     //{"COMPANY_VISION_TITLE", rm.GetString("COMPANY_VISION_TITLE")},
+                     //{"COMPANY_VISION_DESCRIPTION", rm.GetString("COMPANY_VISION_DESCRIPTION")},
+                     //{"COMPANY_VALUES_TITLE", rm.GetString("COMPANY_VALUES_TITLE")},
+                     //{"COMPANY_VALUES_DESCRIPTION", rm.GetString("COMPANY_VALUES_DESCRIPTION")},
+                     //{"ACADEMICT_TITLE", rm.GetString("ACADEMICT_TITLE")},
+                     //{"ACADEMICT_DESCRIPTION", rm.GetString("ACADEMICT_DESCRIPTION")},
                  };
 
-        ReplaceParagraphs(allElements, commonReplacements);
+        ReplaceParagraphs(document, allElements, commonReplacements, ref altChunckId, ref index);
 
         ExtractParagraphs(allElements, "UNIT_TITLE", "UNIT_END", out var unitStartPosition, out var templateUnitParagraphs);
 
-        InsertUnitParagraphs(body, unitExportList, templateUnitParagraphs, unitStartPosition);
+        InsertUnitParagraphs(document, unitExportList, templateUnitParagraphs, unitStartPosition, ref altChunckId, ref index);
 
         var newElements = body!.Elements().ToList();
         List<string> toDeleteStrings = new List<string>() { "INTERNSHIP_END", "UNIT_END" };
@@ -307,7 +144,6 @@ public class Exporting
         // Save result document, not modifying the template
         document.Clone(resultPath);
 
-        //File.Copy(resultPath, resultPath2);
     }
 
     private void RemoveSdt(Body body)
@@ -322,7 +158,7 @@ public class Exporting
                 var sdtBlock = new SdtBlock();
                 sdtBlock.InnerXml = GetTOC("Content", 16);
                 body.InsertAt(sdtBlock, i);
-                //body.InsertAfter(new Break() { Type = BreakValues.Page }, sdtBlock);
+                body.InsertAfter(new Break() { Type = BreakValues.Page }, sdtBlock);
             }
             i++;
         }
@@ -408,7 +244,7 @@ public class Exporting
   </w:sdt>";
     }
 
-    public string GetCombinedText(IEnumerable<DocumentFormat.OpenXml.Wordprocessing.Text> textElements)
+    public string GetCombinedText(IEnumerable<Text> textElements)
     {
         //plak alle text elementen aan elkaar die bij elke paragraaf horen 
         return string.Join("", textElements.Select(t => t.Text)); // IN TERN SHIP TI TLE -> INTERNSHIP_TITLE
@@ -430,7 +266,8 @@ public class Exporting
     }
 
     //Get Text elements and replace 
-    public void ReplaceParagraphs(List<OpenXmlElement> elements, Dictionary<string, string> replacements)
+    public void ReplaceParagraphs(WordprocessingDocument document, List<OpenXmlElement> elements, Dictionary<string, string> replacements,
+        ref int chunkId, ref int index)
     {
         foreach (var e in elements)
         {
@@ -439,15 +276,17 @@ public class Exporting
                 var p = e as Paragraph;
 
                 var textElements = p.Elements<Run>()
-                                   .SelectMany(r => r.Elements<DocumentFormat.OpenXml.Wordprocessing.Text>());
+                                   .SelectMany(r => r.Elements<Text>());
 
                 //Misschien eruit halen zodat het herbruikbaarder is?? 
-                Replace(textElements, replacements); // IN TERN SHIP TI TLE -> INTERNSHIP_TITLE -> InternRApp
+                Replace(document, textElements, replacements, ref chunkId, ref index); // IN TERN SHIP TI TLE -> INTERNSHIP_TITLE -> InternRApp
             }
+            index++;
         }
     }
 
-    public void Replace(IEnumerable<DocumentFormat.OpenXml.Wordprocessing.Text> textElements, Dictionary<string, string> replacements)
+    public void Replace(WordprocessingDocument document, IEnumerable<Text> textElements, Dictionary<string, string> replacements,
+        ref int chunkId, ref int index)
     {
         var combinedText = GetCombinedText(textElements);
 
@@ -461,7 +300,7 @@ public class Exporting
                 while (enumerator.MoveNext())
                 {
                     var remainingKey = pair.Key;
-                    var correctTextElements = new List<DocumentFormat.OpenXml.Wordprocessing.Text>();
+                    var correctTextElements = new List<Text>();
                     var exists = true; //vermijd nulpointer error bij laatste moveNext()
                     var matchingChars = 0;
 
@@ -487,7 +326,17 @@ public class Exporting
 
                         if (remainingKey.Length == 0) //op eerste T element locatie
                         {
-                            correctTextElements[0].Text = pair.Value; //Kopieer data naar plaats textElement[0]
+                            //if 
+                            if (Regex.IsMatch(pair.Value, "<p>|<bold>|<li>|<a>|<ol>|<i>"))
+                            {
+                                document.MainDocumentPart!.Document.Body.InsertAt(ChunkMethod(document, pair.Value, ref chunkId), index);
+                                correctTextElements[0].Text = "";
+                            }
+                            else
+                            {
+                                correctTextElements[0].Text = pair.Value; //Kopieer data naar plaats textElement[0]
+                            }
+
                             for (var i = 1; i < correctTextElements.Count; i++)
                             {
                                 correctTextElements[i].Text = ""; //volgende t elementen leeg laten -> later removen
@@ -498,6 +347,27 @@ public class Exporting
                 }
             }
         }
+    }
+
+    public AltChunk ChunkMethod(WordprocessingDocument document, string html, ref int chunkId)
+    {
+        chunkId++;
+        AltChunk altChunk = new AltChunk();
+
+        //HTML
+        AlternativeFormatImportPart chunk = document.MainDocumentPart!.AddAlternativeFormatImportPart(
+            AlternativeFormatImportPartType.Html, $"altChunkId{chunkId}"); //this chunk will contain HTML
+
+        using (Stream chunkStream = chunk.GetStream(FileMode.Create, FileAccess.Write))
+        {
+            using (StreamWriter stringStream = new StreamWriter(chunkStream))
+            {
+                stringStream.Write(html);
+            }
+
+        }
+        altChunk.Id = document.MainDocumentPart!.GetIdOfPart(chunk);
+        return altChunk;
     }
 
     public void ExtractParagraphs(IEnumerable<OpenXmlElement> elements, string startSection, string endSection, out int startPosition, out List<OpenXmlElement> extratedParagraphs)
@@ -513,7 +383,7 @@ public class Exporting
             {
                 var p = e as Paragraph;
                 var textElements = e.Elements<Run>()
-                    .SelectMany(r => r.Elements<DocumentFormat.OpenXml.Wordprocessing.Text>());
+                    .SelectMany(r => r.Elements<Text>());
 
                 var text = GetCombinedText(textElements);
 
@@ -547,17 +417,9 @@ public class Exporting
         }
     }
 
-    public void InsertUnitParagraphs(BodyType body, List<UnitExportDto> unitList, List<OpenXmlElement> templateUnitParagraphs, int unitStartPosition)
+    public void InsertUnitParagraphs(WordprocessingDocument document, List<UnitExportDto> unitList, List<OpenXmlElement> templateUnitParagraphs,
+        int unitStartPosition, ref int chunkId, ref int index)
     {
-
-        /* foreach (var group in UnitList)
-         {
-             var unit = group.Key;
-             foreach (var internShip in group)
-             {
-
-             }
-         } */
 
         //moet ik dat nu nog reversen? in welke volgorde moeten de units komen? 
         var reversedUnits = Reversed(unitList); //units 
@@ -567,11 +429,11 @@ public class Exporting
             var unit = reversedUnits[unitIndex];
             var unitElements = CloneELements(templateUnitParagraphs);
 
-            ReplaceParagraphs(unitElements, new Dictionary<string, string>()
+            ReplaceParagraphs(document, unitElements, new Dictionary<string, string>()
                     {
                         {"UNIT_TITLE", unit.Name},
-                        {"UNIT_DESCRIPTION", unit.Name}, //change 
-                    });
+                        {"UNIT_DESCRIPTION", unit.PrefaceDto.Content}, //change 
+                    },ref chunkId, ref index);
 
             ExtractParagraphs(unitElements, "INTERNSHIP_TITLE", "INTERNSHIP_END", out var internshipStartPosition, out var templateInternshipParagraphs);
 
@@ -582,7 +444,7 @@ public class Exporting
 
                 var internshipParagraphs = CloneELements(templateInternshipParagraphs);
 
-                ReplaceParagraphs(internshipParagraphs, new Dictionary<string, string>()
+                ReplaceParagraphs(document, internshipParagraphs, new Dictionary<string, string>()
                           {
                               {"INTERNSHIP_TITLE", internship.Translation.TitleContent},
                               {"INTERNSHIP_ASSIGNMENT_TITLE", "Description of the assignment"},
@@ -598,7 +460,7 @@ public class Exporting
                               {"INTERNSHIP_LOCATION_CONTENT", internship.Locations.ToString()},
                               {"INTERNSHIP_COMMENTS", "title"},
                               {"INTERNSHIP_COMMENTS_CONTENT", "title"},
-                          });
+                          }, ref chunkId, ref index);
 
                 unitElements.InsertRange(internshipStartPosition, internshipParagraphs); //toevoegen van internshipParagraaf lijst in unit paragrafen 
 
@@ -616,7 +478,7 @@ public class Exporting
                 .ToList()
                 .ForEach(element =>
                 {
-                    body.InsertAt(element, unitStartPosition); //toevoegen van unit paragrafen in document 
+                    document.MainDocumentPart.Document.Body.InsertAt(element, unitStartPosition); //toevoegen van unit paragrafen in document 
                 });
         }
     }
@@ -652,5 +514,10 @@ public class Exporting
             }
         }
     }
+
 }
+
+
+
+
 

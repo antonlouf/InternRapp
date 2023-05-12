@@ -52,9 +52,7 @@ public class InternShipController : ControllerBase
     [HttpGet("export")]
     public async Task<IActionResult> Export([FromQuery] InternshipExportRequestDto request)
     {
-        var filteredData = await _mediator.Send(new GetExportInterShipQuery() { Dto = request });
-        Exporting Exporting = new Exporting();
-        //Exporting.GenerateWordDoc(filteredData, dto);
+        await _mediator.Send(new GetExportInterShipQuery() { Dto = request });
         return Ok();
     }
 

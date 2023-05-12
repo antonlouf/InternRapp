@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,5 +23,17 @@ public class DepartmentDto:IMapFrom<Department>
        profile.CreateMap<Department, DepartmentDto>();
     }
 
+    public bool Equals(DepartmentDto x, DepartmentDto y)
+    {
+        if (x == null || y == null)
+        {
+            return false;
+        }
+        return x.Id == y.Id;
+    }
 
+    public int GetHashCode([DisallowNull] DepartmentDto obj)
+    {
+        return obj.Id.GetHashCode();
+    }
 }
