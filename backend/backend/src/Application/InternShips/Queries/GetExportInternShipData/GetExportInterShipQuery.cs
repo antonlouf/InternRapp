@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Reflection.Metadata;
 using System.Resources;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using backend.Application.Common.Interfaces;
@@ -13,6 +14,7 @@ using backend.Application.InternShips.Queries.GetInternShipById;
 using backend.Application.Units.Common;
 using backend.Domain.Entities;
 using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Office2010.Word;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using MediatR;
@@ -41,24 +43,25 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
         //Filter on Units and only the internships who have a translation language of request language 
         var units = await _dbContext.Departments
             .Where(unit => (request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(unit.Id))
-            && unit.Internships.Any(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId))) //gecheckt -> werkt 
+            && unit.Internships.Any(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)))
+            //gecheckt -> werkt, maar ook checken op voorwoord translatie?
 
-            .Select(x => new UnitExportDto()
+            .Select(exportDto => new UnitExportDto()
             {
-                Name = x.Name,
-                PrefaceDto = x.PrefaceTranslations.Where(unit => unit.LanguageId == request.Dto.LanguageId)
+                Name = exportDto.Name,
+                PrefaceDto = exportDto.PrefaceTranslations.Where(unit => unit.LanguageId == request.Dto.LanguageId)
                 .Select(unit => new PrefaceTranslationDto()
                 {
                     TranslationId = unit.Id,
                     Content = unit.Content,
                     Language = _iMapper.Map<LanguageListDto>(unit.Language),
                 }).Single(),
-                InternShipsDtos = x.Internships.Where(intrshp => intrshp.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)).Select(x => new InternShipExportDto()
+                InternShipsDtos = exportDto.Internships.Where(intrshp => intrshp.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)).Select(intrshpDto => new InternShipExportDto()
                 {
-                    SchoolYear = x.SchoolYear,
-                    Locations = _iMapper.Map<IList<LocationDto>>(x.Locations),
-                    TrainingType = x.RequiredTrainingType,
-                    Translation = x.Translations.Select(trnslDto => new TranslationDto()
+                    SchoolYear = intrshpDto.SchoolYear,
+                    Locations = _iMapper.Map<IList<LocationDto>>(intrshpDto.Locations),
+                    TrainingType = intrshpDto.RequiredTrainingType,
+                    Translation = intrshpDto.Translations.Select(trnslDto => new TranslationDto()
                     {
                         TranslationId = trnslDto.Id,
                         TitleContent = trnslDto.TitleContent,
@@ -79,10 +82,11 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
         }
 
         //export? 
-        //GenerateWordDoc(units, request.Dto);
 
-        return new List<UnitExportDto>() { };
-        //return units;
+        GenerateWordDoc(units /*new List<UnitExportDto>() { }*/, request.Dto);
+
+        //return new List<UnitExportDto>() { };
+        return units;
     }
 
     //Export logica in private methode en exposed public methode 
@@ -98,13 +102,12 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
         var allElements = body!.Elements().ToList();
 
         int altChunckId = 0;
-        int index = 0;
 
         //fetch static content from resource files 
         //change language code depending on request 
         var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetName().Name == "WebUI").ToList();
         var langCode = _dbContext.Languages.Where(lang => lang.Id == requestDto.LanguageId).Single().Code;
-        ResourceManager rm = new ResourceManager($"WebUI.Resources.{langCode}", Assembly.LoadFile(@$"{assemblies[0].Location}"));
+        ResourceManager rm = new ResourceManager($"WebUI.Resources.{langCode}", Assembly.LoadFile(@$"{assemblies[0].Location}")); //werkt enkel bij nl? 
 
         if (File.Exists(resultPath))
         {
@@ -117,31 +120,39 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
                      {"TEMPLATE_YEAR", requestDto.SchoolYear},
                      {"COMPANY_TITLE", rm.GetString("COMPANY_TITLE")},
                      {"COMPANY_DESCRIPTION", rm.GetString("COMPANY_DESCRIPTION")},
-                     //{"COMPANY_VISION_TITLE", rm.GetString("COMPANY_VISION_TITLE")},
-                     //{"COMPANY_VISION_DESCRIPTION", rm.GetString("COMPANY_VISION_DESCRIPTION")},
-                     //{"COMPANY_VALUES_TITLE", rm.GetString("COMPANY_VALUES_TITLE")},
-                     //{"COMPANY_VALUES_DESCRIPTION", rm.GetString("COMPANY_VALUES_DESCRIPTION")},
-                     //{"ACADEMICT_TITLE", rm.GetString("ACADEMICT_TITLE")},
-                     //{"ACADEMICT_DESCRIPTION", rm.GetString("ACADEMICT_DESCRIPTION")},
+                     {"COMPANY_VISION_TITLE", rm.GetString("COMPANY_VISION_TITLE")},
+                     {"COMPANY_VISION_DESCRIPTION", rm.GetString("COMPANY_VISION_DESCRIPTION")},
+                     {"COMPANY_VALUES_TITLE", rm.GetString("COMPANY_VALUES_TITLE")},
+                     {"COMPANY_VALUES_DESCRIPTION", rm.GetString("COMPANY_VALUES_DESCRIPTION")},
+                     {"ACADEMICT_TITLE", rm.GetString("ACADEMICT_TITLE")},
+                     {"ACADEMICT_DESCRIPTION", rm.GetString("ACADEMICT_DESCRIPTION")},
                  };
 
-        ReplaceParagraphs(document, allElements, commonReplacements, ref altChunckId, ref index);
+        Replace(document, ref allElements, commonReplacements, ref altChunckId);
 
         ExtractParagraphs(allElements, "UNIT_TITLE", "UNIT_END", out var unitStartPosition, out var templateUnitParagraphs);
 
-        InsertUnitParagraphs(document, unitExportList, templateUnitParagraphs, unitStartPosition, ref altChunckId, ref index);
+        allElements.RemoveRange(unitStartPosition, templateUnitParagraphs.Count);
 
-        var newElements = body!.Elements().ToList();
+        InsertUnitParagraphs(document, ref allElements, unitExportList, templateUnitParagraphs, unitStartPosition, ref altChunckId);
+
         List<string> toDeleteStrings = new List<string>() { "INTERNSHIP_END", "UNIT_END" };
-        DeleteParagraphs(newElements, toDeleteStrings);
+        DeleteParagraphs(ref allElements, toDeleteStrings);
 
         //update index table 
         document.MainDocumentPart!.DocumentSettingsPart!.Settings.Append(new UpdateFieldsOnOpen() { Val = true }); //dit update de velden maar toont nog steeds een update dialog
-        //dit update de velden maar toont nog steeds een update dialog, elke keer bij openen? 
+                                                                                                                
+        body.RemoveAllChildren();
 
+        for (int i = 0; i < allElements.Count(); i++)
+        {
+            body.InsertAt(allElements[i], i);
+        }
+
+        //remove old content table
         RemoveSdt(body);
 
-        // Save result document, not modifying the template
+        // Save Document
         document.Clone(resultPath);
 
     }
@@ -243,13 +254,11 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
      </w:sdtContent>
   </w:sdt>";
     }
-
     public string GetCombinedText(IEnumerable<Text> textElements)
     {
         //plak alle text elementen aan elkaar die bij elke paragraaf horen 
         return string.Join("", textElements.Select(t => t.Text)); // IN TERN SHIP TI TLE -> INTERNSHIP_TITLE
     }
-
     public List<T> Reversed<T>(IList<T> list)
     {
         return Enumerable
@@ -257,19 +266,18 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
             .Select(i => list[list.Count() - i])
             .ToList();
     }
-
     public List<OpenXmlElement> CloneELements(List<OpenXmlElement> elements)
     {
         return elements
             .Select(element => element.CloneNode(true))
             .ToList();
     }
-
-    //Get Text elements and replace 
-    public void ReplaceParagraphs(WordprocessingDocument document, List<OpenXmlElement> elements, Dictionary<string, string> replacements,
-        ref int chunkId, ref int index)
+    public void Replace(WordprocessingDocument document, ref List<OpenXmlElement> openXmlElements, Dictionary<string, string> replacements, ref int chunkId)
     {
-        foreach (var e in elements)
+
+        var toReplace = new Dictionary<OpenXmlElement, OpenXmlElement>();
+
+        foreach (var e in openXmlElements)
         {
             if (e is Paragraph)
             {
@@ -277,97 +285,59 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
 
                 var textElements = p.Elements<Run>()
                                    .SelectMany(r => r.Elements<Text>());
+                var combinedText = GetCombinedText(textElements);
 
-                //Misschien eruit halen zodat het herbruikbaarder is?? 
-                Replace(document, textElements, replacements, ref chunkId, ref index); // IN TERN SHIP TI TLE -> INTERNSHIP_TITLE -> InternRApp
-            }
-            index++;
-        }
-    }
-
-    public void Replace(WordprocessingDocument document, IEnumerable<Text> textElements, Dictionary<string, string> replacements,
-        ref int chunkId, ref int index)
-    {
-        var combinedText = GetCombinedText(textElements);
-
-        //order de keys van groot naar klein om conflicten met eve lange woorden te vermijden
-        foreach (var pair in replacements.OrderBy(pair => pair.Key).Reverse())
-        {
-            //PER PARAGRAAF VERGELIJK MET EEN REVERSED DICTONIARY //check of het template veld overeenkomt met de key
-            if (combinedText.Contains(pair.Key)) //INT ERN SHIP_VALUES //INTERNSHIP //values 
-            {
-                var enumerator = textElements.GetEnumerator();
-                while (enumerator.MoveNext())
+                //order de keys van groot naar klein om conflicten met eve lange woorden te vermijden
+                foreach (var pair in replacements.OrderBy(pair => pair.Key).Reverse())
                 {
-                    var remainingKey = pair.Key;
-                    var correctTextElements = new List<Text>();
-                    var exists = true; //vermijd nulpointer error bij laatste moveNext()
-                    var matchingChars = 0;
-
-                    // wanneer letter van textElement overeenkomt met dictionary key 
-                    //loop over IN TERN SHIP (textElements) 
-                    // remaningKey = "INTERNSHIP-COMMENTS-CONTENT"
-
-                    // "1"
-                    // enumerator.Current.Text = "INTERNSHIP-COMMENTS-CONTENT "
-                    //while (exists && remainingKey.StartsWith(enumerator.Current.Text))
-
-
-                    // "INTERSHIP"
-
-                    // "IN"
-                    // "TERN"
-                    // "SHIP"
-                    while (exists && (matchingChars = MatchingCharsAt(remainingKey, enumerator.Current.Text)) != 0)
+                    //PER PARAGRAAF VERGELIJK MET EEN REVERSED DICTONIARY //check of het template veld overeenkomt met de key
+                    if (combinedText.Contains(pair.Key)) //INT ERN SHIP_VALUES //INTERNSHIP //values 
                     {
-                        remainingKey = remainingKey.Substring(matchingChars); //check op IINTERNSHIP 
-
-                        correctTextElements.Add(enumerator.Current); //toevoegen van textElements 
-
-                        if (remainingKey.Length == 0) //op eerste T element locatie
+                        var enumerator = textElements.GetEnumerator();
+                        while (enumerator.MoveNext())
                         {
-                            //if 
-                            if (Regex.IsMatch(pair.Value, "<p>|<bold>|<li>|<a>|<ol>|<i>"))
-                            {
-                                document.MainDocumentPart!.Document.Body.InsertAt(ChunkMethod(document, pair.Value, ref chunkId), index);
-                                correctTextElements[0].Text = "";
-                            }
-                            else
-                            {
-                                correctTextElements[0].Text = pair.Value; //Kopieer data naar plaats textElement[0]
-                            }
+                            var remainingKey = pair.Key;
+                            var correctTextElements = new List<Text>();
+                            var exists = true; //vermijd nulpointer error bij laatste moveNext()
+                            var matchingChars = 0;
 
-                            for (var i = 1; i < correctTextElements.Count; i++)
+                            while (exists && (matchingChars = MatchingCharsAt(remainingKey, enumerator.Current.Text)) != 0)
                             {
-                                correctTextElements[i].Text = ""; //volgende t elementen leeg laten -> later removen
+                                remainingKey = remainingKey.Substring(matchingChars); //check op IINTERNSHIP 
+
+                                correctTextElements.Add(enumerator.Current); //toevoegen van textElements 
+
+                                if (remainingKey.Length == 0) //op eerste T element locatie
+                                {
+                                    if (Regex.IsMatch(pair.Value, "<html>"))
+                                    {
+                                        toReplace.Add(p, ChunkMethod(document, pair.Value, ref chunkId));
+                                    }
+                                    else
+                                    {
+                                        correctTextElements[0].Text = pair.Value; //Kopieer data naar plaats textElement[0]
+                                        for (var i = 1; i < correctTextElements.Count; i++)
+                                        {
+                                            correctTextElements[i].Text = ""; //volgende t elementen leeg laten -> later removen
+                                        }
+                                    }
+                                }
+                                exists = enumerator.MoveNext();
                             }
                         }
-                        exists = enumerator.MoveNext();
                     }
                 }
             }
         }
-    }
-
-    public AltChunk ChunkMethod(WordprocessingDocument document, string html, ref int chunkId)
-    {
-        chunkId++;
-        AltChunk altChunk = new AltChunk();
-
-        //HTML
-        AlternativeFormatImportPart chunk = document.MainDocumentPart!.AddAlternativeFormatImportPart(
-            AlternativeFormatImportPartType.Html, $"altChunkId{chunkId}"); //this chunk will contain HTML
-
-        using (Stream chunkStream = chunk.GetStream(FileMode.Create, FileAccess.Write))
+        foreach (var entry in toReplace)
         {
-            using (StreamWriter stringStream = new StreamWriter(chunkStream))
+            var index = openXmlElements.IndexOf(entry.Key);
+            if (index != -1)
             {
-                stringStream.Write(html);
+                openXmlElements.RemoveAt(index);
+                openXmlElements.Insert(index, entry.Value);
             }
-
         }
-        altChunk.Id = document.MainDocumentPart!.GetIdOfPart(chunk);
-        return altChunk;
     }
 
     public void ExtractParagraphs(IEnumerable<OpenXmlElement> elements, string startSection, string endSection, out int startPosition, out List<OpenXmlElement> extratedParagraphs)
@@ -417,8 +387,8 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
         }
     }
 
-    public void InsertUnitParagraphs(WordprocessingDocument document, List<UnitExportDto> unitList, List<OpenXmlElement> templateUnitParagraphs,
-        int unitStartPosition, ref int chunkId, ref int index)
+    public void InsertUnitParagraphs(WordprocessingDocument document, ref List<OpenXmlElement> allElements, List<UnitExportDto> unitList, List<OpenXmlElement> templateUnitParagraphs,
+        int unitStartPosition, ref int chunkId)
     {
 
         //moet ik dat nu nog reversen? in welke volgorde moeten de units komen? 
@@ -429,41 +399,39 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
             var unit = reversedUnits[unitIndex];
             var unitElements = CloneELements(templateUnitParagraphs);
 
-            ReplaceParagraphs(document, unitElements, new Dictionary<string, string>()
+            Replace(document, ref unitElements, new Dictionary<string, string>()
                     {
                         {"UNIT_TITLE", unit.Name},
-                        {"UNIT_DESCRIPTION", unit.PrefaceDto.Content}, //change 
-                    },ref chunkId, ref index);
+                        {"UNIT_DESCRIPTION", unit.PrefaceDto.Content},
+                    }, ref chunkId);
 
             ExtractParagraphs(unitElements, "INTERNSHIP_TITLE", "INTERNSHIP_END", out var internshipStartPosition, out var templateInternshipParagraphs);
 
             unitElements.RemoveRange(internshipStartPosition, templateInternshipParagraphs.Count); //Delete niet ingevulde internship template  
 
-            foreach (var internship in /* unit.InternShipsDtos */ new List<InternShipExportDto>())
+            foreach (var internship in unit.InternShipsDtos)
             {
-
                 var internshipParagraphs = CloneELements(templateInternshipParagraphs);
 
-                ReplaceParagraphs(document, internshipParagraphs, new Dictionary<string, string>()
+                Replace(document, ref internshipParagraphs, new Dictionary<string, string>()
                           {
                               {"INTERNSHIP_TITLE", internship.Translation.TitleContent},
                               {"INTERNSHIP_ASSIGNMENT_TITLE", "Description of the assignment"},
-                              {"INTERNSHIP_ASSIGNMENT_DESCRIPTION", ""},
-                              {"INTERNSHIP_KNOWLEDGE_TITLE", ""},
-                              {"INTERNSHIP_KNOWLEDGE_DESCRIPTION", ""},
-                              {"INTERNSHIP_KNOWLEDGE_CONTENT", "title"},
-                              {"INTERNSHIP_NEED_TO_KNOW_TITLE", "title"},
-                              {"INTERNSHIP_NEED_TO_KNOW_DESCRIPTION", "title"},
-                              {"INTERNSHIP_NEED_TO_KNOW_CONTENT", "title"},
-                              {"INTERNSHIP_LOCATION_TITLE", "title"},
-                              {"INTERNSHIP_LOCATION_DESCRIPTION", "title"},
-                              {"INTERNSHIP_LOCATION_CONTENT", internship.Locations.ToString()},
-                              {"INTERNSHIP_COMMENTS", "title"},
-                              {"INTERNSHIP_COMMENTS_CONTENT", "title"},
-                          }, ref chunkId, ref index);
+                              {"INTERNSHIP_ASSIGNMENT_DESCRIPTION", internship.Translation.Description},
+                              {"INTERNSHIP_KNOWLEDGE_TITLE", "INTERNSHIP_KNOWLEDGE_TITLE"},
+                              {"INTERNSHIP_KNOWLEDGE_DESCRIPTION", "Technische en niet-technische oplijsting van de kennis en competenties die de stagiair zal verwerven gedurende de stage."},
+                              {"INTERNSHIP_KNOWLEDGE_CONTENT", internship.Translation.KnowledgeToDevelop},
+                              {"INTERNSHIP_NEED_TO_KNOW_TITLE", "INTERNSHIP_NEED_TO_KNOW_TITLE"},
+                              {"INTERNSHIP_NEED_TO_KNOW_DESCRIPTION", "Technische en niet-technische oplijsting van kennis en competenties die de stagiair op zijn minst nodig heeft om de opdracht tot een goed einde te kunnen brengen."},
+                              {"INTERNSHIP_NEED_TO_KNOW_CONTENT", internship.Translation.NeededKnowledge},
+                              {"INTERNSHIP_LOCATION_TITLE", "INTERNSHIP_LOCATION_TITLE"},
+                              {"INTERNSHIP_LOCATION_DESCRIPTION", "De opdracht kan doorgaan op volgende locaties:"},
+                              {"INTERNSHIP_LOCATION_CONTENT", "internship.Locations.ToList().ForEach(loc => loc.ToString())"},
+                              {"INTERNSHIP_COMMENTS", "INTERNSHIP_COMMENTS"},
+                              {"INTERNSHIP_COMMENTS_CONTENT", internship.Translation.Comment},
+                          }, ref chunkId);
 
                 unitElements.InsertRange(internshipStartPosition, internshipParagraphs); //toevoegen van internshipParagraaf lijst in unit paragrafen 
-
             }
 
             //add new break
@@ -473,13 +441,21 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
             }
 
             //allParagraphs.InsertRange(unitStartPosition, unitParagraphs);  omdat je met gecloned unit lijst werkt kan je de template niet rechtstreeks aanpassen   
-            Enumerable.Range(1, unitElements.Count())
+           /* Enumerable.Range(1, unitElements.Count())
                 .Select(i => unitElements[unitElements.Count() - i])
                 .ToList()
                 .ForEach(element =>
                 {
-                    document.MainDocumentPart.Document.Body.InsertAt(element, unitStartPosition); //toevoegen van unit paragrafen in document 
+                    allElements.InsertAt(element, unitStartPosition); //toevoegen van unit paragrafen in document 
                 });
+            */
+
+            foreach (var element in Enumerable.Range(1, unitElements.Count())
+                .Select(i => unitElements[unitElements.Count() - i])
+                .ToList())
+            {
+                allElements.Insert(unitStartPosition, element);
+            }
         }
     }
 
@@ -492,15 +468,34 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
         }
         return i;
     }
+    public AltChunk ChunkMethod(WordprocessingDocument document, string html, ref int chunkId)
+    {
+        chunkId++;
+        AltChunk altChunk = new AltChunk();
 
-    public void DeleteParagraphs(List<OpenXmlElement> allElements, List<string> toDeleteParagraphs)
+        //HTML
+        AlternativeFormatImportPart chunk = document.MainDocumentPart!.AddAlternativeFormatImportPart(
+            AlternativeFormatImportPartType.Html, $"altChunkId{chunkId}"); //this chunk will contain HTML
+
+        using (Stream chunkStream = chunk.GetStream(FileMode.Create, FileAccess.Write))
+        {
+            using (StreamWriter stringStream = new StreamWriter(chunkStream))
+            {
+                stringStream.Write(html);
+            }
+
+        }
+        altChunk.Id = document.MainDocumentPart!.GetIdOfPart(chunk);
+        return altChunk;
+    }
+    public void DeleteParagraphs(ref List<OpenXmlElement> allElements, List<string> toDeleteParagraphs)
     {
         foreach (var e in allElements)
         {
             if (e is Paragraph)
             {
                 var textElements = e.Elements<Run>()
-                                       .SelectMany(r => r.Elements<DocumentFormat.OpenXml.Wordprocessing.Text>());
+                                       .SelectMany(r => r.Elements<Text>());
 
                 var text = GetCombinedText(textElements);
 

@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ACADEMICT_DESCRIPTION" xml:space="preserve">
+    <value>&lt;html&gt;&lt;body style= "font-family:Verdana; font-size:14.5px"&gt;&lt;p&gt;Met het &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt; introduceert Realdolmen een &lt;strong&gt;uniek programma&lt;/strong&gt; met &lt;strong&gt;focus op pasafgestudeerden&lt;/strong&gt;. De term &lt;strong&gt;acADDemICT &lt;/strong&gt;staat voor een pasafgestudeerde die gepassioneerd is door ICT en levenslang wil leren.&lt;/p&gt;
+
+&lt;p&gt;Elk jaar investeert Realdolmen in een &lt;strong&gt;klein aantal high potentials&lt;/strong&gt;. Tijdens een &lt;strong&gt;intensieve&lt;/strong&gt; &lt;strong&gt;trainingsperiode van 3 maanden&lt;/strong&gt; bereidt Realdolmen hen voor op het leven van een professionele ICT Consultant. Bij Realdolmen weten we ook dat een &lt;strong&gt;carri&amp;egrave;re &lt;/strong&gt;meer is dan een aaneenschakeling van verschillende jobs. Het is een voortdurend &lt;strong&gt;groeiproces &lt;/strong&gt;en het verwezenlijken van jouw &lt;strong&gt;professionele ambities &lt;/strong&gt;terwijl je jouw kennis van zaken ten dienste stelt van Realdolmen.&lt;/p&gt;
+
+&lt;p&gt;Het is belangrijk te weten dat &amp;quot;&lt;strong&gt;doorgroeimogelijkheden&lt;/strong&gt;&amp;rdquo; geen loze beloften zijn voor ons. Je carri&amp;egrave;re kan zowel verticaal als horizontaal evolueren. Ook in ondersteunende functies of in Business Development kan jij bijdragen tot het groeipad van Realdolmen. Sowieso word je begeleid door ervaren coaches die je helpen de juiste keuzes te maken en je wordt ondersteund door een groot aanbod leermogelijkheden.&lt;/p&gt;
+
+&lt;p&gt;https://jobs.realdolmen.com&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
+  </data>
+  <data name="ACADEMICT_TITLE" xml:space="preserve">
+    <value>acADDemICT Junior Track</value>
+  </data>
+  <data name="addButton" xml:space="preserve">
+    <value>new</value>
+  </data>
+  <data name="addDepartmentHeader" xml:space="preserve">
+    <value>add department</value>
+  </data>
+  <data name="addInternshipTitle" xml:space="preserve">
+    <value>Add internship</value>
+  </data>
+  <data name="addLanguageHeader" xml:space="preserve">
+    <value>add a new language</value>
+  </data>
+  <data name="addLocationHeader" xml:space="preserve">
+    <value>Add a location</value>
+  </data>
+  <data name="Bachelor" xml:space="preserve">
+    <value>Bachelor</value>
+  </data>
+  <data name="cancelButtonText" xml:space="preserve">
+    <value>cancel</value>
+  </data>
+  <data name="commentLabel" xml:space="preserve">
+    <value>comment</value>
+  </data>
+  <data name="COMPANY_DESCRIPTION" xml:space="preserve">
+    <value>&lt;html&gt;&lt;body style= "font-family:Verdana; font-size:14.5px"&gt;&lt;p&gt;Inetum-Realdolmen is lid van de Europese Inetum Groep en bedient met ongeveer 1.950 hooggeschoolde medewerkers in de Benelux meer dan 1.000 klanten op strategisch, tactisch en operationeel ICT-vlak.&lt;/p&gt;
+
+&lt;p&gt;Inetum-Realdolmen realiseert in elke samenwerking het potentieel van mensen en organisaties en streeft ernaar ICT menselijk te maken. We zijn gedreven door technologische innovaties, maar doen dat op het tempo van ieders ambitie, gericht op resultaat en met fundamenteel effect.&lt;/p&gt;
+
+&lt;p&gt;Dit alles onder het bedrijfsmotto &amp;ldquo;&lt;strong&gt;New Challenges, New Ideas&lt;/strong&gt;&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;We hebben een sterke lokale verankering in Belgi&amp;euml; met vestigingen in Huizingen, Kontich, Gent, Leuven en Lummen. Samen maken we deel uit van de internationale Inetum Groep, een van de best presterende bedrijven op het gebied van digitale en IT-dienstverlening in de sector. De Inetum Groep heeft zijn hoofdzetel in Parijs en is vooral actief in Frankrijk, Spanje, Portugal en 17 andere landen binnen en buiten Europa.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
+  </data>
+  <data name="COMPANY_TITLE" xml:space="preserve">
+    <value>Inetum-Realdolmen</value>
+  </data>
+  <data name="COMPANY_VALUES_DESCRIPTION" xml:space="preserve">
+    <value>&lt;html&gt;&lt;body style= "font-family:Verdana; font-size:14.5px"&gt;&lt;p&gt;Onze waarden zijn meer dan loze woorden. Ze zijn de fundamenten waarop we bouwen om &amp;ldquo;Employer of Choice&amp;rdquo; te zijn voor onze medewerkers. Ze zijn de rode draad doorheen alles wat we doen om succesvol en uitmuntend te zijn.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Ambition &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Our ambition is to reach further and higher every day and to do our utmost for our clients with passion. We are proud of our craftsmanship and shared successes. We value each other and care about personal growth in order to realize the potential of people and organizations.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Team Spirit&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Cooperation and enthusiasm define our success. We appreciate each other&amp;#39;s participation and contribution. We stimulate open dialogue. Our organization encourages idea and knowledge sharing in a wide professional network.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Commitment &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We make clear and realistic agreements, and keep our promises. As engaged employees, we are all ambassadors, committed to deliver a unique and positive customer experience. We always take responsibility and focus on results.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Innovation &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Driven by creativity, we work together with an open mind to meet the challenges of tomorrow. We optimize existing processes and find innovative solutions. We cocreate in an agile and pragmatic way with our colleagues and partners to help our clients to differentiate in their market.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Social responsibility &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;For us, it is all about people. We welcome and leverage individual differences. We promote diversity. We invest in education programs and social partnerships. We are driven by our commitment to sustainable development.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
+  </data>
+  <data name="COMPANY_VALUES_TITLE" xml:space="preserve">
+    <value>Waarden</value>
+  </data>
+  <data name="COMPANY_VISION_DESCRIPTION" xml:space="preserve">
+    <value>&lt;html&gt;&lt;body style= "font-family:Verdana; font-size:14.5px"&gt;&lt;p&gt;&lt;strong&gt;Visie&lt;/strong&gt;&lt;br /&gt;
+In de lokale markten en domeinen waarin we actief zijn, willen we de referentie zijn&lt;br /&gt;
+inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus ondersteunen.&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Referentie: de preferenti&amp;euml;le en betrouwbare keuze voor klanten, partners en&amp;nbsp;werknemers&lt;/li&gt;
+	&lt;li&gt;Lokaal: nabijheid tot onze klanten in de Benelux&lt;/li&gt;
+	&lt;li&gt;Ge&amp;iuml;ntegreerde oplossingen: volledige ICT-aanbod dat de hele levenscyclus bestrijkt, inclusief infrastructuur, toepassingen en communicatie&lt;/li&gt;
+	&lt;li&gt;Gehele ICT-levenscyclus: het ondersteunen van alle plan-build-run (design&#x2;deploy-maintain) activiteiten&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Missie&lt;/strong&gt;&lt;br /&gt;
+&amp;ldquo;We make ICT work for your business &amp;amp; make IT more human again&amp;rdquo;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
+  </data>
+  <data name="COMPANY_VISION_TITLE" xml:space="preserve">
+    <value>Onze Visie &amp; Missie</value>
+  </data>
+  <data name="confirmDeleteMessage" xml:space="preserve">
+    <value>Are you sure to delete? </value>
+  </data>
+  <data name="contentLabel" xml:space="preserve">
+    <value>content</value>
+  </data>
+  <data name="currentCountOfStudentsErrorMessage" xml:space="preserve">
+    <value>Make sure you are entering a positive</value>
+  </data>
+  <data name="currentCountOfStudentsLabel" xml:space="preserve">
+    <value>Count of students that occupy the internship</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>delete</value>
+  </data>
+  <data name="deleteButton" xml:space="preserve">
+    <value>delete</value>
+  </data>
+  <data name="department" xml:space="preserve">
+    <value>department</value>
+  </data>
+  <data name="departmentNameEmptyErrorMessage" xml:space="preserve">
+    <value>the department name is required</value>
+  </data>
+  <data name="departmentNameLabel" xml:space="preserve">
+    <value>departement Name</value>
+  </data>
+  <data name="departments" xml:space="preserve">
+    <value>departments</value>
+  </data>
+  <data name="descriptionLabel" xml:space="preserve">
+    <value>description</value>
+  </data>
+  <data name="editButton" xml:space="preserve">
+    <value>edit</value>
+  </data>
+  <data name="En" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="events" xml:space="preserve">
+    <value>events</value>
+  </data>
+  <data name="Fr" xml:space="preserve">
+    <value>French</value>
+  </data>
+  <data name="internship" xml:space="preserve">
+    <value>internship</value>
+  </data>
+  <data name="internships" xml:space="preserve">
+    <value>internships</value>
+  </data>
+  <data name="knowledgeToDevelopLabel" xml:space="preserve">
+    <value>knowledge to develop</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>language</value>
+  </data>
+  <data name="languageCodeLabel" xml:space="preserve">
+    <value>Language code</value>
+  </data>
+  <data name="languageCodeRequiredErrorMessage" xml:space="preserve">
+    <value>the language code is required</value>
+  </data>
+  <data name="languageLabel" xml:space="preserve">
+    <value>language</value>
+  </data>
+  <data name="languageNameLabel" xml:space="preserve">
+    <value>language </value>
+  </data>
+  <data name="languageNameRequiredErrorMessage" xml:space="preserve">
+    <value>the language name is required</value>
+  </data>
+  <data name="locationCityLabel" xml:space="preserve">
+    <value>city</value>
+  </data>
+  <data name="locationFieldEmptyMessage" xml:space="preserve">
+    <value> select a location please</value>
+  </data>
+  <data name="locationFieldLabel" xml:space="preserve">
+    <value>location</value>
+  </data>
+  <data name="locationHouseNumberErrorMessage" xml:space="preserve">
+    <value> house number is required</value>
+  </data>
+  <data name="locationHouseNumberLabel" xml:space="preserve">
+    <value>house number</value>
+  </data>
+  <data name="locationLabel" xml:space="preserve">
+    <value>location</value>
+  </data>
+  <data name="locations" xml:space="preserve">
+    <value>locations</value>
+  </data>
+  <data name="locationStreetNameLabel" xml:space="preserve">
+    <value> street name</value>
+  </data>
+  <data name="locationStreetRequiredErrorMessage" xml:space="preserve">
+    <value> street name is required</value>
+  </data>
+  <data name="locationZipCodeLabel" xml:space="preserve">
+    <value> zipcode</value>
+  </data>
+  <data name="locationZipCodeRequiredErrorMessage" xml:space="preserve">
+    <value> zipcode is required</value>
+  </data>
+  <data name="managerEmail" xml:space="preserve">
+    <value>manager email</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>Master</value>
+  </data>
+  <data name="MasterAfterBachelor" xml:space="preserve">
+    <value>Master after Bachelor</value>
+  </data>
+  <data name="MasterAfterMaster" xml:space="preserve">
+    <value>Master after Master</value>
+  </data>
+  <data name="maxCountOfStudentsLabel" xml:space="preserve">
+    <value>Maximum allowed students</value>
+  </data>
+  <data name="maxStudentsErrorMessage" xml:space="preserve">
+    <value>Make sure you are entering a positive</value>
+  </data>
+  <data name="neededKnowledgeLabel" xml:space="preserve">
+    <value>minimum  knowledge needed for these internship </value>
+  </data>
+  <data name="neededKnowledgeLabelErrorMessage" xml:space="preserve">
+    <value>enter the knowledge needed for these internship please</value>
+  </data>
+  <data name="newInternShip" xml:space="preserve">
+    <value>New InternShip</value>
+  </data>
+  <data name="Nl" xml:space="preserve">
+    <value>Dutch</value>
+  </data>
+  <data name="saveButtonText" xml:space="preserve">
+    <value>save</value>
+  </data>
+  <data name="schoolyearErrorMessage" xml:space="preserve">
+    <value>The schoolyear is required</value>
+  </data>
+  <data name="schoolYearLabel" xml:space="preserve">
+    <value>school year</value>
+  </data>
+  <data name="TEMPLATE_TITLE" xml:space="preserve">
+    <value>Intetum-Realdolmen Stagebundel</value>
+  </data>
+  <data name="titleContentLabel" xml:space="preserve">
+    <value>title</value>
+  </data>
+  <data name="trainingTypeLabel" xml:space="preserve">
+    <value>required training type</value>
+  </data>
+  <data name="unitEmptyErrorMessage" xml:space="preserve">
+    <value>The unit is required</value>
+  </data>
+  <data name="unitNameLabel" xml:space="preserve">
+    <value>unit</value>
+  </data>
+  <data name="updateButtonText" xml:space="preserve">
+    <value>update</value>
+  </data>
+  <data name="updateDepartmentHeader" xml:space="preserve">
+    <value>update department</value>
+  </data>
+  <data name="updateLanguageHeader" xml:space="preserve">
+    <value>update language</value>
+  </data>
+  <data name="updateLocationHeader" xml:space="preserve">
+    <value>update location</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>users</value>
+  </data>
+</root>

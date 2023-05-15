@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ACADEMICT_DESCRIPTION" xml:space="preserve">
+    <value>&lt;html&gt;&lt;body style= "font-family:Verdana; font-size:14.5px"&gt;&lt;p&gt;Met het &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt; introduceert Realdolmen een &lt;strong&gt;uniek programma&lt;/strong&gt; met &lt;strong&gt;focus op pasafgestudeerden&lt;/strong&gt;. De term &lt;strong&gt;acADDemICT &lt;/strong&gt;staat voor een pasafgestudeerde die gepassioneerd is door ICT en levenslang wil leren.&lt;/p&gt;
+
+&lt;p&gt;Elk jaar investeert Realdolmen in een &lt;strong&gt;klein aantal high potentials&lt;/strong&gt;. Tijdens een &lt;strong&gt;intensieve&lt;/strong&gt; &lt;strong&gt;trainingsperiode van 3 maanden&lt;/strong&gt; bereidt Realdolmen hen voor op het leven van een professionele ICT Consultant. Bij Realdolmen weten we ook dat een &lt;strong&gt;carri&amp;egrave;re &lt;/strong&gt;meer is dan een aaneenschakeling van verschillende jobs. Het is een voortdurend &lt;strong&gt;groeiproces &lt;/strong&gt;en het verwezenlijken van jouw &lt;strong&gt;professionele ambities &lt;/strong&gt;terwijl je jouw kennis van zaken ten dienste stelt van Realdolmen.&lt;/p&gt;
+
+&lt;p&gt;Het is belangrijk te weten dat &amp;quot;&lt;strong&gt;doorgroeimogelijkheden&lt;/strong&gt;&amp;rdquo; geen loze beloften zijn voor ons. Je carri&amp;egrave;re kan zowel verticaal als horizontaal evolueren. Ook in ondersteunende functies of in Business Development kan jij bijdragen tot het groeipad van Realdolmen. Sowieso word je begeleid door ervaren coaches die je helpen de juiste keuzes te maken en je wordt ondersteund door een groot aanbod leermogelijkheden.&lt;/p&gt;
+
+&lt;p&gt;https://jobs.realdolmen.com&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
+  </data>
+  <data name="ACADEMICT_TITLE" xml:space="preserve">
+    <value>acADDemICT Junior Track</value>
+  </data>
   <data name="addButton" xml:space="preserve">
     <value>nouveau</value>
   </data>
@@ -140,6 +152,62 @@
   </data>
   <data name="commentLabel" xml:space="preserve">
     <value>commentaires</value>
+  </data>
+  <data name="COMPANY_DESCRIPTION" xml:space="preserve">
+    <value>&lt;html&gt;&lt;body style= "font-family:Verdana; font-size:14.5px"&gt;&lt;p&gt;Inetum-Realdolmen is lid van de Europese Inetum Groep en bedient met ongeveer 1.950 hooggeschoolde medewerkers in de Benelux meer dan 1.000 klanten op strategisch, tactisch en operationeel ICT-vlak.&lt;/p&gt;
+
+&lt;p&gt;Inetum-Realdolmen realiseert in elke samenwerking het potentieel van mensen en organisaties en streeft ernaar ICT menselijk te maken. We zijn gedreven door technologische innovaties, maar doen dat op het tempo van ieders ambitie, gericht op resultaat en met fundamenteel effect.&lt;/p&gt;
+
+&lt;p&gt;Dit alles onder het bedrijfsmotto &amp;ldquo;&lt;strong&gt;New Challenges, New Ideas&lt;/strong&gt;&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;We hebben een sterke lokale verankering in Belgi&amp;euml; met vestigingen in Huizingen, Kontich, Gent, Leuven en Lummen. Samen maken we deel uit van de internationale Inetum Groep, een van de best presterende bedrijven op het gebied van digitale en IT-dienstverlening in de sector. De Inetum Groep heeft zijn hoofdzetel in Parijs en is vooral actief in Frankrijk, Spanje, Portugal en 17 andere landen binnen en buiten Europa.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
+  </data>
+  <data name="COMPANY_TITLE" xml:space="preserve">
+    <value>Inetum-Realdolmen</value>
+  </data>
+  <data name="COMPANY_VALUES_DESCRIPTION" xml:space="preserve">
+    <value>&lt;html&gt;&lt;body style= "font-family:Verdana; font-size:14.5px"&gt;&lt;p&gt;Onze waarden zijn meer dan loze woorden. Ze zijn de fundamenten waarop we bouwen om &amp;ldquo;Employer of Choice&amp;rdquo; te zijn voor onze medewerkers. Ze zijn de rode draad doorheen alles wat we doen om succesvol en uitmuntend te zijn.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Ambition &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Our ambition is to reach further and higher every day and to do our utmost for our clients with passion. We are proud of our craftsmanship and shared successes. We value each other and care about personal growth in order to realize the potential of people and organizations.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Team Spirit&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Cooperation and enthusiasm define our success. We appreciate each other&amp;#39;s participation and contribution. We stimulate open dialogue. Our organization encourages idea and knowledge sharing in a wide professional network.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Commitment &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We make clear and realistic agreements, and keep our promises. As engaged employees, we are all ambassadors, committed to deliver a unique and positive customer experience. We always take responsibility and focus on results.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Innovation &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Driven by creativity, we work together with an open mind to meet the challenges of tomorrow. We optimize existing processes and find innovative solutions. We cocreate in an agile and pragmatic way with our colleagues and partners to help our clients to differentiate in their market.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Social responsibility &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;For us, it is all about people. We welcome and leverage individual differences. We promote diversity. We invest in education programs and social partnerships. We are driven by our commitment to sustainable development.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
+  </data>
+  <data name="COMPANY_VALUES_TITLE" xml:space="preserve">
+    <value>Waarden</value>
+  </data>
+  <data name="COMPANY_VISION_DESCRIPTION" xml:space="preserve">
+    <value>&lt;html&gt;&lt;body style= "font-family:Verdana; font-size:14.5px"&gt;&lt;p&gt;&lt;strong&gt;Visie&lt;/strong&gt;&lt;br /&gt;
+In de lokale markten en domeinen waarin we actief zijn, willen we de referentie zijn&lt;br /&gt;
+inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus ondersteunen.&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Referentie: de preferenti&amp;euml;le en betrouwbare keuze voor klanten, partners en&amp;nbsp;werknemers&lt;/li&gt;
+	&lt;li&gt;Lokaal: nabijheid tot onze klanten in de Benelux&lt;/li&gt;
+	&lt;li&gt;Ge&amp;iuml;ntegreerde oplossingen: volledige ICT-aanbod dat de hele levenscyclus bestrijkt, inclusief infrastructuur, toepassingen en communicatie&lt;/li&gt;
+	&lt;li&gt;Gehele ICT-levenscyclus: het ondersteunen van alle plan-build-run (design&#x2;deploy-maintain) activiteiten&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Missie&lt;/strong&gt;&lt;br /&gt;
+&amp;ldquo;We make ICT work for your business &amp;amp; make IT more human again&amp;rdquo;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</value>
+  </data>
+  <data name="COMPANY_VISION_TITLE" xml:space="preserve">
+    <value>Onze Visie &amp; Missie</value>
   </data>
   <data name="confirmDeleteMessage" xml:space="preserve">
     <value>Êtes-vous sûr d'effacer?</value>
@@ -275,6 +343,9 @@
   </data>
   <data name="saveButtonText" xml:space="preserve">
     <value>sauver</value>
+  </data>
+  <data name="TEMPLATE_TITLE" xml:space="preserve">
+    <value>Intetum-Realdolmen Stagebundel</value>
   </data>
   <data name="updateButtonText" xml:space="preserve">
     <value>mise à jour</value>

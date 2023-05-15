@@ -1,6 +1,8 @@
-﻿using AutoMapper;
+﻿using System.Reflection.Emit;
+using AutoMapper;
 using backend.Application.Common.Mappings;
 using backend.Domain.Entities;
+
 
 namespace backend.Application.InternShips.Common;
 public class LocationDto:IMapFrom<Location>
@@ -14,5 +16,10 @@ public class LocationDto:IMapFrom<Location>
     public void Mapping(Profile profile)
     {
         profile.CreateMap<Location, LocationDto>();
+    }
+
+    public override string ToString()
+    {
+        return $"Inetum-Realdolmen {City} ({Streetname} {Housenumber}, {Zipcode} {City})";
     }
 }

@@ -236,7 +236,6 @@ C:\Users\RGTCP77\project\InternRApp\backend\backend\src\WebUI\bin\Debug\net7.0\C
 C:\Users\RGTCP77\project\InternRApp\backend\backend\src\WebUI\bin\Debug\net7.0\CommonReadModels.pdb
 C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\src\WebUI\obj\Debug\net7.0\WebUI.csproj.AssemblyReference.cache
 C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\src\WebUI\obj\Debug\net7.0\spa.proxy.json
-C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\src\WebUI\obj\Debug\net7.0\WebUI.Resources.en.resources
 C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\src\WebUI\obj\Debug\net7.0\WebUI.Resources.fr.resources
 C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\src\WebUI\obj\Debug\net7.0\WebUI.Resources.nl.resources
 C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\src\WebUI\obj\Debug\net7.0\WebUI.csproj.GenerateResource.cache
@@ -352,3 +351,4 @@ C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\src\WebUI\obj\Debug\net
 C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\src\WebUI\obj\Debug\net7.0\WebUI.csproj.CopyComplete
 C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\src\WebUI\obj\Debug\net7.0\WebUI.genruntimeconfig.cache
 C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\src\WebUI\obj\Debug\net7.0\ref\WebUI.dll
+C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\src\WebUI\obj\Debug\net7.0\WebUI.Resources.eng.resources

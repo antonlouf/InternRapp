@@ -15,10 +15,4 @@ public class Location
     public string ZipCode { get; set; }
     public IList<InternShipLocation> InternShipLocations { get; set; }
 
-
-    //[NotMapped]
-    //public IList<int> InternShipIds { get; set; }
-
-    //public string CreatorEmail { get; set; }
-
 }

@@ -102,14 +102,14 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             Name = "frans"
         };
 
-        /*
+   
         var internRappTrnslNl = new InternShipContentTranslation
         {
             Id = 1,
             TitleContent = "InternRapp",
-            Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p>",
-            KnowledgeToDevelop = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n\t<li>With some styling</li>\r\n\t<li>And some more styling</li>\r\n\t<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
-            NeededKnowledge = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n\t<li>With some styling</li>\r\n\t<li>And some more styling</li>\r\n\t<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
+            Description = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p></body></html>",
+            KnowledgeToDevelop = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n\t<li>With some styling</li>\r\n\t<li>And some more styling</li>\r\n\t<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p></body></html>",
+            NeededKnowledge = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n\t<li>With some styling</li>\r\n\t<li>And some more styling</li>\r\n\t<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p></body></html>",
             Comment = $"<p>required diploma for this internship is: {TrainingType.Bachelor}<p>",
             LanguageId = 1,
             InternShipId = 1,
@@ -138,9 +138,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             LanguageId = 3,
             InternShipId = 3,
         };
-        */
-
-        /*
+        
         var internRapp = new InternShip
         {
             Id = 1,
@@ -197,7 +195,31 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             InternShipId = 2,
             LocationsId = 1,
         };
-        */
+
+        var microsoftPrefaceNl = new PrefaceTranslation
+        {
+            Id = 1,
+            Content = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>Dit is een standaard descriptie horende bij een unit</p></body></html>",
+            UnitId = 1,
+            LanguageId = 1,
+        };
+
+        var javaPrefaceFr = new PrefaceTranslation
+        {
+            Id = 2,
+            Content = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>Ce ici c'est un description standard d un departement</p></body></html>",
+            UnitId = 2,
+            LanguageId = 3,
+        };
+
+        var lowCodePrefaceEng = new PrefaceTranslation
+        {
+            Id = 3,
+            Content = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>This is a standard description for a unit</p></body></html>",
+            UnitId = 3,
+            LanguageId = 2,
+        };
+
 
         var microsoftCompetence = new Department
         {
@@ -220,46 +242,37 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             ManagerEmails = new List<string> { "anton.louf@student.ehb.be" },
         };
 
-        /*
-        var microsoftPrefaceNl = new PrefaceTranslation
-        {
-            Id = 1,
-            Content = "Dit is het voorwoord voor de .net competence center",
-            UnitId = 1,
-            LanguageId = 1,
-        };
-
-        var javaPrefaceNl = new PrefaceTranslation
-        {
-            Id = 2,
-            Content = "Dit is het voorwoord voor het Java departement center",
-            UnitId = 2,
-            LanguageId = 1,
-        };
-
-        var lowCodePrefaceNl = new PrefaceTranslation
-        {
-            Id = 3,
-            Content = "Dit is het voorwoord voor het Low Code departement center",
-            UnitId = 3,
-            LanguageId = 1,
-        }; */
-
+  
         //languages
         builder.Entity<Language>().HasData(langEng, langFr, langNl);
 
         //Locations
         builder.Entity<Location>().HasData(locationHuizingen, locationGent, locationKontich);
 
+        //InternShipLocations
+        builder.Entity<InternShipLocation>().HasData(internRappHuizingen, internRappGent, internRappKontich, mobileAppHuizingen);
+
+        //Translations
+        builder.Entity<InternShipContentTranslation>().HasData(internRappTrnslNl, mobileAppTrnsFr, androidAppTrnslEng);
+
+        //Internships
+        builder.Entity<InternShip>().HasData(internRapp, mobileApp, androidApp);
+
+        //Departments
+        builder.Entity<Department>().HasData(microsoftCompetence, javaUnit, lowCodeUnit);
+
+        //Prefaces
+        builder.Entity<PrefaceTranslation>().HasData(microsoftPrefaceNl, javaPrefaceFr, lowCodePrefaceEng);
+
+        /*
         //loop to make new internships with different translations
         int trnslIndex = 1;
-        int unitIndex = 1;
-        string prefaceDescrNl = "Dit is een standaard descriptie horende bij een unit";
-        string prefaceDescrFr = "Ce ici c'est un description standard d un departement";
-        string prefaceDescrEng = "This is a standard description for a unit";
+        string prefaceDescrNl = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>Dit is een standaard descriptie horende bij een unit</p></body></html>";
+        string prefaceDescrFr = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>Ce ici c'est un description standard d un departement</p></body></html>";
+        string prefaceDescrEng = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>This is a standard description for a unit</p></body></html>";
         string prefaceDescr = "";
 
-        
+
         for (int intrnShipIndex = 0; intrnShipIndex < 10; intrnShipIndex++)
         {
             var index = (intrnShipIndex % 3) + 1;
@@ -271,11 +284,11 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
                 CurrentCountOfStudents = 0,
                 MaxStudents = 10,
                 RequiredTrainingType = TrainingType.Bachelor,
-                SchoolYear = "2023-2024",
+                SchoolYear = "2023 -2024",
                 UnitId = index,
             };
 
-            //for lus waarbij internship meerdere locations heeft
+            //for lus waarbij internship meerdere locations heeft --> checken
             var standardInternShipLocation = new InternShipLocation
             {
                 InternShipId = standardInternShip.Id,
@@ -287,57 +300,64 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
 
             //4 x 1 trnsl 
             //loop eerste keer 1 trnsl, tweede intrsnship 2 trnslaties, derde intrship x 3trnsl, --- > restart  
-            for (int langIndex = 0; langIndex <= (standardInternShip.Id % 3) + 1; langIndex++)
+            for (int langIndex = 0; langIndex < (intrnShipIndex % 3) + 1; langIndex++)
             {
                 var standardTrnsl = new InternShipContentTranslation
                 {
                     Id = trnslIndex, //steeds hoger 
-                    TitleContent = "standard",
-                    Description = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p></body></html>",
+                    TitleContent = "Standard Internship Title",
+                    Description = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
                     KnowledgeToDevelop = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n\t<li>With some styling</li>\r\n\t<li>And some more styling</li>\r\n\t<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p></body></html>",
                     NeededKnowledge = @"<html><body style=""font-family:Verdana; font-size:14.5px"">><p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n\t<li>With some styling</li>\r\n\t<li>And some more styling</li>\r\n\t<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p></body></html>",
-                    Comment = $@"<html><body style=""font-family:Verdana; font-size:14.5px""><p>required diploma for this internship is: {TrainingType.Bachelor}<p></body></html>", //+1 of random
+                    Comment = $@"<html><body style=""font-family:Verdana; font-size:14.5px""><p>required diploma for this internship is: {TrainingType.Bachelor}</p></body></html>", //+1 of random
                     LanguageId = langIndex + 1,
                     InternShipId = standardInternShip.Id,
                 };
 
-                if (unitIndex <= 3)
-                {
-                    //loop over prefaces of units 
-                    switch (langIndex)
-                    {
-                        case 1: prefaceDescr = prefaceDescrNl; break;
-                        case 2: prefaceDescr = prefaceDescrFr; break;
-                        case 3: prefaceDescr = prefaceDescrEng; break;
-                    }
-                    var standardPrefaceTrnsl = new PrefaceTranslation
-                    {
-                        Id = trnslIndex, //check?
-                        Content = prefaceDescr,
-                        UnitId = index,
-                        LanguageId = langIndex + 1,
-                    };
-                    //Prefaces
-                    builder.Entity<PrefaceTranslation>().HasData(standardPrefaceTrnsl);
-                }
 
                 trnslIndex++;
-
 
                 //Translations
                 builder.Entity<InternShipContentTranslation>().HasData(standardTrnsl);
 
             }
-            unitIndex++;
 
             //Internships
             builder.Entity<InternShip>().HasData(standardInternShip);
         }
-        
+
 
         //Departments
         builder.Entity<Department>().HasData(microsoftCompetence, javaUnit, lowCodeUnit);
 
+        int prefaceIndex = 1;
+        //loop over prefaces of units 
+        for (int unitIndex = 1; unitIndex <= 3; unitIndex++)
+        {
+
+            for (int langI = 1; langI <= 3; langI++)
+            {
+                switch (langI)
+                {
+                    case 1: prefaceDescr = prefaceDescrNl; break;
+                    case 2: prefaceDescr = prefaceDescrFr; break;
+                    case 3: prefaceDescr = prefaceDescrEng; break;
+                }
+                var standardPrefaceTrnsl = new PrefaceTranslation
+                {
+                    Id = prefaceIndex, //check?
+                    Content = prefaceDescr,
+                    UnitId = unitIndex,
+                    LanguageId = langI,
+                };
+                prefaceIndex++;
+
+                //Prefaces
+                builder.Entity<PrefaceTranslation>().HasData(standardPrefaceTrnsl);
+            }
+        }
+
+        */
     }
 
 
