@@ -18,7 +18,7 @@ import {
     MatFormFieldModule,
     MatInputModule,
     TranslateModule,
-    AngularEditorModule
+    AngularEditorModule,
   ],
   templateUrl: './preface-translation-form.component.html',
   styleUrls: ['./preface-translation-form.component.scss'],
@@ -28,7 +28,7 @@ export class PrefaceTranslationFormComponent {
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
-    height: 'auto',
+    height: '50%',
     minHeight: '0',
     maxHeight: 'auto',
     width: 'auto',
@@ -39,43 +39,37 @@ export class PrefaceTranslationFormComponent {
     placeholder: '',
     defaultParagraphSeparator: '',
     defaultFontName: '',
-    defaultFontSize: '',
-    fonts: [
-      { class: 'arial', name: 'Arial' },
-      { class: 'times-new-roman', name: 'Times New Roman' },
-      { class: 'calibri', name: 'Calibri' },
-      { class: 'comic-sans-ms', name: 'Comic Sans MS' },
-    ],
-    
-    customClasses: [
-      {
-        name: 'quote',
-        class: 'quote',
-      },
-      {
-        name: 'redText',
-        class: 'redText',
-      },
-      {
-        name: 'titleText',
-        class: 'titleText',
-        tag: 'h1',
-      },
-    ],
+    defaultFontSize: '12',
+    fonts: [{ class: 'Verdana', name: 'Verdana' }],
     toolbarHiddenButtons: [
-  [
-    'undo',
-    'redo',
-    'bold',
-    'italic',
-    'underline',
-    'strikeThrough',
-    'subscript',
-    'superscript',
-    'heading',
-    'fontName',
-    
-      ]],
-    
+      [
+        'undo',
+        'redo',
+        'underline',
+        'fonSize',
+        'strikeThrough',
+        'subscript',
+        'superscript',
+        'justifyLeft',
+        'justifyCenter',
+        'justifyRight',
+        'justifyFull',
+        'indent',
+        'outdent',
+        'fontName',
+      ],
+      [
+        'fontSize',
+        'textColor',
+        'backgroundColor',
+        'link',
+        'unlink',
+        'insertImage',
+        'insertVideo',
+        'insertHorizontalRule',
+        'removeFormat',
+        'toggleEditorMode',
+      ],
+    ],
   };
 }

@@ -4,13 +4,14 @@
     "\\src",
     "\\src\\Application",
     "\\src\\Application\\InternShips",
-    "\\src\\Application\\InternShips\\Commands",
-    "\\src\\Application\\InternShips\\Commands\\UpdateInternShip",
-    "\\src\\Application\\InternShips\\Common",
-    "\\src\\WebUI",
-    "\\src\\WebUI\\Resources",
-    "\\unit tests"
+    "\\src\\Application\\InternShips\\Queries",
+    "\\src\\Application\\InternShips\\Queries\\GetInternShipsById",
+    "\\src\\Application\\Units",
+    "\\src\\Application\\Units\\Queries",
+    "\\src\\Application\\Units\\Queries\\GetUnitById",
+    "\\src\\Infrastructure",
+    "\\src\\Infrastructure\\Persistence"
   ],
-  "SelectedNode": "\\src\\WebUI\\Resources\\nl.resx",
+  "SelectedNode": "\\src\\Infrastructure\\ConfigureServices.cs",
   "PreviewInSolutionExplorer": false
 }

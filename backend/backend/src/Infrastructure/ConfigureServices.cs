@@ -21,7 +21,7 @@ public static class ConfigureServices
         //{
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(dbConfig.ConnectionString,
-                    builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)).EnableSensitiveDataLogging());
+                    builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         //}//
         //services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
         services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
