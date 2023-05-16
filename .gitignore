@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/backend/backend/.vs/ProjectSettings.json
+/backend/backend/.vs/backend/v17/TestStore/1/110.testlog
+/backend/backend/.vs/backend/FileContentIndex
