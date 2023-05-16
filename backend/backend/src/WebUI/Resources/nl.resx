@@ -385,7 +385,7 @@ inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus onderst
   <data name="INTERNSHIP_ASSIGNMENT_TITLE" xml:space="preserve">
     <value>Beschrijving van de stageopdracht</value>
   </data>
-  <data name="INTERNSHIP_COMMENTS" xml:space="preserve">
+  <data name="INTERNSHIP_COMMENTS_TITLE" xml:space="preserve">
     <value>Bijkomende informatie bij de stageopdracht</value>
   </data>
   <data name="INTERNSHIP_KNOWLEDGE_DESCRIPTION" xml:space="preserve">
@@ -405,5 +405,8 @@ inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus onderst
   </data>
   <data name="INTERNSHIP_NEED_TO_KNOW_TITLE" xml:space="preserve">
     <value>Welke kennis en competenties dien je te hebben voor deze opdracht?</value>
+  </data>
+  <data name="INTERNSHIP_LANGUAGE_TITLE" xml:space="preserve">
+    <value>Stageopdracht beschikbaar in deze talen</value>
   </data>
 </root>

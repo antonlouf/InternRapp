@@ -18,4 +18,8 @@ public class LanguageListDto:IMapFrom<Language>
     {
         profile.CreateMap<Language, LanguageListDto>();
     }
+    public override string ToString()
+    {
+        return Name;
+    }
 }

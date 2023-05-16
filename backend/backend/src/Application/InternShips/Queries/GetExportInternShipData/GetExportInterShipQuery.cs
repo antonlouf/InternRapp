@@ -39,20 +39,9 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
 
     public async Task<List<UnitExportDto>> Handle(GetExportInterShipQuery request, CancellationToken cancellationToken)
     {
-        var bla = await _dbContext.Departments
-            .Include(dept => dept.Internships)
-            .ThenInclude(x => x.Locations)
-
-            .ToListAsync();
-
-        //relaties met internship locations checken 
-
-        //Filter on Units and only the internships who have a translation language of request language 
         var units = await _dbContext.Departments
-
             .Include(dept => dept.Internships)
             .ThenInclude(x => x.Locations)
-
             .Where(unit => (request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(unit.Id))
             && unit.Internships.Any(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)))
 
@@ -66,27 +55,32 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
                     Content = unit.Content,
                     Language = _iMapper.Map<LanguageListDto>(unit.Language),
                 }).Single(),
-                InternShipsDtos = exportDto.Internships.Where(intrshp => intrshp.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)).Select(intrshpDto => new InternShipExportDto()
+                InternShipsDtos = exportDto.Internships.Where(intrshp => intrshp.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)).Select(intrshp => new InternShipExportDto()
                 {
-                    SchoolYear = intrshpDto.SchoolYear,
-                    Locations = intrshpDto.Locations.Select(loc => new LocationDto()
+                    SchoolYear = intrshp.SchoolYear,
+                    Locations = intrshp.Locations.Select(loc => new LocationDto()
                     {
                         City = loc.City,
                         Housenumber = loc.HouseNumber,
                         Streetname = loc.StreetName,
                         Zipcode = loc.ZipCode
                     }).ToList(),
-                    TrainingType = intrshpDto.RequiredTrainingType,
-                    Translation = intrshpDto.Translations.Select(trnslDto => new TranslationDto()
+                    TrainingType = intrshp.RequiredTrainingType,
+                    Translation = intrshp.Translations.Select(trnslDto => new TranslationDto()
                     {
                         TranslationId = trnslDto.Id,
                         TitleContent = trnslDto.TitleContent,
                         Comment = trnslDto.Comment,
                         Description = trnslDto.Description,
                         KnowledgeToDevelop = trnslDto.KnowledgeToDevelop,
-                        NeededKnowledge = trnslDto.NeededKnowledge,
-
-                    }).First()
+                        NeededKnowledge = trnslDto.NeededKnowledge
+                    }).First(),
+                    Languages = intrshp.Translations.Select(x => new LanguageListDto()
+                    {
+                        Id = x.Id,
+                        Code = x.Language.Code,
+                        Name = x.Language.Name,
+                    }).ToList()
                 }).ToList()
             }).ToListAsync();
 
@@ -96,8 +90,7 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
 
         }
 
-        //export? 
-
+        //export
         GenerateWordDoc(units /*new List<UnitExportDto>() { }*/, request.Dto);
 
         //return new List<UnitExportDto>() { };
@@ -328,18 +321,6 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
             {
                 var internshipParagraphs = CloneELements(templateInternshipParagraphs);
 
-                //string concatenatie 
-                string locationString = "";
-                foreach (var loc in internship.Locations)
-                {
-                    string temp = "";
-                    temp = loc.ToString().Insert(0, "<li>");
-                    temp = temp.ToString().Insert(temp.Length, "</li>");
-                    locationString += temp;
-                }
-                locationString = locationString.Insert(0, "<ul>");
-                locationString = locationString.Insert(locationString.Length, "</ul>");
-
                 Replace(document, ref internshipParagraphs, new Dictionary<string, string>()
                           {
                               {"INTERNSHIP_TITLE", internship.Translation.TitleContent},
@@ -352,9 +333,11 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
                               {"INTERNSHIP_NEED_TO_KNOW_DESCRIPTION", rm.GetString("INTERNSHIP_NEED_TO_KNOW_DESCRIPTION")},
                               {"INTERNSHIP_NEED_TO_KNOW_CONTENT", internship.Translation.NeededKnowledge},
                               {"INTERNSHIP_LOCATION_TITLE", rm.GetString("INTERNSHIP_LOCATION_TITLE")},
-                              {"INTERNSHIP_LOCATION_CONTENT", locationString},
+                              {"INTERNSHIP_LOCATION_CONTENT", MakingListOfHTMl(internship.Locations)},
                               {"INTERNSHIP_LOCATION_DESCRIPTION", rm.GetString("INTERNSHIP_LOCATION_DESCRIPTION")},
-                              {"INTERNSHIP_COMMENTS", rm.GetString("INTERNSHIP_COMMENTS")},
+                              {"INTERNSHIP_LANGUAGE_TITLE", rm.GetString("INTERNSHIP_LANGUAGE_TITLE")},
+                              {"INTERNSHIP_LANGUAGE_CONTENT", MakingListOfHTMl(internship.Languages)},
+                              {"INTERNSHIP_COMMENTS_TITLE", rm.GetString("INTERNSHIP_COMMENTS_TITLE")},
                               {"INTERNSHIP_COMMENTS_CONTENT", internship.Translation.Comment},
                           }, ref chunkId);
 
@@ -377,6 +360,21 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
         }
     }
 
+    public string MakingListOfHTMl<T>(IEnumerable<T> intrshpContent)
+    {
+        //string concatenatie 
+        string locationString = "";
+        foreach (var loc in intrshpContent)
+        {
+            string temp = "";
+            temp = loc.ToString().Insert(0, "<li>");
+            temp = temp.ToString().Insert(temp.Length, "</li>");
+            locationString += temp;
+        }
+        locationString = locationString.Insert(0, "<ul>");
+        locationString = locationString.Insert(locationString.Length, "</ul>");
+        return locationString;
+    }
     public int MatchingCharsAt(string s1, string s2)
     {
         var i = 0;

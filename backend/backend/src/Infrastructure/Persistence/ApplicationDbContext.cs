@@ -293,16 +293,18 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             };
 
             //for lus waarbij internship meerdere locations heeft --> checken
-            var standardInternShipLocation = new InternShipLocation
+            for (int i = 1; i <= 3; i++)
             {
-                InternShipId = standardInternShip.Id,
-                LocationsId = index,
-            };
-
+                var standardInternShipLocation = new InternShipLocation
+                {
+                    InternShipId = standardInternShip.Id,
+                    LocationsId = i,
+                };
             //InternShipLocations
             builder.Entity<InternShipLocation>().HasData(standardInternShipLocation);
+            }
+           
 
-            //4 x 1 trnsl 
             //loop eerste keer 1 trnsl, tweede intrsnship 2 trnslaties, derde intrship x 3trnsl, --- > restart  
             for (int langIndex = 0; langIndex < (intrnShipIndex % 3) + 1; langIndex++)
             {
@@ -318,12 +320,10 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
                     InternShipId = standardInternShip.Id,
                 };
 
-
                 trnslIndex++;
 
                 //Translations
                 builder.Entity<InternShipContentTranslation>().HasData(standardTrnsl);
-
             }
 
             //Internships
