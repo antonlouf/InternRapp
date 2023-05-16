@@ -102,7 +102,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             Name = "frans"
         };
 
-   
+        /*
         var internRappTrnslNl = new InternShipContentTranslation
         {
             Id = 1,
@@ -219,7 +219,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             UnitId = 3,
             LanguageId = 2,
         };
-
+        */
 
         var microsoftCompetence = new Department
         {
@@ -249,6 +249,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         //Locations
         builder.Entity<Location>().HasData(locationHuizingen, locationGent, locationKontich);
 
+        /*
         //InternShipLocations
         builder.Entity<InternShipLocation>().HasData(internRappHuizingen, internRappGent, internRappKontich, mobileAppHuizingen);
 
@@ -263,8 +264,9 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
 
         //Prefaces
         builder.Entity<PrefaceTranslation>().HasData(microsoftPrefaceNl, javaPrefaceFr, lowCodePrefaceEng);
+        */
 
-        /*
+        
         //loop to make new internships with different translations
         int trnslIndex = 1;
         string prefaceDescrNl = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>Dit is een standaard descriptie horende bij een unit</p></body></html>";
@@ -307,8 +309,8 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
                     Id = trnslIndex, //steeds hoger 
                     TitleContent = "Standard Internship Title",
                     Description = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
-                    KnowledgeToDevelop = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n\t<li>With some styling</li>\r\n\t<li>And some more styling</li>\r\n\t<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p></body></html>",
-                    NeededKnowledge = @"<html><body style=""font-family:Verdana; font-size:14.5px"">><p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n\t<li>With some styling</li>\r\n\t<li>And some more styling</li>\r\n\t<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p></body></html>",
+                    KnowledgeToDevelop = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                    NeededKnowledge = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
                     Comment = $@"<html><body style=""font-family:Verdana; font-size:14.5px""><p>required diploma for this internship is: {TrainingType.Bachelor}</p></body></html>", //+1 of random
                     LanguageId = langIndex + 1,
                     InternShipId = standardInternShip.Id,
@@ -357,7 +359,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             }
         }
 
-        */
+        
     }
 
 

@@ -383,4 +383,28 @@ inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus onderst
   <data name="users" xml:space="preserve">
     <value>Gebruikers</value>
   </data>
+  <data name="INTERNSHIP_ASSIGNMENT_TITLE" xml:space="preserve">
+    <value>Beschrijving van de stageopdracht</value>
+  </data>
+  <data name="INTERNSHIP_COMMENTS" xml:space="preserve">
+    <value>Bijkomende informatie bij de stageopdracht</value>
+  </data>
+  <data name="INTERNSHIP_KNOWLEDGE_DESCRIPTION" xml:space="preserve">
+    <value>Technische en niet-technische oplijsting van de kennis en competenties die de stagiair zal verwerven gedurende de stage.</value>
+  </data>
+  <data name="INTERNSHIP_KNOWLEDGE_TITLE" xml:space="preserve">
+    <value>Welke kennis en competenties verwerf je tijdens de opdracht?</value>
+  </data>
+  <data name="INTERNSHIP_LOCATION_DESCRIPTION" xml:space="preserve">
+    <value>De opdracht kan doorgaan op volgende locaties:</value>
+  </data>
+  <data name="INTERNSHIP_LOCATION_TITLE" xml:space="preserve">
+    <value>Stageopdracht locaties</value>
+  </data>
+  <data name="INTERNSHIP_NEED_TO_KNOW_DESCRIPTION" xml:space="preserve">
+    <value>Technische en niet-technische oplijsting van kennis en competenties die de stagiair op zijn minst nodig heeft om de opdracht tot een goed einde te kunnen brengen.</value>
+  </data>
+  <data name="INTERNSHIP_NEED_TO_KNOW_TITLE" xml:space="preserve">
+    <value>Welke kennis en competenties dien je te hebben voor deze opdracht?</value>
+  </data>
 </root>

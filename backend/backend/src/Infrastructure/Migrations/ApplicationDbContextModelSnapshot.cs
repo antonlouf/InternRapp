@@ -129,7 +129,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023-2024",
+                            SchoolYear = "2023 -2024",
                             UnitId = 1
                         },
                         new
@@ -137,18 +137,81 @@ namespace backend.Infrastructure.Migrations
                             Id = 2,
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
-                            RequiredTrainingType = 1,
-                            SchoolYear = "2023-2024",
+                            RequiredTrainingType = 0,
+                            SchoolYear = "2023 -2024",
                             UnitId = 2
                         },
                         new
                         {
                             Id = 3,
                             CurrentCountOfStudents = (byte)0,
-                            MaxStudents = (byte)15,
-                            RequiredTrainingType = 2,
-                            SchoolYear = "2023-2024",
+                            MaxStudents = (byte)10,
+                            RequiredTrainingType = 0,
+                            SchoolYear = "2023 -2024",
                             UnitId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CurrentCountOfStudents = (byte)0,
+                            MaxStudents = (byte)10,
+                            RequiredTrainingType = 0,
+                            SchoolYear = "2023 -2024",
+                            UnitId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CurrentCountOfStudents = (byte)0,
+                            MaxStudents = (byte)10,
+                            RequiredTrainingType = 0,
+                            SchoolYear = "2023 -2024",
+                            UnitId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CurrentCountOfStudents = (byte)0,
+                            MaxStudents = (byte)10,
+                            RequiredTrainingType = 0,
+                            SchoolYear = "2023 -2024",
+                            UnitId = 3
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CurrentCountOfStudents = (byte)0,
+                            MaxStudents = (byte)10,
+                            RequiredTrainingType = 0,
+                            SchoolYear = "2023 -2024",
+                            UnitId = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CurrentCountOfStudents = (byte)0,
+                            MaxStudents = (byte)10,
+                            RequiredTrainingType = 0,
+                            SchoolYear = "2023 -2024",
+                            UnitId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CurrentCountOfStudents = (byte)0,
+                            MaxStudents = (byte)10,
+                            RequiredTrainingType = 0,
+                            SchoolYear = "2023 -2024",
+                            UnitId = 3
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CurrentCountOfStudents = (byte)0,
+                            MaxStudents = (byte)10,
+                            RequiredTrainingType = 0,
+                            SchoolYear = "2023 -2024",
+                            UnitId = 1
                         });
                 });
 
@@ -203,35 +266,211 @@ namespace backend.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Comment = "<p>required diploma for this internship is: Bachelor<p>",
-                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p></body></html>",
+                            Comment = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>required diploma for this internship is: Bachelor</p></body></html>",
+                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
                             InternShipId = 1,
-                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor&nbsp;</p>\\r\\n\\r\\n<ul>\\r\\n\\t<li>With some styling</li>\\r\\n\\t<li>And some more styling</li>\\r\\n\\t<li>To test if text is converted to HTML&nbsp;</li>\\r\\n</ul>\\r\\n\\r\\n<p>&nbsp;</p></body></html>",
+                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
                             LanguageId = 1,
-                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor&nbsp;</p>\\r\\n\\r\\n<ul>\\r\\n\\t<li>With some styling</li>\\r\\n\\t<li>And some more styling</li>\\r\\n\\t<li>To test if text is converted to HTML&nbsp;</li>\\r\\n</ul>\\r\\n\\r\\n<p>&nbsp;</p></body></html>",
-                            TitleContent = "InternRapp"
+                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            TitleContent = "Standard Internship Title"
                         },
                         new
                         {
                             Id = 2,
-                            Comment = "<p>required diploma for this internship is: Master<p>",
-                            Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p>",
+                            Comment = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>required diploma for this internship is: Bachelor</p></body></html>",
+                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
                             InternShipId = 2,
-                            KnowledgeToDevelop = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
-                            LanguageId = 2,
-                            NeededKnowledge = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
-                            TitleContent = "Mobile App"
+                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            LanguageId = 1,
+                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            TitleContent = "Standard Internship Title"
                         },
                         new
                         {
                             Id = 3,
-                            Comment = "<p>required diploma for this internship is: MasterAfterMaster<p>",
-                            Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p>",
+                            Comment = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>required diploma for this internship is: Bachelor</p></body></html>",
+                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
+                            InternShipId = 2,
+                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            LanguageId = 2,
+                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            TitleContent = "Standard Internship Title"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Comment = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>required diploma for this internship is: Bachelor</p></body></html>",
+                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
                             InternShipId = 3,
-                            KnowledgeToDevelop = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
+                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            LanguageId = 1,
+                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            TitleContent = "Standard Internship Title"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Comment = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>required diploma for this internship is: Bachelor</p></body></html>",
+                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
+                            InternShipId = 3,
+                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            LanguageId = 2,
+                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            TitleContent = "Standard Internship Title"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Comment = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>required diploma for this internship is: Bachelor</p></body></html>",
+                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
+                            InternShipId = 3,
+                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
                             LanguageId = 3,
-                            NeededKnowledge = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
-                            TitleContent = "Android App"
+                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            TitleContent = "Standard Internship Title"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Comment = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>required diploma for this internship is: Bachelor</p></body></html>",
+                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
+                            InternShipId = 4,
+                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            LanguageId = 1,
+                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            TitleContent = "Standard Internship Title"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Comment = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>required diploma for this internship is: Bachelor</p></body></html>",
+                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
+                            InternShipId = 5,
+                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            LanguageId = 1,
+                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            TitleContent = "Standard Internship Title"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Comment = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>required diploma for this internship is: Bachelor</p></body></html>",
+                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
+                            InternShipId = 5,
+                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            LanguageId = 2,
+                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            TitleContent = "Standard Internship Title"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Comment = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>required diploma for this internship is: Bachelor</p></body></html>",
+                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
+                            InternShipId = 6,
+                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            LanguageId = 1,
+                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            TitleContent = "Standard Internship Title"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Comment = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>required diploma for this internship is: Bachelor</p></body></html>",
+                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
+                            InternShipId = 6,
+                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            LanguageId = 2,
+                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            TitleContent = "Standard Internship Title"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Comment = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>required diploma for this internship is: Bachelor</p></body></html>",
+                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
+                            InternShipId = 6,
+                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            LanguageId = 3,
+                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            TitleContent = "Standard Internship Title"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Comment = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>required diploma for this internship is: Bachelor</p></body></html>",
+                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
+                            InternShipId = 7,
+                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            LanguageId = 1,
+                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            TitleContent = "Standard Internship Title"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Comment = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>required diploma for this internship is: Bachelor</p></body></html>",
+                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
+                            InternShipId = 8,
+                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            LanguageId = 1,
+                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            TitleContent = "Standard Internship Title"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Comment = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>required diploma for this internship is: Bachelor</p></body></html>",
+                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
+                            InternShipId = 8,
+                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            LanguageId = 2,
+                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            TitleContent = "Standard Internship Title"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Comment = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>required diploma for this internship is: Bachelor</p></body></html>",
+                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
+                            InternShipId = 9,
+                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            LanguageId = 1,
+                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            TitleContent = "Standard Internship Title"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Comment = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>required diploma for this internship is: Bachelor</p></body></html>",
+                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
+                            InternShipId = 9,
+                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            LanguageId = 2,
+                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            TitleContent = "Standard Internship Title"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Comment = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>required diploma for this internship is: Bachelor</p></body></html>",
+                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
+                            InternShipId = 9,
+                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            LanguageId = 3,
+                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            TitleContent = "Standard Internship Title"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Comment = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>required diploma for this internship is: Bachelor</p></body></html>",
+                            Description = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
+                            InternShipId = 10,
+                            KnowledgeToDevelop = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            LanguageId = 1,
+                            NeededKnowledge = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
+                            TitleContent = "Standard Internship Title"
                         });
                 });
 
@@ -257,17 +496,47 @@ namespace backend.Infrastructure.Migrations
                         },
                         new
                         {
-                            InternShipId = 1,
+                            InternShipId = 2,
                             LocationsId = 2
                         },
                         new
                         {
-                            InternShipId = 1,
+                            InternShipId = 3,
                             LocationsId = 3
                         },
                         new
                         {
-                            InternShipId = 2,
+                            InternShipId = 4,
+                            LocationsId = 1
+                        },
+                        new
+                        {
+                            InternShipId = 5,
+                            LocationsId = 2
+                        },
+                        new
+                        {
+                            InternShipId = 6,
+                            LocationsId = 3
+                        },
+                        new
+                        {
+                            InternShipId = 7,
+                            LocationsId = 1
+                        },
+                        new
+                        {
+                            InternShipId = 8,
+                            LocationsId = 2
+                        },
+                        new
+                        {
+                            InternShipId = 9,
+                            LocationsId = 3
+                        },
+                        new
+                        {
+                            InternShipId = 10,
                             LocationsId = 1
                         });
                 });
@@ -417,14 +686,56 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 2,
                             Content = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>Ce ici c'est un description standard d un departement</p></body></html>",
-                            LanguageId = 3,
-                            UnitId = 2
+                            LanguageId = 2,
+                            UnitId = 1
                         },
                         new
                         {
                             Id = 3,
                             Content = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a standard description for a unit</p></body></html>",
+                            LanguageId = 3,
+                            UnitId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Content = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>Dit is een standaard descriptie horende bij een unit</p></body></html>",
+                            LanguageId = 1,
+                            UnitId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Content = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>Ce ici c'est un description standard d un departement</p></body></html>",
                             LanguageId = 2,
+                            UnitId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Content = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a standard description for a unit</p></body></html>",
+                            LanguageId = 3,
+                            UnitId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Content = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>Dit is een standaard descriptie horende bij een unit</p></body></html>",
+                            LanguageId = 1,
+                            UnitId = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Content = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>Ce ici c'est un description standard d un departement</p></body></html>",
+                            LanguageId = 2,
+                            UnitId = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Content = "<html><body style=\"font-family:Verdana; font-size:14.5px\"><p>This is a standard description for a unit</p></body></html>",
+                            LanguageId = 3,
                             UnitId = 3
                         });
                 });
