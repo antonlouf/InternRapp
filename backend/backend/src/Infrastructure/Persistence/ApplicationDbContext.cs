@@ -88,19 +88,20 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             Name = "nederlands",
         };
 
-        var langEng = new Language
+        var langFr = new Language
         {
             Id = 2,
+            Code = "fr",
+            Name = "frans"
+        };
+
+        var langEng = new Language
+        {
+            Id = 3,
             Code = "eng",
             Name = "engels"
         };
 
-        var langFr = new Language
-        {
-            Id = 3,
-            Code = "fr",
-            Name = "frans"
-        };
 
         /*
         var internRappTrnslNl = new InternShipContentTranslation
@@ -267,11 +268,12 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         */
 
         
+        
         //loop to make new internships with different translations
         int trnslIndex = 1;
-        string prefaceDescrNl = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>Dit is een standaard descriptie horende bij een unit</p></body></html>";
-        string prefaceDescrFr = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>Ce ici c'est un description standard d un departement</p></body></html>";
-        string prefaceDescrEng = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>This is a standard description for a unit</p></body></html>";
+        string prefaceDescrNl = @"<p>Dit is een standaard descriptie horende bij een unit</p>";
+        string prefaceDescrFr = @"<p>Ce ici c'est un description standard d un departement</p>";
+        string prefaceDescrEng = @"<p>This is a standard description for a unit</p>";
         string prefaceDescr = "";
 
 
@@ -308,10 +310,10 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
                 {
                     Id = trnslIndex, //steeds hoger 
                     TitleContent = "Standard Internship Title",
-                    Description = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p></body></html>",
-                    KnowledgeToDevelop = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
-                    NeededKnowledge = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul></body></html>",
-                    Comment = $@"<html><body style=""font-family:Verdana; font-size:14.5px""><p>required diploma for this internship is: {TrainingType.Bachelor}</p></body></html>", //+1 of random
+                    Description = @"<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
+                    KnowledgeToDevelop = @"<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
+                    NeededKnowledge = @"<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
+                    Comment = $@"<p>required diploma for this internship is: {TrainingType.Bachelor}</p>", //+1 of random
                     LanguageId = langIndex + 1,
                     InternShipId = standardInternShip.Id,
                 };
@@ -358,9 +360,9 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
                 builder.Entity<PrefaceTranslation>().HasData(standardPrefaceTrnsl);
             }
         }
-
         
     }
+    
 
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

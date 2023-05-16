@@ -21,7 +21,7 @@ public class InternShipConfiguration : IEntityTypeConfiguration<InternShip>
         builder.Property(x => x.CurrentCountOfStudents).HasConversion(v => (byte)v,
             v => v)
             .IsRequired();
-        //builder.HasMany(x => x.Locations).WithMany();
+        builder.HasMany(x => x.Locations).WithMany(x => x.InternShips).UsingEntity<InternShipLocation>();
         builder.Property(x => x.MaxStudents).HasConversion(v => (byte)v,
             v => v).IsRequired();
         builder.HasMany(x => x.Translations).WithOne(x => x.InternShip).OnDelete(DeleteBehavior.Cascade);

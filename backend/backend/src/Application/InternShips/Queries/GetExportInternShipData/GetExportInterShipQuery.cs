@@ -39,12 +39,22 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
 
     public async Task<List<UnitExportDto>> Handle(GetExportInterShipQuery request, CancellationToken cancellationToken)
     {
+        var bla = await _dbContext.Departments
+            .Include(dept => dept.Internships)
+            .ThenInclude(x => x.Locations)
+
+            .ToListAsync();
+
+        //relaties met internship locations checken 
 
         //Filter on Units and only the internships who have a translation language of request language 
         var units = await _dbContext.Departments
+
+            .Include(dept => dept.Internships)
+            .ThenInclude(x => x.Locations)
+
             .Where(unit => (request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(unit.Id))
             && unit.Internships.Any(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)))
-            //gecheckt -> werkt, maar ook checken op voorwoord translatie?
 
             .Select(exportDto => new UnitExportDto()
             {
@@ -59,7 +69,13 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
                 InternShipsDtos = exportDto.Internships.Where(intrshp => intrshp.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)).Select(intrshpDto => new InternShipExportDto()
                 {
                     SchoolYear = intrshpDto.SchoolYear,
-                    Locations = _iMapper.Map<IList<LocationDto>>(intrshpDto.Locations),
+                    Locations = intrshpDto.Locations.Select(loc => new LocationDto()
+                    {
+                        City = loc.City,
+                        Housenumber = loc.HouseNumber,
+                        Streetname = loc.StreetName,
+                        Zipcode = loc.ZipCode
+                    }).ToList(),
                     TrainingType = intrshpDto.RequiredTrainingType,
                     Translation = intrshpDto.Translations.Select(trnslDto => new TranslationDto()
                     {
@@ -72,8 +88,7 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
 
                     }).First()
                 }).ToList()
-            })
-            .ToListAsync();
+            }).ToListAsync();
 
 
         foreach (var item in units)
@@ -126,13 +141,13 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
                  };
 
         Replace(document, ref allElements, commonReplacements, ref altChunckId);
-
+        
         ExtractParagraphs(allElements, "UNIT_TITLE", "UNIT_END", out var unitStartPosition, out var templateUnitParagraphs);
 
         allElements.RemoveRange(unitStartPosition, templateUnitParagraphs.Count);
 
         InsertUnitParagraphs(document, ref allElements, unitExportList, templateUnitParagraphs, unitStartPosition, ref altChunckId, rm);
-
+        
         List<string> toDeleteStrings = new List<string>() { "INTERNSHIP_END", "UNIT_END" };
         DeleteParagraphs(ref allElements, toDeleteStrings);
 
@@ -209,9 +224,13 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
 
                                 if (remainingKey.Length == 0) //op eerste T element locatie
                                 {
-                                    if (Regex.IsMatch(pair.Value, "<html>"))
+                                    //html en body tag toevoegen aan
+                                    if (Regex.IsMatch(pair.Value, "<li>|<ol>|<p>|<a>|<i>|<b>"))
                                     {
-                                        toReplace.Add(p, ChunkMethod(document, pair.Value, ref chunkId));
+                                        string temp = "";
+                                        temp = pair.Value.Insert(0, @"<html><body style=""font-family:Verdana; font-size:14.5px"">");
+                                        temp = temp.Insert(temp.Length, @"</body></html>");
+                                        toReplace.Add(p, ChunkMethod(document, temp, ref chunkId));
                                     }
                                     else
                                     {
@@ -309,30 +328,35 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
             {
                 var internshipParagraphs = CloneELements(templateInternshipParagraphs);
 
+                //string concatenatie 
+                string locationString = "";
+                foreach (var loc in internship.Locations)
+                {
+                    string temp = "";
+                    temp = loc.ToString().Insert(0, "<li>");
+                    temp = temp.ToString().Insert(temp.Length, "</li>");
+                    locationString += temp;
+                }
+                locationString = locationString.Insert(0, "<ul>");
+                locationString = locationString.Insert(locationString.Length, "</ul>");
+
                 Replace(document, ref internshipParagraphs, new Dictionary<string, string>()
                           {
                               {"INTERNSHIP_TITLE", internship.Translation.TitleContent},
                               {"INTERNSHIP_ASSIGNMENT_TITLE", rm.GetString("INTERNSHIP_ASSIGNMENT_TITLE")},
                               {"INTERNSHIP_ASSIGNMENT_DESCRIPTION", internship.Translation.Description},
                               {"INTERNSHIP_KNOWLEDGE_TITLE", rm.GetString("INTERNSHIP_KNOWLEDGE_TITLE")},
-                              {"INTERNSHIP_KNOWLEDGE_DESCRIPTION", rm.GetString("INTERNSHIP_KNOWLEDGE_DESCRIPTION")},
+                              {"INTERNSHIP_KNOWLEDGE_DESCRIPTION", rm.GetString("INTERNSHIP_KNOWLEDGE_DESCRIPTION")},           //WHERE ARE YOU?? 
                               {"INTERNSHIP_KNOWLEDGE_CONTENT", internship.Translation.KnowledgeToDevelop},
                               {"INTERNSHIP_NEED_TO_KNOW_TITLE", rm.GetString("INTERNSHIP_NEED_TO_KNOW_TITLE")},
                               {"INTERNSHIP_NEED_TO_KNOW_DESCRIPTION", rm.GetString("INTERNSHIP_NEED_TO_KNOW_DESCRIPTION")},
                               {"INTERNSHIP_NEED_TO_KNOW_CONTENT", internship.Translation.NeededKnowledge},
                               {"INTERNSHIP_LOCATION_TITLE", rm.GetString("INTERNSHIP_LOCATION_TITLE")},
-
+                              {"INTERNSHIP_LOCATION_CONTENT", locationString},
                               {"INTERNSHIP_LOCATION_DESCRIPTION", rm.GetString("INTERNSHIP_LOCATION_DESCRIPTION")},
                               {"INTERNSHIP_COMMENTS", rm.GetString("INTERNSHIP_COMMENTS")},
                               {"INTERNSHIP_COMMENTS_CONTENT", internship.Translation.Comment},
                           }, ref chunkId);
-
-
-                //Dictionary<string, List<LocationDto>> dic = new Dictionary<string, List<LocationDto>>();
-                //dic.Add("INTERNSHIP_LOCATION_CONTENT", internship.Locations.ToList());   
-
-                //Replace(document, ref internshipParagraphs, dic, ref chunkId);
-
 
                 unitElements.InsertRange(internshipStartPosition, internshipParagraphs); //toevoegen van internshipParagraaf lijst in unit paragrafen 
             }

@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 namespace backend.Domain.Entities;
 public class InternShipLocation
 {
-    public InternShip InternShip { get; set; }
     public int InternShipId { get; set; }
-    public Location Location { get; set; }
-    public int LocationsId { get; set; } //locations?
+    public int LocationsId { get; set; } 
 }

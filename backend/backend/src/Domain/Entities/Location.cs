@@ -13,6 +13,6 @@ public class Location
     public string StreetName { get; set; }
     public int HouseNumber { get; set; }
     public string ZipCode { get; set; }
-    public IList<InternShipLocation> InternShipLocations { get; set; }
+    public IList<InternShip> InternShips { get; set; }
 
 }
