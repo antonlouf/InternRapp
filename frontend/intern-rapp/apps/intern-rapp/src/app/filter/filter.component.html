@@ -4,15 +4,15 @@
 <ng-container [ngSwitch]="filter.type">
 <mat-form-field *ngSwitchCase="filtertype.Text">
         <mat-label>{{filter.label |translate}}</mat-label>
-        <input  matInput  formControlName="{{filter.name}}">
+        <input  matInput  formControlName="{{filter.name}}" >
 </mat-form-field>
 <ng-container *ngIf="filter?.observable|async as items">
 <mat-form-field *ngSwitchCase="filtertype.MultiSelectDropdown"> 
         <mat-label>{{filter.label |translate}}</mat-label>
 
-<mat-select multiple matInput formControlName="{{filter.name}}" >
+<mat-select  multiple matInput formControlName="{{filter.name}}"  >
 
-        <mat-option *ngFor="let item of  items" value="{{filter.optionBuilder(items,item)?.pop()}}">
+        <mat-option  *ngFor="let item of  items" value="{{filter.optionBuilder(items,item)?.pop()}}">
                 {{filter.optionBuilder(items,item)?.shift()}}
                 
         </mat-option>
@@ -22,7 +22,7 @@
 <mat-form-field *ngSwitchCase="filtertype.SingleSelectDropdown" >
         <mat-label>{{filter.label |translate}}</mat-label>
 
-        <mat-select  matInput formControlName="{{filter.name}}"  >
+        <mat-select  matInput formControlName="{{filter.name}}" >
 
                 <mat-option *ngFor="let item of  items" value="{{filter.optionBuilder(items,item)?.pop()}}" >
                 {{filter.optionBuilder(items,item)?.shift()}}
@@ -42,6 +42,7 @@
 </button>
 </div>
 </div>
+
 </form>
   
-  
+

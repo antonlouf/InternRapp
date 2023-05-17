@@ -16,8 +16,17 @@ internRappItemsTmpl let-items
 </button>
 
   <mat-list >
+    <div class="flex-row-columns">
+      <div style="margin-left: 3%;">{{'locationCityLabel'|translate}}</div>
+      <div style="margin-left: 1.5%;">{{'locationZipCodeLabel'|translate}}</div>
+      <div style="margin-left: 1.5%;">{{'locationStreetNameLabel'|translate}}</div>
+      <div style="margin-right: 2.5%;">{{'locationHouseNumberLabel'|translate}}</div>
+    </div>
     <mat-list-item  *ngFor="let item of items">
       <div class="flex-row" >
+          <div>
+            <mat-checkbox (change)="addToSelectedLocations($event.checked,item.id)"></mat-checkbox>
+          </div>
         <div class="flex-begin">{{item.city}}</div>
         <div class="flex-begin">{{item.zipcode}}</div>
         <div class="flex-begin">{{item.streetname}}</div>

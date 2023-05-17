@@ -19,5 +19,12 @@ public class LanguageConfiguration : IEntityTypeConfiguration<Language>
         builder.HasMany(x => x.InternshipTranslations).WithOne(x => x.Language).OnDelete(DeleteBehavior.Cascade);
         builder.HasMany(x => x.PrefaceTranslations).WithOne(x => x.Language).OnDelete(DeleteBehavior.Cascade);
 
+        builder.HasData(new List<Language>()
+        {
+            new(){Code="nl",Id=1,Name="Nederlands"},
+            new(){Code="en",Id=2,Name="Engels"},
+            new(){Code="fr",Id=3,Name="French"},
+
+        });
     }
 }

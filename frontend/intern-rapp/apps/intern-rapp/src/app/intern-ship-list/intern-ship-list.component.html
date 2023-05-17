@@ -10,19 +10,32 @@
 internRappItemsTmpl let-items
 >
 
-    <div>       
-      <button  mat-icon-button  (click)="addInternship()" class="align-right save-button-above-list">
-      <mat-icon>add</mat-icon>
-  </button></div>
-  
+    <div class="buttons-above-list">       
+    <div class="align-right save-button-above-list">
+  <button mat-icon-button (click)="addInternship()" >
+    <mat-icon>add</mat-icon>
+  </button>
+    </div>
+   
+<div >
+  <button mat-icon-button (click)="copyInternship()">
+  <mat-icon>file_copy</mat-icon>
+  </button>
+</div>
+</div >
 
   <mat-list >
- 
+<div class="flex-row-columns">
+  <div class="internship-name">{{'internshipNameColumnLabel'|translate}}</div>
+  <div>{{'FreeUsedPlacesLabel'|translate}}</div>
+  <div class="unit-name">{{'department'|translate}}</div>
+</div>
     <mat-list-item  *ngFor="let item of items">
       <div class="flex-row" >
         <div>
-          {{item.title}}
+          <mat-checkbox (change)="addToSelectedInternships($event.checked,item.id)"></mat-checkbox>
         </div>
+        <div>{{item.title}}</div>
         <div class="flex-begin">
           <span class="material-symbols-outlined" style="color:red" *ngFor="let availablePlace of [].constructor(item.currentCountOfStudents)">
             person
@@ -53,7 +66,7 @@ internRappItemsTmpl let-items
         </div>
       </div>
       
-      <div>
+      <div >
         <mat-divider></mat-divider>
       </div>
     </mat-list-item>

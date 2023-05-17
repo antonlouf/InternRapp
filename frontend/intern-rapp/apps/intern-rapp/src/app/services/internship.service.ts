@@ -56,6 +56,22 @@ export class InternshipService {
         retry(2)
       );
   }
+  public copyToNextYear(ids:number[]) {
+    return this.http
+      .post(
+        APIConfiguration.baseString + `${this.baseSuffixApi}/copyToNextYear`,
+        ids,
+        {
+          headers: {
+            'content-type': 'application/json',
+          },
+        }
+      )
+      .pipe(
+        catchError((err, caught) => caught),
+        retry(2)
+      );
+  }
   public updateInternship(internship: InternshipUpdateDto) {
     return this.http
       .put(
