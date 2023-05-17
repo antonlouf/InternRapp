@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using backend.Domain.Entities;
+using backend.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -20,6 +21,11 @@ public class InternShipContentTranslationConfiguration : IEntityTypeConfiguratio
         builder.Property(x => x.Comment).IsRequired().HasMaxLength(1000);
      
 
+        };
+        builder.HasData(new List<InternShipContentTranslation>()
+        {
+           trnslEng, trnslFr, trnslNl
+        });
 
     }
 }
