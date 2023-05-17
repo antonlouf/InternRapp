@@ -100,7 +100,7 @@ export class LanguageListComponent
           .pipe(map((confirm) => (confirm ? id : undefined)));
       }),
       filter((id) => !!id), //undefined checken
-      switchMap((id) => this.languageService.deleteLanguage(id))
+      switchMap((id) => this.languageService.deleteLanguage(this.selectedIds))
     );
   }
   private configureUpdate$() {
@@ -157,8 +157,8 @@ export class LanguageListComponent
   updateLanguage = (item: LanguageItem) => {
     this.updateSubject.next(item);
   };
-  delete(id: number) {
-    this.deleteSubject.next(id);
+  delete() {
+    this.deleteSubject.next(0);
   }
   public addToSelectedLanguages(completed: boolean, id: number) {
     if (!completed) {

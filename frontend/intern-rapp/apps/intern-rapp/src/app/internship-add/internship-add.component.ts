@@ -123,15 +123,17 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
         this.internShipService.entityTobeUpdated?.internShipId ?? 0
       ),
       maxStudents: new FormControl(
-        this.internShipService.entityTobeUpdated?.maxCountOfStudents ?? 0,
+        this.internShipService.entityTobeUpdated?.maxCountOfStudents ??
+          0,
         [Validators.required, isLessThanOrEqualToParam(15)]
       ),
       currentCountOfStudents: new FormControl(
-        this.internShipService.entityTobeUpdated?.currentCountOfStudents ?? 0,
+        this.internShipService.entityTobeUpdated?.currentCountOfStudents ??
+          0,
         [
           Validators.required,
           islessThanOrEqualToMaxStudents(
-            this.internShipService.entityTobeUpdated?.maxCountOfStudents ?? 0
+            
           ),
           isLessThanOrEqualToParam(15),
         ]

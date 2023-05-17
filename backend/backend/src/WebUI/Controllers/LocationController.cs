@@ -44,6 +44,7 @@ public class LocationController: ControllerBase
     [HttpDelete()]
     public async Task<IActionResult> DeleteLocation([FromBody] List<int> ids)
     {
+        if (ids == null || ids.Count <= 0) return BadRequest();
         await _mediator.Send(new DeleteLocationCommand() { Ids =ids });
         return Ok();
     }

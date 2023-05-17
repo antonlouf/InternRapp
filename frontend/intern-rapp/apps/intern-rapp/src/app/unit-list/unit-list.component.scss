@@ -38,8 +38,15 @@
 }
 
 .align-right{
-margin-left: 97%;
+margin-left: 60%;
 }
 .manager-emails{
     margin-right: 2%;
+}
+.flex-row-above-list {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    justify-content: flex-end;
+    margin-right: 5%;
 }

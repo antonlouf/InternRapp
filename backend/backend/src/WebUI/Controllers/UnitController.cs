@@ -63,6 +63,6 @@ public class UnitController : ControllerBase
     {
         await _mediator.Send(new DeleteUnitCommand() { Ids = ids });
  
-        return Ok($"{id}");
+        return Ok();
     }
 }

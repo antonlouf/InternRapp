@@ -12,7 +12,7 @@ using backend.Infrastructure.Persistence;
 namespace backend.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230516145546_initial")]
+    [Migration("20230517152912_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -143,11 +143,6 @@ namespace backend.Infrastructure.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(350)
@@ -168,9 +163,7 @@ namespace backend.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Location")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NeededKnowledge")
                         .IsRequired()
@@ -263,6 +256,7 @@ namespace backend.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Content")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
@@ -280,7 +274,7 @@ namespace backend.Infrastructure.Migrations
 
                     b.HasIndex("UnitId");
 
-                    b.ToTable("PrefaceTranslation");
+                    b.ToTable("PrefaceTranslations");
                 });
 
             modelBuilder.Entity("InternShipLocation", b =>

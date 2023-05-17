@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
 namespace backend.Infrastructure.Migrations
 {
     /// <inheritdoc />
@@ -183,60 +181,6 @@ namespace backend.Infrastructure.Migrations
                         principalTable: "Languages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.InsertData(
-                table: "ApplicationUsers",
-                columns: new[] { "Id", "Email", "ObjectIdentifier" },
-                values: new object[,]
-                {
-                    { 1, "recep@inetum-realdolmen.world", new Guid("3ae6505b-a151-47f2-91e5-09a875a52d52") },
-                    { 2, "Anton@inetum-realdolmen.world", new Guid("e1000d74-4dcc-405b-984b-5f09d960ab6e") },
-                    { 3, "Nils@inetum-realdolmen.world", new Guid("854fad5e-fb28-4163-83f6-39522b9e79cf") }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Departments",
-                columns: new[] { "Id", "ManagerEmails", "Name" },
-                values: new object[] { 1, "recep@inetum-realdolmen.world", "Java" });
-
-            migrationBuilder.InsertData(
-                table: "Languages",
-                columns: new[] { "Id", "Code", "Name" },
-                values: new object[,]
-                {
-                    { 1, "nl", "Nederlands" },
-                    { 2, "en", "Engels" },
-                    { 3, "fr", "French" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Locations",
-                columns: new[] { "Id", "City", "HouseNumber", "StreetName", "ZipCode" },
-                values: new object[,]
-                {
-                    { 1, "antwerpen", 51, "ellermanstraat", "2260" },
-                    { 2, "antwerpen", 51, "elleboogtraat", "2260" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "InternShips",
-                columns: new[] { "Id", "CurrentCountOfStudents", "MaxStudents", "RequiredTrainingType", "SchoolYear", "UnitId" },
-                values: new object[] { 1, (byte)0, (byte)10, 0, "2023-2024", 1 });
-
-            migrationBuilder.InsertData(
-                table: "PrefaceTranslations",
-                columns: new[] { "Id", "Content", "LanguageId", "UnitId" },
-                values: new object[] { 1, "blabla", 1, 1 });
-
-            migrationBuilder.InsertData(
-                table: "Translations",
-                columns: new[] { "Id", "Comment", "Description", "InternShipId", "KnowledgeToDevelop", "LanguageId", "Location", "NeededKnowledge", "TitleContent" },
-                values: new object[,]
-                {
-                    { 1, "<p>required diploma for this internship is: Bachelor<p>", "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p>", 1, "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>", 1, "new location", "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>", "InternRapp" },
-                    { 2, "<p>required diploma for this internship is: Bachelor<p>", "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p>", 1, "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>", 3, "new location", "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>", "InternRapp" },
-                    { 3, "<p>required diploma for this internship is: Bachelor<p>", "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p>", 1, "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>", 2, "new location", "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>", "InternRapp" }
                 });
 
             migrationBuilder.CreateIndex(
