@@ -11,6 +11,7 @@ using MediatR;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Options;
 using Department = backend.Domain.Entities.Department;
 
@@ -39,6 +40,7 @@ public class ApplicationDbContext : DbContext,IApplicationDbContext
 
     public DbSet<InternShipContentTranslation> Translations=>Set<InternShipContentTranslation>();
 
+    public DbSet<PrefaceTranslation> PrefaceTranslations => Set<PrefaceTranslation>();
     protected override void OnModelCreating(ModelBuilder builder)
     {
         

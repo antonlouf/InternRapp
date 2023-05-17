@@ -60,9 +60,7 @@ public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternSh
                     NeededKnowledge = sendedVersion.NeededKnowledge,
                     KnowledgeToDevelop = sendedVersion.KnowledgeToDevelop,
                     Comment = sendedVersion.Comment,
-                    Content = sendedVersion.Content,
                     Description = sendedVersion.Description,
-                    Location = sendedVersion.Location,
                     TitleContent = sendedVersion.TitleContent
                 });
             }
@@ -76,9 +74,7 @@ public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternSh
                    NeededKnowledge = sendedVersion.NeededKnowledge,
                    KnowledgeToDevelop = sendedVersion.KnowledgeToDevelop,
                    Comment = sendedVersion.Comment,
-                   Content = sendedVersion.Content,
                    Description = sendedVersion.Description,
-                   Location = sendedVersion.Location,
                    TitleContent = sendedVersion.TitleContent,
                    InternShipId=internShip.Id,
                    LanguageId = sendedVersion.LanguageId,

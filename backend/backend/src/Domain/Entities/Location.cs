@@ -13,6 +13,8 @@ public class Location:ISoftDeletable
     public string StreetName { get; set; }
     public int HouseNumber { get; set; }
     public string ZipCode { get; set; }
+    //public IList<InternShip> Internships{ get; set; }
+
     //public string CreatorEmail { get; set; }
 
 }

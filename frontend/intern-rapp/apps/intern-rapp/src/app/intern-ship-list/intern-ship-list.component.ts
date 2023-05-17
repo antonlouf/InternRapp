@@ -25,7 +25,7 @@ import {
   take,
   takeUntil,
   of,
-  from,
+  BehaviorSubject,
 } from 'rxjs';
 import { PaginationFilterRequest } from '../entities/paginationFilterRequest';
 import { CreateInternship } from '../entities/createInternship';
@@ -39,8 +39,12 @@ import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { DepartmentService } from '../services/department.service';
 import { LanguageService } from '../services/language.service';
 import { LanguageItem } from '../entities/languageItem';
-import { DepartmentItem } from '../entities/departmentItem';
 import { DepartementItemWithMinimalData } from '../entities/depItemWithMinimalData';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ExportPopupOptionsComponent } from '../export-popup-options/export-popup-options.component';
+import { ExportInternshipOptions } from '../entities/exportInternshipOptions';
 
 @Component({
   selector: 'intern-rapp-intern-ship-list',
@@ -56,6 +60,9 @@ import { DepartementItemWithMinimalData } from '../entities/depItemWithMinimalDa
     ReactiveFormsModule,
     HttpClientModule,
     MatDialogModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   templateUrl: './intern-ship-list.component.html',
   styleUrls: ['./intern-ship-list.component.scss'],
@@ -68,6 +75,9 @@ export class InternShipListComponent
   public addSubject = new Subject<CreateInternship | undefined>();
   public updateSubject = new Subject<InternshipDetailItem>();
   private destroySubj$ = new Subject<void>();
+  private selectedIds: number[] = [];
+  private exportSubj$ = new Subject<void>();
+  
   constructor(
     private internshipService: InternshipService,
     private unitService: DepartmentService,
@@ -83,7 +93,7 @@ export class InternShipListComponent
     closeOnNavigation: true,
     disableClose: false,
     hasBackdrop: true,
-    position: { top: '250px', right: '500px' },
+    position: { top: '250px', right: '41%' },
   };
   ngOnDestroy(): void {
     this.destroySubj$.next();
@@ -122,8 +132,8 @@ export class InternShipListComponent
           .pipe(map((confirm) => (confirm ? id : undefined)));
       }),
       filter((id) => !!id), //undefined checken
-      switchMap((id) => this.internshipService.deleteInternship(id ?? 0))
-    );
+      switchMap((id) => this.internshipService.deleteInternship(id ?? 0)),  
+    )
   }
   getGridItems$(
     paginationFilterRequest: PaginationFilterRequest
@@ -133,6 +143,32 @@ export class InternShipListComponent
     );
   }
   ngOnInit(): void {
+
+      this.exportSubj$
+       .pipe(
+         switchMap(() => {
+           const dialogRef = this.dialog.open(
+             ExportPopupOptionsComponent,
+             this.popUpConfig
+           );
+           // dialogRef.componentInstance.title = 'internship';
+           return dialogRef
+             .afterClosed()
+             .pipe(
+               map(
+                 (confirm) =>
+                   (confirm as ExportInternshipOptions ) ?? undefined
+               )
+             );
+         }),
+         filter((id) => !!id), //undefined checken
+         switchMap((data) => this.internshipService.exportInternships(data)),
+         take(1),
+         takeUntil(this.destroySubj$)
+       )
+       .subscribe();
+  
+
     this.filters = [
       {
         label: 'languageNameLabel',
@@ -154,6 +190,7 @@ export class InternShipListComponent
           optionBuilder.push(value.id);
           return optionBuilder;
         },
+        defaultValue: undefined,
       },
       {
         label: 'unitNameLabel',
@@ -179,6 +216,7 @@ export class InternShipListComponent
           optionBuilder.push(value.id);
           return optionBuilder;
         },
+        defaultValue: undefined,
       },
       {
         label: 'schoolYearLabel',
@@ -193,10 +231,22 @@ export class InternShipListComponent
           optionBuilder.push(item);
           return optionBuilder;
         },
+        defaultValue: this.calculateCurrentSchoolyear(),
       },
     ];
 
     this.configureItems([this.configureDelete$()]);
+  }
+  private calculateCurrentSchoolyear() {
+    const date=new Date()
+    const year = date.getFullYear();
+    const month = date.getMonth()
+    if (month <= 6) {
+      return `${year-1}-${year}`
+    }
+    else {
+      return `${year}-${year + 1}`;
+    }
   }
   private availableDatesAsObservable() {
     const availableDates = [];
@@ -237,7 +287,26 @@ export class InternShipListComponent
     }
     this.filterUpdated(activeFilters);
   }
+  public addToSelectedInternships(completed: boolean, id: number) {
+    if (!completed) {
+      this.selectedIds = this.selectedIds.filter((x) => x !== id);
+      return;
+    }
+    this.selectedIds.push(id);
+  }
+  public copyInternship() {
+    this.internshipService.copyToNextYear(this.selectedIds).pipe(tap(() => {
+      // this.router.navigateByUrl('/internships', {
+      //   onSameUrlNavigation: 'reload',
+      // });
+    }),take(1),takeUntil(this.destroySubj$)).subscribe()
+  }
   delete(id: number) {
     this.deleteSubject.next(id);
+  }
+  exportButtonHandler() {
+    this.exportSubj$.next()
+    console.log(this.exportSubj$)
+    
   }
 }

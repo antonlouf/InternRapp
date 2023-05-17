@@ -9,6 +9,5 @@ export interface InternshipTranslationUpdateDto{
     language:LanguageItem
     location: string
     comment: string
-    content: string
     translationId:number
 }

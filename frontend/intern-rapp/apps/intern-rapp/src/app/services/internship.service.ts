@@ -9,6 +9,7 @@ import { CreateInternship } from '../entities/createInternship';
 import { InternshipTranslationUpdateDto } from '../entities/internshipTranslationUpdateDto';
 import { InternshipDetailItem } from '../entities/internshipDetailItem';
 import { InternshipUpdateDto } from '../entities/internshipUpdateDto';
+import { ExportInternshipOptions } from '../entities/exportInternshipOptions';
 
 @Injectable({
   providedIn: 'root',
@@ -56,6 +57,22 @@ export class InternshipService {
         retry(2)
       );
   }
+  public copyToNextYear(ids:number[]) {
+    return this.http
+      .post(
+        APIConfiguration.baseString + `${this.baseSuffixApi}/copyToNextYear`,
+        ids,
+        {
+          headers: {
+            'content-type': 'application/json',
+          },
+        }
+      )
+      .pipe(
+        catchError((err, caught) => caught),
+        retry(2)
+      );
+  }
   public updateInternship(internship: InternshipUpdateDto) {
     return this.http
       .put(
@@ -86,4 +103,18 @@ export class InternshipService {
       APIConfiguration.baseString + `${this.baseSuffixApi}/${id}`
     );
   }
+  public exportInternships(filterCriteria: ExportInternshipOptions) {
+    let queryString = ""
+    for (let unit of filterCriteria.unitIds) {
+      queryString += `unitIds=${unit}`
+      if (filterCriteria.unitIds.indexOf(unit) < filterCriteria.unitIds.length - 1) {
+        queryString+="&"
+      }
+    }
+    queryString+=`&schoolYear=${filterCriteria.schoolYear}&languageId=${filterCriteria.languageId}`
+      return this.http.get(
+        APIConfiguration.baseString + `${this.baseSuffixApi}/export?${queryString}`
+      );
+  }
+  
 }

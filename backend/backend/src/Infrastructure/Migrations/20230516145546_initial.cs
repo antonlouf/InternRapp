@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace backend.Infrastructure.Migrations
 {
     /// <inheritdoc />
@@ -99,27 +101,27 @@ namespace backend.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PrefaceTranslation",
+                name: "PrefaceTranslations",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LanguageId = table.Column<int>(type: "int", nullable: false),
                     UnitId = table.Column<int>(type: "int", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PrefaceTranslation", x => x.Id);
+                    table.PrimaryKey("PK_PrefaceTranslations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PrefaceTranslation_Departments_UnitId",
+                        name: "FK_PrefaceTranslations_Departments_UnitId",
                         column: x => x.UnitId,
                         principalTable: "Departments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PrefaceTranslation_Languages_LanguageId",
+                        name: "FK_PrefaceTranslations_Languages_LanguageId",
                         column: x => x.LanguageId,
                         principalTable: "Languages",
                         principalColumn: "Id",
@@ -160,9 +162,8 @@ namespace backend.Infrastructure.Migrations
                     Description = table.Column<string>(type: "nvarchar(350)", maxLength: 350, nullable: false),
                     KnowledgeToDevelop = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     NeededKnowledge = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Comment = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    Content = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     InternShipId = table.Column<int>(type: "int", nullable: false),
                     LanguageId = table.Column<int>(type: "int", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -182,6 +183,60 @@ namespace backend.Infrastructure.Migrations
                         principalTable: "Languages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "ApplicationUsers",
+                columns: new[] { "Id", "Email", "ObjectIdentifier" },
+                values: new object[,]
+                {
+                    { 1, "recep@inetum-realdolmen.world", new Guid("3ae6505b-a151-47f2-91e5-09a875a52d52") },
+                    { 2, "Anton@inetum-realdolmen.world", new Guid("e1000d74-4dcc-405b-984b-5f09d960ab6e") },
+                    { 3, "Nils@inetum-realdolmen.world", new Guid("854fad5e-fb28-4163-83f6-39522b9e79cf") }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Departments",
+                columns: new[] { "Id", "ManagerEmails", "Name" },
+                values: new object[] { 1, "recep@inetum-realdolmen.world", "Java" });
+
+            migrationBuilder.InsertData(
+                table: "Languages",
+                columns: new[] { "Id", "Code", "Name" },
+                values: new object[,]
+                {
+                    { 1, "nl", "Nederlands" },
+                    { 2, "en", "Engels" },
+                    { 3, "fr", "French" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Locations",
+                columns: new[] { "Id", "City", "HouseNumber", "StreetName", "ZipCode" },
+                values: new object[,]
+                {
+                    { 1, "antwerpen", 51, "ellermanstraat", "2260" },
+                    { 2, "antwerpen", 51, "elleboogtraat", "2260" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "InternShips",
+                columns: new[] { "Id", "CurrentCountOfStudents", "MaxStudents", "RequiredTrainingType", "SchoolYear", "UnitId" },
+                values: new object[] { 1, (byte)0, (byte)10, 0, "2023-2024", 1 });
+
+            migrationBuilder.InsertData(
+                table: "PrefaceTranslations",
+                columns: new[] { "Id", "Content", "LanguageId", "UnitId" },
+                values: new object[] { 1, "blabla", 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Translations",
+                columns: new[] { "Id", "Comment", "Description", "InternShipId", "KnowledgeToDevelop", "LanguageId", "Location", "NeededKnowledge", "TitleContent" },
+                values: new object[,]
+                {
+                    { 1, "<p>required diploma for this internship is: Bachelor<p>", "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p>", 1, "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>", 1, "new location", "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>", "InternRapp" },
+                    { 2, "<p>required diploma for this internship is: Bachelor<p>", "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p>", 1, "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>", 3, "new location", "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>", "InternRapp" },
+                    { 3, "<p>required diploma for this internship is: Bachelor<p>", "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p>", 1, "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>", 2, "new location", "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>", "InternRapp" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -216,13 +271,13 @@ namespace backend.Infrastructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_PrefaceTranslation_LanguageId",
-                table: "PrefaceTranslation",
+                name: "IX_PrefaceTranslations_LanguageId",
+                table: "PrefaceTranslations",
                 column: "LanguageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PrefaceTranslation_UnitId",
-                table: "PrefaceTranslation",
+                name: "IX_PrefaceTranslations_UnitId",
+                table: "PrefaceTranslations",
                 column: "UnitId");
 
             migrationBuilder.CreateIndex(
@@ -246,7 +301,7 @@ namespace backend.Infrastructure.Migrations
                 name: "InternShipLocation");
 
             migrationBuilder.DropTable(
-                name: "PrefaceTranslation");
+                name: "PrefaceTranslations");
 
             migrationBuilder.DropTable(
                 name: "Translations");

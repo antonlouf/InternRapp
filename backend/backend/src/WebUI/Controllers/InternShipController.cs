@@ -1,4 +1,5 @@
 ﻿using backend.Application.Common.Paging;
+using backend.Application.InternShips.Commands.CopyInternshipToNextYear;
 using backend.Application.InternShips.Commands.CreateInternShip;
 using backend.Application.InternShips.Commands.DeleteInternship;
 using backend.Application.InternShips.Commands.UpdateInternShip;
@@ -35,7 +36,13 @@ public class InternShipController : ControllerBase
         });
         return Ok();
     }
-
+    [HttpPost,Route("copyToNextYear")]
+    public async Task<IActionResult> Create([FromBody] List<int> ids)
+    {
+        await _mediator.Send(new CopyInternshipToNextYearCommand() { IdsOfExistingInternships = ids });
+       
+        return Ok();
+    }
     [HttpGet("{id:int}")]
     public async Task<IActionResult> GetById(int id)
     {

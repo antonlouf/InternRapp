@@ -24,8 +24,9 @@ export class DeletePopupComponent {
   constructor(public dialogRef: MatDialogRef<DeletePopupComponent>){
 
   }
-  closeDialog(hasData: boolean){
-    this.dialogRef.close(hasData)
+  closeDialog(hasData: boolean) {
+    console.log(hasData)
+    this.dialogRef.close(hasData?this.title:undefined)
   }
 
 }

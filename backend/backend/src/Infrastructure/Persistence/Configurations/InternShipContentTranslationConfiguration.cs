@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using backend.Domain.Entities;
+using backend.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -17,7 +18,7 @@ public class InternShipContentTranslationConfiguration : IEntityTypeConfiguratio
         builder.Property(x => x.Description).IsRequired().HasMaxLength(350);
         builder.Property(x => x.KnowledgeToDevelop).IsRequired().HasMaxLength(250);
         builder.Property(x => x.NeededKnowledge).IsRequired().HasMaxLength(250);
-        builder.Property(x => x.Location).IsRequired().HasMaxLength(250);
+       
         builder.Property(x => x.Comment).IsRequired().HasMaxLength(250);
         builder.Property(x => x.Content).IsRequired().HasMaxLength(250);
 
