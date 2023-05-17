@@ -43,6 +43,9 @@ import { DepartementItemWithMinimalData } from '../entities/depItemWithMinimalDa
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ExportPopupOptionsComponent } from '../export-popup-options/export-popup-options.component';
+import { ExportInternshipOptions } from '../entities/exportInternshipOptions';
+
 @Component({
   selector: 'intern-rapp-intern-ship-list',
   standalone: true,
@@ -73,6 +76,8 @@ export class InternShipListComponent
   public updateSubject = new Subject<InternshipDetailItem>();
   private destroySubj$ = new Subject<void>();
   private selectedIds: number[] = [];
+  private exportSubj$ = new Subject<void>();
+  
   constructor(
     private internshipService: InternshipService,
     private unitService: DepartmentService,
@@ -88,7 +93,7 @@ export class InternShipListComponent
     closeOnNavigation: true,
     disableClose: false,
     hasBackdrop: true,
-    position: { top: '250px', right: '500px' },
+    position: { top: '250px', right: '41%' },
   };
   ngOnDestroy(): void {
     this.destroySubj$.next();
@@ -127,8 +132,8 @@ export class InternShipListComponent
           .pipe(map((confirm) => (confirm ? id : undefined)));
       }),
       filter((id) => !!id), //undefined checken
-      switchMap((id) => this.internshipService.deleteInternship(id ?? 0))
-    );
+      switchMap((id) => this.internshipService.deleteInternship(id ?? 0)),  
+    )
   }
   getGridItems$(
     paginationFilterRequest: PaginationFilterRequest
@@ -138,9 +143,32 @@ export class InternShipListComponent
     );
   }
   ngOnInit(): void {
-    const activeFilters: Record<string, unknown> = {};
-    activeFilters['schoolYear']=this.calculateCurrentSchoolyear()
-     this.filterUpdated(activeFilters);
+
+      this.exportSubj$
+       .pipe(
+         switchMap(() => {
+           const dialogRef = this.dialog.open(
+             ExportPopupOptionsComponent,
+             this.popUpConfig
+           );
+           // dialogRef.componentInstance.title = 'internship';
+           return dialogRef
+             .afterClosed()
+             .pipe(
+               map(
+                 (confirm) =>
+                   (confirm as ExportInternshipOptions ) ?? undefined
+               )
+             );
+         }),
+         filter((id) => !!id), //undefined checken
+         switchMap((data) => this.internshipService.exportInternships(data)),
+         take(1),
+         takeUntil(this.destroySubj$)
+       )
+       .subscribe();
+  
+
     this.filters = [
       {
         label: 'languageNameLabel',
@@ -231,7 +259,7 @@ export class InternShipListComponent
   }
   filterUpdating(filter: {}) {
     const record = filter as Record<string, never>;
-    const activeFilters: Record<string, unknown> = {};
+    const activeFilters :Record<string,unknown>= {};
 
     if (record['schoolyear']) {
       activeFilters['schoolYear'] = record['schoolyear'];
@@ -275,5 +303,10 @@ export class InternShipListComponent
   }
   delete(id: number) {
     this.deleteSubject.next(id);
+  }
+  exportButtonHandler() {
+    this.exportSubj$.next()
+    console.log(this.exportSubj$)
+    
   }
 }

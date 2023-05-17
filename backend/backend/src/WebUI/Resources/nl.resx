@@ -238,6 +238,9 @@ inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus onderst
   <data name="departmentNameEmptyErrorMessage" xml:space="preserve">
     <value>de departement naam is verplicht in te vullen</value>
   </data>
+  <data name="departmentNameExportOptionsErrorMessage" xml:space="preserve">
+    <value>het departement is verplicht</value>
+  </data>
   <data name="departmentNameLabel" xml:space="preserve">
     <value>departement</value>
   </data>
@@ -261,6 +264,12 @@ inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus onderst
   </data>
   <data name="fieldRequiredErrorMessage" xml:space="preserve">
     <value>Dit is verplicht in te vullen!</value>
+  </data>
+  <data name="exportButton" xml:space="preserve">
+    <value>exporteer</value>
+  </data>
+  <data name="exportPopupHeader" xml:space="preserve">
+    <value>exporteer opdrachten </value>
   </data>
   <data name="Fr" xml:space="preserve">
     <value>Frans</value>

@@ -239,6 +239,9 @@ We make ICT work for your business make IT more human again&lt;/p&gt;</value>
   <data name="departmentNameEmptyErrorMessage" xml:space="preserve">
     <value>the department name is required</value>
   </data>
+  <data name="departmentNameExportOptionsErrorMessage" xml:space="preserve">
+    <value>Department is required</value>
+  </data>
   <data name="departmentNameLabel" xml:space="preserve">
     <value>department</value>
   </data>
@@ -260,8 +263,11 @@ We make ICT work for your business make IT more human again&lt;/p&gt;</value>
   <data name="events" xml:space="preserve">
     <value>events</value>
   </data>
-  <data name="fieldRequiredErrorMessage" xml:space="preserve">
-    <value>this is mandatory</value>
+  <data name="exportButton" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="exportPopupHeader" xml:space="preserve">
+    <value>Export internships</value>
   </data>
   <data name="Fr" xml:space="preserve">
     <value>French</value>
