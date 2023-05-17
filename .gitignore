@@ -317,3 +317,4 @@ Thumbs.db
 /backend/backend/.vs/backend/v17/workspaceFileList.bin
 /backend/backend/.vs/ProjectEvaluation/backend.metadata.v6.1
 /backend/backend/.vs/ProjectEvaluation/backend.projects.v6.1
+/backend/backend/src/Application/bin/Debug/net7.0/backend.Application.dll
