@@ -25,7 +25,7 @@ import {
   take,
   takeUntil,
   of,
-  from,
+  BehaviorSubject,
 } from 'rxjs';
 import { PaginationFilterRequest } from '../entities/paginationFilterRequest';
 import { CreateInternship } from '../entities/createInternship';
@@ -39,8 +39,10 @@ import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { DepartmentService } from '../services/department.service';
 import { LanguageService } from '../services/language.service';
 import { LanguageItem } from '../entities/languageItem';
-import { DepartmentItem } from '../entities/departmentItem';
 import { DepartementItemWithMinimalData } from '../entities/depItemWithMinimalData';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { ExportPopupOptionsComponent } from '../export-popup-options/export-popup-options.component';
 import { ExportInternshipOptions } from '../entities/exportInternshipOptions';
 
@@ -58,9 +60,12 @@ import { ExportInternshipOptions } from '../entities/exportInternshipOptions';
     ReactiveFormsModule,
     HttpClientModule,
     MatDialogModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   templateUrl: './intern-ship-list.component.html',
-  styleUrls: ['./intern-ship-list.component.scss']
+  styleUrls: ['./intern-ship-list.component.scss'],
 })
 export class InternShipListComponent
   extends BaseList<InternshipItem>
@@ -70,6 +75,7 @@ export class InternShipListComponent
   public addSubject = new Subject<CreateInternship | undefined>();
   public updateSubject = new Subject<InternshipDetailItem>();
   private destroySubj$ = new Subject<void>();
+  private selectedIds: number[] = [];
   private exportSubj$ = new Subject<void>();
   
   constructor(
@@ -94,7 +100,7 @@ export class InternShipListComponent
     this.destroySubj$.complete();
   }
   public addInternship() {
-    this.internshipService.entityTobeUpdated=undefined
+    this.internshipService.entityTobeUpdated = undefined;
     this.router.navigateByUrl('internships/create');
   }
   public updateInternship(id: unknown) {
@@ -104,7 +110,9 @@ export class InternShipListComponent
         tap((data) => {
           this.internshipService.entityTobeUpdated = data;
 
-          this.router.navigateByUrl('internships/create',{onSameUrlNavigation:'reload'});
+          this.router.navigateByUrl('internships/create', {
+            onSameUrlNavigation: 'reload',
+          });
         }),
         take(1),
         takeUntil(this.destroySubj$)
@@ -182,6 +190,7 @@ export class InternShipListComponent
           optionBuilder.push(value.id);
           return optionBuilder;
         },
+        defaultValue: undefined,
       },
       {
         label: 'unitNameLabel',
@@ -207,6 +216,7 @@ export class InternShipListComponent
           optionBuilder.push(value.id);
           return optionBuilder;
         },
+        defaultValue: undefined,
       },
       {
         label: 'schoolYearLabel',
@@ -221,17 +231,29 @@ export class InternShipListComponent
           optionBuilder.push(item);
           return optionBuilder;
         },
+        defaultValue: this.calculateCurrentSchoolyear(),
       },
     ];
 
     this.configureItems([this.configureDelete$()]);
+  }
+  private calculateCurrentSchoolyear() {
+    const date=new Date()
+    const year = date.getFullYear();
+    const month = date.getMonth()
+    if (month <= 6) {
+      return `${year-1}-${year}`
+    }
+    else {
+      return `${year}-${year + 1}`;
+    }
   }
   private availableDatesAsObservable() {
     const availableDates = [];
     const year = new Date().getFullYear();
     const previousYear = year - 1;
     for (let i = 0; i < 20; i++) {
-      availableDates[i] = `${previousYear - i+1}-${year - i+1}`;
+      availableDates[i] = `${previousYear - i + 1}-${year - i + 1}`;
     }
     return of(availableDates);
   }
@@ -241,15 +263,14 @@ export class InternShipListComponent
 
     if (record['schoolyear']) {
       activeFilters['schoolYear'] = record['schoolyear'];
-
     }
     if (record['units']) {
-      const unitIds = (record['units'] as string[])
-      let unitFilterString = "";
+      const unitIds = record['units'] as string[];
+      let unitFilterString = '';
       for (let unitId of unitIds) {
-        unitFilterString+=`unitIds=${unitId}&`
+        unitFilterString += `unitIds=${unitId}&`;
       }
-    unitFilterString=unitFilterString.slice(0, unitFilterString.length - 1);
+      unitFilterString = unitFilterString.slice(0, unitFilterString.length - 1);
       activeFilters['unitIds'] = unitFilterString;
     }
     if (record['languages']) {
@@ -265,7 +286,20 @@ export class InternShipListComponent
       activeFilters['languageIds'] = languageFilterString;
     }
     this.filterUpdated(activeFilters);
-
+  }
+  public addToSelectedInternships(completed: boolean, id: number) {
+    if (!completed) {
+      this.selectedIds = this.selectedIds.filter((x) => x !== id);
+      return;
+    }
+    this.selectedIds.push(id);
+  }
+  public copyInternship() {
+    this.internshipService.copyToNextYear(this.selectedIds).pipe(tap(() => {
+      // this.router.navigateByUrl('/internships', {
+      //   onSameUrlNavigation: 'reload',
+      // });
+    }),take(1),takeUntil(this.destroySubj$)).subscribe()
   }
   delete(id: number) {
     this.deleteSubject.next(id);

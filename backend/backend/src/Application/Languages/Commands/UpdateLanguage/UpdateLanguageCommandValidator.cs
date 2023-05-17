@@ -14,6 +14,7 @@ public class UpdateLanguageCommandValidator:AbstractValidator<UpdateLanguageComm
 
     public UpdateLanguageCommandValidator(IApplicationDbContext dbContext)
     {
+        _dbContext = dbContext;
         this.CascadeMode = CascadeMode.Stop;
         RuleFor(x => x).MustAsync(IsUniqueLanguage).NotEmpty().NotNull();
         RuleFor(x => x.Name).NotNull().NotEmpty().WithMessage("there is already an existing language");

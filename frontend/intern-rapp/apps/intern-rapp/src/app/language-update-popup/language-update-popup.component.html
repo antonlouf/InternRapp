@@ -41,7 +41,7 @@
     <mat-dialog-actions align="center">
        <div class="flex-row">
         <div>
-            <button (click)="close()" class="save-button flex-row-cancel-save-update"  [disabled]="!updateForm?.valid" >
+            <button (click)="close(true)" class="save-button flex-row-cancel-save-update"  [disabled]="!updateForm?.valid" >
                 
             <div><mat-icon>edit</mat-icon></div>
             <div>Update</div>
@@ -49,7 +49,7 @@
         </div>
         <div>
       
-           <button (click)="close()" class="cancel-button   flex-row-cancel-save-update"   mat-fab color="primary" aria-label="Example icon button with a delete icon">
+           <button (click)="close(false)" class="cancel-button   flex-row-cancel-save-update"   mat-fab color="primary" aria-label="Example icon button with a delete icon">
             <div>
                 <mat-icon>cancel</mat-icon> 
             </div>        

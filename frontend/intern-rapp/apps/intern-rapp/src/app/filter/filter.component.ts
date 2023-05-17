@@ -35,12 +35,19 @@ export class FilterComponent implements OnInit {
     this.filtertype = FilterType;
   }
   ngOnInit(): void {
+    
     this.filters.forEach((x) => {
-      this.filterForm.addControl(x.name, new FormControl());
+      this.filterForm.addControl(x.name, new FormControl(x.defaultValue));
     });
+
+ 
   }
   filter() {
     this.filtered.emit(this.filterForm.getRawValue());
   }
-  
+  // compareValues(o1: any, o2: any) {
+  //   debugger
+  //   console.log("in comparing")
+  //   return o1===o2
+  // }
 }

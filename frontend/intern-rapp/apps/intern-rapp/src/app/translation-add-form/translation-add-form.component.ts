@@ -10,49 +10,66 @@ import { AngularEditorConfig, AngularEditorModule } from '@kolkov/angular-editor
 @Component({
   selector: 'intern-rapp-translation-add-form',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,MatFormFieldModule,AngularEditorModule ,TranslateModule,MatInputModule,MatDialogModule,MatIconModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    AngularEditorModule,
+    TranslateModule,
+    MatInputModule,
+    MatDialogModule,
+    MatIconModule,
+  ],
   templateUrl: './translation-add-form.component.html',
   styleUrls: ['./translation-add-form.component.scss'],
 })
 export class TranslationAddFormComponent {
-  @Input() internshipTranslationForm:FormGroup|undefined
+  @Input() internshipTranslationForm: FormGroup | undefined;
   editorConfig: AngularEditorConfig = {
     editable: true,
-      spellcheck: true,
-      height: 'auto',
-      minHeight: '0',
-      maxHeight: 'auto',
-      width: 'auto',
-      minWidth: '0',
-      translate: 'yes',
-      enableToolbar: true,
-      showToolbar: true,
-      placeholder: '',
-      defaultParagraphSeparator: '',
-      defaultFontName: '',
-      defaultFontSize: '',
-      fonts: [
-        {class: 'arial', name: 'Arial'},
-        {class: 'times-new-roman', name: 'Times New Roman'},
-        {class: 'calibri', name: 'Calibri'},
-        {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+    spellcheck: true,
+    height: '250px',
+    minHeight: '0',
+    maxHeight: 'auto',
+    width: 'auto', 
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: '',
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '16',
+    fonts: [{ class: 'Verdana', name: 'Verdana' }],
+    toolbarHiddenButtons: [
+      [
+        'undo',
+        'redo',
+        'underline',
+        'fonSize',
+        'strikeThrough',
+        'subscript',
+        'superscript',
+        'justifyLeft',
+        'justifyCenter',
+        'justifyRight',
+        'justifyFull',
+        'indent',
+        'outdent',
+        'fontName',
       ],
-      customClasses: [
-      {
-        name: 'quote',
-        class: 'quote',
-      },
-      {
-        name: 'redText',
-        class: 'redText'
-      },
-      {
-        name: 'titleText',
-        class: 'titleText',
-        tag: 'h1',
-      },
+      [
+        'fontSize',
+        'textColor',
+        'backgroundColor',
+        'link',
+        'unlink',
+        'insertImage',
+        'insertVideo',
+        'insertHorizontalRule',
+        'removeFormat',
+        'toggleEditorMode',
+      ],
     ],
-
-  
-};
+  };
 }
