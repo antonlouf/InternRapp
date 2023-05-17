@@ -66,19 +66,19 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 1,
                             Email = "recep@inetum-realdolmen.world",
-                            ObjectIdentifier = new Guid("d550c298-765c-48b7-a6e7-6e48079bc1fd")
+                            ObjectIdentifier = new Guid("d85ace2a-6597-4391-bd9c-8c4f198c969c")
                         },
                         new
                         {
                             Id = 2,
                             Email = "Anton@inetum-realdolmen.world",
-                            ObjectIdentifier = new Guid("faccb848-eaca-4e58-8e8b-635efdb54973")
+                            ObjectIdentifier = new Guid("c6a2035b-dcf9-45f0-9262-3849801d0583")
                         },
                         new
                         {
                             Id = 3,
                             Email = "Nils@inetum-realdolmen.world",
-                            ObjectIdentifier = new Guid("458b66a1-2bcb-43d6-865f-085fb362ddc0")
+                            ObjectIdentifier = new Guid("e4d901d3-047b-40ea-866a-89fe3b227c94")
                         });
                 });
 
