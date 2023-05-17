@@ -12,8 +12,8 @@ using backend.Infrastructure.Persistence;
 namespace backend.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230501002408_test")]
-    partial class test
+    [Migration("20230516145546_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,6 +53,9 @@ namespace backend.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<Guid>("ObjectIdentifier")
                         .HasColumnType("uniqueidentifier");
 
@@ -72,6 +75,9 @@ namespace backend.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("ManagerEmails")
                         .HasColumnType("nvarchar(max)");
@@ -98,6 +104,9 @@ namespace backend.Infrastructure.Migrations
 
                     b.Property<byte>("CurrentCountOfStudents")
                         .HasColumnType("tinyint");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<byte>("MaxStudents")
                         .HasColumnType("tinyint");
@@ -147,6 +156,9 @@ namespace backend.Infrastructure.Migrations
                     b.Property<int>("InternShipId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("KnowledgeToDevelop")
                         .IsRequired()
                         .HasMaxLength(250)
@@ -192,6 +204,9 @@ namespace backend.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -221,6 +236,9 @@ namespace backend.Infrastructure.Migrations
                     b.Property<int>("HouseNumber")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("StreetName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -246,6 +264,9 @@ namespace backend.Infrastructure.Migrations
 
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
@@ -279,11 +300,13 @@ namespace backend.Infrastructure.Migrations
 
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
                 {
-                    b.HasOne("backend.Domain.Entities.Department", null)
+                    b.HasOne("backend.Domain.Entities.Department", "Unit")
                         .WithMany("Internships")
                         .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Unit");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.InternShipContentTranslation", b =>

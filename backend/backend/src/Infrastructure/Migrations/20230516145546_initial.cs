@@ -18,7 +18,8 @@ namespace backend.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ObjectIdentifier = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -33,7 +34,8 @@ namespace backend.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ManagerEmails = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ManagerEmails = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,7 +49,8 @@ namespace backend.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Code = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -63,7 +66,8 @@ namespace backend.Infrastructure.Migrations
                     City = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     StreetName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     HouseNumber = table.Column<int>(type: "int", nullable: false),
-                    ZipCode = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false)
+                    ZipCode = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,7 +84,8 @@ namespace backend.Infrastructure.Migrations
                     SchoolYear = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     MaxStudents = table.Column<byte>(type: "tinyint", nullable: false),
                     CurrentCountOfStudents = table.Column<byte>(type: "tinyint", nullable: false),
-                    RequiredTrainingType = table.Column<int>(type: "int", nullable: false)
+                    RequiredTrainingType = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -101,7 +106,8 @@ namespace backend.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LanguageId = table.Column<int>(type: "int", nullable: false),
-                    UnitId = table.Column<int>(type: "int", nullable: false)
+                    UnitId = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -158,7 +164,8 @@ namespace backend.Infrastructure.Migrations
                     Comment = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Content = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     InternShipId = table.Column<int>(type: "int", nullable: false),
-                    LanguageId = table.Column<int>(type: "int", nullable: false)
+                    LanguageId = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

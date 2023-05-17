@@ -12,15 +12,15 @@ public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
 {
     public void Configure(EntityTypeBuilder<Department> builder)
     {
-       builder.HasKey(x => x.Id);
-       builder.Property(x => x.Name)
-                                    .HasMaxLength(100)
-                                    .IsRequired();
+        builder.HasKey(x => x.Id);
+        builder.Property(x => x.Name)
+                                     .HasMaxLength(100)
+                                     .IsRequired();
         builder.HasIndex(x => x.Name);
-        
-        builder.Property(x=>x.ManagerEmails).UsePropertyAccessMode(PropertyAccessMode.PreferProperty).HasConversion(v=>string.Join(',',v),x=>x.Split(',',StringSplitOptions.RemoveEmptyEntries).ToList());
-        builder.HasMany(x => x.PrefaceTranslations).WithOne(x=>x.Unit).HasForeignKey(x=>x.UnitId).OnDelete(DeleteBehavior.Cascade);
-       builder.HasMany(x => x.Internships).WithOne(x=>x.Unit).OnDelete(DeleteBehavior.Cascade);
+
+        builder.Property(x => x.ManagerEmails).UsePropertyAccessMode(PropertyAccessMode.PreferProperty).HasConversion(v => string.Join(',', v), x => x.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList());
+        builder.HasMany(x => x.PrefaceTranslations).WithOne(x => x.Unit).HasForeignKey(x => x.UnitId).OnDelete(DeleteBehavior.Cascade);
+        builder.HasMany(x => x.Internships).WithOne(x => x.Unit).OnDelete(DeleteBehavior.Cascade);
 
 
     }

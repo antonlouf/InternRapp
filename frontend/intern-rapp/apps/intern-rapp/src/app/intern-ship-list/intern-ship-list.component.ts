@@ -58,7 +58,7 @@ import { DepartementItemWithMinimalData } from '../entities/depItemWithMinimalDa
     MatDialogModule,
   ],
   templateUrl: './intern-ship-list.component.html',
-  styleUrls: ['./intern-ship-list.component.scss']
+  styleUrls: ['./intern-ship-list.component.scss'],
 })
 export class InternShipListComponent
   extends BaseList<InternshipItem>
@@ -90,7 +90,7 @@ export class InternShipListComponent
     this.destroySubj$.complete();
   }
   public addInternship() {
-    this.internshipService.entityTobeUpdated=undefined
+    this.internshipService.entityTobeUpdated = undefined;
     this.router.navigateByUrl('internships/create');
   }
   public updateInternship(id: unknown) {
@@ -100,7 +100,9 @@ export class InternShipListComponent
         tap((data) => {
           this.internshipService.entityTobeUpdated = data;
 
-          this.router.navigateByUrl('internships/create',{onSameUrlNavigation:'reload'});
+          this.router.navigateByUrl('internships/create', {
+            onSameUrlNavigation: 'reload',
+          });
         }),
         take(1),
         takeUntil(this.destroySubj$)
@@ -201,25 +203,24 @@ export class InternShipListComponent
     const year = new Date().getFullYear();
     const previousYear = year - 1;
     for (let i = 0; i < 20; i++) {
-      availableDates[i] = `${previousYear - i+1}-${year - i+1}`;
+      availableDates[i] = `${previousYear - i + 1}-${year - i + 1}`;
     }
     return of(availableDates);
   }
   filterUpdating(filter: {}) {
     const record = filter as Record<string, never>;
-    const activeFilters :Record<string,unknown>= {};
-    
+    const activeFilters: Record<string, unknown> = {};
+
     if (record['schoolyear']) {
       activeFilters['schoolYear'] = record['schoolyear'];
-
     }
     if (record['units']) {
-      const unitIds = (record['units'] as string[])
-      let unitFilterString = "";
+      const unitIds = record['units'] as string[];
+      let unitFilterString = '';
       for (let unitId of unitIds) {
-        unitFilterString+=`unitIds=${unitId}&`
+        unitFilterString += `unitIds=${unitId}&`;
       }
-    unitFilterString=unitFilterString.slice(0, unitFilterString.length - 1);
+      unitFilterString = unitFilterString.slice(0, unitFilterString.length - 1);
       activeFilters['unitIds'] = unitFilterString;
     }
     if (record['languages']) {
@@ -235,7 +236,6 @@ export class InternShipListComponent
       activeFilters['languageIds'] = languageFilterString;
     }
     this.filterUpdated(activeFilters);
-
   }
   delete(id: number) {
     this.deleteSubject.next(id);

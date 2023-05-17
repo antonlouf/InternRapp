@@ -3,15 +3,14 @@
     "",
     "\\src",
     "\\src\\Application",
-    "\\src\\Application\\Units",
-    "\\src\\Application\\Units\\Queries",
-    "\\src\\Application\\Units\\Queries\\GetAllUnits",
-    "\\src\\Domain",
-    "\\src\\Domain\\Entities",
+    "\\src\\Application\\InternShips",
+    "\\src\\Application\\InternShips\\Commands",
+    "\\src\\Application\\InternShips\\Commands\\DeleteInternship",
     "\\src\\Infrastructure",
     "\\src\\Infrastructure\\Migrations",
-    "\\unit tests"
+    "\\src\\Infrastructure\\Persistence",
+    "\\src\\Infrastructure\\Persistence\\Configurations"
   ],
-  "SelectedNode": "\\src\\Infrastructure\\Migrations\\20230501003605_after test.cs",
+  "SelectedNode": "\\src\\Infrastructure\\Persistence\\Configurations\\InternShipContentTranslationConfiguration.cs",
   "PreviewInSolutionExplorer": false
 }

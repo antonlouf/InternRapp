@@ -42,9 +42,9 @@ public class LocationController: ControllerBase
         return Ok();
     }
     [HttpDelete()]
-    public async Task<IActionResult> UpdateLocation(int id)
+    public async Task<IActionResult> DeleteLocation([FromBody] List<int> ids)
     {
-        await _mediator.Send(new DeleteLocationCommand() { Id = id });
+        await _mediator.Send(new DeleteLocationCommand() { Ids =ids });
         return Ok();
     }
 
