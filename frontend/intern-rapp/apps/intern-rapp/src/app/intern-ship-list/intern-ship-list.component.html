@@ -10,6 +10,7 @@
 internRappItemsTmpl let-items
 >
 
+
     <div class="buttons-above-list">       
     <div class="align-right save-button-above-list">
   <button mat-icon-button (click)="addInternship()" >
@@ -22,8 +23,15 @@ internRappItemsTmpl let-items
   <mat-icon>file_copy</mat-icon>
   </button>
 </div>
+<div>
+  <button mat-icon-button (click)="exportButtonHandler()">
+    <mat-icon>save_alt</mat-icon>
+  </button>
+</div>
 </div >
 
+
+   
   <mat-list >
 <div class="flex-row-columns">
   <div class="internship-name">{{'internshipNameColumnLabel'|translate}}</div>
@@ -37,7 +45,7 @@ internRappItemsTmpl let-items
         </div>
         <div>{{item.title}}</div>
         <div class="flex-begin">
-          <span class="material-symbols-outlined" style="color:red" *ngFor="let availablePlace of [].constructor(item.currentCountOfStudents)">
+          <span class="material-symbols-outlined" style="color:red" *ngFor="let takenPlace of [].constructor(item.currentCountOfStudents)">
             person
             </span>
             <span class="material-symbols-outlined" style="color:green" *ngFor="let availablePlace of [].constructor(item.maxStudents-item.currentCountOfStudents)">
