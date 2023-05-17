@@ -183,9 +183,9 @@ namespace backend.Infrastructure.Migrations
                 columns: new[] { "Id", "Email", "ObjectIdentifier" },
                 values: new object[,]
                 {
-                    { 1, "recep@inetum-realdolmen.world", new Guid("d85ace2a-6597-4391-bd9c-8c4f198c969c") },
-                    { 2, "Anton@inetum-realdolmen.world", new Guid("c6a2035b-dcf9-45f0-9262-3849801d0583") },
-                    { 3, "Nils@inetum-realdolmen.world", new Guid("e4d901d3-047b-40ea-866a-89fe3b227c94") }
+                    { 1, "recep@inetum-realdolmen.world", new Guid("3ae6505b-a151-47f2-91e5-09a875a52d52") },
+                    { 2, "Anton@inetum-realdolmen.world", new Guid("e1000d74-4dcc-405b-984b-5f09d960ab6e") },
+                    { 3, "Nils@inetum-realdolmen.world", new Guid("854fad5e-fb28-4163-83f6-39522b9e79cf") }
                 });
 
             migrationBuilder.InsertData(
