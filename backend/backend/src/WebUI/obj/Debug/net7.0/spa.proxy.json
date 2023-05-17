@@ -1,8 +1,0 @@
-{
-"SpaProxyServer": {
-"ServerUrl": "https://localhost:44447",
-"LaunchCommand": "npm start",
-"WorkingDirectory": "C:\\Users\\ALFCP98\\source\\repos\\InternRApp\\backend\\backend\\src\\WebUI\\ClientApp\\",
-"MaxTimeoutInSeconds": "120"
-}
-}
