@@ -12,7 +12,7 @@ using backend.Infrastructure.Persistence;
 namespace backend.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230509095348_initial")]
+    [Migration("20230517093529_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -69,19 +69,19 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 1,
                             Email = "recep@inetum-realdolmen.world",
-                            ObjectIdentifier = new Guid("397d322d-415f-4d7e-9130-4b524f365a88")
+                            ObjectIdentifier = new Guid("d85ace2a-6597-4391-bd9c-8c4f198c969c")
                         },
                         new
                         {
                             Id = 2,
                             Email = "Anton@inetum-realdolmen.world",
-                            ObjectIdentifier = new Guid("51004831-7531-44dd-a117-372a40e43cc2")
+                            ObjectIdentifier = new Guid("c6a2035b-dcf9-45f0-9262-3849801d0583")
                         },
                         new
                         {
                             Id = 3,
                             Email = "Nils@inetum-realdolmen.world",
-                            ObjectIdentifier = new Guid("6fefbf04-1280-4548-a964-090c94725168")
+                            ObjectIdentifier = new Guid("e4d901d3-047b-40ea-866a-89fe3b227c94")
                         });
                 });
 
@@ -173,11 +173,6 @@ namespace backend.Infrastructure.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(350)
@@ -195,9 +190,7 @@ namespace backend.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Location")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NeededKnowledge")
                         .IsRequired()
@@ -222,7 +215,6 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 3,
                             Comment = "<p>required diploma for this internship is: Bachelor<p>",
-                            Content = "blabla",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p>",
                             InternShipId = 1,
                             KnowledgeToDevelop = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
@@ -235,7 +227,6 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 2,
                             Comment = "<p>required diploma for this internship is: Bachelor<p>",
-                            Content = "blabla",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p>",
                             InternShipId = 1,
                             KnowledgeToDevelop = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
@@ -248,7 +239,6 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 1,
                             Comment = "<p>required diploma for this internship is: Bachelor<p>",
-                            Content = "blabla",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p>",
                             InternShipId = 1,
                             KnowledgeToDevelop = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
