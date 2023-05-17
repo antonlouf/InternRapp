@@ -132,6 +132,9 @@
   <data name="addLocationHeader" xml:space="preserve">
     <value>Add a location</value>
   </data>
+  <data name="and" xml:space="preserve">
+    <value>and</value>
+  </data>
   <data name="Bachelor" xml:space="preserve">
     <value>Bachelor</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="commentLabel" xml:space="preserve">
     <value>comment</value>
+  </data>
+  <data name="commentLabelErrorMessage" xml:space="preserve">
+    <value>The comment could not empty or greater than 1000 characters</value>
   </data>
   <data name="confirmDeleteMessage" xml:space="preserve">
     <value>Are you sure to delete? </value>
@@ -166,13 +172,16 @@
     <value>the department name is required</value>
   </data>
   <data name="departmentNameLabel" xml:space="preserve">
-    <value>departement Name</value>
+    <value>department</value>
   </data>
   <data name="departments" xml:space="preserve">
     <value>departments</value>
   </data>
   <data name="descriptionLabel" xml:space="preserve">
     <value>description</value>
+  </data>
+  <data name="descriptionLabelErrorMessage" xml:space="preserve">
+    <value>The description of  the internship may not be null and   longer  greater than 1000 characters</value>
   </data>
   <data name="editButton" xml:space="preserve">
     <value>edit</value>
@@ -183,17 +192,35 @@
   <data name="events" xml:space="preserve">
     <value>events</value>
   </data>
+  <data name="fieldRequiredErrorMessage" xml:space="preserve">
+    <value>this is mandatory</value>
+  </data>
   <data name="Fr" xml:space="preserve">
     <value>French</value>
   </data>
+  <data name="FreeUsedPlacesLabel" xml:space="preserve">
+    <value>free/occupied places</value>
+  </data>
+  <data name="greaterThanMaxStudentsErrorMessage" xml:space="preserve">
+    <value>The count of students for the internship may not exceed the maxium permitted count</value>
+  </data>
+  <data name="GreaterThanParamLimitError" xml:space="preserve">
+    <value>you must enter a number between 0 and 15.</value>
+  </data>
   <data name="internship" xml:space="preserve">
     <value>internship</value>
+  </data>
+  <data name="internshipNameColumnLabel" xml:space="preserve">
+    <value>The name of the internship</value>
   </data>
   <data name="internships" xml:space="preserve">
     <value>internships</value>
   </data>
   <data name="knowledgeToDevelopLabel" xml:space="preserve">
     <value>knowledge to develop</value>
+  </data>
+  <data name="knowledgeToDevelopLabelErrorMessage" xml:space="preserve">
+    <value>the knowledge needed for the internship may not be null or greater than 1000 characters</value>
   </data>
   <data name="language" xml:space="preserve">
     <value>language</value>
@@ -249,6 +276,9 @@
   <data name="managerEmail" xml:space="preserve">
     <value>manager email</value>
   </data>
+  <data name="managerEmailsLabel" xml:space="preserve">
+    <value>the email(s) of the managers</value>
+  </data>
   <data name="Master" xml:space="preserve">
     <value>Master</value>
   </data>
@@ -276,6 +306,9 @@
   <data name="Nl" xml:space="preserve">
     <value>Dutch</value>
   </data>
+  <data name="q" xml:space="preserve">
+    <value />
+  </data>
   <data name="saveButtonText" xml:space="preserve">
     <value>save</value>
   </data>
@@ -288,11 +321,17 @@
   <data name="titleContentLabel" xml:space="preserve">
     <value>title</value>
   </data>
+  <data name="titleContentLabelErrorMessage" xml:space="preserve">
+    <value>The name of the internship could not be empty</value>
+  </data>
   <data name="trainingTypeLabel" xml:space="preserve">
     <value>required training type</value>
   </data>
   <data name="unitEmptyErrorMessage" xml:space="preserve">
     <value>The unit is required</value>
+  </data>
+  <data name="Unitname" xml:space="preserve">
+    <value />
   </data>
   <data name="unitNameLabel" xml:space="preserve">
     <value>unit</value>

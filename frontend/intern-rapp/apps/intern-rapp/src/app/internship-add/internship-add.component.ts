@@ -16,7 +16,7 @@ import {
 } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subject, Observable, switchMap, tap, of } from 'rxjs';
 import { DepartmentService } from '../services/department.service';
 import {
@@ -49,9 +49,10 @@ import { LocationItem } from '../entities/locationItem';
 import { LocationService } from '../services/location.service';
 import { CreateInternship } from '../entities/createInternship';
 import { InternshipService } from '../services/internship.service';
-import { NavigationExtras, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import { InternshipTranslationUpdateDto } from '../entities/internshipTranslationUpdateDto';
 import { InternshipUpdateDto } from '../entities/internshipUpdateDto';
+import { isLessThanOrEqualToParam, islessThanOrEqualToMaxStudents } from './customValidator';
 @Component({
   selector: 'intern-rapp-internship-add',
   standalone: true,
@@ -87,7 +88,8 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
     private locationService: LocationService,
     private internShipService: InternshipService,
     private router: Router,
-    private changeDetectorRef:ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private translateService:TranslateService
   ) {}
 
   public unitObs$: Observable<DepartementItemWithMinimalData[]> | undefined;
@@ -122,11 +124,17 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
       ),
       maxStudents: new FormControl(
         this.internShipService.entityTobeUpdated?.maxCountOfStudents ?? 0,
-        [Validators.required, Validators.pattern('^[0-9]*$')]
+        [Validators.required, isLessThanOrEqualToParam(15)]
       ),
       currentCountOfStudents: new FormControl(
         this.internShipService.entityTobeUpdated?.currentCountOfStudents ?? 0,
-        [Validators.required, Validators.pattern('^[0-9]*$')]
+        [
+          Validators.required,
+          islessThanOrEqualToMaxStudents(
+            this.internShipService.entityTobeUpdated?.maxCountOfStudents ?? 0
+          ),
+          isLessThanOrEqualToParam(15),
+        ]
       ),
       trainingType: new FormControl(
         this.internShipService.entityTobeUpdated?.trainingType ?? 0,
@@ -138,6 +146,7 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
         [Validators.required]
       ),
     });
+
     this.languageObs$ = this.languageService
       .filterAndPaginateLanguages({
         filterString: '',
@@ -182,8 +191,9 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
         );
       }
     );
+    console.log(this.addInternshipForm?.controls['maxStudents'].value);
   }
-
+  
   compareTrainingType(o1: any, o2: any) {
     return Number(o1) === o2;
   }
@@ -249,6 +259,7 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
               const controls = (
                 this.addInternshipForm?.controls['translateTabs'] as FormArray
               ).controls;
+              debugger
               controls.push(
                 buildFormGroupForTranslations(
                   undefined,
@@ -264,6 +275,44 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
         takeUntil(this.destrojSubj$)
       )
       .subscribe();
+  }
+  public buildErrorMessage(controlName: string) {
+    const errors = this.addInternshipForm?.controls[controlName].errors
+    
+    let errorMessage = "";
+    if (errors===undefined||errors===null) {
+      return errorMessage
+    }
+  
+  const errorAsArray = Object.values(errors as {});
+    for (const error of errorAsArray) {
+      
+      if (error === true) {
+        errorMessage += this.translateService.instant(
+          'fieldRequiredErrorMessage'
+        );
+          const isNotLastItem =
+            errorAsArray.indexOf(error) < errorAsArray.length - 1;
+          if (errorMessage.length > 0 && isNotLastItem) {
+            errorMessage += this.translateService.instant('and');
+            errorMessage += ' ';
+          }
+       
+      } else {
+        const errorMessageIntern = Object.values(error as {});
+        
+        errorMessage += this.translateService.instant(`${errorMessageIntern[0]}`);
+        errorMessage += ' ';
+        const isNotLastItem = errorAsArray.indexOf(error) < errorAsArray.length - 1;
+        if (errorMessage.length > 0 && isNotLastItem) {
+          errorMessage += this.translateService.instant('and');
+          errorMessage += ' ';
+        }
+      }
+      
+    }
+    
+    return errorMessage
   }
   public getFormGroupOutOfAbstractControl(
     abstractControl: AbstractControl

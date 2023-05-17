@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage line-rate="0.57662737057919" branch-rate="0.579831932773109" lines-covered="1125" lines-valid="1951" branches-covered="138" branches-valid="238" complexity="552" version="0" timestamp="1682509518">
+<coverage line-rate="0.532011331444759" branch-rate="0.546296296296296" lines-covered="939" lines-valid="1765" branches-covered="118" branches-valid="216" complexity="508" version="0" timestamp="1683649797">
   <sources>
     <source>C:\Users\RGTCP77\</source>
   </sources>
   <packages>
-    <package name="backend.Application" line-rate="0.148268398268398" branch-rate="0.36" complexity="373">
+    <package name="backend.Application" line-rate="0.141447368421053" branch-rate="0.297872340425532" complexity="341">
       <classes>
         <class name="backend.Application.ApplicationUsers.Commands.CreateApplicationUser.CreateApplicationUserCommand" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\ApplicationUsers\Commands\CreateApplicationUser\CreateApplicationUserCommand.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
@@ -695,76 +695,150 @@
           <methods>
             <method name="AddApplicationServices" signature="(...)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="11" hits="0" branch="false" />
-                <line number="12" hits="0" branch="false" />
-                <line number="13" hits="0" branch="false" />
                 <line number="14" hits="0" branch="false" />
                 <line number="15" hits="0" branch="false" />
                 <line number="16" hits="0" branch="false" />
                 <line number="17" hits="0" branch="false" />
+                <line number="18" hits="0" branch="false" />
                 <line number="19" hits="0" branch="false" />
                 <line number="20" hits="0" branch="false" />
+                <line number="21" hits="0" branch="false" />
+                <line number="22" hits="0" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="11" hits="0" branch="false" />
-            <line number="12" hits="0" branch="false" />
-            <line number="13" hits="0" branch="false" />
             <line number="14" hits="0" branch="false" />
             <line number="15" hits="0" branch="false" />
             <line number="16" hits="0" branch="false" />
             <line number="17" hits="0" branch="false" />
+            <line number="18" hits="0" branch="false" />
             <line number="19" hits="0" branch="false" />
             <line number="20" hits="0" branch="false" />
+            <line number="21" hits="0" branch="false" />
+            <line number="22" hits="0" branch="false" />
+          </lines>
+        </class>
+        <class name="backend.Application.InternShips.Commands.CopyInternshipToNextYear.CopyInternshipToNextYearCommand" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Commands\CopyInternshipToNextYear\CopyInternshipToNextYearCommand.cs" line-rate="0" branch-rate="1" complexity="1">
+          <methods>
+            <method name="get_IdsOfExistingInternships" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="14" hits="0" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="14" hits="0" branch="false" />
+          </lines>
+        </class>
+        <class name="backend.Application.InternShips.Commands.CopyInternshipToNextYear.CopyInternshipToNextYearCommandHandler" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Commands\CopyInternshipToNextYear\CopyInternshipToNextYearCommand.cs" line-rate="0" branch-rate="0" complexity="4">
+          <methods>
+            <method name="CalculateNextSchoolYear" signature="(...)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="44" hits="0" branch="false" />
+                <line number="45" hits="0" branch="false" />
+                <line number="46" hits="0" branch="false" />
+                <line number="48" hits="0" branch="false" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(...)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="20" hits="0" branch="false" />
+                <line number="21" hits="0" branch="false" />
+                <line number="22" hits="0" branch="false" />
+                <line number="23" hits="0" branch="false" />
+              </lines>
+            </method>
+            <method name="Handle" signature="()" line-rate="0" branch-rate="0" complexity="2">
+              <lines>
+                <line number="26" hits="0" branch="false" />
+                <line number="27" hits="0" branch="false" />
+                <line number="28" hits="0" branch="false" />
+                <line number="30" hits="0" branch="true" condition-coverage="0% (0/2)" />
+                <line number="31" hits="0" branch="false" />
+                <line number="32" hits="0" branch="false" />
+                <line number="33" hits="0" branch="false" />
+                <line number="34" hits="0" branch="false" />
+                <line number="35" hits="0" branch="false" />
+                <line number="36" hits="0" branch="false" />
+                <line number="37" hits="0" branch="false" />
+                <line number="38" hits="0" branch="false" />
+                <line number="40" hits="0" branch="false" />
+                <line number="42" hits="0" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="20" hits="0" branch="false" />
+            <line number="21" hits="0" branch="false" />
+            <line number="22" hits="0" branch="false" />
+            <line number="23" hits="0" branch="false" />
+            <line number="26" hits="0" branch="false" />
+            <line number="27" hits="0" branch="false" />
+            <line number="28" hits="0" branch="false" />
+            <line number="30" hits="0" branch="true" condition-coverage="0% (0/2)" />
+            <line number="31" hits="0" branch="false" />
+            <line number="32" hits="0" branch="false" />
+            <line number="33" hits="0" branch="false" />
+            <line number="34" hits="0" branch="false" />
+            <line number="35" hits="0" branch="false" />
+            <line number="36" hits="0" branch="false" />
+            <line number="37" hits="0" branch="false" />
+            <line number="38" hits="0" branch="false" />
+            <line number="40" hits="0" branch="false" />
+            <line number="42" hits="0" branch="false" />
+            <line number="44" hits="0" branch="false" />
+            <line number="45" hits="0" branch="false" />
+            <line number="46" hits="0" branch="false" />
+            <line number="48" hits="0" branch="false" />
           </lines>
         </class>
         <class name="backend.Application.InternShips.Commands.CreateInternShip.CreateInternShipCommand" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Commands\CreateInternShip\CreateInternShipCommand.cs" line-rate="1" branch-rate="1" complexity="7">
           <methods>
             <method name="get_SchoolYear" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="15" hits="24" branch="false" />
+                <line number="15" hits="20" branch="false" />
               </lines>
             </method>
             <method name="get_UnitId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="16" hits="13" branch="false" />
+                <line number="16" hits="11" branch="false" />
               </lines>
             </method>
             <method name="get_MaxCountOfStudents" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="17" hits="26" branch="false" />
+                <line number="17" hits="22" branch="false" />
               </lines>
             </method>
             <method name="get_CurrentCountOfStudents" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="18" hits="14" branch="false" />
+                <line number="18" hits="12" branch="false" />
               </lines>
             </method>
             <method name="get_TrainingType" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="19" hits="23" branch="false" />
+                <line number="19" hits="19" branch="false" />
               </lines>
             </method>
             <method name="get_Locations" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="22" hits="23" branch="false" />
+                <line number="22" hits="19" branch="false" />
               </lines>
             </method>
             <method name="get_Versions" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="23" hits="21" branch="false" />
+                <line number="23" hits="17" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="15" hits="24" branch="false" />
-            <line number="16" hits="13" branch="false" />
-            <line number="17" hits="26" branch="false" />
-            <line number="18" hits="14" branch="false" />
-            <line number="19" hits="23" branch="false" />
-            <line number="22" hits="23" branch="false" />
-            <line number="23" hits="21" branch="false" />
+            <line number="15" hits="20" branch="false" />
+            <line number="16" hits="11" branch="false" />
+            <line number="17" hits="22" branch="false" />
+            <line number="18" hits="12" branch="false" />
+            <line number="19" hits="19" branch="false" />
+            <line number="22" hits="19" branch="false" />
+            <line number="23" hits="17" branch="false" />
           </lines>
         </class>
         <class name="backend.Application.InternShips.Commands.CreateInternShip.CreateInternShipCommandHandler" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Commands\CreateInternShip\CreateInternShipCommand.cs" line-rate="0" branch-rate="0" complexity="3">
@@ -800,8 +874,6 @@
                 <line number="53" hits="0" branch="false" />
                 <line number="54" hits="0" branch="false" />
                 <line number="55" hits="0" branch="false" />
-                <line number="56" hits="0" branch="false" />
-                <line number="57" hits="0" branch="false" />
               </lines>
             </method>
           </methods>
@@ -831,146 +903,84 @@
             <line number="53" hits="0" branch="false" />
             <line number="54" hits="0" branch="false" />
             <line number="55" hits="0" branch="false" />
-            <line number="56" hits="0" branch="false" />
-            <line number="57" hits="0" branch="false" />
           </lines>
         </class>
         <class name="backend.Application.InternShips.Commands.CreateInternShip.CreateInterShipCommandValidator" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Commands\CreateInternShip\CreateInterShipCommandValidator.cs" line-rate="1" branch-rate="1" complexity="2">
           <methods>
             <method name=".ctor" signature="(...)" line-rate="1" branch-rate="1" complexity="2">
               <lines>
-                <line number="13" hits="13" branch="false" />
-                <line number="14" hits="13" branch="false" />
-                <line number="16" hits="13" branch="false" />
-                <line number="17" hits="13" branch="false" />
-                <line number="18" hits="13" branch="false" />
-                <line number="19" hits="13" branch="false" />
-                <line number="20" hits="26" branch="false" />
-                <line number="21" hits="13" branch="false" />
-                <line number="22" hits="13" branch="false" />
-                <line number="23" hits="13" branch="false" />
-                <line number="24" hits="13" branch="true" condition-coverage="100% (2/2)" />
-                <line number="25" hits="13" branch="false" />
-                <line number="26" hits="13" branch="false" />
+                <line number="13" hits="11" branch="false" />
+                <line number="14" hits="11" branch="false" />
+                <line number="16" hits="11" branch="false" />
+                <line number="17" hits="11" branch="false" />
+                <line number="18" hits="11" branch="false" />
+                <line number="19" hits="11" branch="false" />
+                <line number="20" hits="22" branch="false" />
+                <line number="21" hits="11" branch="false" />
+                <line number="22" hits="11" branch="false" />
+                <line number="23" hits="11" branch="false" />
+                <line number="24" hits="11" branch="true" condition-coverage="100% (2/2)" />
+                <line number="25" hits="11" branch="false" />
+                <line number="26" hits="11" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="13" hits="13" branch="false" />
-            <line number="14" hits="13" branch="false" />
-            <line number="16" hits="13" branch="false" />
-            <line number="17" hits="13" branch="false" />
-            <line number="18" hits="13" branch="false" />
-            <line number="19" hits="13" branch="false" />
-            <line number="20" hits="26" branch="false" />
-            <line number="21" hits="13" branch="false" />
-            <line number="22" hits="13" branch="false" />
-            <line number="23" hits="13" branch="false" />
-            <line number="24" hits="13" branch="true" condition-coverage="100% (2/2)" />
-            <line number="25" hits="13" branch="false" />
-            <line number="26" hits="13" branch="false" />
+            <line number="13" hits="11" branch="false" />
+            <line number="14" hits="11" branch="false" />
+            <line number="16" hits="11" branch="false" />
+            <line number="17" hits="11" branch="false" />
+            <line number="18" hits="11" branch="false" />
+            <line number="19" hits="11" branch="false" />
+            <line number="20" hits="22" branch="false" />
+            <line number="21" hits="11" branch="false" />
+            <line number="22" hits="11" branch="false" />
+            <line number="23" hits="11" branch="false" />
+            <line number="24" hits="11" branch="true" condition-coverage="100% (2/2)" />
+            <line number="25" hits="11" branch="false" />
+            <line number="26" hits="11" branch="false" />
           </lines>
         </class>
-        <class name="backend.Application.InternShips.Commands.CreateInternShip.InternShipCreateDto" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Commands\CreateInternShip\InternShipCreateDto.cs" line-rate="0" branch-rate="1" complexity="7">
-          <methods>
-            <method name="get_SchoolYear" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="12" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_UnitId" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="13" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_MaxCountOfStudents" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="14" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_CurrentCountOfStudents" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="15" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_TrainingType" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="16" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_Locations" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="19" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_Versions" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="20" hits="0" branch="false" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="12" hits="0" branch="false" />
-            <line number="13" hits="0" branch="false" />
-            <line number="14" hits="0" branch="false" />
-            <line number="15" hits="0" branch="false" />
-            <line number="16" hits="0" branch="false" />
-            <line number="19" hits="0" branch="false" />
-            <line number="20" hits="0" branch="false" />
-          </lines>
-        </class>
-        <class name="backend.Application.InternShips.Commands.CreateInternShip.TranslationCreateInternshipDto" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Commands\CreateInternShip\TranslationCreateInternshipDto.cs" line-rate="1" branch-rate="1" complexity="8">
+        <class name="backend.Application.InternShips.Commands.CreateInternShip.TranslationCreateInternshipDto" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Commands\CreateInternShip\TranslationCreateInternshipDto.cs" line-rate="1" branch-rate="1" complexity="6">
           <methods>
             <method name="get_LanguageId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="10" hits="12" branch="false" />
+                <line number="10" hits="9" branch="false" />
               </lines>
             </method>
             <method name="get_TitleContent" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="11" hits="19" branch="false" />
+                <line number="11" hits="15" branch="false" />
               </lines>
             </method>
             <method name="get_Description" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="12" hits="16" branch="false" />
+                <line number="12" hits="13" branch="false" />
               </lines>
             </method>
             <method name="get_KnowledgeToDevelop" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="13" hits="14" branch="false" />
+                <line number="13" hits="12" branch="false" />
               </lines>
             </method>
             <method name="get_NeededKnowledge" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="14" hits="20" branch="false" />
-              </lines>
-            </method>
-            <method name="get_Location" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="15" hits="15" branch="false" />
+                <line number="14" hits="16" branch="false" />
               </lines>
             </method>
             <method name="get_Comment" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="16" hits="18" branch="false" />
-              </lines>
-            </method>
-            <method name="get_Content" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="17" hits="17" branch="false" />
+                <line number="15" hits="14" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="10" hits="12" branch="false" />
-            <line number="11" hits="19" branch="false" />
-            <line number="12" hits="16" branch="false" />
-            <line number="13" hits="14" branch="false" />
-            <line number="14" hits="20" branch="false" />
-            <line number="15" hits="15" branch="false" />
-            <line number="16" hits="18" branch="false" />
-            <line number="17" hits="17" branch="false" />
+            <line number="10" hits="9" branch="false" />
+            <line number="11" hits="15" branch="false" />
+            <line number="12" hits="13" branch="false" />
+            <line number="13" hits="12" branch="false" />
+            <line number="14" hits="16" branch="false" />
+            <line number="15" hits="14" branch="false" />
           </lines>
         </class>
         <class name="backend.Application.InternShips.Commands.DeleteInternship.DeleteInternshipCommand" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Commands\DeleteInternship\DeleteInternshipCommand.cs" line-rate="0" branch-rate="1" complexity="1">
@@ -1033,118 +1043,52 @@
             <line number="16" hits="0" branch="false" />
           </lines>
         </class>
-        <class name="backend.Application.InternShips.Commands.UpdateInternShip.InternShipUpdateDto" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Commands\UpdateInternShip\InternShipUpdateDto.cs" line-rate="0" branch-rate="1" complexity="8">
-          <methods>
-            <method name="get_InternShipId" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="13" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_SchoolYear" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="14" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_UnitId" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="15" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_MaxCountOfStudents" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="16" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_TrainingType" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="17" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_CurrentCountOfStudents" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="18" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_Locations" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="21" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_Versions" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="22" hits="0" branch="false" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="13" hits="0" branch="false" />
-            <line number="14" hits="0" branch="false" />
-            <line number="15" hits="0" branch="false" />
-            <line number="16" hits="0" branch="false" />
-            <line number="17" hits="0" branch="false" />
-            <line number="18" hits="0" branch="false" />
-            <line number="21" hits="0" branch="false" />
-            <line number="22" hits="0" branch="false" />
-          </lines>
-        </class>
-        <class name="backend.Application.InternShips.Commands.UpdateInternShip.TranslationUpdateInternshipDto" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Commands\UpdateInternShip\TranslationUpdateInternshipDto.cs" line-rate="1" branch-rate="1" complexity="9">
+        <class name="backend.Application.InternShips.Commands.UpdateInternShip.TranslationUpdateInternshipDto" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Commands\UpdateInternShip\TranslationUpdateInternshipDto.cs" line-rate="1" branch-rate="1" complexity="7">
           <methods>
             <method name="get_TranslationId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="10" hits="12" branch="false" />
+                <line number="10" hits="10" branch="false" />
               </lines>
             </method>
             <method name="get_LanguageId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="11" hits="12" branch="false" />
+                <line number="11" hits="9" branch="false" />
               </lines>
             </method>
             <method name="get_TitleContent" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="12" hits="18" branch="false" />
+                <line number="12" hits="14" branch="false" />
               </lines>
             </method>
             <method name="get_Description" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="13" hits="15" branch="false" />
+                <line number="13" hits="12" branch="false" />
               </lines>
             </method>
             <method name="get_KnowledgeToDevelop" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="14" hits="13" branch="false" />
+                <line number="14" hits="11" branch="false" />
               </lines>
             </method>
             <method name="get_NeededKnowledge" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="15" hits="19" branch="false" />
-              </lines>
-            </method>
-            <method name="get_Location" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="16" hits="14" branch="false" />
+                <line number="15" hits="15" branch="false" />
               </lines>
             </method>
             <method name="get_Comment" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="17" hits="17" branch="false" />
-              </lines>
-            </method>
-            <method name="get_Content" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="18" hits="16" branch="false" />
+                <line number="16" hits="13" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="10" hits="12" branch="false" />
-            <line number="11" hits="12" branch="false" />
-            <line number="12" hits="18" branch="false" />
-            <line number="13" hits="15" branch="false" />
-            <line number="14" hits="13" branch="false" />
-            <line number="15" hits="19" branch="false" />
-            <line number="16" hits="14" branch="false" />
-            <line number="17" hits="17" branch="false" />
-            <line number="18" hits="16" branch="false" />
+            <line number="10" hits="10" branch="false" />
+            <line number="11" hits="9" branch="false" />
+            <line number="12" hits="14" branch="false" />
+            <line number="13" hits="12" branch="false" />
+            <line number="14" hits="11" branch="false" />
+            <line number="15" hits="15" branch="false" />
+            <line number="16" hits="13" branch="false" />
           </lines>
         </class>
         <class name="backend.Application.InternShips.Commands.UpdateInternShip.UpdateInternShipCommand" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Commands\UpdateInternShip\UpdateInternShipCommand.cs" line-rate="0.875" branch-rate="1" complexity="8">
@@ -1156,49 +1100,49 @@
             </method>
             <method name="get_SchoolYear" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="12" hits="25" branch="false" />
+                <line number="12" hits="21" branch="false" />
               </lines>
             </method>
             <method name="get_UnitId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="13" hits="13" branch="false" />
+                <line number="13" hits="11" branch="false" />
               </lines>
             </method>
             <method name="get_MaxCountOfStudents" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="14" hits="35" branch="false" />
+                <line number="14" hits="29" branch="false" />
               </lines>
             </method>
             <method name="get_TrainingType" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="15" hits="22" branch="false" />
+                <line number="15" hits="18" branch="false" />
               </lines>
             </method>
             <method name="get_CurrentCountOfStudents" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="16" hits="24" branch="false" />
+                <line number="16" hits="20" branch="false" />
               </lines>
             </method>
             <method name="get_Locations" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="19" hits="22" branch="false" />
+                <line number="19" hits="18" branch="false" />
               </lines>
             </method>
             <method name="get_Versions" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="20" hits="20" branch="false" />
+                <line number="20" hits="16" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
             <line number="11" hits="0" branch="false" />
-            <line number="12" hits="25" branch="false" />
-            <line number="13" hits="13" branch="false" />
-            <line number="14" hits="35" branch="false" />
-            <line number="15" hits="22" branch="false" />
-            <line number="16" hits="24" branch="false" />
-            <line number="19" hits="22" branch="false" />
-            <line number="20" hits="20" branch="false" />
+            <line number="12" hits="21" branch="false" />
+            <line number="13" hits="11" branch="false" />
+            <line number="14" hits="29" branch="false" />
+            <line number="15" hits="18" branch="false" />
+            <line number="16" hits="20" branch="false" />
+            <line number="19" hits="18" branch="false" />
+            <line number="20" hits="16" branch="false" />
           </lines>
         </class>
         <class name="backend.Application.InternShips.Commands.UpdateInternShip.UpdateInternShipCommandHandler" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Commands\UpdateInternShip\UpdateInternShipCommand.cs" line-rate="0" branch-rate="0" complexity="5">
@@ -1224,30 +1168,28 @@
                 <line number="40" hits="0" branch="false" />
                 <line number="41" hits="0" branch="false" />
                 <line number="42" hits="0" branch="false" />
-                <line number="44" hits="0" branch="true" condition-coverage="0% (0/2)" />
+                <line number="43" hits="0" branch="false" />
+                <line number="44" hits="0" branch="false" />
                 <line number="45" hits="0" branch="false" />
-                <line number="46" hits="0" branch="true" condition-coverage="0% (0/2)" />
+                <line number="46" hits="0" branch="false" />
                 <line number="47" hits="0" branch="false" />
                 <line number="48" hits="0" branch="false" />
-                <line number="49" hits="0" branch="false" />
-                <line number="50" hits="0" branch="false" />
-                <line number="51" hits="0" branch="false" />
+                <line number="51" hits="0" branch="true" condition-coverage="0% (0/2)" />
                 <line number="52" hits="0" branch="false" />
-                <line number="53" hits="0" branch="false" />
-                <line number="54" hits="0" branch="false" />
+                <line number="54" hits="0" branch="true" condition-coverage="0% (0/2)" />
                 <line number="55" hits="0" branch="false" />
                 <line number="56" hits="0" branch="false" />
                 <line number="57" hits="0" branch="false" />
                 <line number="58" hits="0" branch="false" />
                 <line number="59" hits="0" branch="false" />
                 <line number="60" hits="0" branch="false" />
+                <line number="61" hits="0" branch="false" />
                 <line number="62" hits="0" branch="false" />
+                <line number="63" hits="0" branch="false" />
+                <line number="64" hits="0" branch="false" />
                 <line number="65" hits="0" branch="false" />
                 <line number="66" hits="0" branch="false" />
-                <line number="67" hits="0" branch="false" />
                 <line number="68" hits="0" branch="false" />
-                <line number="69" hits="0" branch="false" />
-                <line number="70" hits="0" branch="false" />
                 <line number="71" hits="0" branch="false" />
                 <line number="72" hits="0" branch="false" />
                 <line number="73" hits="0" branch="false" />
@@ -1256,11 +1198,15 @@
                 <line number="76" hits="0" branch="false" />
                 <line number="77" hits="0" branch="false" />
                 <line number="78" hits="0" branch="false" />
+                <line number="79" hits="0" branch="false" />
                 <line number="80" hits="0" branch="false" />
+                <line number="81" hits="0" branch="false" />
                 <line number="82" hits="0" branch="false" />
-                <line number="83" hits="0" branch="false" />
                 <line number="84" hits="0" branch="false" />
                 <line number="86" hits="0" branch="false" />
+                <line number="87" hits="0" branch="false" />
+                <line number="88" hits="0" branch="false" />
+                <line number="90" hits="0" branch="false" />
               </lines>
             </method>
           </methods>
@@ -1280,30 +1226,28 @@
             <line number="40" hits="0" branch="false" />
             <line number="41" hits="0" branch="false" />
             <line number="42" hits="0" branch="false" />
-            <line number="44" hits="0" branch="true" condition-coverage="0% (0/2)" />
+            <line number="43" hits="0" branch="false" />
+            <line number="44" hits="0" branch="false" />
             <line number="45" hits="0" branch="false" />
-            <line number="46" hits="0" branch="true" condition-coverage="0% (0/2)" />
+            <line number="46" hits="0" branch="false" />
             <line number="47" hits="0" branch="false" />
             <line number="48" hits="0" branch="false" />
-            <line number="49" hits="0" branch="false" />
-            <line number="50" hits="0" branch="false" />
-            <line number="51" hits="0" branch="false" />
+            <line number="51" hits="0" branch="true" condition-coverage="0% (0/2)" />
             <line number="52" hits="0" branch="false" />
-            <line number="53" hits="0" branch="false" />
-            <line number="54" hits="0" branch="false" />
+            <line number="54" hits="0" branch="true" condition-coverage="0% (0/2)" />
             <line number="55" hits="0" branch="false" />
             <line number="56" hits="0" branch="false" />
             <line number="57" hits="0" branch="false" />
             <line number="58" hits="0" branch="false" />
             <line number="59" hits="0" branch="false" />
             <line number="60" hits="0" branch="false" />
+            <line number="61" hits="0" branch="false" />
             <line number="62" hits="0" branch="false" />
+            <line number="63" hits="0" branch="false" />
+            <line number="64" hits="0" branch="false" />
             <line number="65" hits="0" branch="false" />
             <line number="66" hits="0" branch="false" />
-            <line number="67" hits="0" branch="false" />
             <line number="68" hits="0" branch="false" />
-            <line number="69" hits="0" branch="false" />
-            <line number="70" hits="0" branch="false" />
             <line number="71" hits="0" branch="false" />
             <line number="72" hits="0" branch="false" />
             <line number="73" hits="0" branch="false" />
@@ -1312,47 +1256,51 @@
             <line number="76" hits="0" branch="false" />
             <line number="77" hits="0" branch="false" />
             <line number="78" hits="0" branch="false" />
+            <line number="79" hits="0" branch="false" />
             <line number="80" hits="0" branch="false" />
+            <line number="81" hits="0" branch="false" />
             <line number="82" hits="0" branch="false" />
-            <line number="83" hits="0" branch="false" />
             <line number="84" hits="0" branch="false" />
             <line number="86" hits="0" branch="false" />
+            <line number="87" hits="0" branch="false" />
+            <line number="88" hits="0" branch="false" />
+            <line number="90" hits="0" branch="false" />
           </lines>
         </class>
         <class name="backend.Application.InternShips.Commands.UpdateInternShip.UpdateInternShipCommandValidator" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Commands\UpdateInternShip\UpdateInternShipCommandValidator.cs" line-rate="1" branch-rate="1" complexity="2">
           <methods>
             <method name=".ctor" signature="(...)" line-rate="1" branch-rate="1" complexity="2">
               <lines>
-                <line number="11" hits="13" branch="false" />
-                <line number="12" hits="13" branch="false" />
-                <line number="13" hits="13" branch="false" />
-                <line number="14" hits="13" branch="false" />
-                <line number="15" hits="13" branch="false" />
-                <line number="16" hits="13" branch="false" />
-                <line number="17" hits="13" branch="false" />
-                <line number="18" hits="25" branch="false" />
-                <line number="19" hits="13" branch="false" />
-                <line number="20" hits="13" branch="false" />
-                <line number="21" hits="13" branch="false" />
-                <line number="22" hits="13" branch="true" condition-coverage="100% (2/2)" />
-                <line number="24" hits="13" branch="false" />
+                <line number="11" hits="11" branch="false" />
+                <line number="12" hits="11" branch="false" />
+                <line number="13" hits="11" branch="false" />
+                <line number="14" hits="11" branch="false" />
+                <line number="15" hits="11" branch="false" />
+                <line number="16" hits="11" branch="false" />
+                <line number="17" hits="11" branch="false" />
+                <line number="18" hits="21" branch="false" />
+                <line number="19" hits="11" branch="false" />
+                <line number="20" hits="11" branch="false" />
+                <line number="21" hits="11" branch="false" />
+                <line number="22" hits="11" branch="true" condition-coverage="100% (2/2)" />
+                <line number="24" hits="11" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="11" hits="13" branch="false" />
-            <line number="12" hits="13" branch="false" />
-            <line number="13" hits="13" branch="false" />
-            <line number="14" hits="13" branch="false" />
-            <line number="15" hits="13" branch="false" />
-            <line number="16" hits="13" branch="false" />
-            <line number="17" hits="13" branch="false" />
-            <line number="18" hits="25" branch="false" />
-            <line number="19" hits="13" branch="false" />
-            <line number="20" hits="13" branch="false" />
-            <line number="21" hits="13" branch="false" />
-            <line number="22" hits="13" branch="true" condition-coverage="100% (2/2)" />
-            <line number="24" hits="13" branch="false" />
+            <line number="11" hits="11" branch="false" />
+            <line number="12" hits="11" branch="false" />
+            <line number="13" hits="11" branch="false" />
+            <line number="14" hits="11" branch="false" />
+            <line number="15" hits="11" branch="false" />
+            <line number="16" hits="11" branch="false" />
+            <line number="17" hits="11" branch="false" />
+            <line number="18" hits="21" branch="false" />
+            <line number="19" hits="11" branch="false" />
+            <line number="20" hits="11" branch="false" />
+            <line number="21" hits="11" branch="false" />
+            <line number="22" hits="11" branch="true" condition-coverage="100% (2/2)" />
+            <line number="24" hits="11" branch="false" />
           </lines>
         </class>
         <class name="backend.Application.InternShips.Common.DepartmentDto" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Common\DepartmentDto.cs" line-rate="0" branch-rate="1" complexity="4">
@@ -1432,22 +1380,22 @@
             </method>
             <method name="get_City" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="9" hits="24" branch="false" />
+                <line number="9" hits="20" branch="false" />
               </lines>
             </method>
             <method name="get_Streetname" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="10" hits="24" branch="false" />
+                <line number="10" hits="20" branch="false" />
               </lines>
             </method>
             <method name="get_Housenumber" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="11" hits="24" branch="false" />
+                <line number="11" hits="20" branch="false" />
               </lines>
             </method>
             <method name="get_Zipcode" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="12" hits="24" branch="false" />
+                <line number="12" hits="20" branch="false" />
               </lines>
             </method>
             <method name="Mapping" signature="(...)" line-rate="0" branch-rate="1" complexity="1">
@@ -1460,163 +1408,155 @@
           </methods>
           <lines>
             <line number="8" hits="0" branch="false" />
-            <line number="9" hits="24" branch="false" />
-            <line number="10" hits="24" branch="false" />
-            <line number="11" hits="24" branch="false" />
-            <line number="12" hits="24" branch="false" />
+            <line number="9" hits="20" branch="false" />
+            <line number="10" hits="20" branch="false" />
+            <line number="11" hits="20" branch="false" />
+            <line number="12" hits="20" branch="false" />
             <line number="15" hits="0" branch="false" />
             <line number="16" hits="0" branch="false" />
             <line number="17" hits="0" branch="false" />
           </lines>
         </class>
-        <class name="backend.Application.InternShips.Common.ValidationFunctions" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Common\ValidationFunctions.cs" line-rate="0.897435897435897" branch-rate="0.888888888888889" complexity="37">
+        <class name="backend.Application.InternShips.Common.ValidationFunctions" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Common\ValidationFunctions.cs" line-rate="0.885714285714286" branch-rate="0.857142857142857" complexity="29">
           <methods>
-            <method name="IsVersionValid" signature="(...)" line-rate="0.846153846153846" branch-rate="0.875" complexity="16">
+            <method name="IsVersionValid" signature="(...)" line-rate="0.818181818181818" branch-rate="0.833333333333333" complexity="12">
               <lines>
-                <line number="22" hits="7" branch="false" />
-                <line number="23" hits="28" branch="true" condition-coverage="50% (1/2)" />
-                <line number="24" hits="7" branch="false" />
-                <line number="25" hits="8" branch="true" condition-coverage="100% (2/2)" />
-                <line number="26" hits="7" branch="true" condition-coverage="100% (2/2)" />
-                <line number="27" hits="6" branch="true" condition-coverage="100% (2/2)" />
-                <line number="28" hits="5" branch="true" condition-coverage="100% (2/2)" />
-                <line number="29" hits="4" branch="true" condition-coverage="100% (2/2)" />
-                <line number="30" hits="3" branch="true" condition-coverage="100% (2/2)" />
-                <line number="31" hits="2" branch="true" condition-coverage="50% (1/2)" />
-                <line number="33" hits="0" branch="false" />
-                <line number="34" hits="0" branch="false" />
-                <line number="35" hits="7" branch="false" />
+                <line number="22" hits="5" branch="false" />
+                <line number="23" hits="20" branch="true" condition-coverage="50% (1/2)" />
+                <line number="24" hits="5" branch="false" />
+                <line number="25" hits="6" branch="true" condition-coverage="100% (2/2)" />
+                <line number="26" hits="5" branch="true" condition-coverage="100% (2/2)" />
+                <line number="27" hits="4" branch="true" condition-coverage="100% (2/2)" />
+                <line number="28" hits="3" branch="true" condition-coverage="100% (2/2)" />
+                <line number="29" hits="2" branch="true" condition-coverage="50% (1/2)" />
+                <line number="31" hits="0" branch="false" />
+                <line number="32" hits="0" branch="false" />
+                <line number="33" hits="5" branch="false" />
               </lines>
             </method>
-            <method name="IsVersionValid" signature="(...)" line-rate="1" branch-rate="1" complexity="16">
+            <method name="IsVersionValid" signature="(...)" line-rate="1" branch-rate="1" complexity="12">
               <lines>
-                <line number="37" hits="8" branch="false" />
-                <line number="38" hits="33" branch="true" condition-coverage="100% (2/2)" />
-                <line number="39" hits="8" branch="false" />
-                <line number="40" hits="9" branch="true" condition-coverage="100% (2/2)" />
-                <line number="41" hits="8" branch="true" condition-coverage="100% (2/2)" />
-                <line number="42" hits="7" branch="true" condition-coverage="100% (2/2)" />
-                <line number="43" hits="6" branch="true" condition-coverage="100% (2/2)" />
-                <line number="44" hits="5" branch="true" condition-coverage="100% (2/2)" />
-                <line number="45" hits="4" branch="true" condition-coverage="100% (2/2)" />
-                <line number="46" hits="3" branch="true" condition-coverage="100% (2/2)" />
-                <line number="47" hits="1" branch="false" />
-                <line number="48" hits="1" branch="false" />
-                <line number="49" hits="8" branch="false" />
+                <line number="35" hits="6" branch="false" />
+                <line number="36" hits="25" branch="true" condition-coverage="100% (2/2)" />
+                <line number="37" hits="6" branch="false" />
+                <line number="38" hits="7" branch="true" condition-coverage="100% (2/2)" />
+                <line number="39" hits="6" branch="true" condition-coverage="100% (2/2)" />
+                <line number="40" hits="5" branch="true" condition-coverage="100% (2/2)" />
+                <line number="41" hits="4" branch="true" condition-coverage="100% (2/2)" />
+                <line number="42" hits="3" branch="true" condition-coverage="100% (2/2)" />
+                <line number="43" hits="1" branch="false" />
+                <line number="44" hits="1" branch="false" />
+                <line number="45" hits="6" branch="false" />
               </lines>
             </method>
             <method name="IsValidSchoolYear" signature="(...)" line-rate="0.777777777777778" branch-rate="0.5" complexity="4">
               <lines>
-                <line number="52" hits="23" branch="false" />
-                <line number="53" hits="23" branch="false" />
-                <line number="55" hits="46" branch="true" condition-coverage="50% (1/2)" />
-                <line number="56" hits="23" branch="false" />
-                <line number="57" hits="23" branch="false" />
-                <line number="58" hits="46" branch="true" condition-coverage="50% (1/2)" />
-                <line number="59" hits="0" branch="false" />
-                <line number="61" hits="0" branch="false" />
-                <line number="62" hits="23" branch="false" />
+                <line number="48" hits="19" branch="false" />
+                <line number="49" hits="19" branch="false" />
+                <line number="51" hits="38" branch="true" condition-coverage="50% (1/2)" />
+                <line number="52" hits="19" branch="false" />
+                <line number="53" hits="19" branch="false" />
+                <line number="54" hits="38" branch="true" condition-coverage="50% (1/2)" />
+                <line number="55" hits="0" branch="false" />
+                <line number="57" hits="0" branch="false" />
+                <line number="58" hits="19" branch="false" />
               </lines>
             </method>
             <method name=".ctor" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="16" hits="26" branch="false" />
-                <line number="17" hits="26" branch="false" />
-                <line number="18" hits="26" branch="false" />
-                <line number="19" hits="26" branch="false" />
+                <line number="16" hits="22" branch="false" />
+                <line number="17" hits="22" branch="false" />
+                <line number="18" hits="22" branch="false" />
+                <line number="19" hits="22" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="16" hits="26" branch="false" />
-            <line number="17" hits="26" branch="false" />
-            <line number="18" hits="26" branch="false" />
-            <line number="19" hits="26" branch="false" />
-            <line number="22" hits="7" branch="false" />
-            <line number="23" hits="28" branch="true" condition-coverage="50% (1/2)" />
-            <line number="24" hits="7" branch="false" />
-            <line number="25" hits="8" branch="true" condition-coverage="100% (2/2)" />
-            <line number="26" hits="7" branch="true" condition-coverage="100% (2/2)" />
-            <line number="27" hits="6" branch="true" condition-coverage="100% (2/2)" />
-            <line number="28" hits="5" branch="true" condition-coverage="100% (2/2)" />
-            <line number="29" hits="4" branch="true" condition-coverage="100% (2/2)" />
-            <line number="30" hits="3" branch="true" condition-coverage="100% (2/2)" />
-            <line number="31" hits="2" branch="true" condition-coverage="50% (1/2)" />
-            <line number="33" hits="0" branch="false" />
-            <line number="34" hits="0" branch="false" />
-            <line number="35" hits="7" branch="false" />
-            <line number="37" hits="8" branch="false" />
-            <line number="38" hits="33" branch="true" condition-coverage="100% (2/2)" />
-            <line number="39" hits="8" branch="false" />
-            <line number="40" hits="9" branch="true" condition-coverage="100% (2/2)" />
-            <line number="41" hits="8" branch="true" condition-coverage="100% (2/2)" />
-            <line number="42" hits="7" branch="true" condition-coverage="100% (2/2)" />
-            <line number="43" hits="6" branch="true" condition-coverage="100% (2/2)" />
-            <line number="44" hits="5" branch="true" condition-coverage="100% (2/2)" />
-            <line number="45" hits="4" branch="true" condition-coverage="100% (2/2)" />
-            <line number="46" hits="3" branch="true" condition-coverage="100% (2/2)" />
-            <line number="47" hits="1" branch="false" />
-            <line number="48" hits="1" branch="false" />
-            <line number="49" hits="8" branch="false" />
-            <line number="52" hits="23" branch="false" />
-            <line number="53" hits="23" branch="false" />
-            <line number="55" hits="46" branch="true" condition-coverage="50% (1/2)" />
-            <line number="56" hits="23" branch="false" />
-            <line number="57" hits="23" branch="false" />
-            <line number="58" hits="46" branch="true" condition-coverage="50% (1/2)" />
-            <line number="59" hits="0" branch="false" />
-            <line number="61" hits="0" branch="false" />
-            <line number="62" hits="23" branch="false" />
+            <line number="16" hits="22" branch="false" />
+            <line number="17" hits="22" branch="false" />
+            <line number="18" hits="22" branch="false" />
+            <line number="19" hits="22" branch="false" />
+            <line number="22" hits="5" branch="false" />
+            <line number="23" hits="20" branch="true" condition-coverage="50% (1/2)" />
+            <line number="24" hits="5" branch="false" />
+            <line number="25" hits="6" branch="true" condition-coverage="100% (2/2)" />
+            <line number="26" hits="5" branch="true" condition-coverage="100% (2/2)" />
+            <line number="27" hits="4" branch="true" condition-coverage="100% (2/2)" />
+            <line number="28" hits="3" branch="true" condition-coverage="100% (2/2)" />
+            <line number="29" hits="2" branch="true" condition-coverage="50% (1/2)" />
+            <line number="31" hits="0" branch="false" />
+            <line number="32" hits="0" branch="false" />
+            <line number="33" hits="5" branch="false" />
+            <line number="35" hits="6" branch="false" />
+            <line number="36" hits="25" branch="true" condition-coverage="100% (2/2)" />
+            <line number="37" hits="6" branch="false" />
+            <line number="38" hits="7" branch="true" condition-coverage="100% (2/2)" />
+            <line number="39" hits="6" branch="true" condition-coverage="100% (2/2)" />
+            <line number="40" hits="5" branch="true" condition-coverage="100% (2/2)" />
+            <line number="41" hits="4" branch="true" condition-coverage="100% (2/2)" />
+            <line number="42" hits="3" branch="true" condition-coverage="100% (2/2)" />
+            <line number="43" hits="1" branch="false" />
+            <line number="44" hits="1" branch="false" />
+            <line number="45" hits="6" branch="false" />
+            <line number="48" hits="19" branch="false" />
+            <line number="49" hits="19" branch="false" />
+            <line number="51" hits="38" branch="true" condition-coverage="50% (1/2)" />
+            <line number="52" hits="19" branch="false" />
+            <line number="53" hits="19" branch="false" />
+            <line number="54" hits="38" branch="true" condition-coverage="50% (1/2)" />
+            <line number="55" hits="0" branch="false" />
+            <line number="57" hits="0" branch="false" />
+            <line number="58" hits="19" branch="false" />
           </lines>
         </class>
         <class name="backend.Application.InternShips.Queries.GetAllInternShips.InternShipListDto" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Queries\GetAllInternShips\InternShipListDto.cs" line-rate="0" branch-rate="1" complexity="6">
           <methods>
             <method name="get_Id" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="13" hits="0" branch="false" />
+                <line number="9" hits="0" branch="false" />
               </lines>
             </method>
             <method name="get_Title" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="14" hits="0" branch="false" />
+                <line number="10" hits="0" branch="false" />
               </lines>
             </method>
             <method name="get_UnitName" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="15" hits="0" branch="false" />
+                <line number="11" hits="0" branch="false" />
               </lines>
             </method>
             <method name="get_MaxStudents" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="16" hits="0" branch="false" />
+                <line number="12" hits="0" branch="false" />
               </lines>
             </method>
             <method name="get_CurrentCountOfStudents" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="17" hits="0" branch="false" />
+                <line number="13" hits="0" branch="false" />
               </lines>
             </method>
             <method name="Mapping" signature="(...)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
+                <line number="18" hits="0" branch="false" />
                 <line number="20" hits="0" branch="false" />
                 <line number="21" hits="0" branch="false" />
                 <line number="22" hits="0" branch="false" />
-                <line number="23" hits="0" branch="false" />
-                <line number="27" hits="0" branch="false" />
+                <line number="25" hits="0" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
+            <line number="9" hits="0" branch="false" />
+            <line number="10" hits="0" branch="false" />
+            <line number="11" hits="0" branch="false" />
+            <line number="12" hits="0" branch="false" />
             <line number="13" hits="0" branch="false" />
-            <line number="14" hits="0" branch="false" />
-            <line number="15" hits="0" branch="false" />
-            <line number="16" hits="0" branch="false" />
-            <line number="17" hits="0" branch="false" />
+            <line number="18" hits="0" branch="false" />
             <line number="20" hits="0" branch="false" />
             <line number="21" hits="0" branch="false" />
             <line number="22" hits="0" branch="false" />
-            <line number="23" hits="0" branch="false" />
-            <line number="27" hits="0" branch="false" />
+            <line number="25" hits="0" branch="false" />
           </lines>
         </class>
         <class name="backend.Application.InternShips.Queries.GetExportInternShipData.GetExportInterShipQuery" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\InternShips\Queries\GetExportInternShipData\GetExportInterShipQuery.cs" line-rate="0" branch-rate="1" complexity="1">
@@ -1971,61 +1911,60 @@
           <methods>
             <method name="get_TranslationId" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="15" hits="0" branch="false" />
+                <line number="16" hits="0" branch="false" />
               </lines>
             </method>
             <method name="get_TitleContent" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="16" hits="0" branch="false" />
+                <line number="17" hits="0" branch="false" />
               </lines>
             </method>
             <method name="get_Description" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="17" hits="0" branch="false" />
+                <line number="18" hits="0" branch="false" />
               </lines>
             </method>
             <method name="get_KnowledgeToDevelop" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="18" hits="0" branch="false" />
+                <line number="19" hits="0" branch="false" />
               </lines>
             </method>
             <method name="get_NeededKnowledge" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="19" hits="0" branch="false" />
+                <line number="20" hits="0" branch="false" />
               </lines>
             </method>
             <method name="get_Location" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="20" hits="0" branch="false" />
+                <line number="21" hits="0" branch="false" />
               </lines>
             </method>
             <method name="get_Comment" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="21" hits="0" branch="false" />
+                <line number="22" hits="0" branch="false" />
               </lines>
             </method>
             <method name="get_Content" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="22" hits="0" branch="false" />
+                <line number="23" hits="0" branch="false" />
               </lines>
             </method>
             <method name="get_Language" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="23" hits="0" branch="false" />
+                <line number="24" hits="0" branch="false" />
               </lines>
             </method>
             <method name="Mapping" signature="(...)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="26" hits="0" branch="false" />
                 <line number="27" hits="0" branch="false" />
                 <line number="28" hits="0" branch="false" />
                 <line number="29" hits="0" branch="false" />
                 <line number="30" hits="0" branch="false" />
+                <line number="31" hits="0" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="15" hits="0" branch="false" />
             <line number="16" hits="0" branch="false" />
             <line number="17" hits="0" branch="false" />
             <line number="18" hits="0" branch="false" />
@@ -2034,11 +1973,12 @@
             <line number="21" hits="0" branch="false" />
             <line number="22" hits="0" branch="false" />
             <line number="23" hits="0" branch="false" />
-            <line number="26" hits="0" branch="false" />
+            <line number="24" hits="0" branch="false" />
             <line number="27" hits="0" branch="false" />
             <line number="28" hits="0" branch="false" />
             <line number="29" hits="0" branch="false" />
             <line number="30" hits="0" branch="false" />
+            <line number="31" hits="0" branch="false" />
           </lines>
         </class>
         <class name="backend.Application.Languages.Commands.CreateLanguage.CreateLanguageCommand" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\Languages\Commands\CreateLanguage\CreateLanguageCommand.cs" line-rate="0" branch-rate="1" complexity="2">
@@ -2503,36 +2443,6 @@
             <line number="38" hits="0" branch="false" />
           </lines>
         </class>
-        <class name="backend.Application.Locations.Commands.CreateLocation.CreateLocationDto" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\Locations\Commands\CreateLocation\CreateLocationDto.cs" line-rate="0" branch-rate="1" complexity="4">
-          <methods>
-            <method name="get_city" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="14" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_streetname" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="15" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_housenumber" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="16" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_zipcode" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="17" hits="0" branch="false" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="14" hits="0" branch="false" />
-            <line number="15" hits="0" branch="false" />
-            <line number="16" hits="0" branch="false" />
-            <line number="17" hits="0" branch="false" />
-          </lines>
-        </class>
         <class name="backend.Application.Locations.Commands.CreateLocation.CreateLocationValidator" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\Locations\Commands\CreateLocation\CreateLocationValidator.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
             <method name=".ctor" signature="()" line-rate="0" branch-rate="1" complexity="1">
@@ -2735,52 +2645,6 @@
             <line number="29" hits="0" branch="false" />
             <line number="30" hits="0" branch="false" />
             <line number="31" hits="0" branch="false" />
-          </lines>
-        </class>
-        <class name="backend.Application.Locations.Commands.UpdateLocation.UpdateLocationDto" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\Locations\Commands\UpdateLocation\UpdateLocationDto.cs" line-rate="0" branch-rate="1" complexity="6">
-          <methods>
-            <method name="get_Id" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="14" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_City" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="15" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_Streetname" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="16" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_Housenumber" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="17" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_Zipcode" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="18" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="Mapping" signature="(...)" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="21" hits="0" branch="false" />
-                <line number="22" hits="0" branch="false" />
-                <line number="23" hits="0" branch="false" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="14" hits="0" branch="false" />
-            <line number="15" hits="0" branch="false" />
-            <line number="16" hits="0" branch="false" />
-            <line number="17" hits="0" branch="false" />
-            <line number="18" hits="0" branch="false" />
-            <line number="21" hits="0" branch="false" />
-            <line number="22" hits="0" branch="false" />
-            <line number="23" hits="0" branch="false" />
           </lines>
         </class>
         <class name="backend.Application.Locations.Queries.GetAllLocations.GetAllQuery" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\Locations\Queries\GetAllLocations\GetAllQuery.cs" line-rate="0" branch-rate="1" complexity="3">
@@ -3575,38 +3439,38 @@
           <methods>
             <method name="get_TranslationId" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="15" hits="0" branch="false" />
+                <line number="19" hits="0" branch="false" />
               </lines>
             </method>
             <method name="get_Content" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="16" hits="0" branch="false" />
+                <line number="20" hits="0" branch="false" />
               </lines>
             </method>
             <method name="get_Language" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="17" hits="0" branch="false" />
+                <line number="21" hits="0" branch="false" />
               </lines>
             </method>
             <method name="Mapping" signature="(...)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="20" hits="0" branch="false" />
-                <line number="21" hits="0" branch="false" />
-                <line number="22" hits="0" branch="false" />
-                <line number="23" hits="0" branch="false" />
                 <line number="24" hits="0" branch="false" />
+                <line number="25" hits="0" branch="false" />
+                <line number="26" hits="0" branch="false" />
+                <line number="27" hits="0" branch="false" />
+                <line number="29" hits="0" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="15" hits="0" branch="false" />
-            <line number="16" hits="0" branch="false" />
-            <line number="17" hits="0" branch="false" />
+            <line number="19" hits="0" branch="false" />
             <line number="20" hits="0" branch="false" />
             <line number="21" hits="0" branch="false" />
-            <line number="22" hits="0" branch="false" />
-            <line number="23" hits="0" branch="false" />
             <line number="24" hits="0" branch="false" />
+            <line number="25" hits="0" branch="false" />
+            <line number="26" hits="0" branch="false" />
+            <line number="27" hits="0" branch="false" />
+            <line number="29" hits="0" branch="false" />
           </lines>
         </class>
         <class name="backend.Application.Units.Queries.GetUnitById.UnitDetailsDto" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Application\Units\Queries\GetUnitById\UnitDetailsDto.cs" line-rate="0" branch-rate="1" complexity="5">
@@ -3653,7 +3517,7 @@
         </class>
       </classes>
     </package>
-    <package name="backend.Domain" line-rate="0.0731707317073171" branch-rate="0" complexity="42">
+    <package name="backend.Domain" line-rate="0.0666666666666667" branch-rate="0" complexity="46">
       <classes>
         <class name="backend.Domain.Entities.ApplicationUser" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Domain\Entities\ApplicationUser.cs" line-rate="0" branch-rate="1" complexity="3">
           <methods>
@@ -3679,7 +3543,7 @@
             <line number="13" hits="0" branch="false" />
           </lines>
         </class>
-        <class name="backend.Domain.Entities.Department" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Domain\Entities\Department.cs" line-rate="0.6" branch-rate="0" complexity="6">
+        <class name="backend.Domain.Entities.Department" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Domain\Entities\Department.cs" line-rate="0.5" branch-rate="0" complexity="7">
           <methods>
             <method name="get_Id" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
@@ -3694,6 +3558,11 @@
             <method name="get_Name" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
                 <line number="14" hits="2" branch="false" />
+              </lines>
+            </method>
+            <method name="get_Internships" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="15" hits="0" branch="false" />
               </lines>
             </method>
             <method name="get_ManagerEmails" signature="()" line-rate="0" branch-rate="0" complexity="2">
@@ -3711,6 +3580,7 @@
             <line number="11" hits="1" branch="false" />
             <line number="13" hits="0" branch="false" />
             <line number="14" hits="2" branch="false" />
+            <line number="15" hits="0" branch="false" />
             <line number="20" hits="0" branch="true" condition-coverage="0% (0/2)" />
             <line number="21" hits="3" branch="false" />
           </lines>
@@ -3749,17 +3619,17 @@
             </method>
             <method name="get_CurrentCountOfStudents" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="17" hits="0" branch="false" />
+                <line number="18" hits="0" branch="false" />
               </lines>
             </method>
             <method name="get_RequiredTrainingType" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="18" hits="0" branch="false" />
+                <line number="19" hits="0" branch="false" />
               </lines>
             </method>
             <method name="get_Translations" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
-                <line number="19" hits="0" branch="false" />
+                <line number="20" hits="0" branch="false" />
               </lines>
             </method>
           </methods>
@@ -3770,12 +3640,12 @@
             <line number="14" hits="0" branch="false" />
             <line number="15" hits="0" branch="false" />
             <line number="16" hits="0" branch="false" />
-            <line number="17" hits="0" branch="false" />
             <line number="18" hits="0" branch="false" />
             <line number="19" hits="0" branch="false" />
+            <line number="20" hits="0" branch="false" />
           </lines>
         </class>
-        <class name="backend.Domain.Entities.InternShipContentTranslation" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Domain\Entities\Translation.cs" line-rate="0" branch-rate="1" complexity="12">
+        <class name="backend.Domain.Entities.InternShipContentTranslation" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Domain\Entities\Translation.cs" line-rate="0" branch-rate="1" complexity="11">
           <methods>
             <method name="get_Id" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -3812,11 +3682,6 @@
                 <line number="16" hits="0" branch="false" />
               </lines>
             </method>
-            <method name="get_Content" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="17" hits="0" branch="false" />
-              </lines>
-            </method>
             <method name="get_InternShip" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
                 <line number="18" hits="0" branch="false" />
@@ -3846,14 +3711,13 @@
             <line number="14" hits="0" branch="false" />
             <line number="15" hits="0" branch="false" />
             <line number="16" hits="0" branch="false" />
-            <line number="17" hits="0" branch="false" />
             <line number="18" hits="0" branch="false" />
             <line number="19" hits="0" branch="false" />
             <line number="20" hits="0" branch="false" />
             <line number="21" hits="0" branch="false" />
           </lines>
         </class>
-        <class name="backend.Domain.Entities.Language" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Domain\Entities\Language.cs" line-rate="0" branch-rate="1" complexity="3">
+        <class name="backend.Domain.Entities.Language" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Domain\Entities\Language.cs" line-rate="0" branch-rate="1" complexity="5">
           <methods>
             <method name="get_Id" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -3870,11 +3734,23 @@
                 <line number="12" hits="0" branch="false" />
               </lines>
             </method>
+            <method name="get_InternshipTranslations" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="13" hits="0" branch="false" />
+              </lines>
+            </method>
+            <method name="get_PrefaceTranslations" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="14" hits="0" branch="false" />
+              </lines>
+            </method>
           </methods>
           <lines>
             <line number="10" hits="0" branch="false" />
             <line number="11" hits="0" branch="false" />
             <line number="12" hits="0" branch="false" />
+            <line number="13" hits="0" branch="false" />
+            <line number="14" hits="0" branch="false" />
           </lines>
         </class>
         <class name="backend.Domain.Entities.Location" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Domain\Entities\Location.cs" line-rate="0" branch-rate="1" complexity="5">
@@ -3913,7 +3789,7 @@
             <line number="14" hits="0" branch="false" />
           </lines>
         </class>
-        <class name="backend.Domain.Entities.PrefaceTranslation" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Domain\Entities\PrefaceTranslation.cs" line-rate="0" branch-rate="1" complexity="4">
+        <class name="backend.Domain.Entities.PrefaceTranslation" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\src\Domain\Entities\PrefaceTranslation.cs" line-rate="0" branch-rate="1" complexity="6">
           <methods>
             <method name="get_Id" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -3930,9 +3806,19 @@
                 <line number="12" hits="0" branch="false" />
               </lines>
             </method>
-            <method name="get_LanguageId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+            <method name="get_Unit" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
                 <line number="13" hits="0" branch="false" />
+              </lines>
+            </method>
+            <method name="get_LanguageId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="14" hits="0" branch="false" />
+              </lines>
+            </method>
+            <method name="get_UnitId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="15" hits="0" branch="false" />
               </lines>
             </method>
           </methods>
@@ -3941,11 +3827,13 @@
             <line number="11" hits="0" branch="false" />
             <line number="12" hits="0" branch="false" />
             <line number="13" hits="0" branch="false" />
+            <line number="14" hits="0" branch="false" />
+            <line number="15" hits="0" branch="false" />
           </lines>
         </class>
       </classes>
     </package>
-    <package name="unit tests" line-rate="0.998985801217039" branch-rate="0.75" complexity="137">
+    <package name="unit tests" line-rate="0.998762376237624" branch-rate="0.75" complexity="121">
       <classes>
         <class name="AutoGeneratedProgram" filename="C:\Users\RGTCP77\.nuget\packages\microsoft.net.test.sdk\17.3.2\build\netcoreapp2.1\Microsoft.NET.Test.Sdk.Program.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
@@ -3959,7 +3847,7 @@
             <line number="4" hits="0" branch="false" />
           </lines>
         </class>
-        <class name="unit_tests.CreateInternshipValidatorTest" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\unit tests\CreateInternshipValidatorTest.cs" line-rate="1" branch-rate="0.75" complexity="52">
+        <class name="unit_tests.CreateInternshipValidatorTest" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\unit tests\CreateInternshipValidatorTest.cs" line-rate="1" branch-rate="0.75" complexity="44">
           <methods>
             <method name="SchoolYear_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
               <lines>
@@ -4141,13 +4029,12 @@
                 <line number="186" hits="1" branch="false" />
               </lines>
             </method>
-            <method name="Version_Content_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
+            <method name="Version_Comment_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
               <lines>
-                <line number="189" hits="1" branch="false" />
                 <line number="190" hits="1" branch="false" />
                 <line number="191" hits="1" branch="false" />
                 <line number="192" hits="1" branch="false" />
-                <line number="194" hits="1" branch="false" />
+                <line number="193" hits="1" branch="false" />
                 <line number="195" hits="1" branch="false" />
                 <line number="196" hits="1" branch="false" />
                 <line number="197" hits="1" branch="false" />
@@ -4177,18 +4064,18 @@
                 <line number="221" hits="1" branch="false" />
                 <line number="222" hits="1" branch="false" />
                 <line number="223" hits="1" branch="false" />
-                <line number="224" hits="1" branch="false" />
-                <line number="225" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="226" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="227" hits="1" branch="false" />
+                <line number="224" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="225" hits="1" branch="true" condition-coverage="100% (2/2)" />
+                <line number="226" hits="1" branch="false" />
               </lines>
             </method>
-            <method name="Version_Comment_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
+            <method name="Version_Description_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
               <lines>
+                <line number="229" hits="1" branch="false" />
                 <line number="230" hits="1" branch="false" />
                 <line number="231" hits="1" branch="false" />
                 <line number="232" hits="1" branch="false" />
-                <line number="233" hits="1" branch="false" />
+                <line number="234" hits="1" branch="false" />
                 <line number="235" hits="1" branch="false" />
                 <line number="236" hits="1" branch="false" />
                 <line number="237" hits="1" branch="false" />
@@ -4218,19 +4105,19 @@
                 <line number="261" hits="1" branch="false" />
                 <line number="262" hits="1" branch="false" />
                 <line number="263" hits="1" branch="false" />
-                <line number="264" hits="1" branch="false" />
-                <line number="265" hits="1" branch="false" />
-                <line number="266" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="267" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="268" hits="1" branch="false" />
+                <line number="264" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="265" hits="1" branch="true" condition-coverage="100% (2/2)" />
+                <line number="266" hits="1" branch="false" />
               </lines>
             </method>
-            <method name="Version_Description_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
+            <method name="Version_KnowledgeToDevelop_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
               <lines>
+                <line number="269" hits="1" branch="false" />
+                <line number="270" hits="1" branch="false" />
                 <line number="271" hits="1" branch="false" />
                 <line number="272" hits="1" branch="false" />
-                <line number="273" hits="1" branch="false" />
                 <line number="274" hits="1" branch="false" />
+                <line number="275" hits="1" branch="false" />
                 <line number="276" hits="1" branch="false" />
                 <line number="277" hits="1" branch="false" />
                 <line number="278" hits="1" branch="false" />
@@ -4259,21 +4146,20 @@
                 <line number="301" hits="1" branch="false" />
                 <line number="302" hits="1" branch="false" />
                 <line number="303" hits="1" branch="false" />
-                <line number="304" hits="1" branch="false" />
-                <line number="305" hits="1" branch="false" />
+                <line number="304" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="305" hits="1" branch="true" condition-coverage="100% (2/2)" />
                 <line number="306" hits="1" branch="false" />
-                <line number="307" hits="1" branch="false" />
-                <line number="308" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="309" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="310" hits="1" branch="false" />
               </lines>
             </method>
-            <method name="Version_KnowledgeToDevelop_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
+            <method name="Version_NeededKnowledge_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
               <lines>
+                <line number="310" hits="1" branch="false" />
+                <line number="311" hits="1" branch="false" />
+                <line number="312" hits="1" branch="false" />
                 <line number="313" hits="1" branch="false" />
-                <line number="314" hits="1" branch="false" />
                 <line number="315" hits="1" branch="false" />
                 <line number="316" hits="1" branch="false" />
+                <line number="317" hits="1" branch="false" />
                 <line number="318" hits="1" branch="false" />
                 <line number="319" hits="1" branch="false" />
                 <line number="320" hits="1" branch="false" />
@@ -4301,22 +4187,22 @@
                 <line number="342" hits="1" branch="false" />
                 <line number="343" hits="1" branch="false" />
                 <line number="344" hits="1" branch="false" />
-                <line number="345" hits="1" branch="false" />
-                <line number="346" hits="1" branch="false" />
+                <line number="345" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="346" hits="1" branch="true" condition-coverage="100% (2/2)" />
                 <line number="347" hits="1" branch="false" />
-                <line number="348" hits="1" branch="false" />
-                <line number="349" hits="1" branch="false" />
-                <line number="350" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="351" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="352" hits="1" branch="false" />
               </lines>
             </method>
-            <method name="Version_Location_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
+            <method name="Version_TitleContent_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
               <lines>
+                <line number="350" hits="1" branch="false" />
+                <line number="351" hits="1" branch="false" />
+                <line number="352" hits="1" branch="false" />
+                <line number="353" hits="1" branch="false" />
                 <line number="355" hits="1" branch="false" />
                 <line number="356" hits="1" branch="false" />
                 <line number="357" hits="1" branch="false" />
                 <line number="358" hits="1" branch="false" />
+                <line number="359" hits="1" branch="false" />
                 <line number="360" hits="1" branch="false" />
                 <line number="361" hits="1" branch="false" />
                 <line number="362" hits="1" branch="false" />
@@ -4342,102 +4228,9 @@
                 <line number="382" hits="1" branch="false" />
                 <line number="383" hits="1" branch="false" />
                 <line number="384" hits="1" branch="false" />
-                <line number="385" hits="1" branch="false" />
-                <line number="386" hits="1" branch="false" />
+                <line number="385" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="386" hits="1" branch="true" condition-coverage="100% (2/2)" />
                 <line number="387" hits="1" branch="false" />
-                <line number="388" hits="1" branch="false" />
-                <line number="389" hits="1" branch="false" />
-                <line number="390" hits="1" branch="false" />
-                <line number="391" hits="1" branch="false" />
-                <line number="392" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="393" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="394" hits="1" branch="false" />
-              </lines>
-            </method>
-            <method name="Version_NeededKnowledge_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
-              <lines>
-                <line number="397" hits="1" branch="false" />
-                <line number="398" hits="1" branch="false" />
-                <line number="399" hits="1" branch="false" />
-                <line number="400" hits="1" branch="false" />
-                <line number="402" hits="1" branch="false" />
-                <line number="403" hits="1" branch="false" />
-                <line number="404" hits="1" branch="false" />
-                <line number="405" hits="1" branch="false" />
-                <line number="406" hits="1" branch="false" />
-                <line number="407" hits="1" branch="false" />
-                <line number="408" hits="1" branch="false" />
-                <line number="409" hits="1" branch="false" />
-                <line number="410" hits="1" branch="false" />
-                <line number="411" hits="1" branch="false" />
-                <line number="412" hits="1" branch="false" />
-                <line number="413" hits="1" branch="false" />
-                <line number="414" hits="1" branch="false" />
-                <line number="415" hits="1" branch="false" />
-                <line number="416" hits="1" branch="false" />
-                <line number="417" hits="1" branch="false" />
-                <line number="418" hits="1" branch="false" />
-                <line number="419" hits="1" branch="false" />
-                <line number="420" hits="1" branch="false" />
-                <line number="421" hits="1" branch="false" />
-                <line number="422" hits="1" branch="false" />
-                <line number="423" hits="1" branch="false" />
-                <line number="424" hits="1" branch="false" />
-                <line number="425" hits="1" branch="false" />
-                <line number="426" hits="1" branch="false" />
-                <line number="427" hits="1" branch="false" />
-                <line number="428" hits="1" branch="false" />
-                <line number="429" hits="1" branch="false" />
-                <line number="430" hits="1" branch="false" />
-                <line number="431" hits="1" branch="false" />
-                <line number="432" hits="1" branch="false" />
-                <line number="433" hits="1" branch="false" />
-                <line number="434" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="435" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="436" hits="1" branch="false" />
-              </lines>
-            </method>
-            <method name="Version_TitleContent_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
-              <lines>
-                <line number="439" hits="1" branch="false" />
-                <line number="440" hits="1" branch="false" />
-                <line number="441" hits="1" branch="false" />
-                <line number="442" hits="1" branch="false" />
-                <line number="444" hits="1" branch="false" />
-                <line number="445" hits="1" branch="false" />
-                <line number="446" hits="1" branch="false" />
-                <line number="447" hits="1" branch="false" />
-                <line number="448" hits="1" branch="false" />
-                <line number="449" hits="1" branch="false" />
-                <line number="450" hits="1" branch="false" />
-                <line number="451" hits="1" branch="false" />
-                <line number="452" hits="1" branch="false" />
-                <line number="453" hits="1" branch="false" />
-                <line number="454" hits="1" branch="false" />
-                <line number="455" hits="1" branch="false" />
-                <line number="456" hits="1" branch="false" />
-                <line number="457" hits="1" branch="false" />
-                <line number="458" hits="1" branch="false" />
-                <line number="459" hits="1" branch="false" />
-                <line number="460" hits="1" branch="false" />
-                <line number="461" hits="1" branch="false" />
-                <line number="462" hits="1" branch="false" />
-                <line number="463" hits="1" branch="false" />
-                <line number="464" hits="1" branch="false" />
-                <line number="465" hits="1" branch="false" />
-                <line number="466" hits="1" branch="false" />
-                <line number="467" hits="1" branch="false" />
-                <line number="468" hits="1" branch="false" />
-                <line number="469" hits="1" branch="false" />
-                <line number="470" hits="1" branch="false" />
-                <line number="471" hits="1" branch="false" />
-                <line number="472" hits="1" branch="false" />
-                <line number="473" hits="1" branch="false" />
-                <line number="474" hits="1" branch="false" />
-                <line number="475" hits="1" branch="false" />
-                <line number="476" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="477" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="478" hits="1" branch="false" />
               </lines>
             </method>
           </methods>
@@ -4598,11 +4391,10 @@
             <line number="184" hits="1" branch="true" condition-coverage="50% (1/2)" />
             <line number="185" hits="1" branch="true" condition-coverage="100% (2/2)" />
             <line number="186" hits="1" branch="false" />
-            <line number="189" hits="1" branch="false" />
             <line number="190" hits="1" branch="false" />
             <line number="191" hits="1" branch="false" />
             <line number="192" hits="1" branch="false" />
-            <line number="194" hits="1" branch="false" />
+            <line number="193" hits="1" branch="false" />
             <line number="195" hits="1" branch="false" />
             <line number="196" hits="1" branch="false" />
             <line number="197" hits="1" branch="false" />
@@ -4632,14 +4424,14 @@
             <line number="221" hits="1" branch="false" />
             <line number="222" hits="1" branch="false" />
             <line number="223" hits="1" branch="false" />
-            <line number="224" hits="1" branch="false" />
-            <line number="225" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="226" hits="1" branch="true" condition-coverage="100% (2/2)" />
-            <line number="227" hits="1" branch="false" />
+            <line number="224" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="225" hits="1" branch="true" condition-coverage="100% (2/2)" />
+            <line number="226" hits="1" branch="false" />
+            <line number="229" hits="1" branch="false" />
             <line number="230" hits="1" branch="false" />
             <line number="231" hits="1" branch="false" />
             <line number="232" hits="1" branch="false" />
-            <line number="233" hits="1" branch="false" />
+            <line number="234" hits="1" branch="false" />
             <line number="235" hits="1" branch="false" />
             <line number="236" hits="1" branch="false" />
             <line number="237" hits="1" branch="false" />
@@ -4669,15 +4461,15 @@
             <line number="261" hits="1" branch="false" />
             <line number="262" hits="1" branch="false" />
             <line number="263" hits="1" branch="false" />
-            <line number="264" hits="1" branch="false" />
-            <line number="265" hits="1" branch="false" />
-            <line number="266" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="267" hits="1" branch="true" condition-coverage="100% (2/2)" />
-            <line number="268" hits="1" branch="false" />
+            <line number="264" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="265" hits="1" branch="true" condition-coverage="100% (2/2)" />
+            <line number="266" hits="1" branch="false" />
+            <line number="269" hits="1" branch="false" />
+            <line number="270" hits="1" branch="false" />
             <line number="271" hits="1" branch="false" />
             <line number="272" hits="1" branch="false" />
-            <line number="273" hits="1" branch="false" />
             <line number="274" hits="1" branch="false" />
+            <line number="275" hits="1" branch="false" />
             <line number="276" hits="1" branch="false" />
             <line number="277" hits="1" branch="false" />
             <line number="278" hits="1" branch="false" />
@@ -4706,17 +4498,16 @@
             <line number="301" hits="1" branch="false" />
             <line number="302" hits="1" branch="false" />
             <line number="303" hits="1" branch="false" />
-            <line number="304" hits="1" branch="false" />
-            <line number="305" hits="1" branch="false" />
+            <line number="304" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="305" hits="1" branch="true" condition-coverage="100% (2/2)" />
             <line number="306" hits="1" branch="false" />
-            <line number="307" hits="1" branch="false" />
-            <line number="308" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="309" hits="1" branch="true" condition-coverage="100% (2/2)" />
             <line number="310" hits="1" branch="false" />
+            <line number="311" hits="1" branch="false" />
+            <line number="312" hits="1" branch="false" />
             <line number="313" hits="1" branch="false" />
-            <line number="314" hits="1" branch="false" />
             <line number="315" hits="1" branch="false" />
             <line number="316" hits="1" branch="false" />
+            <line number="317" hits="1" branch="false" />
             <line number="318" hits="1" branch="false" />
             <line number="319" hits="1" branch="false" />
             <line number="320" hits="1" branch="false" />
@@ -4744,18 +4535,18 @@
             <line number="342" hits="1" branch="false" />
             <line number="343" hits="1" branch="false" />
             <line number="344" hits="1" branch="false" />
-            <line number="345" hits="1" branch="false" />
-            <line number="346" hits="1" branch="false" />
+            <line number="345" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="346" hits="1" branch="true" condition-coverage="100% (2/2)" />
             <line number="347" hits="1" branch="false" />
-            <line number="348" hits="1" branch="false" />
-            <line number="349" hits="1" branch="false" />
-            <line number="350" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="351" hits="1" branch="true" condition-coverage="100% (2/2)" />
+            <line number="350" hits="1" branch="false" />
+            <line number="351" hits="1" branch="false" />
             <line number="352" hits="1" branch="false" />
+            <line number="353" hits="1" branch="false" />
             <line number="355" hits="1" branch="false" />
             <line number="356" hits="1" branch="false" />
             <line number="357" hits="1" branch="false" />
             <line number="358" hits="1" branch="false" />
+            <line number="359" hits="1" branch="false" />
             <line number="360" hits="1" branch="false" />
             <line number="361" hits="1" branch="false" />
             <line number="362" hits="1" branch="false" />
@@ -4781,94 +4572,9 @@
             <line number="382" hits="1" branch="false" />
             <line number="383" hits="1" branch="false" />
             <line number="384" hits="1" branch="false" />
-            <line number="385" hits="1" branch="false" />
-            <line number="386" hits="1" branch="false" />
+            <line number="385" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="386" hits="1" branch="true" condition-coverage="100% (2/2)" />
             <line number="387" hits="1" branch="false" />
-            <line number="388" hits="1" branch="false" />
-            <line number="389" hits="1" branch="false" />
-            <line number="390" hits="1" branch="false" />
-            <line number="391" hits="1" branch="false" />
-            <line number="392" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="393" hits="1" branch="true" condition-coverage="100% (2/2)" />
-            <line number="394" hits="1" branch="false" />
-            <line number="397" hits="1" branch="false" />
-            <line number="398" hits="1" branch="false" />
-            <line number="399" hits="1" branch="false" />
-            <line number="400" hits="1" branch="false" />
-            <line number="402" hits="1" branch="false" />
-            <line number="403" hits="1" branch="false" />
-            <line number="404" hits="1" branch="false" />
-            <line number="405" hits="1" branch="false" />
-            <line number="406" hits="1" branch="false" />
-            <line number="407" hits="1" branch="false" />
-            <line number="408" hits="1" branch="false" />
-            <line number="409" hits="1" branch="false" />
-            <line number="410" hits="1" branch="false" />
-            <line number="411" hits="1" branch="false" />
-            <line number="412" hits="1" branch="false" />
-            <line number="413" hits="1" branch="false" />
-            <line number="414" hits="1" branch="false" />
-            <line number="415" hits="1" branch="false" />
-            <line number="416" hits="1" branch="false" />
-            <line number="417" hits="1" branch="false" />
-            <line number="418" hits="1" branch="false" />
-            <line number="419" hits="1" branch="false" />
-            <line number="420" hits="1" branch="false" />
-            <line number="421" hits="1" branch="false" />
-            <line number="422" hits="1" branch="false" />
-            <line number="423" hits="1" branch="false" />
-            <line number="424" hits="1" branch="false" />
-            <line number="425" hits="1" branch="false" />
-            <line number="426" hits="1" branch="false" />
-            <line number="427" hits="1" branch="false" />
-            <line number="428" hits="1" branch="false" />
-            <line number="429" hits="1" branch="false" />
-            <line number="430" hits="1" branch="false" />
-            <line number="431" hits="1" branch="false" />
-            <line number="432" hits="1" branch="false" />
-            <line number="433" hits="1" branch="false" />
-            <line number="434" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="435" hits="1" branch="true" condition-coverage="100% (2/2)" />
-            <line number="436" hits="1" branch="false" />
-            <line number="439" hits="1" branch="false" />
-            <line number="440" hits="1" branch="false" />
-            <line number="441" hits="1" branch="false" />
-            <line number="442" hits="1" branch="false" />
-            <line number="444" hits="1" branch="false" />
-            <line number="445" hits="1" branch="false" />
-            <line number="446" hits="1" branch="false" />
-            <line number="447" hits="1" branch="false" />
-            <line number="448" hits="1" branch="false" />
-            <line number="449" hits="1" branch="false" />
-            <line number="450" hits="1" branch="false" />
-            <line number="451" hits="1" branch="false" />
-            <line number="452" hits="1" branch="false" />
-            <line number="453" hits="1" branch="false" />
-            <line number="454" hits="1" branch="false" />
-            <line number="455" hits="1" branch="false" />
-            <line number="456" hits="1" branch="false" />
-            <line number="457" hits="1" branch="false" />
-            <line number="458" hits="1" branch="false" />
-            <line number="459" hits="1" branch="false" />
-            <line number="460" hits="1" branch="false" />
-            <line number="461" hits="1" branch="false" />
-            <line number="462" hits="1" branch="false" />
-            <line number="463" hits="1" branch="false" />
-            <line number="464" hits="1" branch="false" />
-            <line number="465" hits="1" branch="false" />
-            <line number="466" hits="1" branch="false" />
-            <line number="467" hits="1" branch="false" />
-            <line number="468" hits="1" branch="false" />
-            <line number="469" hits="1" branch="false" />
-            <line number="470" hits="1" branch="false" />
-            <line number="471" hits="1" branch="false" />
-            <line number="472" hits="1" branch="false" />
-            <line number="473" hits="1" branch="false" />
-            <line number="474" hits="1" branch="false" />
-            <line number="475" hits="1" branch="false" />
-            <line number="476" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="477" hits="1" branch="true" condition-coverage="100% (2/2)" />
-            <line number="478" hits="1" branch="false" />
           </lines>
         </class>
         <class name="unit_tests.CreateUnitCommandTests" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\unit tests\CreateUnitCommandTests.cs" line-rate="1" branch-rate="0.75" complexity="16">
@@ -4995,7 +4701,7 @@
             <line number="75" hits="1" branch="false" />
           </lines>
         </class>
-        <class name="unit_tests.UpdateInternshipValidatorTests" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\unit tests\UpdateInternshipValidatorTests.cs" line-rate="1" branch-rate="0.75" complexity="52">
+        <class name="unit_tests.UpdateInternshipValidatorTests" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\unit tests\UpdateInternshipValidatorTests.cs" line-rate="1" branch-rate="0.75" complexity="44">
           <methods>
             <method name="SchoolYear_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
               <lines>
@@ -5028,21 +4734,21 @@
                 <line number="43" hits="1" branch="false" />
                 <line number="44" hits="1" branch="false" />
                 <line number="45" hits="1" branch="false" />
-                <line number="46" hits="1" branch="false" />
-                <line number="47" hits="1" branch="false" />
-                <line number="48" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="49" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="50" hits="1" branch="false" />
+                <line number="46" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="47" hits="1" branch="true" condition-coverage="100% (2/2)" />
+                <line number="48" hits="1" branch="false" />
               </lines>
             </method>
             <method name="MaxCountOfStudents_Negatif_Or_Zero_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
               <lines>
+                <line number="51" hits="1" branch="false" />
+                <line number="52" hits="1" branch="false" />
                 <line number="53" hits="1" branch="false" />
                 <line number="54" hits="1" branch="false" />
                 <line number="55" hits="1" branch="false" />
                 <line number="56" hits="1" branch="false" />
-                <line number="57" hits="1" branch="false" />
                 <line number="58" hits="1" branch="false" />
+                <line number="59" hits="1" branch="false" />
                 <line number="60" hits="1" branch="false" />
                 <line number="61" hits="1" branch="false" />
                 <line number="62" hits="1" branch="false" />
@@ -5060,19 +4766,19 @@
                 <line number="74" hits="1" branch="false" />
                 <line number="75" hits="1" branch="false" />
                 <line number="76" hits="1" branch="false" />
-                <line number="77" hits="1" branch="false" />
-                <line number="78" hits="1" branch="false" />
-                <line number="79" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="80" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="81" hits="1" branch="false" />
+                <line number="77" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="78" hits="1" branch="true" condition-coverage="100% (2/2)" />
+                <line number="79" hits="1" branch="false" />
               </lines>
             </method>
             <method name="TrainingType_Negatif_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
               <lines>
+                <line number="82" hits="1" branch="false" />
+                <line number="83" hits="1" branch="false" />
                 <line number="84" hits="1" branch="false" />
                 <line number="85" hits="1" branch="false" />
-                <line number="86" hits="1" branch="false" />
                 <line number="87" hits="1" branch="false" />
+                <line number="88" hits="1" branch="false" />
                 <line number="89" hits="1" branch="false" />
                 <line number="90" hits="1" branch="false" />
                 <line number="91" hits="1" branch="false" />
@@ -5091,19 +4797,19 @@
                 <line number="104" hits="1" branch="false" />
                 <line number="105" hits="1" branch="false" />
                 <line number="106" hits="1" branch="false" />
-                <line number="107" hits="1" branch="false" />
-                <line number="108" hits="1" branch="false" />
-                <line number="109" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="110" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="111" hits="1" branch="false" />
+                <line number="107" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="108" hits="1" branch="true" condition-coverage="100% (2/2)" />
+                <line number="109" hits="1" branch="false" />
               </lines>
             </method>
             <method name="CurrentCount_Is_Greater_Than_MaxCount_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
               <lines>
+                <line number="112" hits="1" branch="false" />
+                <line number="113" hits="1" branch="false" />
                 <line number="114" hits="1" branch="false" />
                 <line number="115" hits="1" branch="false" />
-                <line number="116" hits="1" branch="false" />
                 <line number="117" hits="1" branch="false" />
+                <line number="118" hits="1" branch="false" />
                 <line number="119" hits="1" branch="false" />
                 <line number="120" hits="1" branch="false" />
                 <line number="121" hits="1" branch="false" />
@@ -5122,19 +4828,19 @@
                 <line number="134" hits="1" branch="false" />
                 <line number="135" hits="1" branch="false" />
                 <line number="136" hits="1" branch="false" />
-                <line number="137" hits="1" branch="false" />
-                <line number="138" hits="1" branch="false" />
-                <line number="139" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="140" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="141" hits="1" branch="false" />
+                <line number="137" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="138" hits="1" branch="true" condition-coverage="100% (2/2)" />
+                <line number="139" hits="1" branch="false" />
               </lines>
             </method>
             <method name="Locations_Is_Null_Empty_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
               <lines>
+                <line number="142" hits="1" branch="false" />
+                <line number="143" hits="1" branch="false" />
                 <line number="144" hits="1" branch="false" />
                 <line number="145" hits="1" branch="false" />
-                <line number="146" hits="1" branch="false" />
                 <line number="147" hits="1" branch="false" />
+                <line number="148" hits="1" branch="false" />
                 <line number="149" hits="1" branch="false" />
                 <line number="150" hits="1" branch="false" />
                 <line number="151" hits="1" branch="false" />
@@ -5150,19 +4856,19 @@
                 <line number="161" hits="1" branch="false" />
                 <line number="162" hits="1" branch="false" />
                 <line number="163" hits="1" branch="false" />
-                <line number="164" hits="1" branch="false" />
-                <line number="165" hits="1" branch="false" />
-                <line number="166" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="167" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="168" hits="1" branch="false" />
+                <line number="164" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="165" hits="1" branch="true" condition-coverage="100% (2/2)" />
+                <line number="166" hits="1" branch="false" />
               </lines>
             </method>
             <method name="Versions_Is_Null_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
               <lines>
+                <line number="169" hits="1" branch="false" />
+                <line number="170" hits="1" branch="false" />
                 <line number="171" hits="1" branch="false" />
                 <line number="172" hits="1" branch="false" />
-                <line number="173" hits="1" branch="false" />
                 <line number="174" hits="1" branch="false" />
+                <line number="175" hits="1" branch="false" />
                 <line number="176" hits="1" branch="false" />
                 <line number="177" hits="1" branch="false" />
                 <line number="178" hits="1" branch="false" />
@@ -5181,19 +4887,18 @@
                 <line number="191" hits="1" branch="false" />
                 <line number="192" hits="1" branch="false" />
                 <line number="193" hits="1" branch="false" />
-                <line number="194" hits="1" branch="false" />
-                <line number="195" hits="1" branch="false" />
-                <line number="196" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="197" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="198" hits="1" branch="false" />
+                <line number="194" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="195" hits="1" branch="true" condition-coverage="100% (2/2)" />
+                <line number="196" hits="1" branch="false" />
               </lines>
             </method>
-            <method name="Version_Content_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
+            <method name="Version_Comment_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
               <lines>
+                <line number="200" hits="1" branch="false" />
                 <line number="201" hits="1" branch="false" />
                 <line number="202" hits="1" branch="false" />
                 <line number="203" hits="1" branch="false" />
-                <line number="204" hits="1" branch="false" />
+                <line number="205" hits="1" branch="false" />
                 <line number="206" hits="1" branch="false" />
                 <line number="207" hits="1" branch="false" />
                 <line number="208" hits="1" branch="false" />
@@ -5223,20 +4928,20 @@
                 <line number="232" hits="1" branch="false" />
                 <line number="233" hits="1" branch="false" />
                 <line number="234" hits="1" branch="false" />
-                <line number="235" hits="1" branch="false" />
-                <line number="236" hits="1" branch="false" />
+                <line number="235" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="236" hits="1" branch="true" condition-coverage="100% (2/2)" />
                 <line number="237" hits="1" branch="false" />
-                <line number="238" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="239" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="240" hits="1" branch="false" />
               </lines>
             </method>
-            <method name="Version_Comment_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
+            <method name="Version_Description_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
               <lines>
+                <line number="240" hits="1" branch="false" />
+                <line number="241" hits="1" branch="false" />
+                <line number="242" hits="1" branch="false" />
                 <line number="243" hits="1" branch="false" />
-                <line number="244" hits="1" branch="false" />
                 <line number="245" hits="1" branch="false" />
                 <line number="246" hits="1" branch="false" />
+                <line number="247" hits="1" branch="false" />
                 <line number="248" hits="1" branch="false" />
                 <line number="249" hits="1" branch="false" />
                 <line number="250" hits="1" branch="false" />
@@ -5265,21 +4970,21 @@
                 <line number="273" hits="1" branch="false" />
                 <line number="274" hits="1" branch="false" />
                 <line number="275" hits="1" branch="false" />
-                <line number="276" hits="1" branch="false" />
-                <line number="277" hits="1" branch="false" />
+                <line number="276" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="277" hits="1" branch="true" condition-coverage="100% (2/2)" />
                 <line number="278" hits="1" branch="false" />
-                <line number="279" hits="1" branch="false" />
-                <line number="280" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="281" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="282" hits="1" branch="false" />
               </lines>
             </method>
-            <method name="Version_Description_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
+            <method name="Version_KnowledgeToDevelop_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
               <lines>
-                <line number="285" hits="1" branch="false" />
+                <line number="281" hits="1" branch="false" />
+                <line number="282" hits="1" branch="false" />
+                <line number="283" hits="1" branch="false" />
+                <line number="284" hits="1" branch="false" />
                 <line number="286" hits="1" branch="false" />
                 <line number="287" hits="1" branch="false" />
                 <line number="288" hits="1" branch="false" />
+                <line number="289" hits="1" branch="false" />
                 <line number="290" hits="1" branch="false" />
                 <line number="291" hits="1" branch="false" />
                 <line number="292" hits="1" branch="false" />
@@ -5307,23 +5012,22 @@
                 <line number="314" hits="1" branch="false" />
                 <line number="315" hits="1" branch="false" />
                 <line number="316" hits="1" branch="false" />
-                <line number="317" hits="1" branch="false" />
-                <line number="318" hits="1" branch="false" />
+                <line number="317" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="318" hits="1" branch="true" condition-coverage="100% (2/2)" />
                 <line number="319" hits="1" branch="false" />
-                <line number="320" hits="1" branch="false" />
-                <line number="321" hits="1" branch="false" />
-                <line number="322" hits="1" branch="false" />
-                <line number="323" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="324" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="325" hits="1" branch="false" />
               </lines>
             </method>
-            <method name="Version_KnowledgeToDevelop_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
+            <method name="Version_NeededKnowledge_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
               <lines>
+                <line number="323" hits="1" branch="false" />
+                <line number="324" hits="1" branch="false" />
+                <line number="325" hits="1" branch="false" />
+                <line number="326" hits="1" branch="false" />
                 <line number="328" hits="1" branch="false" />
                 <line number="329" hits="1" branch="false" />
                 <line number="330" hits="1" branch="false" />
                 <line number="331" hits="1" branch="false" />
+                <line number="332" hits="1" branch="false" />
                 <line number="333" hits="1" branch="false" />
                 <line number="334" hits="1" branch="false" />
                 <line number="335" hits="1" branch="false" />
@@ -5350,24 +5054,24 @@
                 <line number="356" hits="1" branch="false" />
                 <line number="357" hits="1" branch="false" />
                 <line number="358" hits="1" branch="false" />
-                <line number="359" hits="1" branch="false" />
-                <line number="360" hits="1" branch="false" />
+                <line number="359" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="360" hits="1" branch="true" condition-coverage="100% (2/2)" />
                 <line number="361" hits="1" branch="false" />
-                <line number="362" hits="1" branch="false" />
-                <line number="363" hits="1" branch="false" />
-                <line number="364" hits="1" branch="false" />
-                <line number="365" hits="1" branch="false" />
-                <line number="366" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="367" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="368" hits="1" branch="false" />
               </lines>
             </method>
-            <method name="Version_Location_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
+            <method name="Version_TitleContent_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
               <lines>
+                <line number="364" hits="1" branch="false" />
+                <line number="365" hits="1" branch="false" />
+                <line number="366" hits="1" branch="false" />
+                <line number="367" hits="1" branch="false" />
+                <line number="369" hits="1" branch="false" />
+                <line number="370" hits="1" branch="false" />
                 <line number="371" hits="1" branch="false" />
                 <line number="372" hits="1" branch="false" />
                 <line number="373" hits="1" branch="false" />
                 <line number="374" hits="1" branch="false" />
+                <line number="375" hits="1" branch="false" />
                 <line number="376" hits="1" branch="false" />
                 <line number="377" hits="1" branch="false" />
                 <line number="378" hits="1" branch="false" />
@@ -5392,106 +5096,9 @@
                 <line number="397" hits="1" branch="false" />
                 <line number="398" hits="1" branch="false" />
                 <line number="399" hits="1" branch="false" />
-                <line number="400" hits="1" branch="false" />
-                <line number="401" hits="1" branch="false" />
+                <line number="400" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="401" hits="1" branch="true" condition-coverage="100% (2/2)" />
                 <line number="402" hits="1" branch="false" />
-                <line number="403" hits="1" branch="false" />
-                <line number="404" hits="1" branch="false" />
-                <line number="405" hits="1" branch="false" />
-                <line number="406" hits="1" branch="false" />
-                <line number="407" hits="1" branch="false" />
-                <line number="408" hits="1" branch="false" />
-                <line number="409" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="410" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="411" hits="1" branch="false" />
-              </lines>
-            </method>
-            <method name="Version_NeededKnowledge_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
-              <lines>
-                <line number="414" hits="1" branch="false" />
-                <line number="415" hits="1" branch="false" />
-                <line number="416" hits="1" branch="false" />
-                <line number="417" hits="1" branch="false" />
-                <line number="419" hits="1" branch="false" />
-                <line number="420" hits="1" branch="false" />
-                <line number="421" hits="1" branch="false" />
-                <line number="422" hits="1" branch="false" />
-                <line number="423" hits="1" branch="false" />
-                <line number="424" hits="1" branch="false" />
-                <line number="425" hits="1" branch="false" />
-                <line number="426" hits="1" branch="false" />
-                <line number="427" hits="1" branch="false" />
-                <line number="428" hits="1" branch="false" />
-                <line number="429" hits="1" branch="false" />
-                <line number="430" hits="1" branch="false" />
-                <line number="431" hits="1" branch="false" />
-                <line number="432" hits="1" branch="false" />
-                <line number="433" hits="1" branch="false" />
-                <line number="434" hits="1" branch="false" />
-                <line number="435" hits="1" branch="false" />
-                <line number="436" hits="1" branch="false" />
-                <line number="437" hits="1" branch="false" />
-                <line number="438" hits="1" branch="false" />
-                <line number="439" hits="1" branch="false" />
-                <line number="440" hits="1" branch="false" />
-                <line number="441" hits="1" branch="false" />
-                <line number="442" hits="1" branch="false" />
-                <line number="443" hits="1" branch="false" />
-                <line number="444" hits="1" branch="false" />
-                <line number="445" hits="1" branch="false" />
-                <line number="446" hits="1" branch="false" />
-                <line number="447" hits="1" branch="false" />
-                <line number="448" hits="1" branch="false" />
-                <line number="449" hits="1" branch="false" />
-                <line number="450" hits="1" branch="false" />
-                <line number="451" hits="1" branch="false" />
-                <line number="452" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="453" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="454" hits="1" branch="false" />
-              </lines>
-            </method>
-            <method name="Version_TitleContent_Is_Empty_Should_Throw_Validation_Error" signature="()" line-rate="1" branch-rate="0.75" complexity="4">
-              <lines>
-                <line number="457" hits="1" branch="false" />
-                <line number="458" hits="1" branch="false" />
-                <line number="459" hits="1" branch="false" />
-                <line number="460" hits="1" branch="false" />
-                <line number="462" hits="1" branch="false" />
-                <line number="463" hits="1" branch="false" />
-                <line number="464" hits="1" branch="false" />
-                <line number="465" hits="1" branch="false" />
-                <line number="466" hits="1" branch="false" />
-                <line number="467" hits="1" branch="false" />
-                <line number="468" hits="1" branch="false" />
-                <line number="469" hits="1" branch="false" />
-                <line number="470" hits="1" branch="false" />
-                <line number="471" hits="1" branch="false" />
-                <line number="472" hits="1" branch="false" />
-                <line number="473" hits="1" branch="false" />
-                <line number="474" hits="1" branch="false" />
-                <line number="475" hits="1" branch="false" />
-                <line number="476" hits="1" branch="false" />
-                <line number="477" hits="1" branch="false" />
-                <line number="478" hits="1" branch="false" />
-                <line number="479" hits="1" branch="false" />
-                <line number="480" hits="1" branch="false" />
-                <line number="481" hits="1" branch="false" />
-                <line number="482" hits="1" branch="false" />
-                <line number="483" hits="1" branch="false" />
-                <line number="484" hits="1" branch="false" />
-                <line number="485" hits="1" branch="false" />
-                <line number="486" hits="1" branch="false" />
-                <line number="487" hits="1" branch="false" />
-                <line number="488" hits="1" branch="false" />
-                <line number="489" hits="1" branch="false" />
-                <line number="490" hits="1" branch="false" />
-                <line number="491" hits="1" branch="false" />
-                <line number="492" hits="1" branch="false" />
-                <line number="493" hits="1" branch="false" />
-                <line number="494" hits="1" branch="false" />
-                <line number="495" hits="1" branch="true" condition-coverage="50% (1/2)" />
-                <line number="496" hits="1" branch="true" condition-coverage="100% (2/2)" />
-                <line number="497" hits="1" branch="false" />
               </lines>
             </method>
           </methods>
@@ -5525,17 +5132,17 @@
             <line number="43" hits="1" branch="false" />
             <line number="44" hits="1" branch="false" />
             <line number="45" hits="1" branch="false" />
-            <line number="46" hits="1" branch="false" />
-            <line number="47" hits="1" branch="false" />
-            <line number="48" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="49" hits="1" branch="true" condition-coverage="100% (2/2)" />
-            <line number="50" hits="1" branch="false" />
+            <line number="46" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="47" hits="1" branch="true" condition-coverage="100% (2/2)" />
+            <line number="48" hits="1" branch="false" />
+            <line number="51" hits="1" branch="false" />
+            <line number="52" hits="1" branch="false" />
             <line number="53" hits="1" branch="false" />
             <line number="54" hits="1" branch="false" />
             <line number="55" hits="1" branch="false" />
             <line number="56" hits="1" branch="false" />
-            <line number="57" hits="1" branch="false" />
             <line number="58" hits="1" branch="false" />
+            <line number="59" hits="1" branch="false" />
             <line number="60" hits="1" branch="false" />
             <line number="61" hits="1" branch="false" />
             <line number="62" hits="1" branch="false" />
@@ -5553,15 +5160,15 @@
             <line number="74" hits="1" branch="false" />
             <line number="75" hits="1" branch="false" />
             <line number="76" hits="1" branch="false" />
-            <line number="77" hits="1" branch="false" />
-            <line number="78" hits="1" branch="false" />
-            <line number="79" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="80" hits="1" branch="true" condition-coverage="100% (2/2)" />
-            <line number="81" hits="1" branch="false" />
+            <line number="77" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="78" hits="1" branch="true" condition-coverage="100% (2/2)" />
+            <line number="79" hits="1" branch="false" />
+            <line number="82" hits="1" branch="false" />
+            <line number="83" hits="1" branch="false" />
             <line number="84" hits="1" branch="false" />
             <line number="85" hits="1" branch="false" />
-            <line number="86" hits="1" branch="false" />
             <line number="87" hits="1" branch="false" />
+            <line number="88" hits="1" branch="false" />
             <line number="89" hits="1" branch="false" />
             <line number="90" hits="1" branch="false" />
             <line number="91" hits="1" branch="false" />
@@ -5580,15 +5187,15 @@
             <line number="104" hits="1" branch="false" />
             <line number="105" hits="1" branch="false" />
             <line number="106" hits="1" branch="false" />
-            <line number="107" hits="1" branch="false" />
-            <line number="108" hits="1" branch="false" />
-            <line number="109" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="110" hits="1" branch="true" condition-coverage="100% (2/2)" />
-            <line number="111" hits="1" branch="false" />
+            <line number="107" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="108" hits="1" branch="true" condition-coverage="100% (2/2)" />
+            <line number="109" hits="1" branch="false" />
+            <line number="112" hits="1" branch="false" />
+            <line number="113" hits="1" branch="false" />
             <line number="114" hits="1" branch="false" />
             <line number="115" hits="1" branch="false" />
-            <line number="116" hits="1" branch="false" />
             <line number="117" hits="1" branch="false" />
+            <line number="118" hits="1" branch="false" />
             <line number="119" hits="1" branch="false" />
             <line number="120" hits="1" branch="false" />
             <line number="121" hits="1" branch="false" />
@@ -5607,15 +5214,15 @@
             <line number="134" hits="1" branch="false" />
             <line number="135" hits="1" branch="false" />
             <line number="136" hits="1" branch="false" />
-            <line number="137" hits="1" branch="false" />
-            <line number="138" hits="1" branch="false" />
-            <line number="139" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="140" hits="1" branch="true" condition-coverage="100% (2/2)" />
-            <line number="141" hits="1" branch="false" />
+            <line number="137" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="138" hits="1" branch="true" condition-coverage="100% (2/2)" />
+            <line number="139" hits="1" branch="false" />
+            <line number="142" hits="1" branch="false" />
+            <line number="143" hits="1" branch="false" />
             <line number="144" hits="1" branch="false" />
             <line number="145" hits="1" branch="false" />
-            <line number="146" hits="1" branch="false" />
             <line number="147" hits="1" branch="false" />
+            <line number="148" hits="1" branch="false" />
             <line number="149" hits="1" branch="false" />
             <line number="150" hits="1" branch="false" />
             <line number="151" hits="1" branch="false" />
@@ -5631,15 +5238,15 @@
             <line number="161" hits="1" branch="false" />
             <line number="162" hits="1" branch="false" />
             <line number="163" hits="1" branch="false" />
-            <line number="164" hits="1" branch="false" />
-            <line number="165" hits="1" branch="false" />
-            <line number="166" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="167" hits="1" branch="true" condition-coverage="100% (2/2)" />
-            <line number="168" hits="1" branch="false" />
+            <line number="164" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="165" hits="1" branch="true" condition-coverage="100% (2/2)" />
+            <line number="166" hits="1" branch="false" />
+            <line number="169" hits="1" branch="false" />
+            <line number="170" hits="1" branch="false" />
             <line number="171" hits="1" branch="false" />
             <line number="172" hits="1" branch="false" />
-            <line number="173" hits="1" branch="false" />
             <line number="174" hits="1" branch="false" />
+            <line number="175" hits="1" branch="false" />
             <line number="176" hits="1" branch="false" />
             <line number="177" hits="1" branch="false" />
             <line number="178" hits="1" branch="false" />
@@ -5658,15 +5265,14 @@
             <line number="191" hits="1" branch="false" />
             <line number="192" hits="1" branch="false" />
             <line number="193" hits="1" branch="false" />
-            <line number="194" hits="1" branch="false" />
-            <line number="195" hits="1" branch="false" />
-            <line number="196" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="197" hits="1" branch="true" condition-coverage="100% (2/2)" />
-            <line number="198" hits="1" branch="false" />
+            <line number="194" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="195" hits="1" branch="true" condition-coverage="100% (2/2)" />
+            <line number="196" hits="1" branch="false" />
+            <line number="200" hits="1" branch="false" />
             <line number="201" hits="1" branch="false" />
             <line number="202" hits="1" branch="false" />
             <line number="203" hits="1" branch="false" />
-            <line number="204" hits="1" branch="false" />
+            <line number="205" hits="1" branch="false" />
             <line number="206" hits="1" branch="false" />
             <line number="207" hits="1" branch="false" />
             <line number="208" hits="1" branch="false" />
@@ -5696,16 +5302,16 @@
             <line number="232" hits="1" branch="false" />
             <line number="233" hits="1" branch="false" />
             <line number="234" hits="1" branch="false" />
-            <line number="235" hits="1" branch="false" />
-            <line number="236" hits="1" branch="false" />
+            <line number="235" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="236" hits="1" branch="true" condition-coverage="100% (2/2)" />
             <line number="237" hits="1" branch="false" />
-            <line number="238" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="239" hits="1" branch="true" condition-coverage="100% (2/2)" />
             <line number="240" hits="1" branch="false" />
+            <line number="241" hits="1" branch="false" />
+            <line number="242" hits="1" branch="false" />
             <line number="243" hits="1" branch="false" />
-            <line number="244" hits="1" branch="false" />
             <line number="245" hits="1" branch="false" />
             <line number="246" hits="1" branch="false" />
+            <line number="247" hits="1" branch="false" />
             <line number="248" hits="1" branch="false" />
             <line number="249" hits="1" branch="false" />
             <line number="250" hits="1" branch="false" />
@@ -5734,17 +5340,17 @@
             <line number="273" hits="1" branch="false" />
             <line number="274" hits="1" branch="false" />
             <line number="275" hits="1" branch="false" />
-            <line number="276" hits="1" branch="false" />
-            <line number="277" hits="1" branch="false" />
+            <line number="276" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="277" hits="1" branch="true" condition-coverage="100% (2/2)" />
             <line number="278" hits="1" branch="false" />
-            <line number="279" hits="1" branch="false" />
-            <line number="280" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="281" hits="1" branch="true" condition-coverage="100% (2/2)" />
+            <line number="281" hits="1" branch="false" />
             <line number="282" hits="1" branch="false" />
-            <line number="285" hits="1" branch="false" />
+            <line number="283" hits="1" branch="false" />
+            <line number="284" hits="1" branch="false" />
             <line number="286" hits="1" branch="false" />
             <line number="287" hits="1" branch="false" />
             <line number="288" hits="1" branch="false" />
+            <line number="289" hits="1" branch="false" />
             <line number="290" hits="1" branch="false" />
             <line number="291" hits="1" branch="false" />
             <line number="292" hits="1" branch="false" />
@@ -5772,19 +5378,18 @@
             <line number="314" hits="1" branch="false" />
             <line number="315" hits="1" branch="false" />
             <line number="316" hits="1" branch="false" />
-            <line number="317" hits="1" branch="false" />
-            <line number="318" hits="1" branch="false" />
+            <line number="317" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="318" hits="1" branch="true" condition-coverage="100% (2/2)" />
             <line number="319" hits="1" branch="false" />
-            <line number="320" hits="1" branch="false" />
-            <line number="321" hits="1" branch="false" />
-            <line number="322" hits="1" branch="false" />
-            <line number="323" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="324" hits="1" branch="true" condition-coverage="100% (2/2)" />
+            <line number="323" hits="1" branch="false" />
+            <line number="324" hits="1" branch="false" />
             <line number="325" hits="1" branch="false" />
+            <line number="326" hits="1" branch="false" />
             <line number="328" hits="1" branch="false" />
             <line number="329" hits="1" branch="false" />
             <line number="330" hits="1" branch="false" />
             <line number="331" hits="1" branch="false" />
+            <line number="332" hits="1" branch="false" />
             <line number="333" hits="1" branch="false" />
             <line number="334" hits="1" branch="false" />
             <line number="335" hits="1" branch="false" />
@@ -5811,20 +5416,20 @@
             <line number="356" hits="1" branch="false" />
             <line number="357" hits="1" branch="false" />
             <line number="358" hits="1" branch="false" />
-            <line number="359" hits="1" branch="false" />
-            <line number="360" hits="1" branch="false" />
+            <line number="359" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="360" hits="1" branch="true" condition-coverage="100% (2/2)" />
             <line number="361" hits="1" branch="false" />
-            <line number="362" hits="1" branch="false" />
-            <line number="363" hits="1" branch="false" />
             <line number="364" hits="1" branch="false" />
             <line number="365" hits="1" branch="false" />
-            <line number="366" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="367" hits="1" branch="true" condition-coverage="100% (2/2)" />
-            <line number="368" hits="1" branch="false" />
+            <line number="366" hits="1" branch="false" />
+            <line number="367" hits="1" branch="false" />
+            <line number="369" hits="1" branch="false" />
+            <line number="370" hits="1" branch="false" />
             <line number="371" hits="1" branch="false" />
             <line number="372" hits="1" branch="false" />
             <line number="373" hits="1" branch="false" />
             <line number="374" hits="1" branch="false" />
+            <line number="375" hits="1" branch="false" />
             <line number="376" hits="1" branch="false" />
             <line number="377" hits="1" branch="false" />
             <line number="378" hits="1" branch="false" />
@@ -5849,98 +5454,9 @@
             <line number="397" hits="1" branch="false" />
             <line number="398" hits="1" branch="false" />
             <line number="399" hits="1" branch="false" />
-            <line number="400" hits="1" branch="false" />
-            <line number="401" hits="1" branch="false" />
+            <line number="400" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="401" hits="1" branch="true" condition-coverage="100% (2/2)" />
             <line number="402" hits="1" branch="false" />
-            <line number="403" hits="1" branch="false" />
-            <line number="404" hits="1" branch="false" />
-            <line number="405" hits="1" branch="false" />
-            <line number="406" hits="1" branch="false" />
-            <line number="407" hits="1" branch="false" />
-            <line number="408" hits="1" branch="false" />
-            <line number="409" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="410" hits="1" branch="true" condition-coverage="100% (2/2)" />
-            <line number="411" hits="1" branch="false" />
-            <line number="414" hits="1" branch="false" />
-            <line number="415" hits="1" branch="false" />
-            <line number="416" hits="1" branch="false" />
-            <line number="417" hits="1" branch="false" />
-            <line number="419" hits="1" branch="false" />
-            <line number="420" hits="1" branch="false" />
-            <line number="421" hits="1" branch="false" />
-            <line number="422" hits="1" branch="false" />
-            <line number="423" hits="1" branch="false" />
-            <line number="424" hits="1" branch="false" />
-            <line number="425" hits="1" branch="false" />
-            <line number="426" hits="1" branch="false" />
-            <line number="427" hits="1" branch="false" />
-            <line number="428" hits="1" branch="false" />
-            <line number="429" hits="1" branch="false" />
-            <line number="430" hits="1" branch="false" />
-            <line number="431" hits="1" branch="false" />
-            <line number="432" hits="1" branch="false" />
-            <line number="433" hits="1" branch="false" />
-            <line number="434" hits="1" branch="false" />
-            <line number="435" hits="1" branch="false" />
-            <line number="436" hits="1" branch="false" />
-            <line number="437" hits="1" branch="false" />
-            <line number="438" hits="1" branch="false" />
-            <line number="439" hits="1" branch="false" />
-            <line number="440" hits="1" branch="false" />
-            <line number="441" hits="1" branch="false" />
-            <line number="442" hits="1" branch="false" />
-            <line number="443" hits="1" branch="false" />
-            <line number="444" hits="1" branch="false" />
-            <line number="445" hits="1" branch="false" />
-            <line number="446" hits="1" branch="false" />
-            <line number="447" hits="1" branch="false" />
-            <line number="448" hits="1" branch="false" />
-            <line number="449" hits="1" branch="false" />
-            <line number="450" hits="1" branch="false" />
-            <line number="451" hits="1" branch="false" />
-            <line number="452" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="453" hits="1" branch="true" condition-coverage="100% (2/2)" />
-            <line number="454" hits="1" branch="false" />
-            <line number="457" hits="1" branch="false" />
-            <line number="458" hits="1" branch="false" />
-            <line number="459" hits="1" branch="false" />
-            <line number="460" hits="1" branch="false" />
-            <line number="462" hits="1" branch="false" />
-            <line number="463" hits="1" branch="false" />
-            <line number="464" hits="1" branch="false" />
-            <line number="465" hits="1" branch="false" />
-            <line number="466" hits="1" branch="false" />
-            <line number="467" hits="1" branch="false" />
-            <line number="468" hits="1" branch="false" />
-            <line number="469" hits="1" branch="false" />
-            <line number="470" hits="1" branch="false" />
-            <line number="471" hits="1" branch="false" />
-            <line number="472" hits="1" branch="false" />
-            <line number="473" hits="1" branch="false" />
-            <line number="474" hits="1" branch="false" />
-            <line number="475" hits="1" branch="false" />
-            <line number="476" hits="1" branch="false" />
-            <line number="477" hits="1" branch="false" />
-            <line number="478" hits="1" branch="false" />
-            <line number="479" hits="1" branch="false" />
-            <line number="480" hits="1" branch="false" />
-            <line number="481" hits="1" branch="false" />
-            <line number="482" hits="1" branch="false" />
-            <line number="483" hits="1" branch="false" />
-            <line number="484" hits="1" branch="false" />
-            <line number="485" hits="1" branch="false" />
-            <line number="486" hits="1" branch="false" />
-            <line number="487" hits="1" branch="false" />
-            <line number="488" hits="1" branch="false" />
-            <line number="489" hits="1" branch="false" />
-            <line number="490" hits="1" branch="false" />
-            <line number="491" hits="1" branch="false" />
-            <line number="492" hits="1" branch="false" />
-            <line number="493" hits="1" branch="false" />
-            <line number="494" hits="1" branch="false" />
-            <line number="495" hits="1" branch="true" condition-coverage="50% (1/2)" />
-            <line number="496" hits="1" branch="true" condition-coverage="100% (2/2)" />
-            <line number="497" hits="1" branch="false" />
           </lines>
         </class>
         <class name="unit_tests.UpdateUnitCommandTests" filename="C:\Users\RGTCP77\project\InternRApp\backend\backend\unit tests\UpdateUnitCommandTests.cs" line-rate="1" branch-rate="0.75" complexity="16">

@@ -60,6 +60,26 @@ namespace backend.Infrastructure.Migrations
                     b.HasIndex("ObjectIdentifier");
 
                     b.ToTable("ApplicationUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "recep@inetum-realdolmen.world",
+                            ObjectIdentifier = new Guid("d550c298-765c-48b7-a6e7-6e48079bc1fd")
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "Anton@inetum-realdolmen.world",
+                            ObjectIdentifier = new Guid("faccb848-eaca-4e58-8e8b-635efdb54973")
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "Nils@inetum-realdolmen.world",
+                            ObjectIdentifier = new Guid("458b66a1-2bcb-43d6-865f-085fb362ddc0")
+                        });
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Department", b =>
@@ -83,6 +103,14 @@ namespace backend.Infrastructure.Migrations
                     b.HasIndex("Name");
 
                     b.ToTable("Departments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ManagerEmails = "recep@inetum-realdolmen.world",
+                            Name = "Java"
+                        });
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
@@ -116,6 +144,17 @@ namespace backend.Infrastructure.Migrations
                     b.HasIndex("UnitId");
 
                     b.ToTable("InternShips");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CurrentCountOfStudents = (byte)0,
+                            MaxStudents = (byte)10,
+                            RequiredTrainingType = 0,
+                            SchoolYear = "2023-2024",
+                            UnitId = 1
+                        });
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.InternShipContentTranslation", b =>
@@ -127,11 +166,6 @@ namespace backend.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Comment")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("Content")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
@@ -153,9 +187,7 @@ namespace backend.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Location")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NeededKnowledge")
                         .IsRequired()
@@ -174,6 +206,44 @@ namespace backend.Infrastructure.Migrations
                     b.HasIndex("LanguageId");
 
                     b.ToTable("Translations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 3,
+                            Comment = "<p>required diploma for this internship is: Bachelor<p>",
+                            Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p>",
+                            InternShipId = 1,
+                            KnowledgeToDevelop = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
+                            LanguageId = 2,
+                            Location = "new location",
+                            NeededKnowledge = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
+                            TitleContent = "InternRapp"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Comment = "<p>required diploma for this internship is: Bachelor<p>",
+                            Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p>",
+                            InternShipId = 1,
+                            KnowledgeToDevelop = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
+                            LanguageId = 3,
+                            Location = "new location",
+                            NeededKnowledge = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
+                            TitleContent = "InternRapp"
+                        },
+                        new
+                        {
+                            Id = 1,
+                            Comment = "<p>required diploma for this internship is: Bachelor<p>",
+                            Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore<p>",
+                            InternShipId = 1,
+                            KnowledgeToDevelop = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
+                            LanguageId = 1,
+                            Location = "new location",
+                            NeededKnowledge = "<p>This is a text editor&nbsp;</p>\r\n\r\n<ul>\r\n	<li>With some styling</li>\r\n	<li>And some more styling</li>\r\n	<li>To test if text is converted to HTML&nbsp;</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>",
+                            TitleContent = "InternRapp"
+                        });
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Language", b =>
@@ -200,6 +270,26 @@ namespace backend.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Languages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "nl",
+                            Name = "Nederlands"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "en",
+                            Name = "Engels"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Code = "fr",
+                            Name = "French"
+                        });
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Location", b =>
@@ -231,6 +321,24 @@ namespace backend.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Locations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            City = "antwerpen",
+                            HouseNumber = 51,
+                            StreetName = "ellermanstraat",
+                            ZipCode = "2260"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            City = "antwerpen",
+                            HouseNumber = 51,
+                            StreetName = "elleboogtraat",
+                            ZipCode = "2260"
+                        });
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.PrefaceTranslation", b =>
@@ -242,6 +350,7 @@ namespace backend.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Content")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("LanguageId")
@@ -256,7 +365,16 @@ namespace backend.Infrastructure.Migrations
 
                     b.HasIndex("UnitId");
 
-                    b.ToTable("PrefaceTranslation");
+                    b.ToTable("PrefaceTranslations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Content = "blabla",
+                            LanguageId = 1,
+                            UnitId = 1
+                        });
                 });
 
             modelBuilder.Entity("InternShipLocation", b =>

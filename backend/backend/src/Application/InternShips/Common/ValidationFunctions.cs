@@ -25,9 +25,7 @@ public class ValidationFunctions
             if (String.IsNullOrEmpty(version.NeededKnowledge)) return false;
             if (String.IsNullOrEmpty(version.TitleContent)) return false;
             if (String.IsNullOrEmpty(version.Comment)) return false;
-            if (String.IsNullOrEmpty(version.Content)) return false;
             if (String.IsNullOrEmpty(version.Description)) return false;
-            if (String.IsNullOrEmpty(version.Location)) return false;
             if (String.IsNullOrEmpty(version.KnowledgeToDevelop)) return false;
 
         }
@@ -40,9 +38,7 @@ public class ValidationFunctions
             if (String.IsNullOrEmpty(version.NeededKnowledge)) return false;
             if (String.IsNullOrEmpty(version.TitleContent)) return false;
             if (String.IsNullOrEmpty(version.Comment)) return false;
-            if (String.IsNullOrEmpty(version.Content)) return false;
             if (String.IsNullOrEmpty(version.Description)) return false;
-            if (String.IsNullOrEmpty(version.Location)) return false;
             if (String.IsNullOrEmpty(version.KnowledgeToDevelop)) return false;
         }
         return true;

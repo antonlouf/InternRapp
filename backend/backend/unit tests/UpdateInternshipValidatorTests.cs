@@ -34,11 +34,9 @@ public class UpdateInternshipValidatorTests
                     {
                         TranslationId=1,
                         Comment="test",
-                        Content="test",
                         Description="test",
                         KnowledgeToDevelop="test",
                         LanguageId=1,
-                        Location="test",
                         NeededKnowledge="test",
                         TitleContent="test"
                     }
@@ -72,7 +70,7 @@ public class UpdateInternshipValidatorTests
             UnitId = 1,
             Versions = new List<TranslationUpdateInternshipDto>()
                 {
-                    new(){TranslationId=1,Comment="test",Content="test",Description="test",KnowledgeToDevelop="test",LanguageId=1,Location="test",NeededKnowledge="test",TitleContent="test"}
+                    new(){TranslationId=1,Comment="test",Description="test",KnowledgeToDevelop="test",LanguageId=1,NeededKnowledge="test",TitleContent="test"}
                 }
 
         };
@@ -102,7 +100,7 @@ public class UpdateInternshipValidatorTests
             UnitId = 1,
             Versions = new List<TranslationUpdateInternshipDto>()
                 {
-                    new(){TranslationId=1,Comment="test",Content="test",Description="test",KnowledgeToDevelop="test",LanguageId=1,Location="test",NeededKnowledge="test",TitleContent="test"}
+                    new(){TranslationId=1,Comment="test",Description="test",KnowledgeToDevelop="test",LanguageId=1,NeededKnowledge="test",TitleContent="test"}
                 }
 
         };
@@ -132,7 +130,7 @@ public class UpdateInternshipValidatorTests
             UnitId = 1,
             Versions = new List<TranslationUpdateInternshipDto>()
                 {
-                    new(){TranslationId=1,Comment="test",Content="test",Description="test",KnowledgeToDevelop="test",LanguageId=1,Location="test",NeededKnowledge="test",TitleContent="test"}
+                    new(){TranslationId=1,Comment="test",Description="test",KnowledgeToDevelop="test",LanguageId=1,NeededKnowledge="test",TitleContent="test"}
                 }
 
         };
@@ -159,7 +157,7 @@ public class UpdateInternshipValidatorTests
             UnitId = 1,
             Versions = new List<TranslationUpdateInternshipDto>()
             {
-                new(){TranslationId=1,Comment="test",Content="test",Description="test",KnowledgeToDevelop="test",LanguageId=1,Location="test",NeededKnowledge="test",TitleContent="test"}
+                new(){TranslationId=1,Comment="test",Description="test",KnowledgeToDevelop="test",LanguageId=1,NeededKnowledge="test",TitleContent="test"}
             }
 
         };
@@ -196,48 +194,7 @@ public class UpdateInternshipValidatorTests
         var result = validator?.TestValidate(command);
         result?.ShouldHaveValidationErrorFor(x => x.Versions);
     }
-    [Fact]
-    public void Version_Content_Is_Empty_Should_Throw_Validation_Error()
-    {
-        var mockedDbContext = new Mock<IApplicationDbContext>();
-        var mockedDbset = new Mock<DbSet<InternShip>>();
-        mockedDbContext.Setup(x => x.InternShips).Returns(mockedDbset.Object);
-
-        var validator = new UpdateInternShipCommandValidator(mockedDbContext.Object);
-        var command = new UpdateInternShipCommand()
-        {
-
-            CurrentCountOfStudents = 5,
-            SchoolYear = $"{DateTime.UtcNow.Year}-{DateTime.UtcNow.Year + 1}",
-
-
-            MaxCountOfStudents = 10,
-            TrainingType = TrainingType.Master,
-            UnitId = 1,
-            Locations = new List<LocationDto>
-            {
-                new(){City="Antwerp", Housenumber=51,Streetname="Ellermanstraat",Zipcode="2260"}
-            },
-
-            Versions = new List<TranslationUpdateInternshipDto>()
-            {
-                new(){
-                    TranslationId=1,
-                    Comment="test",
-                    Content=String.Empty,
-                    Description="test",
-                    KnowledgeToDevelop="test",
-                    LanguageId=1,Location="test",
-                    NeededKnowledge="test",
-                    TitleContent="test"
-                }
-            }
-
-
-        };
-        var result = validator?.TestValidate(command);
-        result?.ShouldHaveValidationErrorFor(x => x.Versions);
-    }
+   
     [Fact]
     public void Version_Comment_Is_Empty_Should_Throw_Validation_Error()
     {
@@ -266,10 +223,8 @@ public class UpdateInternshipValidatorTests
                 new(){
                     TranslationId=1,
                     Comment=String.Empty,
-                    Content="",
                     Description="test",
                     KnowledgeToDevelop="test",
-                    LanguageId=1,Location="test",
                     NeededKnowledge="test",
                     TitleContent="test"
                 }
@@ -308,11 +263,9 @@ public class UpdateInternshipValidatorTests
                 new(){
                     TranslationId=1,
                     Comment="test",
-                    Content="test",
                     Description=String.Empty,
                     KnowledgeToDevelop="test",
                     LanguageId=1,
-                    Location="test",
                     NeededKnowledge="test",
                     TitleContent="test"
                 }
@@ -351,11 +304,9 @@ public class UpdateInternshipValidatorTests
                 new(){
                     TranslationId=1,
                     Comment="test",
-                    Content="test",
                     Description="test",
                     KnowledgeToDevelop=String.Empty,
                     LanguageId=1,
-                    Location="test",
                     NeededKnowledge="test",
                     TitleContent="test"
                 }
@@ -366,49 +317,7 @@ public class UpdateInternshipValidatorTests
         var result = validator?.TestValidate(command);
         result?.ShouldHaveValidationErrorFor(x => x.Versions);
     }
-    [Fact]
-    public void Version_Location_Is_Empty_Should_Throw_Validation_Error()
-    {
-        var mockedDbContext = new Mock<IApplicationDbContext>();
-        var mockedDbset = new Mock<DbSet<InternShip>>();
-        mockedDbContext.Setup(x => x.InternShips).Returns(mockedDbset.Object);
-
-        var validator = new UpdateInternShipCommandValidator(mockedDbContext.Object);
-        var command = new UpdateInternShipCommand()
-        {
-
-            CurrentCountOfStudents = 5,
-            SchoolYear = $"{DateTime.UtcNow.Year}-{DateTime.UtcNow.Year + 1}",
-
-
-            MaxCountOfStudents = 10,
-            TrainingType = TrainingType.Master,
-            UnitId = 1,
-            Locations = new List<LocationDto>
-            {
-                new(){City="Antwerp", Housenumber=51,Streetname="Ellermanstraat",Zipcode="2260"}
-            },
-
-            Versions = new List<TranslationUpdateInternshipDto>()
-            {
-                new(){
-                    TranslationId=1,
-                    Comment="test",
-                    Content="test",
-                    Description="test",
-                    KnowledgeToDevelop="test",
-                    LanguageId=1,
-                    Location=String.Empty,
-                    NeededKnowledge="test",
-                    TitleContent="test"
-                }
-            }
-
-
-        };
-        var result = validator?.TestValidate(command);
-        result?.ShouldHaveValidationErrorFor(x => x.Versions);
-    }
+   
     [Fact]
     public void Version_NeededKnowledge_Is_Empty_Should_Throw_Validation_Error()
     {
@@ -437,11 +346,9 @@ public class UpdateInternshipValidatorTests
                 new(){
                     TranslationId=1,
                     Comment="test",
-                    Content="test",
                     Description="test",
                     KnowledgeToDevelop="test",
                     LanguageId=1,
-                    Location="test",
                     NeededKnowledge=String.Empty,
                     TitleContent="test"
                 }
@@ -480,11 +387,9 @@ public class UpdateInternshipValidatorTests
                 new(){
                     TranslationId=1,
                     Comment="test",
-                    Content="test",
                     Description="test",
                     KnowledgeToDevelop="test",
                     LanguageId=1,
-                    Location="test",
                     NeededKnowledge="test",
                     TitleContent=String.Empty
                 }
