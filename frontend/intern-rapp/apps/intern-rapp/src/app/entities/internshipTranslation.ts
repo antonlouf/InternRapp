@@ -4,7 +4,5 @@ export interface InternshipTranslation{
   description: string
   knowledgeToDevelop: string
   neededKnowledge: string
-  location: string
   comment: string
-  content: string
 }

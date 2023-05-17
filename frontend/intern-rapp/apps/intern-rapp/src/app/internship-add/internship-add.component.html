@@ -47,7 +47,7 @@
         type="number"
         >
         <mat-error >
-            {{'maxStudentsErrorMessage' |translate}}
+            {{buildErrorMessage('maxStudents')}}
         </mat-error>
     </mat-form-field>
 
@@ -62,7 +62,7 @@
   
         >
         <mat-error >
-            {{'currentCountOfStudentsErrorMessage' |translate}}
+          {{buildErrorMessage('currentCountOfStudents')}}
         </mat-error>
     </mat-form-field>
 

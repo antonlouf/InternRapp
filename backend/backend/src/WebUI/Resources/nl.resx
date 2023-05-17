@@ -132,6 +132,9 @@
   <data name="addLocationHeader" xml:space="preserve">
     <value>een locatie toevoegen</value>
   </data>
+  <data name="and" xml:space="preserve">
+    <value>en</value>
+  </data>
   <data name="Bachelor" xml:space="preserve">
     <value>Bachelor</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="commentLabel" xml:space="preserve">
     <value>commentaar</value>
+  </data>
+  <data name="commentLabelErrorMessage" xml:space="preserve">
+    <value>Het commentaar kan niet leeg zijn of groter dan 1000 tekens</value>
   </data>
   <data name="confirmDeleteMessage" xml:space="preserve">
     <value>bent u zeker om te verwijderen?</value>
@@ -166,13 +172,16 @@
     <value>de departement naam is verplicht in te vullen</value>
   </data>
   <data name="departmentNameLabel" xml:space="preserve">
-    <value>departement naam</value>
+    <value>departement</value>
   </data>
   <data name="departments" xml:space="preserve">
     <value>departementen</value>
   </data>
   <data name="descriptionLabel" xml:space="preserve">
     <value>beschrijving</value>
+  </data>
+  <data name="descriptionLabelErrorMessage" xml:space="preserve">
+    <value>De uitleg van opdracht mag niet leeg en langer dan 1000 karakters zijn</value>
   </data>
   <data name="editButton" xml:space="preserve">
     <value>bijwerken</value>
@@ -183,17 +192,35 @@
   <data name="events" xml:space="preserve">
     <value>beurzen</value>
   </data>
+  <data name="fieldRequiredErrorMessage" xml:space="preserve">
+    <value>Dit is verplicht in te vullen!</value>
+  </data>
   <data name="Fr" xml:space="preserve">
     <value>Frans</value>
   </data>
+  <data name="FreeUsedPlacesLabel" xml:space="preserve">
+    <value>vrij/bezet plaatsen</value>
+  </data>
+  <data name="greaterThanMaxStudentsErrorMessage" xml:space="preserve">
+    <value>Aantal toegelaten studenten mag niet meer dan maximaal toegelaten studenten zijn</value>
+  </data>
+  <data name="GreaterThanParamLimitError" xml:space="preserve">
+    <value>U moet een getal tussen 0 en 15 invoeren.</value>
+  </data>
   <data name="internship" xml:space="preserve">
     <value>stage</value>
+  </data>
+  <data name="internshipNameColumnLabel" xml:space="preserve">
+    <value>de  naam van de opdracht</value>
   </data>
   <data name="internships" xml:space="preserve">
     <value>Stages</value>
   </data>
   <data name="knowledgeToDevelopLabel" xml:space="preserve">
     <value>kennis dat opgedaan zal worden</value>
+  </data>
+  <data name="knowledgeToDevelopLabelErrorMessage" xml:space="preserve">
+    <value>de vereiste kennis mag niet leeg en groter zijn dan 1000 karakters</value>
   </data>
   <data name="language" xml:space="preserve">
     <value>taal</value>
@@ -246,6 +273,9 @@
   <data name="managerEmail" xml:space="preserve">
     <value>email van manager</value>
   </data>
+  <data name="managerEmailsLabel" xml:space="preserve">
+    <value>De email van de managers</value>
+  </data>
   <data name="Master" xml:space="preserve">
     <value>Master</value>
   </data>
@@ -284,6 +314,9 @@
   </data>
   <data name="titleContentLabel" xml:space="preserve">
     <value>titel</value>
+  </data>
+  <data name="titleContentLabelErrorMessage" xml:space="preserve">
+    <value>de naam van stage kan niet leeg zijn</value>
   </data>
   <data name="titleContentLabetitleContent" xml:space="preserve">
     <value>titel</value>
