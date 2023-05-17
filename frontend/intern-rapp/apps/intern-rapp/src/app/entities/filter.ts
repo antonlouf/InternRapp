@@ -6,5 +6,6 @@ export interface Filter {
   name: string;
   label: string;
   observable: Observable<unknown[]> | undefined;
-  optionBuilder(items: unknown[],value:unknown): unknown[]|undefined
+  optionBuilder(items: unknown[], value: unknown): unknown[] | undefined,
+  defaultValue:unknown|undefined
 }

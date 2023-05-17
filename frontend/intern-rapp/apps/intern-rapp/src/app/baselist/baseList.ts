@@ -43,7 +43,6 @@ export abstract class BaseList<T> {
   }
     public filterUpdated(newFilters: {}): void {
         const filters = Object(newFilters);
-        debugger;
         let filterString=""
         for (let key in filters) {
             if ((filters[key] as string).split('=').length>=2) {

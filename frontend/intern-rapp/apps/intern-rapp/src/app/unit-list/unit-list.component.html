@@ -16,11 +16,20 @@
       <!-- </div> -->
     </button>
       <mat-list >
-  
+  <div class="flex-row-columns">
+<div>{{'department'}}</div>
+<div  class="manager-emails">{{'managerEmailsLabel'|translate}}</div>
+  </div>
         <mat-list-item  *ngFor="let item of items">
          
           <div class="flex-row" >
-            <div class="flex-begin">{{item.name}} managers:{{item.managerEmails}}</div>
+            <div>
+              <mat-checkbox (change)="addToSelectedUnits($event.checked,item.id)"></mat-checkbox>
+            </div>
+            <div >{{item.name}} </div>
+            <div>
+              {{item.managerEmails}}
+            </div>
             <div class="flex-end">
               <div class="flex-row ">
                 <div >     

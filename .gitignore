@@ -2,7 +2,25 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+/backend/backend/.vs/ProjectSettings.json
+/backend/backend/.vs/backend/v17/TestStore/1/110.testlog
+/backend/backend/.vs/backend/FileContentIndex
+/backend/backend/unit tests/obj/Debug/net7.0/unit tests.csproj.AssemblyReference.cache
+/backend/backend/.vs/slnx.sqlite
+/backend/backend/src/WebUI/obj/Debug/net7.0/WebUI.csproj.AssemblyReference.cache
+/backend/backend/src/Infrastructure/obj/Debug/net7.0/Infrastructure.csproj.AssemblyReference.cache
+/backend/backend/src/Application/obj/Debug/net7.0
 /backend/backend/.vs/backend/FileContentIndex
 /backend/backend/.vs/backend/v17/TestStore/1
+/backend/backend/.vs/backend/v17
 /backend/backend/.vs/ProjectSettings.json
+
+/backend/backend/.vs/VSWorkspaceState.json
+/backend/backend/.vs/backend/DesignTimeBuild/.dtbcache.v2
+/backend/backend/.vs/backend/v17/.wsuo
+/backend/backend/.vs/backend/v17/.suo
 /backend/backend/.vs/slnx.sqlite
+/backend/backend/unit tests/obj/Debug/net7.0/unit tests.csproj.AssemblyReference.cache
+/backend/backend/src/WebUI/obj/Debug/net7.0/WebUI.csproj.AssemblyReference.cache
+/backend/backend/src/Infrastructure/obj/Debug/net7.0/Infrastructure.csproj.AssemblyReference.cache
+/backend/backend/src/Application/obj/Debug/net7.0/Application.csproj.AssemblyReference.cache

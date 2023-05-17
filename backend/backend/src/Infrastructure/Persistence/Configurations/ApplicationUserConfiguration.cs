@@ -17,6 +17,15 @@ public class ApplicationUserConfiguration : IEntityTypeConfiguration<Application
         builder.HasAlternateKey(x => x.Email);
         builder.Property(x=>x.ObjectIdentifier).IsRequired();
         builder.HasIndex(x => x.ObjectIdentifier);
+
+        builder.HasData(new List<ApplicationUser>()
+        {
+            new() { Id=1,ObjectIdentifier= Guid.NewGuid(),Email="recep@inetum-realdolmen.world" },
+            new() { Id=2,ObjectIdentifier= Guid.NewGuid(),Email="Anton@inetum-realdolmen.world" },
+            new() { Id=3,ObjectIdentifier= Guid.NewGuid(),Email="Nils@inetum-realdolmen.world" },
+        
+        }
+        );
  
 
     }

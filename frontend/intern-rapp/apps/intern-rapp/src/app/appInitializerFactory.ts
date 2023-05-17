@@ -9,7 +9,6 @@ export function AppInitializerFactory(translateService: TranslateService)
     }
     return () => {
         
-        debugger
           const capitalizedLanguage = capitalize(
             translateService.getBrowserCultureLang()?.split('-')[0] as string
         );
@@ -18,7 +17,7 @@ export function AppInitializerFactory(translateService: TranslateService)
           } else {
             translateService.currentLang = 'Nl';
           }
-      translateService.setDefaultLang(translateService.currentLang);
+      // translateService.setDefaultLang(translateService.currentLang);
       translateService.use(translateService.currentLang);
       
       return translateService.getTranslation(translateService.currentLang);
