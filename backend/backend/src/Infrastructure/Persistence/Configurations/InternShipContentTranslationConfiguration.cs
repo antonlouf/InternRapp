@@ -13,19 +13,12 @@ public class InternShipContentTranslationConfiguration : IEntityTypeConfiguratio
 {
     public void Configure(EntityTypeBuilder<InternShipContentTranslation> builder)
     {
-        builder.HasKey(x=>x.Id);
+        builder.HasKey(x => x.Id);
         builder.Property(x => x.TitleContent).IsRequired().HasMaxLength(40);
         builder.Property(x => x.Description).IsRequired().HasMaxLength(1000);
         builder.Property(x => x.KnowledgeToDevelop).IsRequired().HasMaxLength(1000);
         builder.Property(x => x.NeededKnowledge).IsRequired().HasMaxLength(1000);
         builder.Property(x => x.Comment).IsRequired().HasMaxLength(1000);
-     
-
-        };
-        builder.HasData(new List<InternShipContentTranslation>()
-        {
-           trnslEng, trnslFr, trnslNl
-        });
-
     }
+        
 }
