@@ -72,3 +72,12 @@ margin-left: 90%;
       font-weight: bold;
       font-size: large;
   }
+  
+  .align-right {
+      margin-left: 90%;
+  }
+   .buttons-above-list {
+       display: flex;
+       flex-direction: row;
+       gap: 20px;
+   }
