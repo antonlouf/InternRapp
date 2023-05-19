@@ -48,9 +48,9 @@ public class LanguageController : ControllerBase
         return Ok();
     }
     [HttpDelete()]
-    public async Task<IActionResult> DeleteLanguage(int id)
+    public async Task<IActionResult> DeleteLanguage([FromBody]List<int> ids)
     {
-        await _mediator.Send(new DeleteLanguageCommand() { Id=id });
+        await _mediator.Send(new DeleteLanguageCommand() { Ids=ids });
         return Ok();
     }
     [HttpGet("{language}")]

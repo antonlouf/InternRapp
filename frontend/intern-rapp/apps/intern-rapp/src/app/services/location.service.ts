@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs';
 import { APIConfiguration } from '../configurations/APIConfiguration';
@@ -44,8 +44,15 @@ export class LocationService {
   
   }
 
-  deleteLocation$(id: number|undefined){
-    return this.http.delete<number>(APIConfiguration.baseString+`${this.baseSuffixApi}?id=${id}`)
+  deleteLocation$(ids: number[] | undefined) {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+        body:JSON.stringify(ids)
+        ,
+      };
+    return this.http.delete<number>(APIConfiguration.baseString+`${this.baseSuffixApi}`,httpOptions)
     .pipe(catchError((err,caught)=>caught))
     }
 

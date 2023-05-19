@@ -80,9 +80,9 @@ public class InternShipController : ControllerBase
         return Ok();
     }
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> Delete([FromRoute] int id)
+    public async Task<IActionResult> Delete([FromBody] List<int> ids)
     {
-        await _mediator.Send(new DeleteInternshipCommand() { Id = id });
+        await _mediator.Send(new DeleteInternshipCommand() { Ids=ids });
         return Ok();
     }
 

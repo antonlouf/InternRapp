@@ -17,6 +17,7 @@ public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
                                      .HasMaxLength(100)
                                      .IsRequired();
         builder.HasIndex(x => x.Name);
+
         builder.Property(x => x.ManagerEmails).UsePropertyAccessMode(PropertyAccessMode.PreferProperty).HasConversion(v => string.Join(',', v), x => x.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList());
         builder.HasMany(x => x.PrefaceTranslations).WithOne(x => x.Unit).OnDelete(DeleteBehavior.Cascade);
         builder.HasMany(x => x.Internships).WithOne(x => x.Unit).OnDelete(DeleteBehavior.Cascade);

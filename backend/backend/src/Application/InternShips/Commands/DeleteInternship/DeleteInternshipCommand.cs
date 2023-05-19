@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 namespace backend.Application.InternShips.Commands.DeleteInternship;
 public class DeleteInternshipCommand:IRequest
 {
-    public int Id { get; set; }
+    public List<int> Ids { get; set; }
 }
 public class DeleteInternshipCommandHandler : AsyncRequestHandler<DeleteInternshipCommand>
 {
@@ -23,8 +23,9 @@ public class DeleteInternshipCommandHandler : AsyncRequestHandler<DeleteInternsh
 
     protected async override Task Handle(DeleteInternshipCommand request, CancellationToken cancellationToken)
     {
-        var entityTobeDeleted = await _dbContext.InternShips.FindAsync(request.Id);
-        _dbContext.InternShips.Remove(entityTobeDeleted);
+        var entitiesTobeDeleted = await _dbContext.InternShips.Where(x=>request.Ids.Contains(x.Id)).ToListAsync();
+        if (entitiesTobeDeleted == null) return;
+        _dbContext.InternShips.RemoveRange(entitiesTobeDeleted);
         await _dbContext.SaveChangesAsync(cancellationToken);
     }
 }

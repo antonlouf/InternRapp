@@ -24,7 +24,52 @@ public class InternShipConfiguration : IEntityTypeConfiguration<InternShip>
         builder.HasMany(x => x.Locations).WithMany(x => x.InternShips).UsingEntity<InternShipLocation>();
         builder.Property(x => x.MaxStudents).HasConversion(v => (byte)v,
             v => v).IsRequired();
-        builder.HasMany(x => x.Translations).WithOne(x => x.InternShip).OnDelete(DeleteBehavior.Cascade);
+        builder.HasMany(x => x.Translations).WithOne(x=>x.InternShip).OnDelete(DeleteBehavior.Cascade);
+
+ 
+
+        builder.HasData(new List<InternShip>()
+        {
+            new()
+            {
+             Id = 1,
+             CurrentCountOfStudents = 0,
+             MaxStudents = 10,
+             RequiredTrainingType = TrainingType.Bachelor,
+             SchoolYear = "2023-2024",
+             UnitId = 1
+            }
+        });
+
+ 
+
+        builder.HasData(new List<InternShip>()
+        {
+            new()
+            {
+             Id = 1,
+             CurrentCountOfStudents = 0,
+             MaxStudents = 10,
+             RequiredTrainingType = TrainingType.Bachelor,
+             SchoolYear = "2023-2024",
+             UnitId = 1
+            }
+        });
+
+ 
+
+        builder.HasData(new List<InternShip>()
+        {
+            new()
+            {
+             Id = 1,
+             CurrentCountOfStudents = 0,
+             MaxStudents = 10,
+             RequiredTrainingType = TrainingType.Bachelor,
+             SchoolYear = "2023-2024",
+             UnitId = 1
+            }
+        });
 
     }
 }

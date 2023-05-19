@@ -1,6 +1,9 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Runtime.Intrinsics.X86;
 using backend.Application.Common.Interfaces;
+using backend.Domain.BaseDefinitions;
 using backend.Domain.Entities;
 using backend.Domain.Enums;
 using DocumentFormat.OpenXml.Drawing.Charts;
@@ -8,6 +11,7 @@ using Duende.IdentityServer.EntityFramework.Options;
 using MediatR;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Options;
 using static Azure.Core.HttpHeader;
@@ -20,7 +24,6 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
 
     public ApplicationDbContext(
         DbContextOptions<ApplicationDbContext> options,
-        IOptions<OperationalStoreOptions> operationalStoreOptions,
         IMediator mediator)
         : base(options)
     {
@@ -48,6 +51,40 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+
+        //foreach (var entityType in builder.Model.GetEntityTypes())
+        //{
+        //    if (typeof(ISoftDeletable).IsAssignableFrom(entityType.ClrType))
+        //    {
+        //        entityType.AddProperty("IsDeleted", typeof(bool));
+
+        //    }
+        //}
+        foreach (var entityType in builder.Model.GetEntityTypes())
+        {
+            //If the actual entity is an auditable type. 
+            if (typeof(ISoftDeletable).IsAssignableFrom(entityType.ClrType))
+            {
+               entityType.AddProperty("IsDeleted", typeof(bool));
+
+                // 2. Create the query filter
+                var parameter = Expression.Parameter(entityType.ClrType);
+
+                // EF.Property<bool>(post, "IsDeleted")
+                var propertyMethodInfo = typeof(EF).GetMethod("Property").MakeGenericMethod(typeof(bool));
+                var isDeletedProperty = Expression.Call(propertyMethodInfo, parameter, Expression.Constant("IsDeleted"));
+
+                // EF.Property<bool>(post, "IsDeleted") == false
+                BinaryExpression compareExpression = Expression.MakeBinary(ExpressionType.Equal, isDeletedProperty, Expression.Constant(false));
+
+                // post => EF.Property<bool>(post, "IsDeleted") == false
+                var lambda = Expression.Lambda(compareExpression, parameter);
+
+                builder.Entity(entityType.ClrType).HasQueryFilter(lambda);
+
+
+            }
+        }
         base.OnModelCreating(builder);
 
         var locationHuizingen = new Location

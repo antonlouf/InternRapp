@@ -4,9 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using backend.Domain.BaseDefinitions;
 
 namespace backend.Domain.Entities;
-public class Location
+public class Location:ISoftDeletable
 {
     public int Id { get; set; }
     public string City { get; set; }

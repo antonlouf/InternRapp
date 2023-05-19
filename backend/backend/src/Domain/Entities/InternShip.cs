@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using backend.Domain.BaseDefinitions;
 using backend.Domain.Enums;
 
 namespace backend.Domain.Entities;
-public class InternShip
+public class InternShip:ISoftDeletable
 {
     public int Id { get;  set; }
     public Department Unit { get; set; }

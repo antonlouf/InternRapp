@@ -9,11 +9,25 @@
 <ng-template
 internRappItemsTmpl let-items 
 >
-<button mat-icon-button (click)="addLocation()" class="align-right save-button-above-list"  >
-  
-    <mat-icon>add</mat-icon>
-    <!-- <div>{{'addButton'|translate}}</div> -->
+<div class="flex-row-above-list">
+  <div>
+<button mat-icon-button (click)="addLocation()" class="align-right save-button-above-list">
+
+  <mat-icon>add</mat-icon>
+  <!-- <div>{{'addButton'|translate}}</div> -->
 </button>
+  </div>
+  <div>
+      <button (click)="delete()" class="cancel-button" mat-fab color="primary"
+        aria-label="Example icon button with a delete icon">
+        <mat-icon>delete</mat-icon>
+      </button>
+  </div>
+</div>
+
+    <div>
+
+    </div>
 
   <mat-list >
     <div class="flex-row-columns">
@@ -33,11 +47,7 @@ internRappItemsTmpl let-items
         <div class="flex-begin">{{item.housenumber}}</div>
         <div class="flex-end">
           <div class="flex-row ">
-            <div >     
-               <button (click)="delete(item.id)"   class="cancel-button"   mat-fab color="primary" aria-label="Example icon button with a delete icon">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </div>
+        
             <div>
               <button (click)="updateLocation(item)" class="save-button" color="primary" mat-fab color="primary" aria-label="Example icon button with a delete icon">
                 <mat-icon>edit</mat-icon>
