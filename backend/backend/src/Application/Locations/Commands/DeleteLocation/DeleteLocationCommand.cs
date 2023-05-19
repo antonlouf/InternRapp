@@ -9,24 +9,25 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Application.Locations.Commands.DeleteLocation;
-public class DeleteLocationCommand:IRequest
+public class DeleteLocationCommand : IRequest
 {
-    public int Id { get; set; }
+    public List<int> Ids { get; set; }
 }
-    public class DeleteLocationCommandHandler : AsyncRequestHandler<DeleteLocationCommand>
+public class DeleteLocationCommandHandler : AsyncRequestHandler<DeleteLocationCommand>
+{
+    private readonly IApplicationDbContext _dbContext;
+
+    public DeleteLocationCommandHandler(IApplicationDbContext dbContext)
     {
-        private readonly IApplicationDbContext _dbContext;
-
-        public DeleteLocationCommandHandler(IApplicationDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
-        protected override async Task Handle(DeleteLocationCommand request, CancellationToken cancellationToken)
-        {
-            var entityTobeDeleted = await _dbContext.Locations.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
-            _dbContext.Locations.Remove(entityTobeDeleted);
-            await _dbContext.SaveChangesAsync(cancellationToken);
-        }
+        _dbContext = dbContext;
     }
+
+    protected override async Task Handle(DeleteLocationCommand request, CancellationToken cancellationToken)
+    {
+        var entityTobeDeleted = await _dbContext.Locations.Where(x => request.Ids.Contains(x.Id)).ToListAsync();
+        if (entityTobeDeleted == null) return;
+        _dbContext.Locations.RemoveRange(entityTobeDeleted);                
+        await _dbContext.SaveChangesAsync(cancellationToken);
+    }
+}
 

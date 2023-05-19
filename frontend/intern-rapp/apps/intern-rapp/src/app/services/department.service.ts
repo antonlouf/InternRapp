@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { APIConfiguration } from '../configurations/APIConfiguration';
 import { catchError, Observable, of, retry, shareReplay, take } from 'rxjs';
 import {  CreateDepartment } from '../entities/CreateDepartment';
@@ -52,10 +52,16 @@ export class DepartmentService {
       )
       .pipe(catchError((err, caught) => caught));
   }
-  deleteDepartment(id: number | undefined) {
+  deleteDepartment(ids: number[] | undefined) {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify(ids),
+      };
     return this.http
       .delete<number>(
-        APIConfiguration.baseString + `${this.baseSuffixApi}?id=${id}`
+        APIConfiguration.baseString + `${this.baseSuffixApi}`,httpOptions
       )
       .pipe(catchError((err, caught) => caught));
   }

@@ -28,6 +28,11 @@ internRappItemsTmpl let-items
     <mat-icon>save_alt</mat-icon>
   </button>
 </div>
+  <div>
+    <button mat-icon-button (click)="delete()" class="cancel-button" mat-fab color="primary">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
 </div >
 
 
@@ -60,11 +65,7 @@ internRappItemsTmpl let-items
 
         <div class="flex-end">
           <div class="flex-row ">
-            <div >     
-               <button  mat-icon-button (click)="delete(item.id)"  class="cancel-button"   mat-fab color="primary" >
-              <mat-icon>delete</mat-icon>
-            </button>
-          </div>
+          
             <div>
               <button  mat-icon-button  (click)="updateInternship(item.id)">
                 <mat-icon>edit</mat-icon>

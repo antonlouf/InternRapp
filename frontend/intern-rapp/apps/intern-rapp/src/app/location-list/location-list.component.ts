@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaselistComponent } from '../baselist/baselist.component';
 import { BaseList } from '../baselist/baseList';
-import { filter, map, Observable, Subject, switchMap } from 'rxjs';
+import { filter, map, Observable, Subject, switchMap, tap } from 'rxjs';
 import { PaginationFilterRequest } from '../entities/paginationFilterRequest';
 import { ResourceItemPagingResponse } from '../entities/resourceItemPagingResponse';
 import { CreateLocation } from '../entities/createLocation';
@@ -54,7 +54,7 @@ export class LocationListComponent extends BaseList<LocationItem> {
     closeOnNavigation: true,
     disableClose: false,
     hasBackdrop: true,
-    position: { top: '150px', right: '1200px' },
+    position: { top: '20%', right: '40%' },
   };
 
   //Locations ophalen met filter
@@ -136,10 +136,13 @@ export class LocationListComponent extends BaseList<LocationItem> {
         dialogRef.componentInstance.title = 'location'; //why?
         return dialogRef
           .afterClosed()
-          .pipe(map((confirm) => (confirm ? id : undefined)));
+          .pipe(tap(data => {
+            debugger
+
+          }),map((confirm) => (confirm ? id : undefined)));
       }),
       filter((id) => !!id),
-      switchMap((id) => this.LocationService.deleteLocation$(id))
+      switchMap((id) => this.LocationService.deleteLocation$(this.selectedIds))
     );
   }
 
@@ -160,8 +163,8 @@ export class LocationListComponent extends BaseList<LocationItem> {
   updateLocation = (item: LocationItem) => {
     this.updateSubject.next(item);
   };
-  delete(id: number) {
-    this.deleteSubject.next(id);
+  delete() {
+    this.deleteSubject.next(1);
   }
   public addToSelectedLocations(completed: boolean, id: number) {
     if (!completed) {

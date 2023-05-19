@@ -22,11 +22,11 @@ public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
         builder.HasMany(x => x.PrefaceTranslations).WithOne(x => x.Unit).OnDelete(DeleteBehavior.Cascade);
         builder.HasMany(x => x.Internships).WithOne(x => x.Unit).OnDelete(DeleteBehavior.Cascade);
 
-        builder.HasData(new List<Department>()
-        {
-            new(){Id=1,ManagerEmails=new List<string>{"recep@inetum-realdolmen.world" },Name="Java"
-        } 
-        });
+        //builder.HasData(new List<Department>()
+        //{
+        //    new(){Id=1,ManagerEmails=new List<string>{"recep@inetum-realdolmen.world" },Name="Java"
+        //} 
+        //});
 
     }
 }

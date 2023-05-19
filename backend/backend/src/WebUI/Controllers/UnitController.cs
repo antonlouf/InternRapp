@@ -59,10 +59,10 @@ public class UnitController : ControllerBase
     }
 
     [HttpDelete]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete([FromBody] List<int> ids)
     {
-        await _mediator.Send(new DeleteUnitCommand() { Id=id});
+        await _mediator.Send(new DeleteUnitCommand() { Ids = ids });
  
-        return Ok($"{id}");
+        return Ok();
     }
 }

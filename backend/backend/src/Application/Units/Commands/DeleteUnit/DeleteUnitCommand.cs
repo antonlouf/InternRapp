@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace backend.Application.Units.Commands.DeleteUnit;
 public class DeleteUnitCommand:IRequest
 {
-    public int Id { get; set; }
+    public List<int> Ids { get; set; }
 
 }
 public class DeleteUnitCommandHandler : AsyncRequestHandler<DeleteUnitCommand>
@@ -26,8 +26,9 @@ public class DeleteUnitCommandHandler : AsyncRequestHandler<DeleteUnitCommand>
   
     protected async override Task Handle(DeleteUnitCommand request, CancellationToken cancellationToken)
     {
-        var entityTobeDeleted=await _dbContext.Departments.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
-        _dbContext.Departments.Remove(entityTobeDeleted);
+        var entitiesTobeDeleted=await _dbContext.Departments.Where(x => request.Ids.Contains(x.Id)).FirstOrDefaultAsync();
+        if (entitiesTobeDeleted == null) return;
+        _dbContext.Departments.RemoveRange(entitiesTobeDeleted);
         await _dbContext.SaveChangesAsync(cancellationToken);
         
     }
