@@ -15,6 +15,12 @@ internRappItemsTmpl let-items
     <div>    <mat-icon>add</mat-icon></div>
     <!-- <div>{{'addButton'|translate}}</div> -->
   </div>
+    <div>
+      <button mat-icon-button (click)="delete()" class="cancel-button" mat-fab color="primary"
+        aria-label="Example icon button with a delete icon">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
 </button>
   <mat-list >
   <div class="flex-row-columns">
@@ -30,11 +36,7 @@ internRappItemsTmpl let-items
         <div>{{item.name}}</div>
         <div class="flex-end">
           <div class="flex-row ">
-            <div >     
-               <button mat-icon-button  (click)="delete(item.id)"   class="cancel-button"   mat-fab color="primary" aria-label="Example icon button with a delete icon">
-              <mat-icon >delete</mat-icon>
-            </button>
-          </div>
+          
             <div>
               <button (click)="updateLanguage(item)" class="save-button" color="primary" mat-fab color="primary" aria-label="Example icon button with a delete icon">
                 <mat-icon>edit</mat-icon>

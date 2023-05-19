@@ -8,6 +8,13 @@
     gap: 5px;
     justify-content: space-between;
 }
+.flex-row-above-list{
+    display: flex;
+        flex-direction: row;
+        gap: 50px;
+        justify-content: flex-end;
+    margin-right: 5%;
+}
 .flex-begin{
     align-items: flex-start;
 }

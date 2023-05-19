@@ -17,13 +17,5 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
         builder.Property(x => x.StreetName).IsRequired().HasMaxLength(100);
         builder.Property(x => x.HouseNumber).IsRequired();
         builder.Property(x => x.ZipCode).IsRequired().HasMaxLength(8);
-
-        builder.HasData(new List<Location>()
-        {
-            new(){City="antwerpen",HouseNumber=51,Id=1,StreetName="ellermanstraat",ZipCode="2260"},
-            new(){City="antwerpen",HouseNumber=51,Id=2,StreetName="elleboogtraat",ZipCode="2260"},
-
-        });
-
     }
 }

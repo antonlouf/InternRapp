@@ -132,7 +132,7 @@ export class InternShipListComponent
           .pipe(map((confirm) => (confirm ? id : undefined)));
       }),
       filter((id) => !!id), //undefined checken
-      switchMap((id) => this.internshipService.deleteInternship(id ?? 0)),  
+      switchMap((id) => this.internshipService.deleteInternship(this.selectedIds ?? 0)),  
     )
   }
   getGridItems$(
@@ -259,7 +259,7 @@ export class InternShipListComponent
   }
   filterUpdating(filter: {}) {
     const record = filter as Record<string, never>;
-    const activeFilters :Record<string,unknown>= {};
+    const activeFilters: Record<string, unknown> = {};
 
     if (record['schoolyear']) {
       activeFilters['schoolYear'] = record['schoolyear'];
@@ -301,12 +301,11 @@ export class InternShipListComponent
       // });
     }),take(1),takeUntil(this.destroySubj$)).subscribe()
   }
-  delete(id: number) {
-    this.deleteSubject.next(id);
+  delete() {
+    this.deleteSubject.next(0);
   }
   exportButtonHandler() {
     this.exportSubj$.next()
-    console.log(this.exportSubj$)
     
   }
 }

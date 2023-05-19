@@ -10,11 +10,22 @@
     <ng-template
     internRappItemsTmpl let-items 
     >
-    <button mat-icon-button (click)="addDepartment()" class="align-right save-button-above-list"  >
+    <div class="flex-row-above-list">
+      <div>
+    <button mat-icon-button (click)="addDepartment()" class="align-right save-button-above-list">
       <!-- <div class="flex-row center-flex-items" > -->
-        <mat-icon>add</mat-icon>
+      <mat-icon>add</mat-icon>
       <!-- </div> -->
     </button>
+      </div>
+      <div>
+        <button (click)="delete()" class="cancel-button" mat-fab color="primary"
+          aria-label="Example icon button with a delete icon">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+
       <mat-list >
   <div class="flex-row-columns">
 <div>{{'department'}}</div>
@@ -32,11 +43,7 @@
             </div>
             <div class="flex-end">
               <div class="flex-row ">
-                <div >     
-                   <button (click)="delete(item.id)"   class="cancel-button"   mat-fab color="primary" aria-label="Example icon button with a delete icon">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </div>
+             
                 <div>
                   <button (click)="updateDepartment(item.id)" class="save-button" color="primary" mat-fab color="primary" aria-label="Example icon button with a delete icon">
                     <mat-icon>edit</mat-icon>

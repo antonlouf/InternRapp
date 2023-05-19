@@ -117,7 +117,7 @@ export class UnitListComponent
           .pipe(map((confirm) => (confirm ? id : undefined)));
       }),
       filter((id) => !!id),
-      switchMap((id) => this.unitService.deleteDepartment(id))
+      switchMap((id) => this.unitService.deleteDepartment(this.selectedIds))
     );
   }
 
@@ -179,8 +179,8 @@ export class UnitListComponent
   updateDepartment = (id: number) => {
     this.updateSubject.next(id);
   };
-  delete(id: number) {
-    this.deleteSubject.next(id);
+  delete() {
+    this.deleteSubject.next(1);
   }
   public addToSelectedUnits(completed: boolean, id: number) {
     if (!completed) {

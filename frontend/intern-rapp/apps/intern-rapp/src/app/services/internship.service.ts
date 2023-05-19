@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PaginationFilterRequest } from '../entities/paginationFilterRequest';
 import { APIConfiguration } from '../configurations/APIConfiguration';
 import { ResourceItemPagingResponse } from '../entities/resourceItemPagingResponse';
@@ -98,9 +98,15 @@ export class InternshipService {
         retry(2)
       );
   }
-  deleteInternship(id: number) {
+  deleteInternship(ids: number[]) {
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+          }),
+          body: JSON.stringify(ids),
+        };
     return this.http.delete(
-      APIConfiguration.baseString + `${this.baseSuffixApi}/${id}`
+      APIConfiguration.baseString + `${this.baseSuffixApi}`,httpOptions
     );
   }
   public exportInternships(filterCriteria: ExportInternshipOptions) {
