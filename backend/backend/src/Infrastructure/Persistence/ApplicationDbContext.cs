@@ -242,7 +242,8 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             ManagerEmails = new List<string> { "anton.louf@student.ehb.be" },
         };
 
-  
+        List<string> schoolyears = new List<string> { "2021-2022", "2022-2023", "2023-2024" };
+
         //languages
         builder.Entity<Language>().HasData(langEng, langFr, langNl);
 
@@ -274,7 +275,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         string prefaceDescrFr = @"<p>Ce ici c'est un description standard d un departement</p>";
         string prefaceDescrEng = @"<p>This is a standard description for a unit</p>";
         string prefaceDescr = "";
-
+        Random rnd = new Random();
 
         for (int intrnShipIndex = 0; intrnShipIndex < 10; intrnShipIndex++)
         {
@@ -287,7 +288,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
                 CurrentCountOfStudents = 0,
                 MaxStudents = 10,
                 RequiredTrainingType = TrainingType.Bachelor,
-                SchoolYear = "2023 -2024",
+                SchoolYear = schoolyears[rnd.Next(3)],
                 UnitId = index,
             };
 

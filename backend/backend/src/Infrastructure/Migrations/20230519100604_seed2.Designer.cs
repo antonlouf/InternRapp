@@ -12,8 +12,8 @@ using backend.Infrastructure.Persistence;
 namespace backend.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230516131611_seed1")]
-    partial class seed1
+    [Migration("20230519100604_seed2")]
+    partial class seed2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,6 +48,26 @@ namespace backend.Infrastructure.Migrations
                     b.HasIndex("ObjectIdentifier");
 
                     b.ToTable("ApplicationUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "recep@inetum-realdolmen.world",
+                            ObjectIdentifier = new Guid("399b9b58-685e-44c8-822d-605f99095415")
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "Anton@inetum-realdolmen.world",
+                            ObjectIdentifier = new Guid("ceca9388-f3eb-4dc0-92f9-4a179d99a90b")
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "Nils@inetum-realdolmen.world",
+                            ObjectIdentifier = new Guid("9d05477f-d5ee-48f2-aefe-f9e0a601dd8a")
+                        });
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Department", b =>
@@ -132,7 +152,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2023-2024",
                             UnitId = 1
                         },
                         new
@@ -141,7 +161,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2022-2023",
                             UnitId = 2
                         },
                         new
@@ -150,7 +170,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2021-2022",
                             UnitId = 3
                         },
                         new
@@ -159,7 +179,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2021-2022",
                             UnitId = 1
                         },
                         new
@@ -168,7 +188,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2022-2023",
                             UnitId = 2
                         },
                         new
@@ -177,7 +197,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2022-2023",
                             UnitId = 3
                         },
                         new
@@ -186,7 +206,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2022-2023",
                             UnitId = 1
                         },
                         new
@@ -195,7 +215,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2023-2024",
                             UnitId = 2
                         },
                         new
@@ -204,7 +224,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2021-2022",
                             UnitId = 3
                         },
                         new
@@ -213,7 +233,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2023-2024",
                             UnitId = 1
                         });
                 });
@@ -246,6 +266,9 @@ namespace backend.Infrastructure.Migrations
 
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NeededKnowledge")
                         .IsRequired()
@@ -499,7 +522,37 @@ namespace backend.Infrastructure.Migrations
                         },
                         new
                         {
+                            InternShipId = 1,
+                            LocationsId = 2
+                        },
+                        new
+                        {
+                            InternShipId = 1,
+                            LocationsId = 3
+                        },
+                        new
+                        {
                             InternShipId = 2,
+                            LocationsId = 1
+                        },
+                        new
+                        {
+                            InternShipId = 2,
+                            LocationsId = 2
+                        },
+                        new
+                        {
+                            InternShipId = 2,
+                            LocationsId = 3
+                        },
+                        new
+                        {
+                            InternShipId = 3,
+                            LocationsId = 1
+                        },
+                        new
+                        {
+                            InternShipId = 3,
                             LocationsId = 2
                         },
                         new
@@ -514,7 +567,37 @@ namespace backend.Infrastructure.Migrations
                         },
                         new
                         {
+                            InternShipId = 4,
+                            LocationsId = 2
+                        },
+                        new
+                        {
+                            InternShipId = 4,
+                            LocationsId = 3
+                        },
+                        new
+                        {
                             InternShipId = 5,
+                            LocationsId = 1
+                        },
+                        new
+                        {
+                            InternShipId = 5,
+                            LocationsId = 2
+                        },
+                        new
+                        {
+                            InternShipId = 5,
+                            LocationsId = 3
+                        },
+                        new
+                        {
+                            InternShipId = 6,
+                            LocationsId = 1
+                        },
+                        new
+                        {
+                            InternShipId = 6,
                             LocationsId = 2
                         },
                         new
@@ -529,7 +612,37 @@ namespace backend.Infrastructure.Migrations
                         },
                         new
                         {
+                            InternShipId = 7,
+                            LocationsId = 2
+                        },
+                        new
+                        {
+                            InternShipId = 7,
+                            LocationsId = 3
+                        },
+                        new
+                        {
                             InternShipId = 8,
+                            LocationsId = 1
+                        },
+                        new
+                        {
+                            InternShipId = 8,
+                            LocationsId = 2
+                        },
+                        new
+                        {
+                            InternShipId = 8,
+                            LocationsId = 3
+                        },
+                        new
+                        {
+                            InternShipId = 9,
+                            LocationsId = 1
+                        },
+                        new
+                        {
+                            InternShipId = 9,
                             LocationsId = 2
                         },
                         new
@@ -541,6 +654,16 @@ namespace backend.Infrastructure.Migrations
                         {
                             InternShipId = 10,
                             LocationsId = 1
+                        },
+                        new
+                        {
+                            InternShipId = 10,
+                            LocationsId = 2
+                        },
+                        new
+                        {
+                            InternShipId = 10,
+                            LocationsId = 3
                         });
                 });
 
@@ -656,6 +779,7 @@ namespace backend.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Content")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("LanguageId")

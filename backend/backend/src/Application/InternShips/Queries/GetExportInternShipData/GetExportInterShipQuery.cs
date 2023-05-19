@@ -41,23 +41,27 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
     {
         var units = await _dbContext.Departments
             .Include(dept => dept.Internships)
-            .ThenInclude(x => x.Locations)
+            .ThenInclude(intrshp => intrshp.Locations)
             .Where(unit => (request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(unit.Id))
             && unit.Internships.Any(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)))
+            //&& unit.Internships.Any(intrShips => request.Dto.SchoolYear.Contains(intrShips.SchoolYear))) //filter op jaartal -- filteren op internships ipv units?
 
             .Select(exportDto => new UnitExportDto()
             {
                 Name = exportDto.Name,
-                PrefaceDto = exportDto.PrefaceTranslations.Where(unit => unit.LanguageId == request.Dto.LanguageId) //languageId steeds null?
+                PrefaceDto = exportDto.PrefaceTranslations.Where(unit => unit.LanguageId == request.Dto.LanguageId) 
                 .Select(unit => new PrefaceTranslationDto()
                 {
                     TranslationId = unit.Id,
                     Content = unit.Content,
                     Language = _iMapper.Map<LanguageListDto>(unit.Language),
                 }).Single(),
-                InternShipsDtos = exportDto.Internships.Where(intrshp => intrshp.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)).Select(intrshp => new InternShipExportDto()
+                InternShipsDtos = exportDto.Internships
+                .Where(intrshp => intrshp.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)
+                && request.Dto.SchoolYear == intrshp.SchoolYear) //2de where conditie op schooljaar
+                .Select(intrshp => new InternShipExportDto()
                 {
-                    SchoolYear = intrshp.SchoolYear,
+                    SchoolYear = intrshp.SchoolYear, 
                     Locations = intrshp.Locations.Select(loc => new LocationDto()
                     {
                         City = loc.City,
@@ -91,7 +95,7 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
         }
 
         //export
-        GenerateWordDoc(units /*new List<UnitExportDto>() { }*/, request.Dto);
+        //GenerateWordDoc(units /*new List<UnitExportDto>() { }*/, request.Dto);
 
         //return new List<UnitExportDto>() { };
         return units;

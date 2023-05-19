@@ -12,8 +12,8 @@ using backend.Infrastructure.Persistence;
 namespace backend.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230516141222_seed2")]
-    partial class seed2
+    [Migration("20230519093801_seed1")]
+    partial class seed1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,6 +48,26 @@ namespace backend.Infrastructure.Migrations
                     b.HasIndex("ObjectIdentifier");
 
                     b.ToTable("ApplicationUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "recep@inetum-realdolmen.world",
+                            ObjectIdentifier = new Guid("aaf5a015-661c-44e7-b150-3779997a4fb6")
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "Anton@inetum-realdolmen.world",
+                            ObjectIdentifier = new Guid("dc742509-0fe6-4c57-8dd5-ffb8889badf9")
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "Nils@inetum-realdolmen.world",
+                            ObjectIdentifier = new Guid("65d35426-9103-4ada-b5d8-9794f3ca494b")
+                        });
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Department", b =>
@@ -132,7 +152,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2021-2022",
                             UnitId = 1
                         },
                         new
@@ -141,7 +161,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2022-2023",
                             UnitId = 2
                         },
                         new
@@ -150,7 +170,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2023-2024",
                             UnitId = 3
                         },
                         new
@@ -159,7 +179,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2021-2022",
                             UnitId = 1
                         },
                         new
@@ -168,7 +188,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2022-2023",
                             UnitId = 2
                         },
                         new
@@ -177,7 +197,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2023-2024",
                             UnitId = 3
                         },
                         new
@@ -186,7 +206,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2021-2022",
                             UnitId = 1
                         },
                         new
@@ -195,7 +215,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2022-2023",
                             UnitId = 2
                         },
                         new
@@ -204,7 +224,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2023-2024",
                             UnitId = 3
                         },
                         new
@@ -213,7 +233,7 @@ namespace backend.Infrastructure.Migrations
                             CurrentCountOfStudents = (byte)0,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023 -2024",
+                            SchoolYear = "2021-2022",
                             UnitId = 1
                         });
                 });
@@ -246,6 +266,9 @@ namespace backend.Infrastructure.Migrations
 
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NeededKnowledge")
                         .IsRequired()
@@ -756,6 +779,7 @@ namespace backend.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Content")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("LanguageId")
