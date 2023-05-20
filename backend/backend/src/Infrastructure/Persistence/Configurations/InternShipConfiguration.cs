@@ -26,50 +26,5 @@ public class InternShipConfiguration : IEntityTypeConfiguration<InternShip>
             v => v).IsRequired();
         builder.HasMany(x => x.Translations).WithOne(x=>x.InternShip).OnDelete(DeleteBehavior.Cascade);
 
- 
-
-        builder.HasData(new List<InternShip>()
-        {
-            new()
-            {
-             Id = 1,
-             CurrentCountOfStudents = 0,
-             MaxStudents = 10,
-             RequiredTrainingType = TrainingType.Bachelor,
-             SchoolYear = "2023-2024",
-             UnitId = 1
-            }
-        });
-
- 
-
-        builder.HasData(new List<InternShip>()
-        {
-            new()
-            {
-             Id = 1,
-             CurrentCountOfStudents = 0,
-             MaxStudents = 10,
-             RequiredTrainingType = TrainingType.Bachelor,
-             SchoolYear = "2023-2024",
-             UnitId = 1
-            }
-        });
-
- 
-
-        builder.HasData(new List<InternShip>()
-        {
-            new()
-            {
-             Id = 1,
-             CurrentCountOfStudents = 0,
-             MaxStudents = 10,
-             RequiredTrainingType = TrainingType.Bachelor,
-             SchoolYear = "2023-2024",
-             UnitId = 1
-            }
-        });
-
     }
 }

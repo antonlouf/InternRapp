@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Options;
 using static Azure.Core.HttpHeader;
 using Department = backend.Domain.Entities.Department;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace backend.Infrastructure.Persistence;
 public class ApplicationDbContext : DbContext, IApplicationDbContext
@@ -52,14 +53,6 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
 
-        //foreach (var entityType in builder.Model.GetEntityTypes())
-        //{
-        //    if (typeof(ISoftDeletable).IsAssignableFrom(entityType.ClrType))
-        //    {
-        //        entityType.AddProperty("IsDeleted", typeof(bool));
-
-        //    }
-        //}
         foreach (var entityType in builder.Model.GetEntityTypes())
         {
             //If the actual entity is an auditable type. 
@@ -71,7 +64,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
                 var parameter = Expression.Parameter(entityType.ClrType);
 
                 // EF.Property<bool>(post, "IsDeleted")
-                var propertyMethodInfo = typeof(EF).GetMethod("Property").MakeGenericMethod(typeof(bool));
+                var propertyMethodInfo = typeof(EF).GetMethod("Property")!.MakeGenericMethod(typeof(bool));
                 var isDeletedProperty = Expression.Call(propertyMethodInfo, parameter, Expression.Constant("IsDeleted"));
 
                 // EF.Property<bool>(post, "IsDeleted") == false
@@ -85,57 +78,62 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
 
             }
         }
+
         base.OnModelCreating(builder);
 
-        var locationHuizingen = new Location
+        //seeding 
+        var locationHuizingen = new 
         {
             Id = 1,
             City = "Huizingen",
             ZipCode = "1654",
             HouseNumber = 42,
             StreetName = "Vaucampslaan",
-            //InternShipIds = new List<int> { 1 }
+            IsDeleted = false,
         };
 
-        var locationGent = new Location
+        var locationGent = new 
         {
             Id = 2,
             City = "Gent",
             ZipCode = "9050",
             HouseNumber = 4,
             StreetName = "Gaston Crommenlaan",
-            //InternShipIds = new List<int> { 1, 2 }
+            IsDeleted = false,
         };
 
-        var locationKontich = new Location
+        var locationKontich = new 
         {
             Id = 3,
             City = "Kontich",
             ZipCode = "2550",
             HouseNumber = 26,
             StreetName = "Prins Boudewijnlaan",
-            //InternShipIds = new List<int> { 1, 2, 3 }
+            IsDeleted = false,
         };
 
-        var langNl = new Language
+        var langNl = new 
         {
             Id = 1,
             Code = "nl",
             Name = "nederlands",
+            IsDeleted = false,
         };
 
-        var langFr = new Language
+        var langFr = new 
         {
             Id = 2,
             Code = "fr",
-            Name = "frans"
+            Name = "frans",
+            IsDeleted = false,
         };
 
-        var langEng = new Language
+        var langEng = new 
         {
             Id = 3,
             Code = "eng",
-            Name = "engels"
+            Name = "engels",
+            IsDeleted = false,
         };
 
 
@@ -258,25 +256,28 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         };
         */
 
-        var microsoftCompetence = new Department
+        var microsoftCompetence = new 
         {
             Id = 1,
             Name = ".net",
             ManagerEmails = new List<string> { "anton.louf@student.ehb.be" },
+            IsDeleted = false
         };
 
-        var javaUnit = new Department
+        var javaUnit = new 
         {
             Id = 2,
             Name = "Java",
             ManagerEmails = new List<string> { "anton.louf@student.ehb.be" },
+            IsDeleted = false
         };
 
-        var lowCodeUnit = new Department
+        var lowCodeUnit = new 
         {
             Id = 3,
             Name = "Low Code",
             ManagerEmails = new List<string> { "anton.louf@student.ehb.be" },
+            IsDeleted = false,
         };
 
         List<string> schoolyears = new List<string> { "2021-2022", "2022-2023", "2023-2024" };
@@ -319,7 +320,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             var index = (intrnShipIndex % 3) + 1;
 
             //make internship and go to next internship in next unit 
-            var standardInternShip = new InternShip
+            var standardInternShip = new 
             {
                 Id = intrnShipIndex + 1,
                 CurrentCountOfStudents = 0,
@@ -327,15 +328,17 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
                 RequiredTrainingType = TrainingType.Bachelor,
                 SchoolYear = schoolyears[rnd.Next(3)],
                 UnitId = index,
+                IsDeleted = false,
             };
 
             //for lus waarbij internship meerdere locations heeft --> checken
             for (int i = 1; i <= 3; i++)
             {
-                var standardInternShipLocation = new InternShipLocation
+                var standardInternShipLocation = new 
                 {
                     InternShipId = standardInternShip.Id,
                     LocationsId = i,
+                    IsDeleted = false,
                 };
             //InternShipLocations
             builder.Entity<InternShipLocation>().HasData(standardInternShipLocation);
@@ -345,7 +348,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             //loop eerste keer 1 trnsl, tweede intrsnship 2 trnslaties, derde intrship x 3trnsl, --- > restart  
             for (int langIndex = 0; langIndex < (intrnShipIndex % 3) + 1; langIndex++)
             {
-                var standardTrnsl = new InternShipContentTranslation
+                var standardTrnsl = new 
                 {
                     Id = trnslIndex, //steeds hoger 
                     TitleContent = "Standard Internship Title",
@@ -355,6 +358,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
                     Comment = $@"<p>required diploma for this internship is: {TrainingType.Bachelor}</p>", //+1 of random
                     LanguageId = langIndex + 1,
                     InternShipId = standardInternShip.Id,
+                    IsDeleted = false,
                 };
 
                 trnslIndex++;
@@ -384,12 +388,13 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
                     case 2: prefaceDescr = prefaceDescrFr; break;
                     case 3: prefaceDescr = prefaceDescrEng; break;
                 }
-                var standardPrefaceTrnsl = new PrefaceTranslation
+                var standardPrefaceTrnsl = new 
                 {
                     Id = prefaceIndex, //check?
                     Content = prefaceDescr,
                     UnitId = unitIndex,
                     LanguageId = langI,
+                    IsDeleted = false,
                 };
                 prefaceIndex++;
 

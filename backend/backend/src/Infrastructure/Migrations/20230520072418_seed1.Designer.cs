@@ -12,8 +12,8 @@ using backend.Infrastructure.Persistence;
 namespace backend.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230519100604_seed2")]
-    partial class seed2
+    [Migration("20230520072418_seed1")]
+    partial class seed1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,9 @@ namespace backend.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<Guid>("ObjectIdentifier")
                         .HasColumnType("uniqueidentifier");
 
@@ -48,26 +51,6 @@ namespace backend.Infrastructure.Migrations
                     b.HasIndex("ObjectIdentifier");
 
                     b.ToTable("ApplicationUsers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Email = "recep@inetum-realdolmen.world",
-                            ObjectIdentifier = new Guid("399b9b58-685e-44c8-822d-605f99095415")
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Email = "Anton@inetum-realdolmen.world",
-                            ObjectIdentifier = new Guid("ceca9388-f3eb-4dc0-92f9-4a179d99a90b")
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Email = "Nils@inetum-realdolmen.world",
-                            ObjectIdentifier = new Guid("9d05477f-d5ee-48f2-aefe-f9e0a601dd8a")
-                        });
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Department", b =>
@@ -77,6 +60,9 @@ namespace backend.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("ManagerEmails")
                         .HasColumnType("nvarchar(max)");
@@ -96,18 +82,21 @@ namespace backend.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
+                            IsDeleted = false,
                             ManagerEmails = "anton.louf@student.ehb.be",
                             Name = ".net"
                         },
                         new
                         {
                             Id = 2,
+                            IsDeleted = false,
                             ManagerEmails = "anton.louf@student.ehb.be",
                             Name = "Java"
                         },
                         new
                         {
                             Id = 3,
+                            IsDeleted = false,
                             ManagerEmails = "anton.louf@student.ehb.be",
                             Name = "Low Code"
                         });
@@ -123,6 +112,9 @@ namespace backend.Infrastructure.Migrations
 
                     b.Property<byte>("CurrentCountOfStudents")
                         .HasColumnType("tinyint");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<byte>("MaxStudents")
                         .HasColumnType("tinyint");
@@ -150,51 +142,57 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 1,
                             CurrentCountOfStudents = (byte)0,
+                            IsDeleted = false,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023-2024",
+                            SchoolYear = "2021-2022",
                             UnitId = 1
                         },
                         new
                         {
                             Id = 2,
                             CurrentCountOfStudents = (byte)0,
+                            IsDeleted = false,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2022-2023",
+                            SchoolYear = "2023-2024",
                             UnitId = 2
                         },
                         new
                         {
                             Id = 3,
                             CurrentCountOfStudents = (byte)0,
+                            IsDeleted = false,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2021-2022",
+                            SchoolYear = "2022-2023",
                             UnitId = 3
                         },
                         new
                         {
                             Id = 4,
                             CurrentCountOfStudents = (byte)0,
+                            IsDeleted = false,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2021-2022",
+                            SchoolYear = "2022-2023",
                             UnitId = 1
                         },
                         new
                         {
                             Id = 5,
                             CurrentCountOfStudents = (byte)0,
+                            IsDeleted = false,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2022-2023",
+                            SchoolYear = "2023-2024",
                             UnitId = 2
                         },
                         new
                         {
                             Id = 6,
                             CurrentCountOfStudents = (byte)0,
+                            IsDeleted = false,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
                             SchoolYear = "2022-2023",
@@ -204,6 +202,7 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 7,
                             CurrentCountOfStudents = (byte)0,
+                            IsDeleted = false,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
                             SchoolYear = "2022-2023",
@@ -213,15 +212,17 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 8,
                             CurrentCountOfStudents = (byte)0,
+                            IsDeleted = false,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023-2024",
+                            SchoolYear = "2022-2023",
                             UnitId = 2
                         },
                         new
                         {
                             Id = 9,
                             CurrentCountOfStudents = (byte)0,
+                            IsDeleted = false,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
                             SchoolYear = "2021-2022",
@@ -231,6 +232,7 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 10,
                             CurrentCountOfStudents = (byte)0,
+                            IsDeleted = false,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
                             SchoolYear = "2023-2024",
@@ -258,6 +260,9 @@ namespace backend.Infrastructure.Migrations
 
                     b.Property<int>("InternShipId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("KnowledgeToDevelop")
                         .IsRequired()
@@ -295,6 +300,7 @@ namespace backend.Infrastructure.Migrations
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 1,
+                            IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
@@ -306,6 +312,7 @@ namespace backend.Infrastructure.Migrations
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 2,
+                            IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
@@ -317,6 +324,7 @@ namespace backend.Infrastructure.Migrations
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 2,
+                            IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 2,
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
@@ -328,6 +336,7 @@ namespace backend.Infrastructure.Migrations
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 3,
+                            IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
@@ -339,6 +348,7 @@ namespace backend.Infrastructure.Migrations
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 3,
+                            IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 2,
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
@@ -350,6 +360,7 @@ namespace backend.Infrastructure.Migrations
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 3,
+                            IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 3,
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
@@ -361,6 +372,7 @@ namespace backend.Infrastructure.Migrations
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 4,
+                            IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
@@ -372,6 +384,7 @@ namespace backend.Infrastructure.Migrations
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 5,
+                            IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
@@ -383,6 +396,7 @@ namespace backend.Infrastructure.Migrations
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 5,
+                            IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 2,
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
@@ -394,6 +408,7 @@ namespace backend.Infrastructure.Migrations
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 6,
+                            IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
@@ -405,6 +420,7 @@ namespace backend.Infrastructure.Migrations
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 6,
+                            IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 2,
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
@@ -416,6 +432,7 @@ namespace backend.Infrastructure.Migrations
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 6,
+                            IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 3,
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
@@ -427,6 +444,7 @@ namespace backend.Infrastructure.Migrations
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 7,
+                            IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
@@ -438,6 +456,7 @@ namespace backend.Infrastructure.Migrations
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 8,
+                            IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
@@ -449,6 +468,7 @@ namespace backend.Infrastructure.Migrations
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 8,
+                            IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 2,
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
@@ -460,6 +480,7 @@ namespace backend.Infrastructure.Migrations
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 9,
+                            IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
@@ -471,6 +492,7 @@ namespace backend.Infrastructure.Migrations
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 9,
+                            IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 2,
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
@@ -482,6 +504,7 @@ namespace backend.Infrastructure.Migrations
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 9,
+                            IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 3,
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
@@ -493,6 +516,7 @@ namespace backend.Infrastructure.Migrations
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 10,
+                            IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
@@ -680,6 +704,9 @@ namespace backend.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -697,18 +724,21 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 3,
                             Code = "eng",
+                            IsDeleted = false,
                             Name = "engels"
                         },
                         new
                         {
                             Id = 2,
                             Code = "fr",
+                            IsDeleted = false,
                             Name = "frans"
                         },
                         new
                         {
                             Id = 1,
                             Code = "nl",
+                            IsDeleted = false,
                             Name = "nederlands"
                         });
                 });
@@ -728,6 +758,9 @@ namespace backend.Infrastructure.Migrations
 
                     b.Property<int>("HouseNumber")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("StreetName")
                         .IsRequired()
@@ -749,6 +782,7 @@ namespace backend.Infrastructure.Migrations
                             Id = 1,
                             City = "Huizingen",
                             HouseNumber = 42,
+                            IsDeleted = false,
                             StreetName = "Vaucampslaan",
                             ZipCode = "1654"
                         },
@@ -757,6 +791,7 @@ namespace backend.Infrastructure.Migrations
                             Id = 2,
                             City = "Gent",
                             HouseNumber = 4,
+                            IsDeleted = false,
                             StreetName = "Gaston Crommenlaan",
                             ZipCode = "9050"
                         },
@@ -765,6 +800,7 @@ namespace backend.Infrastructure.Migrations
                             Id = 3,
                             City = "Kontich",
                             HouseNumber = 26,
+                            IsDeleted = false,
                             StreetName = "Prins Boudewijnlaan",
                             ZipCode = "2550"
                         });
@@ -781,6 +817,9 @@ namespace backend.Infrastructure.Migrations
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
@@ -801,6 +840,7 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 1,
                             Content = "<p>Dit is een standaard descriptie horende bij een unit</p>",
+                            IsDeleted = false,
                             LanguageId = 1,
                             UnitId = 1
                         },
@@ -808,6 +848,7 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 2,
                             Content = "<p>Ce ici c'est un description standard d un departement</p>",
+                            IsDeleted = false,
                             LanguageId = 2,
                             UnitId = 1
                         },
@@ -815,6 +856,7 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 3,
                             Content = "<p>This is a standard description for a unit</p>",
+                            IsDeleted = false,
                             LanguageId = 3,
                             UnitId = 1
                         },
@@ -822,6 +864,7 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 4,
                             Content = "<p>Dit is een standaard descriptie horende bij een unit</p>",
+                            IsDeleted = false,
                             LanguageId = 1,
                             UnitId = 2
                         },
@@ -829,6 +872,7 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 5,
                             Content = "<p>Ce ici c'est un description standard d un departement</p>",
+                            IsDeleted = false,
                             LanguageId = 2,
                             UnitId = 2
                         },
@@ -836,6 +880,7 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 6,
                             Content = "<p>This is a standard description for a unit</p>",
+                            IsDeleted = false,
                             LanguageId = 3,
                             UnitId = 2
                         },
@@ -843,6 +888,7 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 7,
                             Content = "<p>Dit is een standaard descriptie horende bij een unit</p>",
+                            IsDeleted = false,
                             LanguageId = 1,
                             UnitId = 3
                         },
@@ -850,6 +896,7 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 8,
                             Content = "<p>Ce ici c'est un description standard d un departement</p>",
+                            IsDeleted = false,
                             LanguageId = 2,
                             UnitId = 3
                         },
@@ -857,6 +904,7 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 9,
                             Content = "<p>This is a standard description for a unit</p>",
+                            IsDeleted = false,
                             LanguageId = 3,
                             UnitId = 3
                         });

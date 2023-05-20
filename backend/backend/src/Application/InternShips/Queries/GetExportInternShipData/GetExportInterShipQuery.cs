@@ -43,8 +43,8 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
             .Include(dept => dept.Internships)
             .ThenInclude(intrshp => intrshp.Locations)
             .Where(unit => (request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(unit.Id))
-            && unit.Internships.Any(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)))
-            //&& unit.Internships.Any(intrShips => request.Dto.SchoolYear.Contains(intrShips.SchoolYear))) //filter op jaartal -- filteren op internships ipv units?
+            && unit.Internships.Any(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId))
+            && unit.Internships.Any(intrShips => request.Dto.SchoolYear == intrShips.SchoolYear)) //filter op jaartal -- filteren op internships ipv units?
 
             .Select(exportDto => new UnitExportDto()
             {
@@ -95,7 +95,7 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
         }
 
         //export
-        //GenerateWordDoc(units /*new List<UnitExportDto>() { }*/, request.Dto);
+        GenerateWordDoc(units /*new List<UnitExportDto>() { }*/, request.Dto);
 
         //return new List<UnitExportDto>() { };
         return units;
