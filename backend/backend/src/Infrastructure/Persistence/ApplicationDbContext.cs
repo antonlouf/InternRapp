@@ -116,7 +116,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         {
             Id = 1,
             Code = "nl",
-            Name = "nederlands",
+            Name = "Dutch",
             IsDeleted = false,
         };
 
@@ -124,15 +124,23 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         {
             Id = 2,
             Code = "fr",
-            Name = "frans",
+            Name = "French",
             IsDeleted = false,
         };
 
         var langEng = new 
         {
             Id = 3,
-            Code = "eng",
-            Name = "engels",
+            Code = "en",
+            Name = "English",
+            IsDeleted = false,
+        };
+
+        var langDe = new
+        {
+            Id = 4,
+            Code = "de",
+            Name = "German",
             IsDeleted = false,
         };
 

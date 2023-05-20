@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata;
@@ -111,13 +112,21 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
         var allElements = body!.Elements().ToList();
 
         int altChunckId = 0;
-
-        //fetch static content from resource files 
-        //change language code depending on request 
+        
+        //Resource content
         var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetName().Name == "WebUI").ToList();
-        var langCode = _dbContext.Languages.Where(lang => lang.Id == requestDto.LanguageId).Single().Code;
-        ResourceManager rm = new ResourceManager($"WebUI.Resources.{langCode}", Assembly.LoadFile(@$"{assemblies[0].Location}")); //werkt enkel bij nl? 
+        ResourceManager rm;
+        try
+        {
+            var langCode = _dbContext.Languages.Where(lang => lang.Id == requestDto.LanguageId).Single().Code;
+            rm = new ResourceManager($"WebUI.Resources.{langCode}", Assembly.LoadFile(@$"{assemblies[0].Location}"));
+        }
+        catch (Exception)
+        {
+            rm = new ResourceManager("WebUI.Resources.en", Assembly.LoadFile(@$"{assemblies[0].Location}"));
+        }
 
+       
         if (File.Exists(resultPath))
         {
             File.Delete(resultPath);

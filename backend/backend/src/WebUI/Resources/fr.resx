@@ -118,13 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ACADEMICT_DESCRIPTION" xml:space="preserve">
-    <value>&lt;p&gt;Met het &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt; introduceert Realdolmen een &lt;strong&gt;uniek programma&lt;/strong&gt; met &lt;strong&gt;focus op pasafgestudeerden&lt;/strong&gt;. De term &lt;strong&gt;acADDemICT &lt;/strong&gt;staat voor een pasafgestudeerde die gepassioneerd is door ICT en levenslang wil leren.&lt;/p&gt;
+    <value>&lt;p&gt;
+Avec le programme &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt;, Realdolmen propose un &lt;strong&gt;programme unique&lt;/strong&gt; axe sur les jeunes diplomes. Le terme &lt;strong&gt;acADDemICT&lt;/strong&gt; designe un jeune diplome passionne par les TIC et desireux d'apprendre tout au long de sa vie.&lt;/p&gt;
 
-&lt;p&gt;Elk jaar investeert Realdolmen in een &lt;strong&gt;klein aantal high potentials&lt;/strong&gt;. Tijdens een &lt;strong&gt;intensieve&lt;/strong&gt; &lt;strong&gt;trainingsperiode van 3 maanden&lt;/strong&gt; bereidt Realdolmen hen voor op het leven van een professionele ICT Consultant. Bij Realdolmen weten we ook dat een &lt;strong&gt;carrière&lt;/strong&gt;meer is dan een aaneenschakeling van verschillende jobs. Het is een voortdurend &lt;strong&gt;groeiproces &lt;/strong&gt;en het verwezenlijken van jouw &lt;strong&gt;professionele ambities &lt;/strong&gt;terwijl je jouw kennis van zaken ten dienste stelt van Realdolmen.&lt;/p&gt;
+&lt;p&gt;Chaque annee, Realdolmen investit dans un &lt;strong&gt;petit nombre de talents prometteurs&lt;/strong&gt;. Au cours d'une &lt;strong&gt;periode de formation intensive de 3 mois&lt;/strong&gt;, Realdolmen les prepare a une carriere de consultant professionnel en TIC. Chez Realdolmen, nous savons egalement qu'une carriere ne se limite pas a une succession d'emplois differents. C'est un processus de croissance continu et la realisation de vos ambitions professionnelles tout en mettant vos connaissances au service de Realdolmen.&lt;/p&gt;
 
-&lt;p&gt;Het is belangrijk te weten dat &lt;strong&gt;doorgroeimogelijkheden&lt;/strong&gt; geen loze beloften zijn voor ons. Je carrière kan zowel verticaal als horizontaal evolueren. Ook in ondersteunende functies of in Business Development kan jij bijdragen tot het groeipad van Realdolmen. Sowieso word je begeleid door ervaren coaches die je helpen de juiste keuzes te maken en je wordt ondersteund door een groot aanbod leermogelijkheden.&lt;/p&gt;
+&lt;p&gt;Il est important de savoir que les &lt;strong&gt;opportunites d'avancement&lt;/strong&gt; ne sont pas de vaines promesses pour nous. Votre carriere peut evoluer tant verticalement qu'horizontalement. Que ce soit dans des roles de soutien ou dans le developpement des affaires, vous pouvez contribuer a la trajectoire de croissance de Realdolmen. Vous serez accompagne(e) par des coaches experimentes qui vous aideront a prendre les bonnes decisions, et vous beneficierez d'une large gamme de possibilites d'apprentissage.&lt;/p&gt;
 
-&lt;p&gt;https://jobs.realdolmen.com&lt;/p&gt;</value>
+&lt;p&gt;&lt;a href="https://jobs.realdolmen.com"&gt;https://jobs.realdolmen.com&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="ACADEMICT_TITLE" xml:space="preserve">
     <value>acADDemICT Junior Track</value>
@@ -133,7 +134,7 @@
     <value>nouveau</value>
   </data>
   <data name="addDepartmentHeader" xml:space="preserve">
-    <value>ajouter un département</value>
+    <value>ajouter un departement</value>
   </data>
   <data name="addInternshipTitle" xml:space="preserve">
     <value>ajouter un stage</value>
@@ -157,66 +158,66 @@
     <value>commentaires</value>
   </data>
   <data name="commentLabelErrorMessage" xml:space="preserve">
-    <value>Le commentaire ne pouvait pas être vide ou supérieur à 1000 caractères</value>
+    <value>Le commentaire ne pouvait pas etre vide ou superieur a 1000 caracteres</value>
   </data>
   <data name="COMPANY_DESCRIPTION" xml:space="preserve">
-    <value>&lt;p&gt;Inetum-Realdolmen is lid van de Europese Inetum Groep en bedient met ongeveer 1.950 hooggeschoolde medewerkers in de Benelux meer dan 1.000 klanten op strategisch, tactisch en operationeel ICT-vlak.&lt;/p&gt;
+    <value>&lt;p&gt;Inetum-Realdolmen est membre du groupe europeen Inetum et compte environ 1 950 employes hautement qualifies aux Pays-Bas, en Belgique et au Luxembourg, au service de plus de 1 000 clients dans les domaines strategique, tactique et operationnel des TIC.&lt;/p&gt;
 
-&lt;p&gt;Inetum-Realdolmen realiseert in elke samenwerking het potentieel van mensen en organisaties en streeft ernaar ICT menselijk te maken. We zijn gedreven door technologische innovaties, maar doen dat op het tempo van ieders ambitie, gericht op resultaat en met fundamenteel effect.&lt;/p&gt;
+&lt;p&gt;Dans chaque collaboration, Inetum-Realdolmen exploite le potentiel des individus et des organisations et vise a humaniser les technologies de l'information et de la communication. Nous sommes motives par les innovations technologiques, mais a un rythme correspondant a chaque ambition, axe sur les resultats et avec un effet fondamental.&lt;/p&gt;
 
-&lt;p&gt;Dit alles onder het bedrijfsmotto &amp;ldquo;&lt;strong&gt;New Challenges, New Ideas&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Tout cela est regi par la devise d'entreprise &lt;strong&gt;Nouveaux defis, nouvelles idees&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;We hebben een sterke lokale verankering in Belgi&amp;euml; met vestigingen in Huizingen, Kontich, Gent, Leuven en Lummen. Samen maken we deel uit van de internationale Inetum Groep, een van de best presterende bedrijven op het gebied van digitale en IT-dienstverlening in de sector. De Inetum Groep heeft zijn hoofdzetel in Parijs en is vooral actief in Frankrijk, Spanje, Portugal en 17 andere landen binnen en buiten Europa.&lt;/p&gt;</value>
+&lt;p&gt;Nous sommes solidement implantes localement en Belgique, avec des bureaux a Huizingen, Kontich, Gand, Louvain et Lummen. Ensemble, nous faisons partie du groupe international Inetum, l'une des entreprises les plus performantes dans le domaine des services numeriques et informatiques du secteur. Le siege social du groupe Inetum est situe a Paris et il est principalement actif en France, en Espagne, au Portugal et dans 17 autres pays en Europe et ailleurs.&lt;/p&gt;</value>
   </data>
   <data name="COMPANY_TITLE" xml:space="preserve">
     <value>Inetum-Realdolmen</value>
   </data>
   <data name="COMPANY_VALUES_DESCRIPTION" xml:space="preserve">
-    <value>&lt;p&gt;Onze waarden zijn meer dan loze woorden. Ze zijn de fundamenten waarop we bouwen om &amp;ldquo;Employer of Choice&amp;rdquo; te zijn voor onze medewerkers. Ze zijn de rode draad doorheen alles wat we doen om succesvol en uitmuntend te zijn.&lt;/p&gt;
+    <value>&lt;p&gt;Nos valeurs sont plus que de simples mots. Elles sont les fondements sur lesquels nous construisons pour etre l'employeur de choix pour nos collaborateurs. Elles sont le fil conducteur de tout ce que nous faisons pour reussir et exceller.&lt;/p&gt;
+ &lt;p&gt;&lt;strong&gt;Ambition&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Ambition &lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Our ambition is to reach further and higher every day and to do our utmost for our clients with passion. We are proud of our craftsmanship and shared successes. We value each other and care about personal growth in order to realize the potential of people and organizations.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Team Spirit&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Esprit d'equipe&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Cooperation and enthusiasm define our success. We appreciate each other&amp;#39;s participation and contribution. We stimulate open dialogue. Our organization encourages idea and knowledge sharing in a wide professional network.&lt;/p&gt;
+&lt;p&gt;La cooperation et l'enthousiasme definissent notre succes. Nous apprecions la participation et la contribution de chacun. Nous favorisons le dialogue ouvert. Notre organisation encourage le partage d'idees et de connaissances dans un vaste reseau professionnel.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Commitment &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Engagement&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;We make clear and realistic agreements, and keep our promises. As engaged employees, we are all ambassadors, committed to deliver a unique and positive customer experience. We always take responsibility and focus on results.&lt;/p&gt;
+&lt;p&gt;Nous concluons des accords clairs et realistes et nous les respectons. En tant qu'employes engages, nous sommes tous des ambassadeurs, engages a offrir une experience client unique et positive. Nous assumons toujours nos responsabilites et nous nous concentrons sur les resultats.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Innovation &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Innovation&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Driven by creativity, we work together with an open mind to meet the challenges of tomorrow. We optimize existing processes and find innovative solutions. We cocreate in an agile and pragmatic way with our colleagues and partners to help our clients to differentiate in their market.&lt;/p&gt;
+&lt;p&gt;Animes par la creativite, nous travaillons ensemble avec un esprit ouvert pour relever les defis de demain. Nous optimisons les processus existants et trouvons des solutions innovantes. Nous co-creons de maniere agile et pragmatique avec nos collegues et nos partenaires pour aider nos clients a se demarquer sur leur marche.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Social responsibility &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Responsabilite sociale&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;For us, it is all about people. We welcome and leverage individual differences. We promote diversity. We invest in education programs and social partnerships. We are driven by our commitment to sustainable development.&lt;/p&gt;</value>
+&lt;p&gt;Pour nous, tout tourne autour des personnes. Nous accueillons et valorisons les differences individuelles. Nous promouvons la diversite. Nous investissons dans des programmes d'education et des partenariats sociaux. Nous sommes guides par notre engagement envers le developpement durable.&lt;/p&gt;</value>
   </data>
   <data name="COMPANY_VALUES_TITLE" xml:space="preserve">
-    <value>Waarden</value>
+    <value>Notre Valeurs</value>
   </data>
   <data name="COMPANY_VISION_DESCRIPTION" xml:space="preserve">
-    <value>&lt;p&gt;&lt;strong&gt;Visie&lt;/strong&gt;&lt;br /&gt;
-In de lokale markten en domeinen waarin we actief zijn, willen we de referentie zijn&lt;br /&gt;
-inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus ondersteunen.&lt;/p&gt;
+    <value>&lt;p&gt;&lt;strong&gt;Vision&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Dans les marches locaux et les domaines dans lesquels nous sommes actifs, nous visons a etre la reference en matiere de solutions integrees qui soutiennent l'ensemble du cycle de vie des TIC.&lt;/p&gt;
 
 &lt;ul&gt;
-	&lt;li&gt;Referentie: de preferenti&amp;euml;le en betrouwbare keuze voor klanten, partners en&amp;nbsp;werknemers&lt;/li&gt;
-	&lt;li&gt;Lokaal: nabijheid tot onze klanten in de Benelux&lt;/li&gt;
-	&lt;li&gt;Ge&amp;iuml;ntegreerde oplossingen: volledige ICT-aanbod dat de hele levenscyclus bestrijkt, inclusief infrastructuur, toepassingen en communicatie&lt;/li&gt;
-	&lt;li&gt;Gehele ICT-levenscyclus: het ondersteunen van alle plan-build-run (design deploy-maintain) activiteiten&lt;/li&gt;
+	&lt;li&gt;Reference : le choix preferentiel et fiable pour les clients, les partenaires et les employes&lt;/li&gt;
+	&lt;li&gt;Local : proximite avec nos clients en Benelux&lt;/li&gt;
+	&lt;li&gt;Solutions integrees : une offre complete de TIC couvrant l'ensemble du cycle de vie, y compris l'infrastructure, les applications et la communication&lt;/li&gt;
+	&lt;li&gt;Cycle de vie complet des TIC : soutien a toutes les activites de planification, de construction et de gestion (conception, deploiement, maintenance)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;Missie&lt;/strong&gt;&lt;br /&gt;
-We make ICT work for your business make IT more human again&lt;/p&gt;</value>
+&lt;p&gt;&lt;strong&gt;Mission&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Nous faisons fonctionner les TIC pour votre entreprise, rendons l'informatique plus humaine&lt;/p&gt;</value>
   </data>
   <data name="COMPANY_VISION_TITLE" xml:space="preserve">
-    <value>Onze Visie &amp; Missie</value>
+    <value>Notre Vision &amp; Mission</value>
   </data>
   <data name="confirmDeleteMessage" xml:space="preserve">
-    <value>Êtes-vous sûr d'effacer?</value>
+    <value>etes-vous sûr d'effacer?</value>
   </data>
   <data name="contentLabel" xml:space="preserve">
     <value>contenu</value>
@@ -225,7 +226,7 @@ We make ICT work for your business make IT more human again&lt;/p&gt;</value>
     <value>Saisir un nombre positif</value>
   </data>
   <data name="currentCountOfStudentsLabel" xml:space="preserve">
-    <value>Nombre d'étudiants qui effectueront ce stage</value>
+    <value>Nombre d'etudiants qui effectueront ce stage</value>
   </data>
   <data name="delete" xml:space="preserve">
     <value>supprimer</value>
@@ -234,34 +235,34 @@ We make ICT work for your business make IT more human again&lt;/p&gt;</value>
     <value>supprimer</value>
   </data>
   <data name="department" xml:space="preserve">
-    <value>département</value>
+    <value>departement</value>
   </data>
   <data name="departmentNameEmptyErrorMessage" xml:space="preserve">
-    <value>le nom du département est obligatoire</value>
+    <value>le nom du departement est obligatoire</value>
   </data>
   <data name="departmentNameExportOptionsErrorMessage" xml:space="preserve">
-    <value>le département est tenu</value>
+    <value>le departement est tenu</value>
   </data>
   <data name="departmentNameLabel" xml:space="preserve">
-    <value>département</value>
+    <value>departement</value>
   </data>
   <data name="departments" xml:space="preserve">
-    <value>départements</value>
+    <value>departements</value>
   </data>
   <data name="descriptionLabel" xml:space="preserve">
     <value>la description</value>
   </data>
   <data name="descriptionLabelErrorMessage" xml:space="preserve">
-    <value>La description du stage ne peut être nulle et supérieure à 1000 caractères.</value>
+    <value>La description du stage ne peut etre nulle et superieure a 1000 caracteres.</value>
   </data>
   <data name="editButton" xml:space="preserve">
-    <value>éditer</value>
+    <value>editer</value>
   </data>
   <data name="En" xml:space="preserve">
     <value>l'anglais</value>
   </data>
   <data name="events" xml:space="preserve">
-    <value>Evénements</value>
+    <value>Evenements</value>
   </data>
   <data name="fieldRequiredErrorMessage" xml:space="preserve">
     <value>Ceci est obligatoire</value>
@@ -270,16 +271,16 @@ We make ICT work for your business make IT more human again&lt;/p&gt;</value>
     <value>l'exportation</value>
   </data>
   <data name="exportPopupHeader" xml:space="preserve">
-    <value>Stages à l'exportation</value>
+    <value>Stages a l'exportation</value>
   </data>
   <data name="Fr" xml:space="preserve">
     <value>français</value>
   </data>
   <data name="FreeUsedPlacesLabel" xml:space="preserve">
-    <value>sièges libres/occupés</value>
+    <value>sieges libres/occupes</value>
   </data>
   <data name="greaterThanMaxStudentsErrorMessage" xml:space="preserve">
-    <value>Le nombre d'étudiants participant au stage ne doit pas dépasser le nombre maximum autorisé.</value>
+    <value>Le nombre d'etudiants participant au stage ne doit pas depasser le nombre maximum autorise.</value>
   </data>
   <data name="GreaterThanParamLimitError" xml:space="preserve">
     <value>Vous devez saisir un nombre compris entre 0 et 15.</value>
@@ -294,37 +295,37 @@ We make ICT work for your business make IT more human again&lt;/p&gt;</value>
     <value>stages</value>
   </data>
   <data name="INTERNSHIP_ASSIGNMENT_TITLE" xml:space="preserve">
-    <value>Beschrijving van de stageopdracht</value>
+    <value>Description de la mission de stage</value>
   </data>
   <data name="INTERNSHIP_COMMENTS_TITLE" xml:space="preserve">
-    <value>Bijkomende informatie bij de stageopdracht</value>
+    <value>Informations complementaires concernant la mission de stage</value>
   </data>
   <data name="INTERNSHIP_KNOWLEDGE_DESCRIPTION" xml:space="preserve">
-    <value>Technische en niet-technische oplijsting van de kennis en competenties die de stagiair zal verwerven gedurende de stage.</value>
+    <value>Liste technique et non technique des connaissances et competences que le stagiaire acquerra pendant le stage</value>
   </data>
   <data name="INTERNSHIP_KNOWLEDGE_TITLE" xml:space="preserve">
-    <value>Welke kennis en competenties verwerf je tijdens de opdracht?</value>
+    <value>Quelles connaissances et competences acquerez-vous pendant la mission</value>
   </data>
   <data name="INTERNSHIP_LANGUAGE_TITLE" xml:space="preserve">
-    <value>Stageopdracht beschikbaar in deze talen</value>
+    <value>Offre de stage disponible dans ces langues</value>
   </data>
   <data name="INTERNSHIP_LOCATION_DESCRIPTION" xml:space="preserve">
-    <value>De opdracht kan doorgaan op volgende locaties:</value>
+    <value>La mission peut avoir lieu aux emplacements suivants:</value>
   </data>
   <data name="INTERNSHIP_LOCATION_TITLE" xml:space="preserve">
-    <value>Stageopdracht locaties</value>
+    <value>Lieux de stage</value>
   </data>
   <data name="INTERNSHIP_NEED_TO_KNOW_DESCRIPTION" xml:space="preserve">
-    <value>Technische en niet-technische oplijsting van kennis en competenties die de stagiair op zijn minst nodig heeft om de opdracht tot een goed einde te kunnen brengen.</value>
+    <value>Liste technique et non technique des connaissances et competences que le stagiaire doit au moins avoir pour mener a bien la mission</value>
   </data>
   <data name="INTERNSHIP_NEED_TO_KNOW_TITLE" xml:space="preserve">
     <value>Welke kennis en competenties dien je te hebben voor deze opdracht?</value>
   </data>
   <data name="knowledgeToDevelopLabel" xml:space="preserve">
-    <value>des connaissances pour développer</value>
+    <value>des connaissances pour developper</value>
   </data>
   <data name="knowledgeToDevelopLabelErrorMessage" xml:space="preserve">
-    <value>les connaissances requises pour le stage ne peuvent être nulles ou supérieures à 1000 caractères</value>
+    <value>les connaissances requises pour le stage ne peuvent etre nulles ou superieures a 1000 caracteres</value>
   </data>
   <data name="language" xml:space="preserve">
     <value>langue</value>
@@ -348,13 +349,13 @@ We make ICT work for your business make IT more human again&lt;/p&gt;</value>
     <value>nouvel emplacement</value>
   </data>
   <data name="locationFieldEmptyMessage" xml:space="preserve">
-    <value>sélectionnez un lieu, s'il vous plaît</value>
+    <value>selectionnez un lieu, s'il vous plaît</value>
   </data>
   <data name="locationFieldLabel" xml:space="preserve">
     <value>localisation</value>
   </data>
   <data name="locationHouseNumberLabel" xml:space="preserve">
-    <value> du numéro de maison</value>
+    <value> du numero de maison</value>
   </data>
   <data name="locationLabel" xml:space="preserve">
     <value>emplacement</value>
@@ -372,7 +373,7 @@ We make ICT work for your business make IT more human again&lt;/p&gt;</value>
     <value> code postal</value>
   </data>
   <data name="locationZipCodeRequiredErrorMessage" xml:space="preserve">
-    <value>le code postal de la localité est requis</value>
+    <value>le code postal de la localite est requis</value>
   </data>
   <data name="managerEmail" xml:space="preserve">
     <value>courriel du directeur</value>
@@ -384,13 +385,13 @@ We make ICT work for your business make IT more human again&lt;/p&gt;</value>
     <value>Master</value>
   </data>
   <data name="MasterAfterBachelor" xml:space="preserve">
-    <value>Formation Master Après Licence</value>
+    <value>Formation Master Apres Licence</value>
   </data>
   <data name="MasterAfterMaster" xml:space="preserve">
-    <value>Master Complémentaire</value>
+    <value>Master Complementaire</value>
   </data>
   <data name="maxCountOfStudentsLabel" xml:space="preserve">
-    <value>Nombre maximum d'étudiants autorisés</value>
+    <value>Nombre maximum d'etudiants autorises</value>
   </data>
   <data name="maxStudentsErrorMessage" xml:space="preserve">
     <value>Saisir un nombre positif</value>
@@ -399,52 +400,52 @@ We make ICT work for your business make IT more human again&lt;/p&gt;</value>
     <value>connaissances minimales requises pour ces stages</value>
   </data>
   <data name="neededKnowledgeLabelErrorMessage" xml:space="preserve">
-    <value>entrer les connaissances nécessaires pour ces stages, s'il vous plaît</value>
+    <value>entrer les connaissances necessaires pour ces stages, s'il vous plaît</value>
   </data>
   <data name="newInternShip" xml:space="preserve">
     <value>Nouveau stage</value>
   </data>
   <data name="Nl" xml:space="preserve">
-    <value>néerlandais</value>
+    <value>neerlandais</value>
   </data>
   <data name="saveButtonText" xml:space="preserve">
     <value>sauver</value>
   </data>
   <data name="schoolyearErrorMessage" xml:space="preserve">
-    <value>L'année scolaire est obligatoire</value>
+    <value>L'annee scolaire est obligatoire</value>
   </data>
   <data name="schoolYearLabel" xml:space="preserve">
-    <value>l'année scolaire</value>
+    <value>l'annee scolaire</value>
   </data>
   <data name="titleContentLabel" xml:space="preserve">
     <value>titre</value>
   </data>
   <data name="titleContentLabelErrorMessage" xml:space="preserve">
-    <value>Le nom du stage ne peut être vide</value>
+    <value>Le nom du stage ne peut etre vide</value>
   </data>
   <data name="trainingTypeLabel" xml:space="preserve">
     <value>type de formation requise</value>
   </data>
   <data name="unitEmptyErrorMessage" xml:space="preserve">
-    <value>L'unité est requise</value>
+    <value>L'unite est requise</value>
   </data>
   <data name="unitNameLabel" xml:space="preserve">
-    <value>département</value>
-       </data>
+    <value>departement</value>
+  </data>
   <data name="TEMPLATE_TITLE" xml:space="preserve">
-    <value>Intetum-Realdolmen Stagebundel</value>
+    <value>Intetum-Realdolmen Livre de stage</value>
   </data>
   <data name="updateButtonText" xml:space="preserve">
-    <value>mise à jour</value>
+    <value>mise a jour</value>
   </data>
   <data name="updateDepartmentHeader" xml:space="preserve">
-    <value>département de la mise à jour</value>
+    <value>departement de la mise a jour</value>
   </data>
   <data name="updateLanguageHeader" xml:space="preserve">
-    <value>mettre à jour la langue</value>
+    <value>mettre a jour la langue</value>
   </data>
   <data name="updateLocationHeader" xml:space="preserve">
-    <value>mettre à jour l'emplacement</value>
+    <value>mettre a jour l'emplacement</value>
   </data>
   <data name="users" xml:space="preserve">
     <value>Utilisateurs</value>
