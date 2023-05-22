@@ -46,20 +46,13 @@ public class ApplicationDbContext : DbContext,IApplicationDbContext
         
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-        //foreach (var entityType in builder.Model.GetEntityTypes())
-        //{
-        //    if (typeof(ISoftDeletable).IsAssignableFrom(entityType.ClrType))
-        //    {
-        //        entityType.AddProperty("IsDeleted", typeof(bool));
-
-        //    }
-        //}
         foreach (var entityType in builder.Model.GetEntityTypes())
         {
             //If the actual entity is an auditable type. 
             if (typeof(ISoftDeletable).IsAssignableFrom(entityType.ClrType))
             {
                entityType.AddProperty("IsDeleted", typeof(bool));
+               
 
                 // 2. Create the query filter
                 var parameter = Expression.Parameter(entityType.ClrType);
@@ -78,14 +71,16 @@ public class ApplicationDbContext : DbContext,IApplicationDbContext
 
 
             }
+            entityType.AddProperty("LastModifiedDate", typeof(DateTime));
+            entityType.AddProperty("CreatedDate", typeof(DateTime));
+
         }
         base.OnModelCreating(builder);
 
     }
 
 
-
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    private void HandleDelete()
     {
         var markedAsDeleted = ChangeTracker.Entries().Where(x => x.State == EntityState.Deleted);
 
@@ -99,6 +94,46 @@ public class ApplicationDbContext : DbContext,IApplicationDbContext
                 item.Property("IsDeleted").CurrentValue = true;
             }
         }
+    }
+    private void HandleCreate()
+    {
+        var markedAsDeleted = ChangeTracker.Entries().Where(x => x.State == EntityState.Added);
+
+        foreach (var item in markedAsDeleted)
+        {
+            if (item.Entity is ISoftDeletable entity)
+            {
+                // Set the entity to unchanged (if we mark the whole entity as Modified, every field gets sent to Db as an update)
+                
+                // Only update the IsDeleted flag - only this will get sent to the Db
+                item.Property("CreatedDate").CurrentValue = DateTime.UtcNow;
+                item.Property("LastModifiedDate").CurrentValue = DateTime.UtcNow;
+
+            }
+        }
+    }
+    private void HandleUpdate()
+    {
+        var markedAsDeleted = ChangeTracker.Entries().Where(x => x.State == EntityState.Modified);
+
+        foreach (var item in markedAsDeleted)
+        {
+            if (item.Entity is ISoftDeletable entity)
+            {
+                // Set the entity to unchanged (if we mark the whole entity as Modified, every field gets sent to Db as an update)
+
+                // Only update the IsDeleted flag - only this will get sent to the Db
+                item.Property("LastModifiedDate").CurrentValue = DateTime.UtcNow;
+
+            }
+        }
+    }
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+
+        HandleDelete();
+        HandleCreate();
+        HandleUpdate();
         return await base.SaveChangesAsync(cancellationToken);
     }
 }
