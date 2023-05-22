@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace backend.Infrastructure.Migrations
 {
     /// <inheritdoc />
@@ -157,11 +159,11 @@ namespace backend.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TitleContent = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(350)", maxLength: 350, nullable: false),
-                    KnowledgeToDevelop = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    NeededKnowledge = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    KnowledgeToDevelop = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    NeededKnowledge = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Comment = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Comment = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     InternShipId = table.Column<int>(type: "int", nullable: false),
                     LanguageId = table.Column<int>(type: "int", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -181,6 +183,26 @@ namespace backend.Infrastructure.Migrations
                         principalTable: "Languages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Languages",
+                columns: new[] { "Id", "Code", "IsDeleted", "Name" },
+                values: new object[,]
+                {
+                    { 1, "nl", false, "nederlands" },
+                    { 2, "fr", false, "frans" },
+                    { 3, "eng", false, "engels" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Locations",
+                columns: new[] { "Id", "City", "HouseNumber", "IsDeleted", "StreetName", "ZipCode" },
+                values: new object[,]
+                {
+                    { 1, "Huizingen", 42, false, "Vaucampslaan", "1654" },
+                    { 2, "Gent", 4, false, "Gaston Crommenlaan", "9050" },
+                    { 3, "Kontich", 26, false, "Prins Boudewijnlaan", "2550" }
                 });
 
             migrationBuilder.CreateIndex(

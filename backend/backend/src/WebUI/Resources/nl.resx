@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ACADEMICT_DESCRIPTION" xml:space="preserve">
+    <value>&lt;p&gt;Met het &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt; introduceert Realdolmen een &lt;strong&gt;uniek programma&lt;/strong&gt; met &lt;strong&gt;focus op pasafgestudeerden&lt;/strong&gt;. De term &lt;strong&gt;acADDemICT &lt;/strong&gt;staat voor een pasafgestudeerde die gepassioneerd is door ICT en levenslang wil leren.&lt;/p&gt;
+
+&lt;p&gt;Elk jaar investeert Realdolmen in een &lt;strong&gt;klein aantal high potentials&lt;/strong&gt;. Tijdens een &lt;strong&gt; intensieve trainingsperiode van 3 maanden&lt;/strong&gt;, bereidt Realdolmen hen voor op het leven van een professionele ICT Consultant. Bij Realdolmen weten we ook dat een &lt;strong&gt;carri&amp;egrave;re &lt;/strong&gt;meer is dan een aaneenschakeling van verschillende jobs. Het is een voortdurend &lt;strong&gt;groeiproces &lt;/strong&gt;en het verwezenlijken van jouw &lt;strong&gt;professionele ambities &lt;/strong&gt;terwijl je jouw kennis van zaken ten dienste stelt van Realdolmen.&lt;/p&gt;
+
+&lt;p&gt;Het is belangrijk te weten dat &amp;quot;&lt;strong&gt;doorgroeimogelijkheden&lt;/strong&gt;&amp;rdquo; geen loze beloften zijn voor ons. Je carri&amp;egrave;re kan zowel verticaal als horizontaal evolueren. Ook in ondersteunende functies of in Business Development kan jij bijdragen tot het groeipad van Realdolmen. Sowieso word je begeleid door ervaren coaches die je helpen de juiste keuzes te maken en je wordt ondersteund door een groot aanbod leermogelijkheden.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://jobs.realdolmen.com"&gt;https://jobs.realdolmen.com&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ACADEMICT_TITLE" xml:space="preserve">
+    <value>acADDemICT Junior Track</value>
+  </data>
   <data name="addButton" xml:space="preserve">
     <value>nieuw</value>
   </data>
@@ -146,6 +158,61 @@
   </data>
   <data name="commentLabelErrorMessage" xml:space="preserve">
     <value>Het commentaar kan niet leeg zijn of groter dan 1000 tekens</value>
+  </data>
+  <data name="COMPANY_DESCRIPTION" xml:space="preserve">
+    <value>&lt;p&gt;Inetum-Realdolmen is lid van de Europese Inetum Groep en bedient met ongeveer 1.950 hooggeschoolde medewerkers in de Benelux meer dan 1.000 klanten op strategisch, tactisch en operationeel ICT-vlak.&lt;/p&gt;
+
+&lt;p&gt;Inetum-Realdolmen realiseert in elke samenwerking het potentieel van mensen en organisaties en streeft ernaar ICT menselijk te maken. We zijn gedreven door technologische innovaties, maar doen dat op het tempo van ieders ambitie, gericht op resultaat en met fundamenteel effect.&lt;/p&gt;
+
+&lt;p&gt;Dit alles onder het bedrijfsmotto &amp;ldquo;&lt;strong&gt;New Challenges, New Ideas&lt;/strong&gt;&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;We hebben een sterke lokale verankering in Belgi&amp;euml; met vestigingen in Huizingen, Kontich, Gent, Leuven en Lummen. Samen maken we deel uit van de internationale Inetum Groep, een van de best presterende bedrijven op het gebied van digitale en IT-dienstverlening in de sector. De Inetum Groep heeft zijn hoofdzetel in Parijs en is vooral actief in Frankrijk, Spanje, Portugal en 17 andere landen binnen en buiten Europa.&lt;/p&gt;</value>
+  </data>
+  <data name="COMPANY_TITLE" xml:space="preserve">
+    <value>Inetum-Realdolmen</value>
+  </data>
+  <data name="COMPANY_VALUES_DESCRIPTION" xml:space="preserve">
+    <value>&lt;p&gt;Onze waarden zijn meer dan loze woorden. Ze zijn de fundamenten waarop we bouwen om &amp;ldquo;Employer of Choice&amp;rdquo; te zijn voor onze medewerkers. Ze zijn de rode draad doorheen alles wat we doen om succesvol en uitmuntend te zijn.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Ambities&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Onze ambitie is om elke dag verder en hoger te reiken en ons uiterste best te doen voor onze klanten met passie. We zijn trots op ons vakmanschap en gedeelde successen. We waarderen elkaar en hechten waarde aan persoonlijke groei om het potentieel van mensen en organisaties te realiseren.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Teamgeest&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Samenwerking en enthousiasme definieren ons succes. We waarderen elkaars deelname en bijdrage. We stimuleren open dialogen. Onze organisatie moedigt het delen van ideeen en kennis aan in een uitgebreid professioneel netwerk.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Toewijding&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We maken duidelijke en realistische afspraken en houden ons eraan. Als betrokken medewerkers zijn we allemaal ambassadeurs, toegewijd om een unieke en positieve klantervaring te bieden. We nemen altijd verantwoordelijkheid en focussen op resultaten.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Innovatie&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Gedreven door creativiteit werken we samen met een open geest om de uitdagingen van morgen aan te gaan. We optimaliseren bestaande processen en vinden innovatieve oplossingen. We co-creeren op een agile en pragmatische manier met onze collega's en partners om onze klanten te helpen zich te onderscheiden in hun markt.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Maatschappelijke verantwoordelijkheid&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Voor ons draait het allemaal om mensen. We verwelkomen en benutten individuele verschillen. We bevorderen diversiteit. We investeren in onderwijsprogramma's en sociale partnerschappen. We worden gedreven door onze inzet voor duurzame ontwikkeling.&lt;/p&gt;</value>
+  </data>
+  <data name="COMPANY_VALUES_TITLE" xml:space="preserve">
+    <value>Waarden</value>
+  </data>
+  <data name="COMPANY_VISION_DESCRIPTION" xml:space="preserve">
+    <value>&lt;p&gt;&lt;strong&gt;Visie&lt;/strong&gt;&lt;br /&gt;
+In de lokale markten en domeinen waarin we actief zijn, willen we de referentie zijn&lt;br /&gt;
+inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus ondersteunen.&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Referentie: de preferenti&amp;euml;le en betrouwbare keuze voor klanten, partners en&amp;nbsp;werknemers&lt;/li&gt;
+	&lt;li&gt;Lokaal: nabijheid tot onze klanten in de Benelux&lt;/li&gt;
+	&lt;li&gt;Ge&amp;iuml;ntegreerde oplossingen: volledige ICT-aanbod dat de hele levenscyclus bestrijkt, inclusief infrastructuur, toepassingen en communicatie&lt;/li&gt;
+	&lt;li&gt;Gehele ICT-levenscyclus: het ondersteunen van alle plan-build-run (design deploy-maintain) activiteiten&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Missie&lt;/strong&gt;&lt;br /&gt;Wij brengen slimme ICT oplossingen voor bedrijven en maken ICT terug menselijk&lt;/p&gt;</value>
+  </data>
+  <data name="COMPANY_VISION_TITLE" xml:space="preserve">
+    <value>Onze Visie &amp; Missie</value>
   </data>
   <data name="confirmDeleteMessage" xml:space="preserve">
     <value>bent u zeker om te verwijderen?</value>
@@ -339,6 +406,9 @@
   <data name="unitNameLabel" xml:space="preserve">
     <value>afdeling</value>
   </data>
+  <data name="TEMPLATE_TITLE" xml:space="preserve">
+    <value>Intetum-Realdolmen Stagebundel</value>
+  </data>
   <data name="updateButtonText" xml:space="preserve">
     <value>bijwerken</value>
   </data>
@@ -353,5 +423,32 @@
   </data>
   <data name="users" xml:space="preserve">
     <value>Gebruikers</value>
+  </data>
+  <data name="INTERNSHIP_ASSIGNMENT_TITLE" xml:space="preserve">
+    <value>Beschrijving van de stageopdracht</value>
+  </data>
+  <data name="INTERNSHIP_COMMENTS_TITLE" xml:space="preserve">
+    <value>Bijkomende informatie bij de stageopdracht</value>
+  </data>
+  <data name="INTERNSHIP_KNOWLEDGE_DESCRIPTION" xml:space="preserve">
+    <value>Technische en niet-technische oplijsting van de kennis en competenties die de stagiair zal verwerven gedurende de stage.</value>
+  </data>
+  <data name="INTERNSHIP_KNOWLEDGE_TITLE" xml:space="preserve">
+    <value>Welke kennis en competenties verwerf je tijdens de opdracht?</value>
+  </data>
+  <data name="INTERNSHIP_LOCATION_DESCRIPTION" xml:space="preserve">
+    <value>De opdracht kan doorgaan op volgende locaties:</value>
+  </data>
+  <data name="INTERNSHIP_LOCATION_TITLE" xml:space="preserve">
+    <value>Stageopdracht locaties</value>
+  </data>
+  <data name="INTERNSHIP_NEED_TO_KNOW_DESCRIPTION" xml:space="preserve">
+    <value>Technische en niet-technische oplijsting van kennis en competenties die de stagiair op zijn minst nodig heeft om de opdracht tot een goed einde te kunnen brengen.</value>
+  </data>
+  <data name="INTERNSHIP_NEED_TO_KNOW_TITLE" xml:space="preserve">
+    <value>Welke kennis en competenties dien je te hebben voor deze opdracht?</value>
+  </data>
+  <data name="INTERNSHIP_LANGUAGE_TITLE" xml:space="preserve">
+    <value>Stageopdracht beschikbaar in deze talen</value>
   </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using backend.Application.Common.Mappings;
+using backend.Application.InternShips.Queries.GetInternShipById;
 using backend.Domain.Entities;
 
 namespace backend.Application.InternShips.Queries.GetAllInternShips;
@@ -12,7 +13,7 @@ public class InternShipListDto : IMapFrom<InternShip>
     public int MaxStudents { get; set; }
     public int CurrentCountOfStudents { get; set; }
 
-
+    //public IList<TranslationDto> Translations { get; set; }
 
     public void Mapping(Profile profile)
     {

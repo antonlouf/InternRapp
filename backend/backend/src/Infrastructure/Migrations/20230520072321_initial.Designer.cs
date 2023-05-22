@@ -12,7 +12,7 @@ using backend.Infrastructure.Persistence;
 namespace backend.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230517152912_initial")]
+    [Migration("20230520072321_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -24,21 +24,6 @@ namespace backend.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("InternShipLocation", b =>
-                {
-                    b.Property<int>("InternShipId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LocationsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("InternShipId", "LocationsId");
-
-                    b.HasIndex("LocationsId");
-
-                    b.ToTable("InternShipLocation");
-                });
 
             modelBuilder.Entity("backend.Domain.Entities.ApplicationUser", b =>
                 {
@@ -140,13 +125,13 @@ namespace backend.Infrastructure.Migrations
 
                     b.Property<string>("Comment")
                         .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(350)
-                        .HasColumnType("nvarchar(350)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<int>("InternShipId")
                         .HasColumnType("int");
@@ -156,8 +141,8 @@ namespace backend.Infrastructure.Migrations
 
                     b.Property<string>("KnowledgeToDevelop")
                         .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
@@ -167,8 +152,8 @@ namespace backend.Infrastructure.Migrations
 
                     b.Property<string>("NeededKnowledge")
                         .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("TitleContent")
                         .IsRequired()
@@ -182,6 +167,21 @@ namespace backend.Infrastructure.Migrations
                     b.HasIndex("LanguageId");
 
                     b.ToTable("Translations");
+                });
+
+            modelBuilder.Entity("backend.Domain.Entities.InternShipLocation", b =>
+                {
+                    b.Property<int>("InternShipId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LocationsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("InternShipId", "LocationsId");
+
+                    b.HasIndex("LocationsId");
+
+                    b.ToTable("InternShipLocation");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Language", b =>
@@ -211,6 +211,29 @@ namespace backend.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Languages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 3,
+                            Code = "eng",
+                            IsDeleted = false,
+                            Name = "engels"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "fr",
+                            IsDeleted = false,
+                            Name = "frans"
+                        },
+                        new
+                        {
+                            Id = 1,
+                            Code = "nl",
+                            IsDeleted = false,
+                            Name = "nederlands"
+                        });
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Location", b =>
@@ -245,6 +268,35 @@ namespace backend.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Locations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            City = "Huizingen",
+                            HouseNumber = 42,
+                            IsDeleted = false,
+                            StreetName = "Vaucampslaan",
+                            ZipCode = "1654"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            City = "Gent",
+                            HouseNumber = 4,
+                            IsDeleted = false,
+                            StreetName = "Gaston Crommenlaan",
+                            ZipCode = "9050"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            City = "Kontich",
+                            HouseNumber = 26,
+                            IsDeleted = false,
+                            StreetName = "Prins Boudewijnlaan",
+                            ZipCode = "2550"
+                        });
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.PrefaceTranslation", b =>
@@ -277,21 +329,6 @@ namespace backend.Infrastructure.Migrations
                     b.ToTable("PrefaceTranslations");
                 });
 
-            modelBuilder.Entity("InternShipLocation", b =>
-                {
-                    b.HasOne("backend.Domain.Entities.InternShip", null)
-                        .WithMany()
-                        .HasForeignKey("InternShipId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("backend.Domain.Entities.Location", null)
-                        .WithMany()
-                        .HasForeignKey("LocationsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
                 {
                     b.HasOne("backend.Domain.Entities.Department", "Unit")
@@ -322,6 +359,21 @@ namespace backend.Infrastructure.Migrations
                     b.Navigation("Language");
                 });
 
+            modelBuilder.Entity("backend.Domain.Entities.InternShipLocation", b =>
+                {
+                    b.HasOne("backend.Domain.Entities.InternShip", null)
+                        .WithMany("InternShipLocations")
+                        .HasForeignKey("InternShipId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("backend.Domain.Entities.Location", null)
+                        .WithMany()
+                        .HasForeignKey("LocationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("backend.Domain.Entities.PrefaceTranslation", b =>
                 {
                     b.HasOne("backend.Domain.Entities.Language", "Language")
@@ -350,6 +402,8 @@ namespace backend.Infrastructure.Migrations
 
             modelBuilder.Entity("backend.Domain.Entities.InternShip", b =>
                 {
+                    b.Navigation("InternShipLocations");
+
                     b.Navigation("Translations");
                 });
 

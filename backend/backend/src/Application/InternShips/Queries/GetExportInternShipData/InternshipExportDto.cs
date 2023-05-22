@@ -1,13 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using backend.Application.Common.Mappings;
+using backend.Application.InternShips.Common;
+using backend.Application.InternShips.Queries.GetAllInternShips;
+using backend.Application.InternShips.Queries.GetInternShipById;
+using backend.Domain.Entities;
+using backend.Domain.Enums;
 
 namespace backend.Application.InternShips.Queries.GetExportInternShipData;
-public class InternshipExportDto
+
+public class InternShipExportDto
 {
-    public List<int> UnitId { get; set; }
-    public List<string> SchoolYear { get; set; }
-    public List<int> LanguageId { get; set; }
+    public string SchoolYear { get; set; }
+    public TrainingType TrainingType { get; set; }
+    public IList<LocationDto> Locations { get; set; } 
+    public TranslationDto Translation { get; set; }
+    public IList<LanguageListDto> Languages { get; set; } //new
 }

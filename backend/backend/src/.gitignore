@@ -289,7 +289,7 @@ Thumbs.db
 
 .angular
 
-
+*.json
 *.wsuo
 *.sqlite
 *.AssemblyReference.cache
@@ -297,7 +297,4 @@ Thumbs.db
 *.bin
 *.v6
 *.dll
-*WebUI.pdb
-*WebUI.dll
-
-*.Infrastructure.ddl
+/.gitattributes
