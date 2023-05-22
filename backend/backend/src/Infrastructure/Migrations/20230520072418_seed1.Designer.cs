@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using backend.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using backend.Infrastructure.Persistence;
 namespace backend.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230520072418_seed1")]
+    partial class seed1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -142,7 +145,7 @@ namespace backend.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2022-2023",
+                            SchoolYear = "2021-2022",
                             UnitId = 1
                         },
                         new
@@ -172,7 +175,7 @@ namespace backend.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2021-2022",
+                            SchoolYear = "2022-2023",
                             UnitId = 1
                         },
                         new
@@ -182,7 +185,7 @@ namespace backend.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2021-2022",
+                            SchoolYear = "2023-2024",
                             UnitId = 2
                         },
                         new
@@ -720,23 +723,23 @@ namespace backend.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            Code = "en",
+                            Code = "eng",
                             IsDeleted = false,
-                            Name = "English"
+                            Name = "engels"
                         },
                         new
                         {
                             Id = 2,
                             Code = "fr",
                             IsDeleted = false,
-                            Name = "French"
+                            Name = "frans"
                         },
                         new
                         {
                             Id = 1,
                             Code = "nl",
                             IsDeleted = false,
-                            Name = "Dutch"
+                            Name = "nederlands"
                         });
                 });
 

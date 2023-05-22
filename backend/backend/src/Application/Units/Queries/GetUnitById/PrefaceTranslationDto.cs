@@ -10,7 +10,6 @@ using backend.Application.InternShips.Queries.GetInternShipById;
 using backend.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-using Xceed.Document.NET;
 using backend.Application.Common.Interfaces;
 
 namespace backend.Application.Units.Queries.GetUnitById;

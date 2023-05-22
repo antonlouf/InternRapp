@@ -2,7 +2,6 @@
 using backend.Application.ApplicationUsers.Queries.GetApplicationUserByEmailContaining;
 using backend.Application.InternShips.Commands.CreateInternShip;
 using backend.Application.InternShips.Commands.UpdateInternShip;
-using backend.Infrastructure.Exporting;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

@@ -117,6 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ACADEMICT_DESCRIPTION" xml:space="preserve">
+    <value>&lt;p&gt;With the &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt;, Realdolmen introduces a &lt;strong&gt;unique program&lt;/strong&gt; focused on recent graduates. The term &lt;strong&gt;acADDemICT&lt;/strong&gt; refers to a recent graduate who is passionate about ICT and has a lifelong learning mindset.&lt;/p&gt;
+
+&lt;p&gt;Every year, Realdolmen invests in a &lt;strong&gt;small number of high potentials&lt;/strong&gt;. During an &lt;strong&gt;intensive training period of 3 months&lt;/strong&gt;, Realdolmen prepares them for the life of a professional ICT Consultant. At Realdolmen, we also understand that a career is more than a series of different jobs. It is a continuous &lt;strong&gt;growth process&lt;/strong&gt; and the realization of your &lt;strong&gt;professional ambitions&lt;/strong&gt; while putting your expertise at the service of Realdolmen.&lt;/p&gt;
+
+&lt;p&gt;It is important to know that &lt;strong&gt;career opportunities&lt;/strong&gt; are not empty promises for us. Your career can evolve both vertically and horizontally. You can also contribute to Realdolmen's growth path in supporting roles or business development. In any case, you will be guided by experienced coaches who help you make the right choices and you will be supported by a wide range of learning opportunities.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://jobs.realdolmen.com"&gt;https://jobs.realdolmen.com&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ACADEMICT_TITLE" xml:space="preserve">
+    <value>acADDemICT Junior Track</value>
+  </data>
   <data name="addButton" xml:space="preserve">
     <value>new</value>
   </data>
@@ -146,6 +157,61 @@
   </data>
   <data name="commentLabelErrorMessage" xml:space="preserve">
     <value>The comment could not empty or greater than 1000 characters</value>
+  </data>
+  <data name="COMPANY_DESCRIPTION" xml:space="preserve">
+    <value>&lt;p&gt;Inetum-Realdolmen is a member of the European Inetum Group and serves over 1,000 customers in the Benelux region with approximately 1,950 highly skilled employees. We provide strategic, tactical, and operational ICT services.&lt;/p&gt;
+
+&lt;p&gt;In every collaboration, Inetum-Realdolmen unleashes the potential of individuals and organizations, striving to make ICT more human-centered. We are driven by technological innovations, but we adapt to the pace of each ambition, focusing on delivering results and creating a fundamental impact.&lt;/p&gt;
+
+&lt;p&gt;All of this is guided by our company motto: &lt;strong&gt;New Challenges, New Ideas&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We have a strong local presence in Belgium with offices in Huizingen, Kontich, Gent, Leuven, and Lummen. Together, we are part of the international Inetum Group, one of the top-performing companies in digital and IT services in the industry. The Inetum Group is headquartered in Paris and operates mainly in France, Spain, Portugal, and 17 other countries within and outside Europe.&lt;/p&gt;</value>
+  </data>
+  <data name="COMPANY_TITLE" xml:space="preserve">
+    <value>Inetum-Realdolmen</value>
+  </data>
+  <data name="COMPANY_VALUES_DESCRIPTION" xml:space="preserve">
+    <value>&lt;p&gt;Our values are more than empty words. They are the foundations upon which we build to become an Employer of Choice for our employees. They are the guiding principles that underpin everything we do to achieve success and excellence.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Ambition&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Our ambition is to reach further and higher every day and to do our utmost for our clients with passion. We are proud of our craftsmanship and shared successes. We value each other and care about personal growth in order to realize the potential of people and organizations.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Team Spirit&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Cooperation and enthusiasm define our success. We appreciate each other participation and contribution. We stimulate open dialogue. Our organization encourages idea and knowledge sharing in a wide professional network.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Commitment &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We make clear and realistic agreements, and keep our promises. As engaged employees, we are all ambassadors, committed to deliver a unique and positive customer experience. We always take responsibility and focus on results.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Innovation &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Driven by creativity, we work together with an open mind to meet the challenges of tomorrow. We optimize existing processes and find innovative solutions. We cocreate in an agile and pragmatic way with our colleagues and partners to help our clients to differentiate in their market.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Social responsibility &lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;For us, it is all about people. We welcome and leverage individual differences. We promote diversity. We invest in education programs and social partnerships. We are driven by our commitment to sustainable development.&lt;/p&gt;</value>
+  </data>
+  <data name="COMPANY_VALUES_TITLE" xml:space="preserve">
+    <value>Values</value>
+  </data>
+  <data name="COMPANY_VISION_DESCRIPTION" xml:space="preserve">
+    <value>&lt;p&gt;&lt;strong&gt;Visie&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In the local markets and domains where we operate, our vision is to be the reference point for integrated solutions that support the entire ICT lifecycle.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Reference: We strive to be the preferred and reliable choice for customers, partners, and employees.&lt;/li&gt;
+  &lt;li&gt;Local: We prioritize proximity to our customers in the Benelux region.&lt;/li&gt;
+  &lt;li&gt;Integrated solutions: We offer a comprehensive range of ICT solutions that cover the entire lifecycle, including infrastructure, applications, and communication.&lt;/li&gt;
+  &lt;li&gt;Entire ICT lifecycle: We support all plan-build-run (design-deploy-maintain) activities throughout the ICT lifecycle.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Mission&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;We make ICT work for your business make IT more human again&lt;/p&gt;</value>
+  </data>
+  <data name="COMPANY_VISION_TITLE" xml:space="preserve">
+    <value>Our vision &amp; Mission</value>
   </data>
   <data name="confirmDeleteMessage" xml:space="preserve">
     <value>Are you sure to delete? </value>
@@ -221,6 +287,33 @@
   </data>
   <data name="internships" xml:space="preserve">
     <value>internships</value>
+  </data>
+  <data name="INTERNSHIP_ASSIGNMENT_TITLE" xml:space="preserve">
+    <value>Description of the assignment</value>
+  </data>
+  <data name="INTERNSHIP_COMMENTS_TITLE" xml:space="preserve">
+    <value>Additional information to the assingment</value>
+  </data>
+  <data name="INTERNSHIP_KNOWLEDGE_DESCRIPTION" xml:space="preserve">
+    <value>Technical and non-technical listing of the knowledge and competencies the intern will acquire during the internship</value>
+  </data>
+  <data name="INTERNSHIP_KNOWLEDGE_TITLE" xml:space="preserve">
+    <value>What knowledge and competencies will you acquire during the assignment</value>
+  </data>
+  <data name="INTERNSHIP_LANGUAGE_TITLE" xml:space="preserve">
+    <value>Available in these languages</value>
+  </data>
+  <data name="INTERNSHIP_LOCATION_DESCRIPTION" xml:space="preserve">
+    <value>The assignment can take place on the following locations</value>
+  </data>
+  <data name="INTERNSHIP_LOCATION_TITLE" xml:space="preserve">
+    <value>Locations</value>
+  </data>
+  <data name="INTERNSHIP_NEED_TO_KNOW_DESCRIPTION" xml:space="preserve">
+    <value>Technical and non-technical listing of the knowledge and competencies that the intern needs at least to successfully complete the assignment.</value>
+  </data>
+  <data name="INTERNSHIP_NEED_TO_KNOW_TITLE" xml:space="preserve">
+    <value>What knowledge and competencies do you need to have for this assignment</value>
   </data>
   <data name="knowledgeToDevelopLabel" xml:space="preserve">
     <value>knowledge to develop</value>
@@ -323,6 +416,9 @@
   </data>
   <data name="schoolYearLabel" xml:space="preserve">
     <value>school year</value>
+  </data>
+  <data name="TEMPLATE_TITLE" xml:space="preserve">
+    <value>Intetum-Realdolmen Bundle of Internships</value>
   </data>
   <data name="titleContentLabel" xml:space="preserve">
     <value>title</value>
