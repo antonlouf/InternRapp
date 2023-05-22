@@ -289,7 +289,7 @@ Thumbs.db
 
 .angular
 
-*.json
+
 *.wsuo
 *.sqlite
 *.AssemblyReference.cache
