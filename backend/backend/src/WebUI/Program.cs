@@ -94,12 +94,12 @@ app.Use(async (context, next) =>
     catch (BadHttpRequestException ex)
     {
         context.Response.StatusCode = 400;
-        await context.Response.WriteAsJsonAsync("the request is not appropriate");
+        await context.Response.WriteAsJsonAsync(ex.Message);
     }
     catch(Exception ex)
     {
          context.Response.StatusCode = 500;
-        await context.Response.WriteAsJsonAsync("some error happened during processing");
+        await context.Response.WriteAsJsonAsync(ex.Message);
     }
 });
 app.UseStaticFiles();

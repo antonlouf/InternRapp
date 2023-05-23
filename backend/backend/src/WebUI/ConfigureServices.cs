@@ -21,14 +21,10 @@ public static class ConfigureServices
 
         services.AddControllers();
 
-
-
         // Customise default API behaviour
         services.Configure<ApiBehaviorOptions>(options =>
             options.SuppressModelStateInvalidFilter = true);
         
-
-
         return services;
     }
 }

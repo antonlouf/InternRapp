@@ -36,11 +36,11 @@ public class InternShipController : ControllerBase
         });
         return Ok();
     }
-    [HttpPost,Route("copyToNextYear")]
+    [HttpPost, Route("copyToNextYear")]
     public async Task<IActionResult> Create([FromBody] List<int> ids)
     {
         await _mediator.Send(new CopyInternshipToNextYearCommand() { IdsOfExistingInternships = ids });
-       
+
         return Ok();
     }
     [HttpGet("{id:int}")]
@@ -59,7 +59,10 @@ public class InternShipController : ControllerBase
     [HttpGet("export")]
     public async Task<IActionResult> Export([FromQuery] InternshipExportRequestDto request)
     {
-        await _mediator.Send(new GetExportInterShipQuery() { Dto = request });
+        List<UnitExportDto> exportData = await _mediator.Send(new GetExportInterShipQuery() { Dto = request });
+        Exporting exporting = new Exporting();
+        exporting.GenerateWordDoc(exportData, request);
+
         return Ok();
     }
 
@@ -82,7 +85,7 @@ public class InternShipController : ControllerBase
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete([FromBody] List<int> ids)
     {
-        await _mediator.Send(new DeleteInternshipCommand() { Ids=ids });
+        await _mediator.Send(new DeleteInternshipCommand() { Ids = ids });
         return Ok();
     }
 
