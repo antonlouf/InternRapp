@@ -12,7 +12,7 @@ using backend.Infrastructure.Persistence;
 namespace backend.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230520072321_initial")]
+    [Migration("20230522131442_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -33,6 +33,9 @@ namespace backend.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -40,6 +43,9 @@ namespace backend.Infrastructure.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("ObjectIdentifier")
                         .HasColumnType("uniqueidentifier");
@@ -61,8 +67,14 @@ namespace backend.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ManagerEmails")
                         .HasColumnType("nvarchar(max)");
@@ -87,11 +99,17 @@ namespace backend.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<byte>("CurrentCountOfStudents")
                         .HasColumnType("tinyint");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<byte>("MaxStudents")
                         .HasColumnType("tinyint");
@@ -128,6 +146,9 @@ namespace backend.Infrastructure.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(1000)
@@ -146,6 +167,9 @@ namespace backend.Infrastructure.Migrations
 
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("LastModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
@@ -177,6 +201,12 @@ namespace backend.Infrastructure.Migrations
                     b.Property<int>("LocationsId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("InternShipId", "LocationsId");
 
                     b.HasIndex("LocationsId");
@@ -197,8 +227,14 @@ namespace backend.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -216,23 +252,38 @@ namespace backend.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            Code = "eng",
+                            Code = "en",
+                            CreatedDate = new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4867),
                             IsDeleted = false,
-                            Name = "engels"
+                            LastModifiedDate = new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4866),
+                            Name = "English"
                         },
                         new
                         {
                             Id = 2,
                             Code = "fr",
+                            CreatedDate = new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4866),
                             IsDeleted = false,
-                            Name = "frans"
+                            LastModifiedDate = new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4865),
+                            Name = "French"
                         },
                         new
                         {
                             Id = 1,
                             Code = "nl",
+                            CreatedDate = new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4863),
                             IsDeleted = false,
-                            Name = "nederlands"
+                            LastModifiedDate = new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4863),
+                            Name = "Dutch"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Code = "de",
+                            CreatedDate = new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4868),
+                            IsDeleted = false,
+                            LastModifiedDate = new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4867),
+                            Name = "German"
                         });
                 });
 
@@ -249,11 +300,17 @@ namespace backend.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("HouseNumber")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("StreetName")
                         .IsRequired()
@@ -274,8 +331,10 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 1,
                             City = "Huizingen",
+                            CreatedDate = new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4858),
                             HouseNumber = 42,
                             IsDeleted = false,
+                            LastModifiedDate = new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4849),
                             StreetName = "Vaucampslaan",
                             ZipCode = "1654"
                         },
@@ -283,8 +342,10 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 2,
                             City = "Gent",
+                            CreatedDate = new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4861),
                             HouseNumber = 4,
                             IsDeleted = false,
+                            LastModifiedDate = new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4861),
                             StreetName = "Gaston Crommenlaan",
                             ZipCode = "9050"
                         },
@@ -292,8 +353,10 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 3,
                             City = "Kontich",
+                            CreatedDate = new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4862),
                             HouseNumber = 26,
                             IsDeleted = false,
+                            LastModifiedDate = new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4862),
                             StreetName = "Prins Boudewijnlaan",
                             ZipCode = "2550"
                         });
@@ -311,11 +374,17 @@ namespace backend.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("LastModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("UnitId")
                         .HasColumnType("int");

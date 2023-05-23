@@ -21,7 +21,9 @@ namespace backend.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ObjectIdentifier = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -37,7 +39,9 @@ namespace backend.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     ManagerEmails = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -52,7 +56,9 @@ namespace backend.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Code = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -69,7 +75,9 @@ namespace backend.Infrastructure.Migrations
                     StreetName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     HouseNumber = table.Column<int>(type: "int", nullable: false),
                     ZipCode = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -87,7 +95,9 @@ namespace backend.Infrastructure.Migrations
                     MaxStudents = table.Column<byte>(type: "tinyint", nullable: false),
                     CurrentCountOfStudents = table.Column<byte>(type: "tinyint", nullable: false),
                     RequiredTrainingType = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -109,7 +119,9 @@ namespace backend.Infrastructure.Migrations
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LanguageId = table.Column<int>(type: "int", nullable: false),
                     UnitId = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -133,7 +145,9 @@ namespace backend.Infrastructure.Migrations
                 columns: table => new
                 {
                     InternShipId = table.Column<int>(type: "int", nullable: false),
-                    LocationsId = table.Column<int>(type: "int", nullable: false)
+                    LocationsId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -166,7 +180,9 @@ namespace backend.Infrastructure.Migrations
                     Comment = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     InternShipId = table.Column<int>(type: "int", nullable: false),
                     LanguageId = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -187,22 +203,23 @@ namespace backend.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Languages",
-                columns: new[] { "Id", "Code", "IsDeleted", "Name" },
+                columns: new[] { "Id", "Code", "CreatedDate", "IsDeleted", "LastModifiedDate", "Name" },
                 values: new object[,]
                 {
-                    { 1, "nl", false, "nederlands" },
-                    { 2, "fr", false, "frans" },
-                    { 3, "eng", false, "engels" }
+                    { 1, "nl", new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4863), false, new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4863), "Dutch" },
+                    { 2, "fr", new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4866), false, new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4865), "French" },
+                    { 3, "en", new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4867), false, new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4866), "English" },
+                    { 4, "de", new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4868), false, new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4867), "German" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Locations",
-                columns: new[] { "Id", "City", "HouseNumber", "IsDeleted", "StreetName", "ZipCode" },
+                columns: new[] { "Id", "City", "CreatedDate", "HouseNumber", "IsDeleted", "LastModifiedDate", "StreetName", "ZipCode" },
                 values: new object[,]
                 {
-                    { 1, "Huizingen", 42, false, "Vaucampslaan", "1654" },
-                    { 2, "Gent", 4, false, "Gaston Crommenlaan", "9050" },
-                    { 3, "Kontich", 26, false, "Prins Boudewijnlaan", "2550" }
+                    { 1, "Huizingen", new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4858), 42, false, new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4849), "Vaucampslaan", "1654" },
+                    { 2, "Gent", new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4861), 4, false, new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4861), "Gaston Crommenlaan", "9050" },
+                    { 3, "Kontich", new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4862), 26, false, new DateTime(2023, 5, 22, 13, 14, 42, 635, DateTimeKind.Utc).AddTicks(4862), "Prins Boudewijnlaan", "2550" }
                 });
 
             migrationBuilder.CreateIndex(
