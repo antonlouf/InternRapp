@@ -19,33 +19,64 @@ export class LanguageService{
   private baseSuffixApi="/api/Language";
 
  
-  filterAndPaginateLanguages(filterPaginationRequest: PaginationFilterRequest){
-    return this.http.get<ResourceItemPagingResponse<LanguageItem>>(APIConfiguration.baseString+`${this.baseSuffixApi}?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&${filterPaginationRequest.filterString}`).pipe(catchError((err,caught)=>caught),retry(2))
+  filterAndPaginateLanguages(filterPaginationRequest: PaginationFilterRequest) {
+     const httpOptions = {
+       headers: new HttpHeaders({
+         path: `${this.baseSuffixApi}?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&${filterPaginationRequest.filterString}`,
+         method: 'GET',
+       }),
+     };
+    return this.http.get<ResourceItemPagingResponse<LanguageItem>>(APIConfiguration.baseString,httpOptions)
+      .pipe(catchError((err, caught) => caught), retry(2))
   }
-  getById(id:number){
-    return this.http.get<LanguageWithMinimalData>(APIConfiguration.baseString+`${this.baseSuffixApi}/${id}`).pipe(catchError((err,caught)=>caught),retry(2))
+  getById(id: number) {
+         const httpOptions = {
+           headers: new HttpHeaders({
+             path: `${this.baseSuffixApi}/${id}`,
+             method: 'GET',
+           }),
+         };
+    return this.http
+      .get<LanguageWithMinimalData>(APIConfiguration.baseString,httpOptions)
+      .pipe(
+        catchError((err, caught) => caught),
+        retry(2)
+      );
   }
   deleteLanguage(ids: number[] | undefined) {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
+          path: `${this.baseSuffixApi}`,
+          method: 'DELETE',
         }),
         body: JSON.stringify(ids),
       };
     return this.http.delete<number>(APIConfiguration.baseString + `${this.baseSuffixApi}`,httpOptions).pipe(catchError((err, caught) => caught))
 }
 updateLanguage(itemToBeUpdated: LanguageItem|undefined){
-  return this.http.patch(APIConfiguration.baseString+`${this.baseSuffixApi}`,{
+   const httpOptions = {
+     headers: new HttpHeaders({
+       path: `${this.baseSuffixApi}`,
+       method: 'PATCH',
+     }),
+   };
+  return this.http.patch(APIConfiguration.baseString, {
       "id": itemToBeUpdated?.id,
     "name": itemToBeUpdated?.name,
       "code":itemToBeUpdated?.code
-  }).pipe(catchError((err,caught)=>caught))
+  },httpOptions).pipe(catchError((err,caught)=>caught))
 
 }
 
 addLanguage(itemToBeAdded: CreateLanguage){
-
-  return this.http.post(APIConfiguration.baseString+`${this.baseSuffixApi}`,itemToBeAdded).pipe(catchError((err,caught)=>caught))
+   const httpOptions = {
+     headers: new HttpHeaders({
+       path: `${this.baseSuffixApi}`,
+       method: 'CREATE',
+     }),
+   };
+  return this.http.post(APIConfiguration.baseString,itemToBeAdded,httpOptions).pipe(catchError((err,caught)=>caught))
 
 }
 

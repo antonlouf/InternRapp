@@ -38,9 +38,9 @@ export class TranslationAddFormComponent {
     showToolbar: true,
     placeholder: '',
     defaultParagraphSeparator: '',
-    defaultFontName: '',
-    defaultFontSize: '16',
-    fonts: [{ class: 'Verdana', name: 'Verdana' }],
+    // defaultFontName: 'Verdana',
+    // defaultFontSize: '7px',
+    // fonts: [{ class: 'Verdana', name: 'Verdana' }],
     toolbarHiddenButtons: [
       [
         'undo',

@@ -21,22 +21,41 @@ export class InternshipService {
   public filterAndPaginateLanguages(
     filterPaginationRequest: PaginationFilterRequest
   ) {
+     const httpOptions = {
+       headers: new HttpHeaders({
+         path: `${this.baseSuffixApi}?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&${filterPaginationRequest.filterString}`,
+         method: 'GET',
+       }),
+     };
     return this.http
       .get<ResourceItemPagingResponse<InternshipItem>>(
-        APIConfiguration.baseString +
-          `${this.baseSuffixApi}?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&${filterPaginationRequest.filterString}`
+        APIConfiguration.baseString,
+        httpOptions
       )
       .pipe(catchError((err, caught) => caught));
   }
   public getInternshipById(id: number) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        path: `${this.baseSuffixApi}/${id}`,
+        method: 'GET',
+      }),
+    };
     return this.http.get<InternshipDetailItem>(
-      APIConfiguration.baseString + `${this.baseSuffixApi}/${id}`
+      APIConfiguration.baseString,httpOptions
     );
   }
   public createInternship(internship: CreateInternship) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        path: `${this.baseSuffixApi}`,
+        'content-type': 'application/json',
+        method: 'POST',
+      }),
+    };
     return this.http
       .post(
-        APIConfiguration.baseString + `${this.baseSuffixApi}`,
+        APIConfiguration.baseString ,
         {
           schoolYear: internship.schoolYear,
           unitId: internship.unitId,
@@ -46,27 +65,26 @@ export class InternshipService {
           locations: internship.locations,
           versions: internship.versions,
         },
-        {
-          headers: {
-            'content-type': 'application/json',
-          },
-        }
+       httpOptions
       )
       .pipe(
         catchError((err, caught) => caught),
         retry(2)
       );
   }
-  public copyToNextYear(ids:number[]) {
+  public copyToNextYear(ids: number[]) {
+       const httpOptions = {
+         headers: new HttpHeaders({
+           path: `${this.baseSuffixApi}/copyToNextYear`,
+           'content-type': 'application/json',
+           method: 'POST',
+         }),
+       };
     return this.http
       .post(
-        APIConfiguration.baseString + `${this.baseSuffixApi}/copyToNextYear`,
+        APIConfiguration.baseString ,
         ids,
-        {
-          headers: {
-            'content-type': 'application/json',
-          },
-        }
+       httpOptions
       )
       .pipe(
         catchError((err, caught) => caught),
@@ -74,9 +92,16 @@ export class InternshipService {
       );
   }
   public updateInternship(internship: InternshipUpdateDto) {
+     const httpOptions = {
+       headers: new HttpHeaders({
+         path: `${this.baseSuffixApi}`,
+         method: 'PUT',
+         'content-type': 'application/json',
+       }),
+     };
     return this.http
       .put(
-        APIConfiguration.baseString + `${this.baseSuffixApi}`,
+        APIConfiguration.baseString ,
         {
           schoolYear: internship.schoolYear,
           internshipId: internship.internShipId,
@@ -87,11 +112,7 @@ export class InternshipService {
           locations: internship.locations,
           versions: internship.versions,
         },
-        {
-          headers: {
-            'content-type': 'application/json',
-          },
-        }
+       httpOptions
       )
       .pipe(
         catchError((err, caught) => caught),
@@ -102,11 +123,13 @@ export class InternshipService {
         const httpOptions = {
           headers: new HttpHeaders({
             'Content-Type': 'application/json',
+            path: `${this.baseSuffixApi}`,
+            method: 'DELETE',
           }),
           body: JSON.stringify(ids),
         };
     return this.http.delete(
-      APIConfiguration.baseString + `${this.baseSuffixApi}`,httpOptions
+      APIConfiguration.baseString ,httpOptions
     );
   }
   public exportInternships(filterCriteria: ExportInternshipOptions) {
@@ -118,9 +141,14 @@ export class InternshipService {
       }
     }
     queryString+=`&schoolYear=${filterCriteria.schoolYear}&languageId=${filterCriteria.languageId}`
-      return this.http.get(
-        APIConfiguration.baseString + `${this.baseSuffixApi}/export?${queryString}`
-      );
+     const httpOptions = {
+       headers: new HttpHeaders({
+         path: `${this.baseSuffixApi}/export?${queryString}`,
+         method: 'GET',
+       }),
+     }; 
+    return this.http.get(
+        APIConfiguration.baseString,httpOptions )
   }
   
 }

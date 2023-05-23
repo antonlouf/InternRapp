@@ -450,4 +450,13 @@ Avec le programme &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt;, Realdolm
   <data name="users" xml:space="preserve">
     <value>Utilisateurs</value>
   </data>
+  <data name="Graduate" xml:space="preserve">
+    <value>diplômé</value>
+  </data>
+  <data name="PGCE" xml:space="preserve">
+    <value>PGCE</value>
+  </data>
+  <data name="PHD" xml:space="preserve">
+    <value>Doctorat</value>
+  </data>
 </root>

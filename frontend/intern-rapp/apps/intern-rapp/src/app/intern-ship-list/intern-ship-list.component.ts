@@ -143,7 +143,9 @@ export class InternShipListComponent
     );
   }
   ngOnInit(): void {
-
+   const activeFilters: Record<string, unknown> = {};
+   activeFilters['schoolYear'] = this.calculateCurrentSchoolyear();
+   this.filterUpdated(activeFilters);
       this.exportSubj$
        .pipe(
          switchMap(() => {

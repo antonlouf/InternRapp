@@ -60,6 +60,7 @@ namespace backend_for_frontend.Configuration
                             "PATCH" => HttpMethod.Patch,
                             "DELETE" => HttpMethod.Delete,
                             "GET"=>HttpMethod.Get,
+                            "PUT"=>HttpMethod.Put,
                             _ => throw new NotImplementedException()
                         };
                         forwardContext.UpstreamRequest.Method=method;

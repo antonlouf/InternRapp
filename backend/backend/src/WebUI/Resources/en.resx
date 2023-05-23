@@ -273,6 +273,9 @@
   <data name="FreeUsedPlacesLabel" xml:space="preserve">
     <value>free/occupied places</value>
   </data>
+  <data name="Graduate" xml:space="preserve">
+    <value>Graduate</value>
+  </data>
   <data name="greaterThanMaxStudentsErrorMessage" xml:space="preserve">
     <value>The count of students for the internship may not exceed the maxium permitted count</value>
   </data>
@@ -404,6 +407,12 @@
   </data>
   <data name="Nl" xml:space="preserve">
     <value>Dutch</value>
+  </data>
+  <data name="PGCE" xml:space="preserve">
+    <value>PGCE</value>
+  </data>
+  <data name="PHD" xml:space="preserve">
+    <value>PHD</value>
   </data>
   <data name="q" xml:space="preserve">
     <value />

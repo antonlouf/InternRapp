@@ -451,4 +451,13 @@ inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus onderst
   <data name="INTERNSHIP_LANGUAGE_TITLE" xml:space="preserve">
     <value>Stageopdracht beschikbaar in deze talen</value>
   </data>
+  <data name="Graduate" xml:space="preserve">
+    <value>Graduaat</value>
+  </data>
+  <data name="PGCE" xml:space="preserve">
+    <value>PGCE</value>
+  </data>
+  <data name="PHD" xml:space="preserve">
+    <value>Doctoraat</value>
+  </data>
 </root>

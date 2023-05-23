@@ -38,9 +38,9 @@ export class PrefaceTranslationFormComponent {
     showToolbar: true,
     placeholder: '',
     defaultParagraphSeparator: '',
-    defaultFontName: '',
-    defaultFontSize: '12',
-    fonts: [{ class: 'Verdana', name: 'Verdana' }],
+    // defaultFontName: '',
+    // defaultFontSize: '12',
+    // fonts: [{ class: 'Verdana', name: 'Verdana' }],
     toolbarHiddenButtons: [
       [
         'undo',
