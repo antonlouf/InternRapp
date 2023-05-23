@@ -1,4 +1,5 @@
-﻿using backend.Application.Common.Paging;
+﻿using backend.Application.Common.Interfaces;
+using backend.Application.Common.Paging;
 using backend.Application.InternShips.Commands.CopyInternshipToNextYear;
 using backend.Application.InternShips.Commands.CreateInternShip;
 using backend.Application.InternShips.Commands.DeleteInternship;
@@ -57,12 +58,11 @@ public class InternShipController : ControllerBase
     }
 
     [HttpGet("export")]
-    public async Task<IActionResult> Export([FromQuery] InternshipExportRequestDto request)
+    public async Task<IActionResult> Export([FromQuery] InternshipExportRequestDto request, [FromServices] IApplicationDbContext dbContext)
     {
         List<UnitExportDto> exportData = await _mediator.Send(new GetExportInterShipQuery() { Dto = request });
-        Exporting exporting = new Exporting();
+        Exporting exporting = new Exporting(dbContext);
         exporting.GenerateWordDoc(exportData, request);
-
         return Ok();
     }
 

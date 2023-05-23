@@ -46,7 +46,7 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
             .ThenInclude(intrshp => intrshp.Locations)
             .Where(unit => (request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(unit.Id))
             && unit.Internships.Any(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId))
-            && unit.Internships.Any(intrShips => request.Dto.SchoolYear == intrShips.SchoolYear)) //filter op jaartal -- filteren op internships ipv units?
+            && unit.Internships.Any(intrShips => request.Dto.SchoolYear == intrShips.SchoolYear)) 
 
             .Select(exportDto => new UnitExportDto()
             {
@@ -60,7 +60,7 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
                 }).Single(),
                 InternShipsDtos = exportDto.Internships
                 .Where(intrshp => intrshp.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)
-                && request.Dto.SchoolYear == intrshp.SchoolYear) //2de where conditie op schooljaar
+                && request.Dto.SchoolYear == intrshp.SchoolYear) 
                 .Select(intrshp => new InternShipExportDto()
                 {
                     SchoolYear = intrshp.SchoolYear,
@@ -96,49 +96,51 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
 
         }
 
-        ////export
-        //GenerateWordDoc(units /*new List<UnitExportDto>() { }*/, request.Dto);
-
         //return new List<UnitExportDto>() { };
         return units;
     }
 }
 
-    public class Exporting
+public class Exporting
+{
+    private readonly IApplicationDbContext _dbContext;
+    
+    public Exporting(IApplicationDbContext dbContext)
     {
-        private readonly IApplicationDbContext _dbContext;
+        _dbContext = dbContext;
+    }
 
-        public void GenerateWordDoc(List<UnitExportDto> unitExportList, InternshipExportRequestDto requestDto)
+    public void GenerateWordDoc(List<UnitExportDto> unitExportList, InternshipExportRequestDto requestDto)
+    {
+        const string templatePath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\backend\lib\template.docx"; //-> docm
+        const string resultPath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\backend\lib\internships.docx";
+
+        WordprocessingDocument document = WordprocessingDocument.CreateFromTemplate(templatePath);
+        var body = document.MainDocumentPart!.Document.Body;
+        var allElements = body!.Elements().ToList();
+
+        int altChunckId = 0;
+
+        //Resource content
+        var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetName().Name == "WebUI").ToList();
+        ResourceManager rm;
+        try
         {
-            const string templatePath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\backend\lib\template.docx"; //-> docm
-            const string resultPath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\backend\lib\internships.docx";
-
-            WordprocessingDocument document = WordprocessingDocument.CreateFromTemplate(templatePath);
-            var body = document.MainDocumentPart!.Document.Body;
-            var allElements = body!.Elements().ToList();
-
-            int altChunckId = 0;
-
-            //Resource content
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetName().Name == "WebUI").ToList();
-            ResourceManager rm;
-            try
-            {
-                var langCode = _dbContext.Languages.Where(lang => lang.Id == requestDto.LanguageId).Single().Code;
-                rm = new ResourceManager($"WebUI.Resources.{langCode}", Assembly.LoadFile(@$"{assemblies[0].Location}"));
-            }
-            catch (Exception)
-            {
-                rm = new ResourceManager("WebUI.Resources.en", Assembly.LoadFile(@$"{assemblies[0].Location}"));
-            }
+            var langCode = _dbContext.Languages.Where(lang => lang.Id == requestDto.LanguageId).Single().Code;
+            rm = new ResourceManager($"WebUI.Resources.{langCode}", Assembly.LoadFile(@$"{assemblies[0].Location}"));
+        }
+        catch (Exception)
+        {
+            rm = new ResourceManager("WebUI.Resources.en", Assembly.LoadFile(@$"{assemblies[0].Location}"));
+        }
 
 
-            if (File.Exists(resultPath))
-            {
-                File.Delete(resultPath);
-            }
+        if (File.Exists(resultPath))
+        {
+            File.Delete(resultPath);
+        }
 
-            Dictionary<string, string> commonReplacements = new Dictionary<string, string>()
+        Dictionary<string, string> commonReplacements = new Dictionary<string, string>()
                  {
                      {"TEMPLATE_TITLE", rm.GetString("TEMPLATE_TITLE")},
                      {"TEMPLATE_YEAR", requestDto.SchoolYear},
@@ -152,195 +154,195 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
                      {"ACADEMICT_DESCRIPTION", rm.GetString("ACADEMICT_DESCRIPTION")},
                  };
 
-            Replace(document, ref allElements, commonReplacements, ref altChunckId);
+        Replace(document, ref allElements, commonReplacements, ref altChunckId);
 
-            ExtractParagraphs(allElements, "UNIT_TITLE", "UNIT_END", out var unitStartPosition, out var templateUnitParagraphs);
+        ExtractParagraphs(allElements, "UNIT_TITLE", "UNIT_END", out var unitStartPosition, out var templateUnitParagraphs);
 
-            allElements.RemoveRange(unitStartPosition, templateUnitParagraphs.Count);
+        allElements.RemoveRange(unitStartPosition, templateUnitParagraphs.Count);
 
-            InsertUnitParagraphs(document, ref allElements, unitExportList, templateUnitParagraphs, unitStartPosition, ref altChunckId, rm);
+        InsertUnitParagraphs(document, ref allElements, unitExportList, templateUnitParagraphs, unitStartPosition, ref altChunckId, rm);
 
-            List<string> toDeleteStrings = new List<string>() { "INTERNSHIP_END", "UNIT_END" };
-            DeleteParagraphs(ref allElements, toDeleteStrings);
+        List<string> toDeleteStrings = new List<string>() { "INTERNSHIP_END", "UNIT_END" };
+        DeleteParagraphs(ref allElements, toDeleteStrings);
 
-            //update index table 
-            document.MainDocumentPart!.DocumentSettingsPart!.Settings.Append(new UpdateFieldsOnOpen() { Val = true }); //dit update de velden maar toont nog steeds een update dialog
+        //update index table 
+        document.MainDocumentPart!.DocumentSettingsPart!.Settings.Append(new UpdateFieldsOnOpen() { Val = true }); //dit update de velden maar toont nog steeds een update dialog
 
-            body.RemoveAllChildren();
+        body.RemoveAllChildren();
 
-            //insert allElements in body again
-            for (int i = 0; i < allElements.Count(); i++)
+        //insert allElements in body again
+        for (int i = 0; i < allElements.Count(); i++)
+        {
+            body.InsertAt(allElements[i], i);
+        }
+
+        //remove old content table
+        RemoveSdt(body);
+
+        // Save Document
+        document.Clone(resultPath);
+
+    }
+    public string GetCombinedText(IEnumerable<Text> textElements)
+    {
+        //plak alle text elementen aan elkaar die bij elke paragraaf horen 
+        return string.Join("", textElements.Select(t => t.Text)); // IN TERN SHIP TI TLE -> INTERNSHIP_TITLE
+    }
+    public List<T> Reversed<T>(IList<T> list)
+    {
+        return Enumerable
+            .Range(1, list.Count())
+            .Select(i => list[list.Count() - i])
+            .ToList();
+    }
+    public List<OpenXmlElement> CloneELements(List<OpenXmlElement> elements)
+    {
+        return elements
+            .Select(element => element.CloneNode(true))
+            .ToList();
+    }
+
+    public void Replace(WordprocessingDocument document, ref List<OpenXmlElement> openXmlElements, Dictionary<string, string> replacements, ref int chunkId)
+    {
+        var toReplace = new Dictionary<OpenXmlElement, OpenXmlElement>();
+
+        foreach (var e in openXmlElements)
+        {
+            if (e is Paragraph)
             {
-                body.InsertAt(allElements[i], i);
-            }
+                var p = e as Paragraph;
 
-            //remove old content table
-            RemoveSdt(body);
+                var textElements = p.Elements<Run>()
+                                   .SelectMany(r => r.Elements<Text>());
+                var combinedText = GetCombinedText(textElements);
 
-            // Save Document
-            document.Clone(resultPath);
-
-        }
-        public string GetCombinedText(IEnumerable<Text> textElements)
-        {
-            //plak alle text elementen aan elkaar die bij elke paragraaf horen 
-            return string.Join("", textElements.Select(t => t.Text)); // IN TERN SHIP TI TLE -> INTERNSHIP_TITLE
-        }
-        public List<T> Reversed<T>(IList<T> list)
-        {
-            return Enumerable
-                .Range(1, list.Count())
-                .Select(i => list[list.Count() - i])
-                .ToList();
-        }
-        public List<OpenXmlElement> CloneELements(List<OpenXmlElement> elements)
-        {
-            return elements
-                .Select(element => element.CloneNode(true))
-                .ToList();
-        }
-
-        public void Replace(WordprocessingDocument document, ref List<OpenXmlElement> openXmlElements, Dictionary<string, string> replacements, ref int chunkId)
-        {
-            var toReplace = new Dictionary<OpenXmlElement, OpenXmlElement>();
-
-            foreach (var e in openXmlElements)
-            {
-                if (e is Paragraph)
+                //order de keys van groot naar klein om conflicten met eve lange woorden te vermijden
+                foreach (var pair in replacements.OrderBy(pair => pair.Key).Reverse())
                 {
-                    var p = e as Paragraph;
-
-                    var textElements = p.Elements<Run>()
-                                       .SelectMany(r => r.Elements<Text>());
-                    var combinedText = GetCombinedText(textElements);
-
-                    //order de keys van groot naar klein om conflicten met eve lange woorden te vermijden
-                    foreach (var pair in replacements.OrderBy(pair => pair.Key).Reverse())
+                    //PER PARAGRAAF VERGELIJK MET EEN REVERSED DICTONIARY //check of het template veld overeenkomt met de key
+                    if (combinedText.Contains(pair.Key)) //INT ERN SHIP_VALUES //INTERNSHIP //values 
                     {
-                        //PER PARAGRAAF VERGELIJK MET EEN REVERSED DICTONIARY //check of het template veld overeenkomt met de key
-                        if (combinedText.Contains(pair.Key)) //INT ERN SHIP_VALUES //INTERNSHIP //values 
+                        var enumerator = textElements.GetEnumerator();
+                        while (enumerator.MoveNext())
                         {
-                            var enumerator = textElements.GetEnumerator();
-                            while (enumerator.MoveNext())
+                            var remainingKey = pair.Key;
+                            var correctTextElements = new List<Text>();
+                            var exists = true; //vermijd nulpointer error bij laatste moveNext()
+                            var matchingChars = 0;
+
+                            while (exists && (matchingChars = MatchingCharsAt(remainingKey, enumerator.Current.Text)) != 0)
                             {
-                                var remainingKey = pair.Key;
-                                var correctTextElements = new List<Text>();
-                                var exists = true; //vermijd nulpointer error bij laatste moveNext()
-                                var matchingChars = 0;
+                                remainingKey = remainingKey.Substring(matchingChars); //check op IINTERNSHIP 
 
-                                while (exists && (matchingChars = MatchingCharsAt(remainingKey, enumerator.Current.Text)) != 0)
+                                correctTextElements.Add(enumerator.Current); //toevoegen van textElements 
+
+                                if (remainingKey.Length == 0) //op eerste T element locatie
                                 {
-                                    remainingKey = remainingKey.Substring(matchingChars); //check op IINTERNSHIP 
-
-                                    correctTextElements.Add(enumerator.Current); //toevoegen van textElements 
-
-                                    if (remainingKey.Length == 0) //op eerste T element locatie
+                                    //html en body tag toevoegen aan
+                                    if (Regex.IsMatch(pair.Value, "<li>|<ol>|<p>|<a>|<i>|<b>"))
                                     {
-                                        //html en body tag toevoegen aan
-                                        if (Regex.IsMatch(pair.Value, "<li>|<ol>|<p>|<a>|<i>|<b>"))
+                                        string temp = "";
+                                        temp = pair.Value.Insert(0, @"<html><body style=""font-family:Verdana; font-size:14.5px"">");
+                                        temp = temp.Insert(temp.Length, @"</body></html>");
+                                        toReplace.Add(p, ChunkMethod(document, temp, ref chunkId));
+                                    }
+                                    else
+                                    {
+                                        correctTextElements[0].Text = pair.Value; //Kopieer data naar plaats textElement[0]
+                                        for (var i = 1; i < correctTextElements.Count; i++)
                                         {
-                                            string temp = "";
-                                            temp = pair.Value.Insert(0, @"<html><body style=""font-family:Verdana; font-size:14.5px"">");
-                                            temp = temp.Insert(temp.Length, @"</body></html>");
-                                            toReplace.Add(p, ChunkMethod(document, temp, ref chunkId));
-                                        }
-                                        else
-                                        {
-                                            correctTextElements[0].Text = pair.Value; //Kopieer data naar plaats textElement[0]
-                                            for (var i = 1; i < correctTextElements.Count; i++)
-                                            {
-                                                correctTextElements[i].Text = ""; //volgende t elementen leeg laten -> later removen
-                                            }
+                                            correctTextElements[i].Text = ""; //volgende t elementen leeg laten -> later removen
                                         }
                                     }
-                                    exists = enumerator.MoveNext();
                                 }
+                                exists = enumerator.MoveNext();
                             }
                         }
                     }
                 }
             }
-            foreach (var entry in toReplace)
-            {
-                var index = openXmlElements.IndexOf(entry.Key);
-                if (index != -1)
-                {
-                    openXmlElements.RemoveAt(index);
-                    openXmlElements.Insert(index, entry.Value);
-                }//altered allElements
-            }
         }
-        public void ExtractParagraphs(IEnumerable<OpenXmlElement> elements, string startSection, string endSection, out int startPosition, out List<OpenXmlElement> extratedParagraphs)
+        foreach (var entry in toReplace)
         {
-            var position = 0;
-            var inSection = false;
-            extratedParagraphs = new List<OpenXmlElement>(); //
-            startPosition = 0;
-
-            foreach (var e in elements)
+            var index = openXmlElements.IndexOf(entry.Key);
+            if (index != -1)
             {
-                if (e is Paragraph)
+                openXmlElements.RemoveAt(index);
+                openXmlElements.Insert(index, entry.Value);
+            }//altered allElements
+        }
+    }
+    public void ExtractParagraphs(IEnumerable<OpenXmlElement> elements, string startSection, string endSection, out int startPosition, out List<OpenXmlElement> extratedParagraphs)
+    {
+        var position = 0;
+        var inSection = false;
+        extratedParagraphs = new List<OpenXmlElement>(); //
+        startPosition = 0;
+
+        foreach (var e in elements)
+        {
+            if (e is Paragraph)
+            {
+                var p = e as Paragraph;
+                var textElements = e.Elements<Run>()
+                    .SelectMany(r => r.Elements<Text>());
+
+                var text = GetCombinedText(textElements);
+
+                //Wanneer template paragraaf overeenkomt met meegegeven string, houdt positie bij 
+                if (text.Contains(startSection))
                 {
-                    var p = e as Paragraph;
-                    var textElements = e.Elements<Run>()
-                        .SelectMany(r => r.Elements<Text>());
-
-                    var text = GetCombinedText(textElements);
-
-                    //Wanneer template paragraaf overeenkomt met meegegeven string, houdt positie bij 
-                    if (text.Contains(startSection))
-                    {
-                        inSection = true;
-                        startPosition = position;
-                    }
-
-                    if (text.Contains(endSection))
-                    {
-                        inSection = false;
-                    }
-
-                    if (inSection)
-                    {
-                        extratedParagraphs.Add(p);
-                        if (p.Parent != null)
-                        {
-                            p.Remove();
-                        }
-
-                        //copy internships en delete achteraf van template 
-                        //verwijder pas wanneer je inInternShip = false 
-                        // en verwijder op positie paragraphPosition
-
-                    }
+                    inSection = true;
+                    startPosition = position;
                 }
-                position++;
+
+                if (text.Contains(endSection))
+                {
+                    inSection = false;
+                }
+
+                if (inSection)
+                {
+                    extratedParagraphs.Add(p);
+                    if (p.Parent != null)
+                    {
+                        p.Remove();
+                    }
+
+                    //copy internships en delete achteraf van template 
+                    //verwijder pas wanneer je inInternShip = false 
+                    // en verwijder op positie paragraphPosition
+
+                }
             }
+            position++;
         }
-        public void InsertUnitParagraphs(WordprocessingDocument document, ref List<OpenXmlElement> allElements, List<UnitExportDto> unitList, List<OpenXmlElement> templateUnitParagraphs,
-            int unitStartPosition, ref int chunkId, ResourceManager rm)
+    }
+    public void InsertUnitParagraphs(WordprocessingDocument document, ref List<OpenXmlElement> allElements, List<UnitExportDto> unitList, List<OpenXmlElement> templateUnitParagraphs,
+        int unitStartPosition, ref int chunkId, ResourceManager rm)
+    {
+        var reversedUnits = Reversed(unitList);
+
+        for (var unitIndex = 0; unitIndex < reversedUnits.Count; unitIndex++) //Nieuwe lijst in omgekeerde volgorde 
         {
-            var reversedUnits = Reversed(unitList);
+            var unit = reversedUnits[unitIndex];
+            var unitElements = CloneELements(templateUnitParagraphs);
 
-            for (var unitIndex = 0; unitIndex < reversedUnits.Count; unitIndex++) //Nieuwe lijst in omgekeerde volgorde 
-            {
-                var unit = reversedUnits[unitIndex];
-                var unitElements = CloneELements(templateUnitParagraphs);
-
-                Replace(document, ref unitElements, new Dictionary<string, string>()
+            Replace(document, ref unitElements, new Dictionary<string, string>()
                     {
                         {"UNIT_TITLE", unit.Name},
                         {"UNIT_DESCRIPTION", unit.PrefaceDto.Content},
                     }, ref chunkId);
 
-                ExtractParagraphs(unitElements, "INTERNSHIP_TITLE", "INTERNSHIP_END", out var internshipStartPosition, out var templateInternshipParagraphs);
+            ExtractParagraphs(unitElements, "INTERNSHIP_TITLE", "INTERNSHIP_END", out var internshipStartPosition, out var templateInternshipParagraphs);
 
-                unitElements.RemoveRange(internshipStartPosition, templateInternshipParagraphs.Count); //Delete niet ingevulde internship template  
+            unitElements.RemoveRange(internshipStartPosition, templateInternshipParagraphs.Count); //Delete niet ingevulde internship template  
 
-                foreach (var internship in unit.InternShipsDtos)
-                {
-                    var internshipParagraphs = CloneELements(templateInternshipParagraphs);
+            foreach (var internship in unit.InternShipsDtos)
+            {
+                var internshipParagraphs = CloneELements(templateInternshipParagraphs);
 
-                    Replace(document, ref internshipParagraphs, new Dictionary<string, string>()
+                Replace(document, ref internshipParagraphs, new Dictionary<string, string>()
                           {
                               {"INTERNSHIP_TITLE", internship.Translation.TitleContent},
                               {"INTERNSHIP_ASSIGNMENT_TITLE", rm.GetString("INTERNSHIP_ASSIGNMENT_TITLE")},
@@ -360,89 +362,89 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
                               {"INTERNSHIP_COMMENTS_CONTENT", internship.Translation.Comment},
                           }, ref chunkId);
 
-                    unitElements.InsertRange(internshipStartPosition, internshipParagraphs); //toevoegen van internshipParagraaf lijst in unit paragrafen 
-                }
-
-                //add new break
-                if (unitIndex != 0)
-                {
-                    unitElements.Add(new Break() { Type = BreakValues.Page });
-                }
-
-                //insert intrshipElements to allElements
-                foreach (var element in Enumerable.Range(1, unitElements.Count())
-                    .Select(i => unitElements[unitElements.Count() - i])
-                    .ToList())
-                {
-                    allElements.Insert(unitStartPosition, element);
-                }
+                unitElements.InsertRange(internshipStartPosition, internshipParagraphs); //toevoegen van internshipParagraaf lijst in unit paragrafen 
             }
-        }
 
-        public string MakingListOfHTMl<T>(IEnumerable<T> intrshpContent)
-        {
-            //string concatenatie 
-            string locationString = "";
-            foreach (var loc in intrshpContent)
+            //add new break
+            if (unitIndex != 0)
             {
-                string temp = "";
-                temp = loc.ToString().Insert(0, "<li>");
-                temp = temp.ToString().Insert(temp.Length, "</li>");
-                locationString += temp;
+                unitElements.Add(new Break() { Type = BreakValues.Page });
             }
-            locationString = locationString.Insert(0, "<ul>");
-            locationString = locationString.Insert(locationString.Length, "</ul>");
-            return locationString;
-        }
-        public int MatchingCharsAt(string s1, string s2)
-        {
-            var i = 0;
-            while (i < s1.Length && i < s2.Length && s1[i] == s2[i])
+
+            //insert intrshipElements to allElements
+            foreach (var element in Enumerable.Range(1, unitElements.Count())
+                .Select(i => unitElements[unitElements.Count() - i])
+                .ToList())
             {
-                i++;
+                allElements.Insert(unitStartPosition, element);
             }
-            return i;
         }
-        public AltChunk ChunkMethod(WordprocessingDocument document, string html, ref int chunkId)
+    }
+
+    public string MakingListOfHTMl<T>(IEnumerable<T> intrshpContent)
+    {
+        //string concatenatie 
+        string locationString = "";
+        foreach (var loc in intrshpContent)
         {
-            chunkId++;
-            AltChunk altChunk = new AltChunk();
+            string temp = "";
+            temp = loc.ToString().Insert(0, "<li>");
+            temp = temp.ToString().Insert(temp.Length, "</li>");
+            locationString += temp;
+        }
+        locationString = locationString.Insert(0, "<ul>");
+        locationString = locationString.Insert(locationString.Length, "</ul>");
+        return locationString;
+    }
+    public int MatchingCharsAt(string s1, string s2)
+    {
+        var i = 0;
+        while (i < s1.Length && i < s2.Length && s1[i] == s2[i])
+        {
+            i++;
+        }
+        return i;
+    }
+    public AltChunk ChunkMethod(WordprocessingDocument document, string html, ref int chunkId)
+    {
+        chunkId++;
+        AltChunk altChunk = new AltChunk();
 
-            //HTML
-            AlternativeFormatImportPart chunk = document.MainDocumentPart!.AddAlternativeFormatImportPart(
-                AlternativeFormatImportPartType.Html, $"altChunkId{chunkId}"); //this chunk will contain HTML
+        //HTML
+        AlternativeFormatImportPart chunk = document.MainDocumentPart!.AddAlternativeFormatImportPart(
+            AlternativeFormatImportPartType.Html, $"altChunkId{chunkId}"); //this chunk will contain HTML
 
-            using (Stream chunkStream = chunk.GetStream(FileMode.Create, FileAccess.Write))
+        using (Stream chunkStream = chunk.GetStream(FileMode.Create, FileAccess.Write))
+        {
+            using (StreamWriter stringStream = new StreamWriter(chunkStream))
             {
-                using (StreamWriter stringStream = new StreamWriter(chunkStream))
-                {
-                    stringStream.Write(html);
-                }
-
+                stringStream.Write(html);
             }
-            altChunk.Id = document.MainDocumentPart!.GetIdOfPart(chunk);
-            return altChunk;
+
         }
-        private void RemoveSdt(Body body)
+        altChunk.Id = document.MainDocumentPart!.GetIdOfPart(chunk);
+        return altChunk;
+    }
+    private void RemoveSdt(Body body)
+    {
+        var i = 0;
+        foreach (var item in body.Elements())
         {
-            var i = 0;
-            foreach (var item in body.Elements())
+            if (item is SdtBlock)
             {
-                if (item is SdtBlock)
-                {
-                    body.RemoveChild(item);
+                body.RemoveChild(item);
 
-                    var sdtBlock = new SdtBlock();
-                    sdtBlock.InnerXml = GetTOC("Content", 16);
-                    body.InsertAt(sdtBlock, i);
-                    body.InsertAfter(new Break() { Type = BreakValues.Page }, sdtBlock);
-                }
-                i++;
+                var sdtBlock = new SdtBlock();
+                sdtBlock.InnerXml = GetTOC("Content", 16);
+                body.InsertAt(sdtBlock, i);
+                body.InsertAfter(new Break() { Type = BreakValues.Page }, sdtBlock);
             }
+            i++;
         }
-        private string GetTOC(string title, int titleFontSize)
-        {
-            return $@"<w:sdt>
+    }
+    private string GetTOC(string title, int titleFontSize)
+    {
+        return $@"<w:sdt>
      <w:sdtPr>
         <w:id w:val=""-493258456"" />
         <w:docPartObj>
@@ -519,29 +521,29 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
         </w:p>
      </w:sdtContent>
   </w:sdt>";
-        }
-        public void DeleteParagraphs(ref List<OpenXmlElement> allElements, List<string> toDeleteParagraphs)
+    }
+    public void DeleteParagraphs(ref List<OpenXmlElement> allElements, List<string> toDeleteParagraphs)
+    {
+        foreach (var e in allElements)
         {
-            foreach (var e in allElements)
+            if (e is Paragraph)
             {
-                if (e is Paragraph)
+                var textElements = e.Elements<Run>()
+                                       .SelectMany(r => r.Elements<Text>());
+
+                var text = GetCombinedText(textElements);
+
+                foreach (var item in toDeleteParagraphs)
                 {
-                    var textElements = e.Elements<Run>()
-                                           .SelectMany(r => r.Elements<Text>());
-
-                    var text = GetCombinedText(textElements);
-
-                    foreach (var item in toDeleteParagraphs)
+                    if (text.Contains(item))
                     {
-                        if (text.Contains(item))
-                        {
-                            e.RemoveAllChildren();
-                        }
+                        e.RemoveAllChildren();
                     }
                 }
             }
         }
     }
-    
+}
+
 
 
