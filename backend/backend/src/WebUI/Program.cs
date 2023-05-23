@@ -88,8 +88,6 @@ app.Use(async (context, next) =>
         context.Response.StatusCode = 422;
         await context.Response.WriteAsJsonAsync(error);
 
-
-
     }
     catch (BadHttpRequestException ex)
     {
