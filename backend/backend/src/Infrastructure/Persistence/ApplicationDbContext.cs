@@ -65,7 +65,6 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         //    {
         //        entityType.AddProperty("IsDeleted", typeof(bool));
 
-        var propertyMethodInfo = typeof(EF).GetMethod("Property").MakeGenericMethod(typeof(bool));
         //}
         foreach (var entityType in builder.Model.GetEntityTypes())
         {
@@ -79,7 +78,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
                 var parameter = Expression.Parameter(entityType.ClrType);
 
                 // EF.Property<bool>(post, "IsDeleted")
-                var propertyMethodInfo = typeof(EF).GetMethod("Property")!.MakeGenericMethod(typeof(bool));
+                var propertyMethodInfo = typeof(EF).GetMethod("Property").MakeGenericMethod(typeof(bool));
                 var isDeletedProperty = Expression.Call(propertyMethodInfo, parameter, Expression.Constant("IsDeleted"));
 
                 // EF.Property<bool>(post, "IsDeleted") == false
@@ -367,15 +366,15 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
                 //loop eerste keer 1 trnsl, tweede intrsnship 2 trnslaties, derde intrship x 3trnsl, --- > restart  
                 for (int langIndex = 0; langIndex < (intrnShipIndex % 3) + 1; langIndex++)
                 {
-                    var standardTrnsl = new
-                    {
-                        Id = trnslIndex, //steeds hoger 
-                        TitleContent = "Standard Internship Title",
-                        Description = @"<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
-                        KnowledgeToDevelop = @"<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
-                        NeededKnowledge = @"<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
-                        Comment = $@"<p>required diploma for this internship is: {TrainingType.Bachelor}</p>", //+1 of random
-                        LanguageId = langIndex + 1
+                var standardTrnsl = new
+                {
+                    Id = trnslIndex, //steeds hoger 
+                    TitleContent = "Standard Internship Title",
+                    Description = @"<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
+                    KnowledgeToDevelop = @"<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
+                    NeededKnowledge = @"<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
+                    Comment = $@"<p>required diploma for this internship is: {TrainingType.Bachelor}</p>", //+1 of random
+                    LanguageId = langIndex + 1,
                         InternShipId = standardInternShip.Id,
                         IsDeleted = false,
                     };
@@ -437,7 +436,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
                 }
             }
         }
-    }
+    
             private void HandleCreate()
             {
                 var markedAsDeleted = ChangeTracker.Entries().Where(x => x.State == EntityState.Added);
@@ -482,3 +481,4 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         return await base.SaveChangesAsync(cancellationToken);
     }
 }
+

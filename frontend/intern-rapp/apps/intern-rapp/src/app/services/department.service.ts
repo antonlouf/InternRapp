@@ -20,59 +20,87 @@ export class DepartmentService {
   getAllSupervisorNamesContaining(
     name: string | undefined
   ): Observable<string[]> {
+          const httpOptions = {
+            headers: new HttpHeaders({
+              path:  `/api/ApplicationUser/?filterValue=${name}`,
+              method: 'GET',
+            }),
+          };
     return this.http
       .get<string[]>(
-        APIConfiguration.baseString +
-          `/api/ApplicationUser/?filterValue=${name}`
+        APIConfiguration.baseString ,httpOptions
+         
       )
       .pipe(catchError((err, caught) => caught));
   }
   postDepartment(department: CreateDepartment) {
+        const httpOptions = {
+          headers: new HttpHeaders({
+            path: `${this.baseSuffixApi}`,
+            method: 'POST',
+          }),
+        };
     return this.http
-      .post(APIConfiguration.baseString + `${this.baseSuffixApi}`, department)
+      .post(APIConfiguration.baseString, department,httpOptions)
       .pipe(catchError((err, caught) => caught));
   }
   filterAndPaginateDepartments(
     filterPaginationRequest: PaginationFilterRequest
   ) {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          path:  `${this.baseSuffixApi}/?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&${filterPaginationRequest.filterString}`,
+          method: 'GET',
+        }),
+      };
     return this.http
       .get<ResourceItemPagingResponse<DepartmentItem>>(
-        APIConfiguration.baseString +
-          `${this.baseSuffixApi}?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&${filterPaginationRequest.filterString}`
-      )
+        APIConfiguration.baseString,httpOptions )
       .pipe(catchError((err, caught) => caught));
   }
   filterAndPaginateDepartmentsWithMinimalData(
     filterPaginationRequest: PaginationFilterRequest
   ) {
+     const httpOptions = {
+       headers: new HttpHeaders({
+         path: `${this.baseSuffixApi}/getAllWithminimaldata?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&Filter=${filterPaginationRequest.filterString}`,
+         method: 'GET',
+       }),
+     };
     return this.http
       .get<ResourceItemPagingResponse<DepartementItemWithMinimalData>>(
-        APIConfiguration.baseString +
-          `${this.baseSuffixApi}/getAllWithminimaldata?PageIndex=${filterPaginationRequest.pageIndex}&PageSize=${filterPaginationRequest.pageSize}&Filter=${filterPaginationRequest.filterString}`
-      )
+        APIConfiguration.baseString,httpOptions)
       .pipe(catchError((err, caught) => caught));
   }
   deleteDepartment(ids: number[] | undefined) {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
+          'path': `${this.baseSuffixApi}`,
+          'method':"DELETE"
         }),
         body: JSON.stringify(ids),
       };
     return this.http
       .delete<number>(
-        APIConfiguration.baseString + `${this.baseSuffixApi}`,httpOptions
+        APIConfiguration.baseString,httpOptions
       )
       .pipe(catchError((err, caught) => caught));
   }
   updateDepartment(itemToBeUpdated: DepartmentUpdate | undefined) {
+     const httpOptions = {
+       headers: new HttpHeaders({
+         path: `${this.baseSuffixApi}`,
+         method: 'PATCH',
+       }),
+     };
     return this.http
-      .patch(APIConfiguration.baseString + `${this.baseSuffixApi}`, {
+      .patch(APIConfiguration.baseString, {
         id: itemToBeUpdated?.id,
         name: itemToBeUpdated?.name,
         managerEmails: itemToBeUpdated?.managerEmails,
         prefaceTranslations: itemToBeUpdated?.prefaceTranslations,
-      })
+      },httpOptions)
       .pipe(
         catchError((error) => {
           throw error
@@ -91,8 +119,14 @@ export class DepartmentService {
       superVisorEmails: itemToBeAdded.superVisorEmails,
       prefaceTranslations: itemToBeAdded.prefaces,
     };
+    const httpOptions = {
+         headers: new HttpHeaders({
+           path: `${this.baseSuffixApi}`,
+           method: 'POST',
+         }),
+       };
     return this.http
-      .post(APIConfiguration.baseString + `${this.baseSuffixApi}`, body)
+      .post(APIConfiguration.baseString , body,httpOptions)
       .pipe(
        
             catchError((error) => {
@@ -107,13 +141,18 @@ export class DepartmentService {
       
   }
   public getById(id: number) {
+       const httpOptions = {
+         headers: new HttpHeaders({
+           path: `${this.baseSuffixApi}/${id}`,
+           method: 'GET',
+         }),
+       };
     return this.http
       .get<DepartmentItemDetail>(
-        APIConfiguration.baseString + `${this.baseSuffixApi}/${id}`
-      )
+        APIConfiguration.baseString 
+      ,httpOptions)
       .pipe(
         catchError((error) => {
-          console.error(error);
           return of(null);
         }),
         // retry once
