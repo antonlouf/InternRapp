@@ -6,11 +6,10 @@
   align-items: center;
   margin-bottom: auto;
 }
-*{
-  font-size: 16px;
-}
+
 .title-content{
   margin-top: 2%;
+  width: 50%;
  
 }
 .editor{
@@ -26,7 +25,7 @@
 .flex-row{
   display: flex;
   flex-direction:row;
- 
+  gap: 30px;
 }
 mat-label{
   font-weight: bold;

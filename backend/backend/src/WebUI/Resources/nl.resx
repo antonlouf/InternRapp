@@ -460,4 +460,7 @@ inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus onderst
   <data name="PHD" xml:space="preserve">
     <value>Doctoraat</value>
   </data>
+  <data name="titleContentTooltip" xml:space="preserve">
+    <value>De naam van de stage in een specifieke taal</value>
+  </data>
 </root>

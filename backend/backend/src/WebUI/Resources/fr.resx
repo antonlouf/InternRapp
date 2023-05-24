@@ -459,4 +459,7 @@ Avec le programme &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt;, Realdolm
   <data name="PHD" xml:space="preserve">
     <value>Doctorat</value>
   </data>
+  <data name="titleContentTooltip" xml:space="preserve">
+    <value>Le nom du stage dans une langue spécifique</value>
+  </data>
 </root>

@@ -435,6 +435,9 @@
   <data name="titleContentLabelErrorMessage" xml:space="preserve">
     <value>The name of the internship could not be empty</value>
   </data>
+  <data name="titleContentTooltip" xml:space="preserve">
+    <value>The name of the internship in a specific language</value>
+  </data>
   <data name="trainingTypeLabel" xml:space="preserve">
     <value>required training type</value>
   </data>

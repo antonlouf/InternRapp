@@ -28,7 +28,7 @@ export class PrefaceTranslationFormComponent {
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
-    height: '50%',
+    height: 'auto',
     minHeight: '0',
     maxHeight: 'auto',
     width: 'auto',
