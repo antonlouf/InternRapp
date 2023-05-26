@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata;
@@ -24,13 +25,15 @@ using Microsoft.EntityFrameworkCore;
 namespace backend.Application.InternShips.Queries.GetExportInternShipData;
 public class GetExportInterShipQuery : IRequest<List<UnitExportDto>>
 {
-    public InternshipExportRequestDto Dto { get; set; }
+    public List<int> UnitIds { get; set; }
+    public string SchoolYear { get; set; }
+    public int LanguageId { get; set; }
 }
 
 public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShipQuery, List<UnitExportDto>>
 {
     private readonly IApplicationDbContext _dbContext;
-    private IMapper _iMapper;
+    private readonly IMapper _iMapper;
 
     public GetExportInterShipQueryHandler(IApplicationDbContext dbContext, IMapper iMapper)
     {
@@ -38,20 +41,19 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
         _iMapper = iMapper;
     }
 
-
     public async Task<List<UnitExportDto>> Handle(GetExportInterShipQuery request, CancellationToken cancellationToken)
     {
         var units = await _dbContext.Departments
             .Include(dept => dept.Internships)
             .ThenInclude(intrshp => intrshp.Locations)
-            .Where(unit => (request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(unit.Id))
-            && unit.Internships.Any(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId))
-            && unit.Internships.Any(intrShips => request.Dto.SchoolYear == intrShips.SchoolYear)) 
+            .Where(unit => (request.UnitIds == null || request.UnitIds.Count == 0 || request.UnitIds.Contains(unit.Id))
+            && unit.Internships.Any(intrShps => intrShps.Translations.Any(trnsl => request.LanguageId == trnsl.LanguageId))
+            && unit.Internships.Any(intrShips => request.SchoolYear == intrShips.SchoolYear))
 
             .Select(exportDto => new UnitExportDto()
             {
                 Name = exportDto.Name,
-                PrefaceDto = exportDto.PrefaceTranslations.Where(unit => unit.LanguageId == request.Dto.LanguageId)
+                PrefaceDto = exportDto.PrefaceTranslations.Where(unit => unit.LanguageId == request.LanguageId)
                 .Select(unit => new PrefaceTranslationDto()
                 {
                     TranslationId = unit.Id,
@@ -59,8 +61,8 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
                     Language = _iMapper.Map<LanguageListDto>(unit.Language),
                 }).Single(),
                 InternShipsDtos = exportDto.Internships
-                .Where(intrshp => intrshp.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)
-                && request.Dto.SchoolYear == intrshp.SchoolYear) 
+                .Where(intrshp => intrshp.Translations.Any(trnsl => request.LanguageId == trnsl.LanguageId)
+                && request.SchoolYear == intrshp.SchoolYear)
                 .Select(intrshp => new InternShipExportDto()
                 {
                     SchoolYear = intrshp.SchoolYear,
@@ -104,43 +106,44 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
 public class Exporting
 {
     private readonly IApplicationDbContext _dbContext;
-    
+
     public Exporting(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }
 
-    public void GenerateWordDoc(List<UnitExportDto> unitExportList, InternshipExportRequestDto requestDto)
+    public Stream GenerateWordDoc(List<UnitExportDto> unitExportList, InternshipExportRequestDto requestDto)
     {
-        const string templatePath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\backend\lib\template.docx"; //-> docm
+        const string templatePath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\backend\lib\template.docx"; //-> docm maak relatief 
         const string resultPath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\backend\lib\internships.docx";
+        const string resultPath2 = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\backend\lib\internships2.docx";
 
-        WordprocessingDocument document = WordprocessingDocument.CreateFromTemplate(templatePath);
-        var body = document.MainDocumentPart!.Document.Body;
-        var allElements = body!.Elements().ToList();
-
-        int altChunckId = 0;
-
-        //Resource content
-        var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetName().Name == "WebUI").ToList();
-        ResourceManager rm;
-        try
+        using (WordprocessingDocument document = WordprocessingDocument.CreateFromTemplate(templatePath, false))
         {
-            var langCode = _dbContext.Languages.Where(lang => lang.Id == requestDto.LanguageId).Single().Code;
-            rm = new ResourceManager($"WebUI.Resources.{langCode}", Assembly.LoadFile(@$"{assemblies[0].Location}"));
-        }
-        catch (Exception)
-        {
-            rm = new ResourceManager("WebUI.Resources.en", Assembly.LoadFile(@$"{assemblies[0].Location}"));
-        }
+            var body = document.MainDocumentPart!.Document.Body;
+            var allElements = body!.Elements().ToList();
+            int altChunckId = 0;
 
+            //Resource content
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetName().Name == "WebUI").ToList();
+            ResourceManager rm;
+            try
+            {
+                var langCode = _dbContext.Languages.Where(lang => lang.Id == requestDto.LanguageId).Single().Code;
+                rm = new ResourceManager($"WebUI.Resources.{langCode}", Assembly.LoadFile(@$"{assemblies[0].Location}"));
+            }
+            catch (Exception)
+            {
+                rm = new ResourceManager("WebUI.Resources.en", Assembly.LoadFile(@$"{assemblies[0].Location}"));
+            }
 
-        if (File.Exists(resultPath))
-        {
-            File.Delete(resultPath);
-        }
+            //check if export file exists
+            if (File.Exists(resultPath))
+            {
+                File.Delete(resultPath);
+            }
 
-        Dictionary<string, string> commonReplacements = new Dictionary<string, string>()
+            Dictionary<string, string> commonReplacements = new Dictionary<string, string>()
                  {
                      {"TEMPLATE_TITLE", rm.GetString("TEMPLATE_TITLE")},
                      {"TEMPLATE_YEAR", requestDto.SchoolYear},
@@ -154,33 +157,53 @@ public class Exporting
                      {"ACADEMICT_DESCRIPTION", rm.GetString("ACADEMICT_DESCRIPTION")},
                  };
 
-        Replace(document, ref allElements, commonReplacements, ref altChunckId);
+            Replace(document, ref allElements, commonReplacements, ref altChunckId);
 
-        ExtractParagraphs(allElements, "UNIT_TITLE", "UNIT_END", out var unitStartPosition, out var templateUnitParagraphs);
+            ExtractParagraphs(allElements, "UNIT_TITLE", "UNIT_END", out var unitStartPosition, out var templateUnitParagraphs);
 
-        allElements.RemoveRange(unitStartPosition, templateUnitParagraphs.Count);
+            allElements.RemoveRange(unitStartPosition, templateUnitParagraphs.Count);
 
-        InsertUnitParagraphs(document, ref allElements, unitExportList, templateUnitParagraphs, unitStartPosition, ref altChunckId, rm);
+            InsertUnitParagraphs(document, ref allElements, unitExportList, templateUnitParagraphs, unitStartPosition, ref altChunckId, rm);
 
-        List<string> toDeleteStrings = new List<string>() { "INTERNSHIP_END", "UNIT_END" };
-        DeleteParagraphs(ref allElements, toDeleteStrings);
+            List<string> toDeleteStrings = new List<string>() { "INTERNSHIP_END", "UNIT_END" };
+            DeleteParagraphs(ref allElements, toDeleteStrings);
 
-        //update index table 
-        document.MainDocumentPart!.DocumentSettingsPart!.Settings.Append(new UpdateFieldsOnOpen() { Val = true }); //dit update de velden maar toont nog steeds een update dialog
+            //update index table 
+            document.MainDocumentPart!.DocumentSettingsPart!.Settings.Append(new UpdateFieldsOnOpen() { Val = true }); //dit update de velden maar toont nog steeds een update dialog
 
-        body.RemoveAllChildren();
+            body.RemoveAllChildren();
 
-        //insert allElements in body again
-        for (int i = 0; i < allElements.Count(); i++)
-        {
-            body.InsertAt(allElements[i], i);
+            //insert allElements in body again
+            for (int i = 0; i < allElements.Count(); i++)
+            {
+                body.InsertAt(allElements[i], i);
+            }
+
+            //remove old content table
+            RemoveSdt(body);
+
+            //-----------------------------------------------------------------------//
+            
+
+            // Save and close the Document
+           /* var b = document.MainDocumentPart.GetStream();*/ //stream doorgeven? 
+
+
+            document.SaveAs(resultPath).Dispose();
         }
+        Stream a = null;
 
-        //remove old content table
-        RemoveSdt(body);
+        a = File.OpenRead(resultPath);
 
-        // Save Document
-        document.Clone(resultPath);
+        //a.CopyTo(new MemoryStream()); //buffer , bool writable
+
+        //using (var fs = File.OpenRead(resultPath))
+        //{
+        //    fs.CopyTo(a);
+        //}
+        return a;
+
+
 
     }
     public string GetCombinedText(IEnumerable<Text> textElements)

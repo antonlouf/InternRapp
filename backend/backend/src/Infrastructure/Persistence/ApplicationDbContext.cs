@@ -21,14 +21,13 @@ using DocumentFormat.OpenXml.Wordprocessing;
 namespace backend.Infrastructure.Persistence;
 public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
-    private readonly IMediator _mediator;
+    
 
     public ApplicationDbContext(
-        DbContextOptions<ApplicationDbContext> options,
-        IMediator mediator)
+        DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
-        _mediator = mediator;
+       
 
     }
     public DbSet<Department> Departments => Set<Department>();
