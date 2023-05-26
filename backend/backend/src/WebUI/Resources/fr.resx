@@ -364,7 +364,7 @@ Avec le programme &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt;, Realdolm
     <value>Localisation des sites</value>
   </data>
   <data name="locationStreetNameLabel" xml:space="preserve">
-    <value> nom de la rue</value>
+    <value>la rue</value>
   </data>
   <data name="locationStreetRequiredErrorMessage" xml:space="preserve">
     <value>le nom de la rue de l'emplacement est requis</value>
@@ -458,6 +458,9 @@ Avec le programme &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt;, Realdolm
   </data>
   <data name="PHD" xml:space="preserve">
     <value>Doctorat</value>
+  </data>
+  <data name="languageExport" xml:space="preserve">
+    <value>sélectionne la langue pour laquelle il y a des stages disponibles dans cette langue</value>
   </data>
   <data name="titleContentTooltip" xml:space="preserve">
     <value>Le nom du stage dans une langue spécifique</value>

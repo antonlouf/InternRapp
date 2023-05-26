@@ -94,6 +94,7 @@ if (!builder.Environment.IsDevelopment())
     builder.Services.AddSpaStaticFiles(configuration =>
     {
         configuration.RootPath = "ClientApp/dist";
+        
     });
 }
 

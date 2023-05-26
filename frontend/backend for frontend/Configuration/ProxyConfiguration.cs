@@ -40,7 +40,6 @@ namespace backend_for_frontend.Configuration
                             forwardContext.UpstreamRequest.RequestUri = new Uri(uri);
                             //forwardContext.UpstreamRequest.RequestUri = new Uri("https://localhost:7171/api/Unit/?PageIndex=1&PageSize=10");
 
-                            var g = forwardContext.UpstreamRequest.RequestUri.OriginalString.Split("?");
                         }
                         
                         // ITokenAcquisition? tokenAcquisition = context.RequestServices.GetRequiredService<ITokenAcquisition>();

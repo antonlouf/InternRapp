@@ -335,10 +335,10 @@ inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus onderst
     <value>locaties</value>
   </data>
   <data name="locationStreetNameLabel" xml:space="preserve">
-    <value> straatnaam </value>
+    <value> straat</value>
   </data>
   <data name="locationStreetRequiredErrorMessage" xml:space="preserve">
-    <value> straatnaam is verplicht </value>
+    <value> de straat is verplicht </value>
   </data>
   <data name="locationZipCodeLabel" xml:space="preserve">
     <value> postcode</value>
@@ -459,6 +459,15 @@ inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus onderst
   </data>
   <data name="PHD" xml:space="preserve">
     <value>Doctoraat</value>
+  </data>
+  <data name="languageExport" xml:space="preserve">
+    <value>hiermee kies je de taal waarvoor er stageodprachten in die taal beschikbaar zijn</value>
+  </data>
+  <data name="locationCityRequiredErrorMessage" xml:space="preserve">
+    <value>De stad is verplicht.</value>
+  </data>
+  <data name="locationHouseNumberErrorMessage" xml:space="preserve">
+    <value>Huisnummer is verplicht</value>
   </data>
   <data name="titleContentTooltip" xml:space="preserve">
     <value>De naam van de stage in een specifieke taal</value>

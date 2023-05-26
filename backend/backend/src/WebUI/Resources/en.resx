@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="a" xml:space="preserve">
+    <value />
+  </data>
   <data name="ACADEMICT_DESCRIPTION" xml:space="preserve">
     <value>&lt;p&gt;With the &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt;, Realdolmen introduces a &lt;strong&gt;unique program&lt;/strong&gt; focused on recent graduates. The term &lt;strong&gt;acADDemICT&lt;/strong&gt; refers to a recent graduate who is passionate about ICT and has a lifelong learning mindset.&lt;/p&gt;
 
@@ -333,6 +336,9 @@
   <data name="languageCodeRequiredErrorMessage" xml:space="preserve">
     <value>the language code is required</value>
   </data>
+  <data name="languageExport" xml:space="preserve">
+    <value>this selects the language for which there are internships available in that language</value>
+  </data>
   <data name="languageLabel" xml:space="preserve">
     <value>language</value>
   </data>
@@ -364,10 +370,10 @@
     <value>locations</value>
   </data>
   <data name="locationStreetNameLabel" xml:space="preserve">
-    <value> street name</value>
+    <value> street </value>
   </data>
   <data name="locationStreetRequiredErrorMessage" xml:space="preserve">
-    <value> street name is required</value>
+    <value> street is required</value>
   </data>
   <data name="locationZipCodeLabel" xml:space="preserve">
     <value> zipcode</value>
