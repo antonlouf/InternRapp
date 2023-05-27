@@ -2,6 +2,8 @@ using System.Globalization;
 using backend.Application;
 using backend.Application.Common.Exceptions;
 using backend.Infrastructure.Persistence.ConfigOptions;
+using backend.Infrastructure.Services;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
@@ -37,6 +39,8 @@ builder.Services.AddCors(options =>
 var dbConfig = new DatabaseConfigOption();
 builder.Configuration.GetSection("ConnectionStrings").Bind(dbConfig);
 builder.Services.AddInfrastructureServices(dbConfig);
+
+//builder.Services.AddHostedService<ExportService>();
 
 builder.Services.AddLocalization(opt =>
 {
@@ -92,12 +96,12 @@ app.Use(async (context, next) =>
     catch (BadHttpRequestException ex)
     {
         context.Response.StatusCode = 400;
-        await context.Response.WriteAsJsonAsync(ex.Message);
+        await context.Response.WriteAsJsonAsync(ex.StackTrace);
     }
     catch(Exception ex)
     {
          context.Response.StatusCode = 500;
-        await context.Response.WriteAsJsonAsync(ex.Message);
+        await context.Response.WriteAsJsonAsync(ex.StackTrace);
     }
 });
 app.UseStaticFiles();

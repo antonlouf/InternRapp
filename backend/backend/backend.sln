@@ -26,7 +26,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "unit tests", "unit tests\un
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonReadModels", "CommonReadModels\CommonReadModels.csproj", "{2AB30D54-91D4-4AA1-BC7A-26025E2EA2B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integration tests", "Integration tests\Integration tests.csproj", "{93179196-DCC3-47E7-8838-DEE8A3782335}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Integration tests", "Integration tests\Integration tests.csproj", "{93179196-DCC3-47E7-8838-DEE8A3782335}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -112,13 +112,18 @@ public class Exporting
         _dbContext = dbContext;
     }
 
-    public Stream GenerateWordDoc(List<UnitExportDto> unitExportList, InternshipExportRequestDto requestDto)
+    public string GenerateWordDocFilePath(List<UnitExportDto> unitExportList, InternshipExportRequestDto requestDto)
     {
-        const string templatePath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\backend\lib\template.docx"; //-> docm maak relatief 
-        const string resultPath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\backend\lib\internships.docx";
-        const string resultPath2 = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\backend\lib\internships2.docx";
+        //const string templatePath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\lib\template.docx";
+        //const string templatePath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\lib\ExportFiles\internships.docx";
 
-        using (WordprocessingDocument document = WordprocessingDocument.CreateFromTemplate(templatePath, false))
+        string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        string templatePath = Path.Combine(sCurrentDirectory, @"../../../../../lib/template.docx");
+        string resultPath = Path.Combine(sCurrentDirectory, $@"..\..\..\..\..\lib\ExportFiles\internships_{Guid.NewGuid()}.docx");
+
+        var a = Environment.ExpandEnvironmentVariables($"~/{templatePath}");
+
+        using (WordprocessingDocument document = WordprocessingDocument.CreateFromTemplate(a, false))
         {
             var body = document.MainDocumentPart!.Document.Body;
             var allElements = body!.Elements().ToList();
@@ -182,28 +187,10 @@ public class Exporting
             //remove old content table
             RemoveSdt(body);
 
-            //-----------------------------------------------------------------------//
-            
-
-            // Save and close the Document
-           /* var b = document.MainDocumentPart.GetStream();*/ //stream doorgeven? 
-
-
             document.SaveAs(resultPath).Dispose();
         }
-        Stream a = null;
 
-        a = File.OpenRead(resultPath);
-
-        //a.CopyTo(new MemoryStream()); //buffer , bool writable
-
-        //using (var fs = File.OpenRead(resultPath))
-        //{
-        //    fs.CopyTo(a);
-        //}
-        return a;
-
-
+        return resultPath;
 
     }
     public string GetCombinedText(IEnumerable<Text> textElements)
