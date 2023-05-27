@@ -1,12 +1,16 @@
 using System.Globalization;
+using System.Text;
 using backend.Application;
 using backend.Application.Common.Exceptions;
 using backend.Infrastructure.Persistence.ConfigOptions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using WebUI.ExceptionFilters;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -21,8 +25,23 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<GlobalExceptionFilter>();
 builder.Services.AddControllers(opt =>
 {
+    opt.Filters.Add(new AuthorizeFilter());
     opt.Filters.Add(new GlobalExceptionFilter());
 });
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+    };
+});
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "cors",

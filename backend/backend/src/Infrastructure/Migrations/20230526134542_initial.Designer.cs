@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using backend.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using backend.Infrastructure.Persistence;
 namespace backend.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230526134542_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,17 +47,14 @@ namespace backend.Infrastructure.Migrations
                     b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ObjectIdentifier")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasAlternateKey("Email");
+
+                    b.HasIndex("ObjectIdentifier");
 
                     b.ToTable("ApplicationUsers");
                 });
@@ -94,27 +94,27 @@ namespace backend.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7937),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1285),
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7936),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1285),
                             ManagerEmails = "anton.louf@student.ehb.be",
                             Name = ".net"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7939),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1289),
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7939),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1289),
                             ManagerEmails = "anton.louf@student.ehb.be",
                             Name = "Java"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7940),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1291),
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7940),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1291),
                             ManagerEmails = "anton.louf@student.ehb.be",
                             Name = "Low Code"
                         });
@@ -165,46 +165,46 @@ namespace backend.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8043),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1421),
                             CurrentCountOfStudents = (byte)0,
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8043),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1421),
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2021-2022",
+                            SchoolYear = "2023-2024",
                             UnitId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8214),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2087),
                             CurrentCountOfStudents = (byte)0,
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8213),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2087),
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2021-2022",
+                            SchoolYear = "2022-2023",
                             UnitId = 2
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8253),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2159),
                             CurrentCountOfStudents = (byte)0,
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8253),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2159),
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2021-2022",
+                            SchoolYear = "2023-2024",
                             UnitId = 3
                         },
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8295),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2207),
                             CurrentCountOfStudents = (byte)0,
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8295),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2207),
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
                             SchoolYear = "2021-2022",
@@ -213,10 +213,10 @@ namespace backend.Infrastructure.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8322),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2239),
                             CurrentCountOfStudents = (byte)0,
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8322),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2239),
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
                             SchoolYear = "2023-2024",
@@ -225,34 +225,34 @@ namespace backend.Infrastructure.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8381),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2277),
                             CurrentCountOfStudents = (byte)0,
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8381),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2277),
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2022-2023",
+                            SchoolYear = "2023-2024",
                             UnitId = 3
                         },
                         new
                         {
                             Id = 7,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8422),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2407),
                             CurrentCountOfStudents = (byte)0,
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8422),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2406),
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2021-2022",
+                            SchoolYear = "2022-2023",
                             UnitId = 1
                         },
                         new
                         {
                             Id = 8,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8450),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2437),
                             CurrentCountOfStudents = (byte)0,
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8450),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2436),
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
                             SchoolYear = "2022-2023",
@@ -261,10 +261,10 @@ namespace backend.Infrastructure.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8506),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2474),
                             CurrentCountOfStudents = (byte)0,
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8505),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2474),
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
                             SchoolYear = "2023-2024",
@@ -273,13 +273,13 @@ namespace backend.Infrastructure.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8549),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2520),
                             CurrentCountOfStudents = (byte)0,
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8549),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2519),
                             MaxStudents = (byte)10,
                             RequiredTrainingType = 0,
-                            SchoolYear = "2023-2024",
+                            SchoolYear = "2021-2022",
                             UnitId = 1
                         });
                 });
@@ -348,13 +348,13 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 1,
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8181),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2002),
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 1,
                             IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8181),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2002),
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             TitleContent = "Standard Internship Title"
                         },
@@ -362,13 +362,13 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 2,
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8235),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2112),
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 2,
                             IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8235),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2111),
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             TitleContent = "Standard Internship Title"
                         },
@@ -376,13 +376,13 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 3,
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8243),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2120),
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 2,
                             IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 2,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8242),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2119),
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             TitleContent = "Standard Internship Title"
                         },
@@ -390,13 +390,13 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 4,
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8271),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2180),
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 3,
                             IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8271),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2180),
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             TitleContent = "Standard Internship Title"
                         },
@@ -404,13 +404,13 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 5,
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8278),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2188),
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 3,
                             IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 2,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8277),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2188),
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             TitleContent = "Standard Internship Title"
                         },
@@ -418,13 +418,13 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 6,
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8284),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2196),
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 3,
                             IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 3,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8284),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2195),
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             TitleContent = "Standard Internship Title"
                         },
@@ -432,13 +432,13 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 7,
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8312),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2228),
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 4,
                             IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8312),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2228),
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             TitleContent = "Standard Internship Title"
                         },
@@ -446,13 +446,13 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 8,
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8362),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2257),
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 5,
                             IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8361),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2257),
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             TitleContent = "Standard Internship Title"
                         },
@@ -460,13 +460,13 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 9,
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8368),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2264),
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 5,
                             IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 2,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8368),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2264),
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             TitleContent = "Standard Internship Title"
                         },
@@ -474,13 +474,13 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 10,
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8400),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2350),
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 6,
                             IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8400),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2350),
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             TitleContent = "Standard Internship Title"
                         },
@@ -488,13 +488,13 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 11,
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8407),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2387),
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 6,
                             IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 2,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8406),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2387),
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             TitleContent = "Standard Internship Title"
                         },
@@ -502,13 +502,13 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 12,
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8412),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2395),
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 6,
                             IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 3,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8412),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2395),
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             TitleContent = "Standard Internship Title"
                         },
@@ -516,13 +516,13 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 13,
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8439),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2426),
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 7,
                             IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8439),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2425),
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             TitleContent = "Standard Internship Title"
                         },
@@ -530,13 +530,13 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 14,
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8466),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2455),
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 8,
                             IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8466),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2455),
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             TitleContent = "Standard Internship Title"
                         },
@@ -544,13 +544,13 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 15,
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8473),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2463),
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 8,
                             IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 2,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8473),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2463),
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             TitleContent = "Standard Internship Title"
                         },
@@ -558,13 +558,13 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 16,
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8523),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2493),
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 9,
                             IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8523),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2493),
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             TitleContent = "Standard Internship Title"
                         },
@@ -572,13 +572,13 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 17,
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8530),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2500),
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 9,
                             IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 2,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8530),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2500),
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             TitleContent = "Standard Internship Title"
                         },
@@ -586,13 +586,13 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 18,
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8537),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2508),
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 9,
                             IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 3,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8537),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2507),
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             TitleContent = "Standard Internship Title"
                         },
@@ -600,13 +600,13 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 19,
                             Comment = "<p>required diploma for this internship is: Bachelor</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8566),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2567),
                             Description = "<p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>",
                             InternShipId = 10,
                             IsDeleted = false,
                             KnowledgeToDevelop = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             LanguageId = 1,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8566),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2567),
                             NeededKnowledge = "<p>This is a text editor</p><ul><li>With some styling</li><li>And some more styling</li><li>To test if text is converted to HTML</li></ul>",
                             TitleContent = "Standard Internship Title"
                         });
@@ -637,211 +637,211 @@ namespace backend.Infrastructure.Migrations
                         {
                             InternShipId = 1,
                             LocationsId = 1,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8046),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8046)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1423),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1423)
                         },
                         new
                         {
                             InternShipId = 1,
                             LocationsId = 2,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8058),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8058)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1810),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1809)
                         },
                         new
                         {
                             InternShipId = 1,
                             LocationsId = 3,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8064),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8063)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1816),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1816)
                         },
                         new
                         {
                             InternShipId = 2,
                             LocationsId = 1,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8214),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8214)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2088),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2087)
                         },
                         new
                         {
                             InternShipId = 2,
                             LocationsId = 2,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8221),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8220)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2095),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2094)
                         },
                         new
                         {
                             InternShipId = 2,
                             LocationsId = 3,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8228),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8228)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2104),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2103)
                         },
                         new
                         {
                             InternShipId = 3,
                             LocationsId = 1,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8254),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8254)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2160),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2159)
                         },
                         new
                         {
                             InternShipId = 3,
                             LocationsId = 2,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8259),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8259)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2166),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2166)
                         },
                         new
                         {
                             InternShipId = 3,
                             LocationsId = 3,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8264),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8264)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2172),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2172)
                         },
                         new
                         {
                             InternShipId = 4,
                             LocationsId = 1,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8296),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8296)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2208),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2208)
                         },
                         new
                         {
                             InternShipId = 4,
                             LocationsId = 2,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8301),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8301)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2216),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2216)
                         },
                         new
                         {
                             InternShipId = 4,
                             LocationsId = 3,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8306),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8305)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2222),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2221)
                         },
                         new
                         {
                             InternShipId = 5,
                             LocationsId = 1,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8344),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8343)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2240),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2239)
                         },
                         new
                         {
                             InternShipId = 5,
                             LocationsId = 2,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8349),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8349)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2245),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2245)
                         },
                         new
                         {
                             InternShipId = 5,
                             LocationsId = 3,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8355),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8354)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2250),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2250)
                         },
                         new
                         {
                             InternShipId = 6,
                             LocationsId = 1,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8382),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8381)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2278),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2278)
                         },
                         new
                         {
                             InternShipId = 6,
                             LocationsId = 2,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8387),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8387)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2337),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2336)
                         },
                         new
                         {
                             InternShipId = 6,
                             LocationsId = 3,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8394),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8393)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2343),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2343)
                         },
                         new
                         {
                             InternShipId = 7,
                             LocationsId = 1,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8423),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8423)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2407),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2407)
                         },
                         new
                         {
                             InternShipId = 7,
                             LocationsId = 2,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8428),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8428)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2413),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2412)
                         },
                         new
                         {
                             InternShipId = 7,
                             LocationsId = 3,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8433),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8433)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2418),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2418)
                         },
                         new
                         {
                             InternShipId = 8,
                             LocationsId = 1,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8450),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8450)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2437),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2437)
                         },
                         new
                         {
                             InternShipId = 8,
                             LocationsId = 2,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8455),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8455)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2443),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2443)
                         },
                         new
                         {
                             InternShipId = 8,
                             LocationsId = 3,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8460),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8460)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2449),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2449)
                         },
                         new
                         {
                             InternShipId = 9,
                             LocationsId = 1,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8506),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8506)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2475),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2475)
                         },
                         new
                         {
                             InternShipId = 9,
                             LocationsId = 2,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8511),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8511)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2480),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2480)
                         },
                         new
                         {
                             InternShipId = 9,
                             LocationsId = 3,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8516),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8516)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2486),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2486)
                         },
                         new
                         {
                             InternShipId = 10,
                             LocationsId = 1,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8549),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8549)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2520),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2520)
                         },
                         new
                         {
                             InternShipId = 10,
                             LocationsId = 2,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8554),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8554)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2553),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2553)
                         },
                         new
                         {
                             InternShipId = 10,
                             LocationsId = 3,
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8559),
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8559)
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2560),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2560)
                         });
                 });
 
@@ -884,36 +884,36 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 3,
                             Code = "en",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7933),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1276),
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7932),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1276),
                             Name = "English"
                         },
                         new
                         {
                             Id = 2,
                             Code = "fr",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7932),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1275),
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7932),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1275),
                             Name = "French"
                         },
                         new
                         {
                             Id = 1,
                             Code = "nl",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7930),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1273),
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7930),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1273),
                             Name = "Dutch"
                         },
                         new
                         {
                             Id = 4,
                             Code = "de",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7933),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1277),
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7933),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1277),
                             Name = "German"
                         });
                 });
@@ -962,10 +962,10 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 1,
                             City = "Huizingen",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7926),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1268),
                             HouseNumber = 42,
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7923),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1265),
                             StreetName = "Vaucampslaan",
                             ZipCode = "1654"
                         },
@@ -973,10 +973,10 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 2,
                             City = "Gent",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7929),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1271),
                             HouseNumber = 4,
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7928),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1270),
                             StreetName = "Gaston Crommenlaan",
                             ZipCode = "9050"
                         },
@@ -984,10 +984,10 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 3,
                             City = "Kontich",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7929),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1271),
                             HouseNumber = 26,
                             IsDeleted = false,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(7929),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(1271),
                             StreetName = "Prins Boudewijnlaan",
                             ZipCode = "2550"
                         });
@@ -1033,90 +1033,90 @@ namespace backend.Infrastructure.Migrations
                         {
                             Id = 1,
                             Content = "<p>Dit is een standaard descriptie horende bij een unit</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8584),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2590),
                             IsDeleted = false,
                             LanguageId = 1,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8584),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2590),
                             UnitId = 1
                         },
                         new
                         {
                             Id = 2,
                             Content = "<p>Ce ici c'est un description standard d un departement</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8593),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2601),
                             IsDeleted = false,
                             LanguageId = 2,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8593),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2601),
                             UnitId = 1
                         },
                         new
                         {
                             Id = 3,
                             Content = "<p>This is a standard description for a unit</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8599),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2607),
                             IsDeleted = false,
                             LanguageId = 3,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8599),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2606),
                             UnitId = 1
                         },
                         new
                         {
                             Id = 4,
                             Content = "<p>Dit is een standaard descriptie horende bij een unit</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8604),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2612),
                             IsDeleted = false,
                             LanguageId = 1,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8604),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2612),
                             UnitId = 2
                         },
                         new
                         {
                             Id = 5,
                             Content = "<p>Ce ici c'est un description standard d un departement</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8610),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2618),
                             IsDeleted = false,
                             LanguageId = 2,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8609),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2618),
                             UnitId = 2
                         },
                         new
                         {
                             Id = 6,
                             Content = "<p>This is a standard description for a unit</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8615),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2624),
                             IsDeleted = false,
                             LanguageId = 3,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8615),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2624),
                             UnitId = 2
                         },
                         new
                         {
                             Id = 7,
                             Content = "<p>Dit is een standaard descriptie horende bij een unit</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8620),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2630),
                             IsDeleted = false,
                             LanguageId = 1,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8620),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2629),
                             UnitId = 3
                         },
                         new
                         {
                             Id = 8,
                             Content = "<p>Ce ici c'est un description standard d un departement</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8626),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2635),
                             IsDeleted = false,
                             LanguageId = 2,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8625),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2635),
                             UnitId = 3
                         },
                         new
                         {
                             Id = 9,
                             Content = "<p>This is a standard description for a unit</p>",
-                            CreatedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8631),
+                            CreatedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2640),
                             IsDeleted = false,
                             LanguageId = 3,
-                            LastModifiedDate = new DateTime(2023, 5, 27, 10, 4, 49, 491, DateTimeKind.Utc).AddTicks(8630),
+                            LastModifiedDate = new DateTime(2023, 5, 26, 13, 45, 42, 593, DateTimeKind.Utc).AddTicks(2640),
                             UnitId = 3
                         });
                 });
