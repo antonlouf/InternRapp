@@ -3,8 +3,10 @@ using backend.Application;
 using backend.Application.Common.Exceptions;
 using backend.Infrastructure.Persistence.ConfigOptions;
 using backend.Infrastructure.Services;
+using DocumentFormat.OpenXml.InkML;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,8 +42,6 @@ var dbConfig = new DatabaseConfigOption();
 builder.Configuration.GetSection("ConnectionStrings").Bind(dbConfig);
 builder.Services.AddInfrastructureServices(dbConfig);
 
-//builder.Services.AddHostedService<ExportService>();
-
 builder.Services.AddLocalization(opt =>
 {
     opt.ResourcesPath = "Resources";
@@ -59,6 +59,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.SupportedCultures = supportedCultures;
     options.SupportedUICultures = supportedCultures;
 });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -96,12 +97,12 @@ app.Use(async (context, next) =>
     catch (BadHttpRequestException ex)
     {
         context.Response.StatusCode = 400;
-        await context.Response.WriteAsJsonAsync(ex.StackTrace);
+        await context.Response.WriteAsJsonAsync(ex.Message);
     }
     catch(Exception ex)
     {
          context.Response.StatusCode = 500;
-        await context.Response.WriteAsJsonAsync(ex.StackTrace);
+        await context.Response.WriteAsJsonAsync(ex.Message);
     }
 });
 app.UseStaticFiles();

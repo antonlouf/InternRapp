@@ -1,7 +1,7 @@
 ﻿using backend.Application.Common.Interfaces;
 using backend.Infrastructure.Persistence;
 using backend.Infrastructure.Persistence.ConfigOptions;
-
+using backend.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
@@ -11,7 +11,8 @@ public static class ConfigureServices
 {
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, DatabaseConfigOption dbConfig)
     {
-       
+        services.AddHostedService<ExportService>();
+
         //if (configuration.GetValue<bool>("UseInMemoryDatabase"))
         //{
         //    services.AddDbContext<ApplicationDbContext>(options =>
@@ -19,7 +20,7 @@ public static class ConfigureServices
         //}
         //else
         //{
-            services.AddDbContext<ApplicationDbContext>(options =>
+        services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(dbConfig.ConnectionString,
                     builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         //}//

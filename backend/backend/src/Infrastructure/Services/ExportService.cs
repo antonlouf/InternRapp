@@ -11,8 +11,12 @@ public class ExportService : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        string exportDirectory = Path.Combine(sCurrentDirectory, $@"..\..\..\..\..\lib\ExportFiles");
+        //local
+        //string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        //string exportDirectory = Path.Combine(sCurrentDirectory, $@"..\..\..\..\..\lib\ExportFiles\)
+
+        //online 
+        string exportDirectory = "/home/site/wwwroot/wwwroot/lib/ExportFiles/";
 
         while (!stoppingToken.IsCancellationRequested)
         {
@@ -21,7 +25,7 @@ public class ExportService : BackgroundService
             {
                 file.Delete();
             }
-            await Task.Delay(86400000, stoppingToken);
+            await Task.Delay(86400000, stoppingToken); //after 1 day
         }
 
 

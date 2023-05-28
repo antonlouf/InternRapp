@@ -103,7 +103,7 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
     }
 }
 
-public class Exporting
+public class Exporting 
 {
     private readonly IApplicationDbContext _dbContext;
 
@@ -114,16 +114,16 @@ public class Exporting
 
     public string GenerateWordDocFilePath(List<UnitExportDto> unitExportList, InternshipExportRequestDto requestDto)
     {
-        //const string templatePath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\lib\template.docx";
-        //const string templatePath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\lib\ExportFiles\internships.docx";
+        //local setup
+        //string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        //string templatePath = Path.Combine(sCurrentDirectory, @"..\..\..\..\..\lib\template.docx");
+        //string resultPath = Path.Combine(sCurrentDirectory, $@"..\..\..\..\..\lib\ExportFiles\internships_{Guid.NewGuid()}.docx");
 
-        string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        string templatePath = Path.Combine(sCurrentDirectory, @"../../../../../lib/template.docx");
-        string resultPath = Path.Combine(sCurrentDirectory, $@"..\..\..\..\..\lib\ExportFiles\internships_{Guid.NewGuid()}.docx");
+        //online setup
+        string templatePath2 =  @"/home/site/wwwroot/wwwroot/lib/template.docx";
+        string resultPath2 = $@"/home/site/wwwroot/wwwroot/lib/ExportFiles/internships_{Guid.NewGuid()}.docx";
 
-        var a = Environment.ExpandEnvironmentVariables($"~/{templatePath}");
-
-        using (WordprocessingDocument document = WordprocessingDocument.CreateFromTemplate(a, false))
+        using (WordprocessingDocument document = WordprocessingDocument.CreateFromTemplate(templatePath2, false))
         {
             var body = document.MainDocumentPart!.Document.Body;
             var allElements = body!.Elements().ToList();
@@ -143,9 +143,9 @@ public class Exporting
             }
 
             //check if export file exists
-            if (File.Exists(resultPath))
+            if (File.Exists(resultPath2))
             {
-                File.Delete(resultPath);
+                File.Delete(resultPath2);
             }
 
             Dictionary<string, string> commonReplacements = new Dictionary<string, string>()
@@ -187,10 +187,10 @@ public class Exporting
             //remove old content table
             RemoveSdt(body);
 
-            document.SaveAs(resultPath).Dispose();
+            document.SaveAs(resultPath2).Dispose();
         }
 
-        return resultPath;
+        return resultPath2;
 
     }
     public string GetCombinedText(IEnumerable<Text> textElements)
