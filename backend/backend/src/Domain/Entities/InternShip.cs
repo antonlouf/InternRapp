@@ -20,7 +20,7 @@ public class InternShip:ISoftDeletable
     public int CurrentCountOfStudents { get; set; }
     public TrainingType RequiredTrainingType { get; set; }
     public IList<InternShipContentTranslation> Translations { get; set; }
-
-    //public string CreatorEmail { get; set; }
+    public ApplicationUser? Creator { get; set; }
+    public int? CreatorId { get; set; }
 
 }

@@ -10,6 +10,8 @@ using backend.Application.Locations.Commands.UpdateLocation;
 using backend.Application.Languages.Commands.DeleteLanguage;
 using backend.Application.Locations.Commands.DeleteLocation;
 using CommonReadModels.Contracts;
+using Microsoft.AspNetCore.Authorization;
+
 namespace WebUI.Controllers;
 [ApiController]
 [Route("/api/[Controller]")]
@@ -41,7 +43,7 @@ public class LocationController: ControllerBase
         await _mediator.Send(new UpdateLocationCommand() { Id=dto.Id,City=dto.City,Housenumber=dto.Housenumber,Streetname=dto.Streetname });
         return Ok();
     }
-    [HttpDelete()]
+    [HttpDelete(),Authorize(Roles ="Admin")]
     public async Task<IActionResult> DeleteLocation([FromBody] List<int> ids)
     {
         if (ids == null || ids.Count <= 0) return BadRequest();

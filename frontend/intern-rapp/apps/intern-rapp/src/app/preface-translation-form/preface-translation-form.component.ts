@@ -28,7 +28,7 @@ export class PrefaceTranslationFormComponent {
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
-    height: '50%',
+    height: 'auto',
     minHeight: '0',
     maxHeight: 'auto',
     width: 'auto',
@@ -38,9 +38,9 @@ export class PrefaceTranslationFormComponent {
     showToolbar: true,
     placeholder: '',
     defaultParagraphSeparator: '',
-    defaultFontName: '',
-    defaultFontSize: '12',
-    fonts: [{ class: 'Verdana', name: 'Verdana' }],
+    // defaultFontName: '',
+    // defaultFontSize: '12',
+    // fonts: [{ class: 'Verdana', name: 'Verdana' }],
     toolbarHiddenButtons: [
       [
         'undo',

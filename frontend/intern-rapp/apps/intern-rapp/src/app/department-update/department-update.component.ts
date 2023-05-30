@@ -21,6 +21,7 @@ import { LanguagePopupChoiceComponent } from '../language-popup-choice/language-
 import { PrefaceTranslationFormComponent } from '../preface-translation-form/preface-translation-form.component';
 import { DepartmentUpdate } from '../entities/departmentUpdate';
 import { LanguageService } from '../services/language.service';
+import { DepartmentService } from '../services/department.service';
 
 @Component({
   selector: 'intern-rapp-department-update',
@@ -63,7 +64,8 @@ export class DepartmentUpdateComponent implements OnInit, OnDestroy {
   constructor(
     public dialogRef: MatDialogRef<DepartmentUpdateComponent>,
     public dialog: MatDialog,
-    private languageService:LanguageService
+    private languageService: LanguageService,
+    private unitService:DepartmentService
   ) {}
   
   ngOnDestroy(): void {
@@ -99,6 +101,13 @@ export class DepartmentUpdateComponent implements OnInit, OnDestroy {
       translateTabs: new FormArray([]),
     });
     this.updateForm?.controls['departmentName'].patchValue(this.data?.name);
+    this.filteredOptions = this.updateForm?.controls[
+      'managerEmails'
+    ].valueChanges.pipe(
+      switchMap((data) => {
+        return this.unitService.getAllSupervisorNamesContaining(data);
+      })
+    );
     this.managerEmailsAfterUpdate = this.data?.managerEmails;
       this.languageObs$ = this.languageService
         .filterAndPaginateLanguages({

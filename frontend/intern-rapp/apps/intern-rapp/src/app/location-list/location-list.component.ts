@@ -19,6 +19,7 @@ import { MatListModule } from '@angular/material/list';
 import { TranslateModule } from '@ngx-translate/core';
 import { ItemsTmplDirective } from '../items-tmpl.directive';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { AuthService } from '../services/auth-service.service';
 
 @Component({
   selector: 'intern-rapp-location-list',
@@ -44,7 +45,8 @@ export class LocationListComponent extends BaseList<LocationItem> {
   private selectedIds: number[] = [];
   constructor(
     private LocationService: LocationService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public authService:AuthService
   ) {
     super();
   }

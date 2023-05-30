@@ -8,6 +8,7 @@ import { LanguageDropdownComponent } from '../language-dropdown/language-dropdow
 import { LanguageService } from '../services/language.service';
 import { BehaviorSubject, Observable, tap, combineLatest, switchMap } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
+import { AuthService } from '../services/auth-service.service';
 @Component({
   selector: 'intern-rapp-navbar',
   standalone: true,
@@ -15,6 +16,9 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent{
-
+export class NavbarComponent {
+  constructor(public authService: AuthService) { }
+ public  logout() {
+    this.authService.logout()
+  }
 }

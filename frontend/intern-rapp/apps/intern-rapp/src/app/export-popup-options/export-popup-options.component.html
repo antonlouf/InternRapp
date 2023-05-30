@@ -24,8 +24,15 @@
                 {{'departmentNameExportOptionsErrorMessage' |translate}}
             </mat-error>
         </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>{{'languageLabel' |translate}}</mat-label>
+        <mat-form-field class="example-full-width" appearance="fill"  matTooltip="{{'languageExport'|translate}}">
+          
+                        <mat-label >{{'languageLabel' |translate}}
+                                                              
+                        </mat-label>
+                       
+                 
+
+                    
             <mat-select matInput type="text" formControlName="languageId">
                 <mat-option *ngFor="let language of languageObs$|async" value="{{language.id}}">
                     {{language.code}}

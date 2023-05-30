@@ -1,6 +1,8 @@
 <h3 class="center-header">{{'addInternshipTitle' |translate}}</h3>
 <form *ngIf="addInternshipForm" [formGroup]="addInternshipForm" class="form">
-        <div class="flex-row" >
+  
+
+    <div class="flex-row" >
       <div >
         <mat-form-field >
             <mat-select formControlName="schoolYear"  >
@@ -69,9 +71,11 @@
 </div>
 </div>
 
+
+
 <div class="flex-row" >
 
-    <div id="trainingType">
+    <div >
       <mat-form-field >
         <mat-label>{{'trainingTypeLabel'|translate}}</mat-label>
           <mat-select  matNativeControl formControlName="trainingType" [compareWith]="compareTrainingType">
@@ -90,7 +94,7 @@
     </div> 
     <div >
 
-        <mat-form-field id="location">
+        <mat-form-field >
             <mat-label>{{'locationFieldLabel'|translate}}</mat-label>
          
             <mat-select  formControlName="locations" multiple="true" [compareWith]="compareLocation" >
@@ -103,16 +107,19 @@
             </mat-error>
                </mat-form-field>
     </div> 
-    <div class="add-translation-button">
-        <button  mat-icon-button  (click)="addLanguage()">
-            <mat-icon>add</mat-icon>
-        </button>
-    </div>
+  
    
 
     </div>
-
-    <mat-tab-group style="width: 60%;margin-left: 20%;margin-top: 3%;" mat-align-tabs="center" backgroundColor="primary"
+<div class="flex-row-add-translation-button">
+<div class="add-translation-button">
+    <button mat-icon-button (click)="addLanguage()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+    </div>
+  
+    <mat-tab-group style="width: 60%;margin-left: 20%;margin-top: 1%;" mat-align-tabs="center" backgroundColor="primary"
         formArrayName="translateTabs">
         <ng-container *ngFor="let tab of tabs; let i = index">
             <mat-tab>

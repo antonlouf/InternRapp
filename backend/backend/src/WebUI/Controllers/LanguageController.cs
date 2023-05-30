@@ -10,6 +10,7 @@ using backend.Application.Languages.Queries.GetLanguageById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using CommonReadModels.Contracts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebUI.Controllers;
 [ApiController]
@@ -47,13 +48,13 @@ public class LanguageController : ControllerBase
         await _mediator.Send(new UpdateLanguageCommand() { Code=dto.Code,Name=dto.Name,Id=dto.Id });
         return Ok();
     }
-    [HttpDelete()]
+    [HttpDelete(),Authorize(Roles ="Admin")]
     public async Task<IActionResult> DeleteLanguage([FromBody]List<int> ids)
     {
         await _mediator.Send(new DeleteLanguageCommand() { Ids=ids });
         return Ok();
     }
-    [HttpGet("{language}")]
+    [HttpGet("{language}"),AllowAnonymous]
     public async Task<IActionResult> GetLocalizationFileAsDict([FromRoute] string language)
     {
        

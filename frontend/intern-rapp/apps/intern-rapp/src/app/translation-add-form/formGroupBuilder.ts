@@ -48,6 +48,7 @@ export function buildFormGroupForTranslations(
   languageId: number | undefined = undefined,
   languageCode: string | undefined = undefined
 ) {
+  console.log(data)
   return new FormGroup({
     titleContent: new FormControl(data?.titleContent ?? '', [
       Validators.required,

@@ -17,7 +17,7 @@ import { DepartmentUpdate } from '../entities/departmentUpdate';
 export class DepartmentService {
   constructor(private http: HttpClient) {}
   private baseSuffixApi = '/api/Unit';
-  getAllSupervisorNamesContaining(
+ getAllSupervisorNamesContaining(
     name: string | undefined
   ): Observable<string[]> {
     return this.http
@@ -120,7 +120,7 @@ export class DepartmentService {
         retry(1),
         // only take the first value emitted (either successful or null)
         take(1)
-      );
+      )
   }
 }
 

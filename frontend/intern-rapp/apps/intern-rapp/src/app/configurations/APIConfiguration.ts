@@ -1,3 +1,5 @@
-export class APIConfiguration{
-    static baseString="https://localhost:7171"
+
+
+export class APIConfiguration {
+  static baseString = 'https://localhost:7171';
 }

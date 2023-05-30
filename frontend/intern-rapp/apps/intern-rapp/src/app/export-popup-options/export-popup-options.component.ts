@@ -16,6 +16,7 @@ import { DepartmentItem } from '../entities/departmentItem';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ExportInternshipOptions } from '../entities/exportInternshipOptions';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'intern-rapp-export-popup-options',
@@ -31,6 +32,7 @@ import { ExportInternshipOptions } from '../entities/exportInternshipOptions';
     MatOptionModule,
     MatInputModule,
     MatSelectModule,
+    MatTooltipModule
   ],
   templateUrl: './export-popup-options.component.html',
   styleUrls: ['./export-popup-options.component.scss'],
@@ -49,7 +51,7 @@ export class ExportPopupOptionsComponent implements OnInit {
   ngOnInit(): void {
     this.exportOptionsForm = new FormGroup({
       languageId: new FormControl('', [Validators.required]),
-      unitIds: new FormControl('', [Validators.required]),
+      unitIds: new FormControl('',), 
       schoolYear: new FormControl('', [Validators.required]),
     });
     this.languageObs$ = this.languageService

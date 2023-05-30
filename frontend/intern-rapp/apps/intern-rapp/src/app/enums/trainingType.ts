@@ -1,6 +1,7 @@
-export enum TrainingType{
-    Bachelor=0,
-    Master=1,
-    MasterAfterMaster=2,
-    MasterAfterBachelor=3
+export enum TrainingType {
+  Bachelor = 0,
+  Master = 1,
+  Hbo5 = 2,
+  PGCE = 3,
+  PHD = 4,
 }

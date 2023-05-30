@@ -1,12 +1,20 @@
 using System.Globalization;
+using System.Text;
 using backend.Application;
 using backend.Application.Common.Exceptions;
 using backend.Infrastructure.Persistence.ConfigOptions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using backend.Infrastructure.Services;
+using DocumentFormat.OpenXml.InkML;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using WebUI.ExceptionFilters;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -21,8 +29,23 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<GlobalExceptionFilter>();
 builder.Services.AddControllers(opt =>
 {
+    opt.Filters.Add(new AuthorizeFilter());
     opt.Filters.Add(new GlobalExceptionFilter());
 });
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+    };
+});
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "cors",
@@ -55,6 +78,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.SupportedCultures = supportedCultures;
     options.SupportedUICultures = supportedCultures;
 });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -88,24 +112,21 @@ app.Use(async (context, next) =>
         context.Response.StatusCode = 422;
         await context.Response.WriteAsJsonAsync(error);
 
-
-
     }
     catch (BadHttpRequestException ex)
     {
         context.Response.StatusCode = 400;
-        await context.Response.WriteAsJsonAsync("the request is not appropriate");
+        await context.Response.WriteAsJsonAsync(ex.Message);
     }
     catch(Exception ex)
     {
          context.Response.StatusCode = 500;
-        await context.Response.WriteAsJsonAsync("some error happened during processing");
+        await context.Response.WriteAsJsonAsync(ex.Message);
     }
 });
 app.UseStaticFiles();
 
 app.UseSwagger();
-app.UseSwaggerUI();
 app.UseSwaggerUI(options =>
 {
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");

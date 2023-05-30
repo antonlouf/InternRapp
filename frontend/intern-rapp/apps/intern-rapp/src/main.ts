@@ -30,6 +30,7 @@ import {
 import { customTranslate } from './app/loader/customTranslate';
 import { AcceptHeaderInterceptor } from './app/interceptors/accept-header.interceptor';
 import { AppInitializerFactory } from './app/appInitializerFactory';
+import { AuthGuard } from './guards/authguard';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -50,6 +51,7 @@ bootstrapApplication(AppComponent, {
         },
       })
     ),
+    AuthGuard,
     {
       provide: LOCALE_ID,
       useFactory: (translateService: TranslateService) =>

@@ -16,10 +16,11 @@ public class CopyInternshipToNextYearCommand:IRequest
 public class CopyInternshipToNextYearCommandHandler : AsyncRequestHandler<CopyInternshipToNextYearCommand>
 {
     private readonly IApplicationDbContext _dbContext;
-
-    public CopyInternshipToNextYearCommandHandler(IApplicationDbContext dbContext)
+    private readonly ICurrentUserService _currentUser;
+    public CopyInternshipToNextYearCommandHandler(IApplicationDbContext dbContext, ICurrentUserService currentUser)
     {
         _dbContext = dbContext;
+        _currentUser = currentUser;
     }
 
     protected override async Task Handle(CopyInternshipToNextYearCommand request, CancellationToken cancellationToken)
@@ -33,6 +34,7 @@ public class CopyInternshipToNextYearCommandHandler : AsyncRequestHandler<CopyIn
             itemTobeAddedToNextYear.Id = 0;
             itemTobeAddedToNextYear.SchoolYear = CalculateNextSchoolYear(internshipsTobeCopiedToNextYear[i].SchoolYear);
             itemTobeAddedToNextYear.Translations.ToList().ForEach(x=>x.Id = 0);
+            itemTobeAddedToNextYear.CreatorId = int.Parse(_currentUser.UserId);
             intershipsForTHeNextYear.Add(itemTobeAddedToNextYear);
         }
         _dbContext.InternShips.AddRange(intershipsForTHeNextYear);

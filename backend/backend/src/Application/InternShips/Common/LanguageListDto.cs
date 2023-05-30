@@ -13,7 +13,7 @@ public class LanguageListDto:IMapFrom<Language>
     public int Id { get; set; }
     public string Name { get; set; }
     public string Code{ get; set; }
-
+    public int? CreatorId { get; set; }
     public void Mapping(Profile profile)
     {
         profile.CreateMap<Language, LanguageListDto>();

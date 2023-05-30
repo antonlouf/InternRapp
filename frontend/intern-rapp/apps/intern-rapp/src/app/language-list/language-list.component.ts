@@ -21,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { AuthService } from '../services/auth-service.service';
 
 @Component({
   selector: 'intern-rapp-language-list',
@@ -37,6 +38,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     HttpClientModule,
     MatDialogModule,
     MatCheckboxModule,
+
   ],
   templateUrl: './language-list.component.html',
   styleUrls: ['./language-list.component.scss'],
@@ -51,7 +53,8 @@ export class LanguageListComponent
   private selectedIds: number[] = [];
   constructor(
     private languageService: LanguageService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public authService:AuthService
   ) {
     super();
   }

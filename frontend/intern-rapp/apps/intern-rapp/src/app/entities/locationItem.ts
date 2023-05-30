@@ -3,5 +3,6 @@ export interface LocationItem{
     city:string|null
     streetname:string|null
     housenumber:number|null
-    zipcode:string|null
+    zipcode: string | null
+    creatorId:number|null
 }

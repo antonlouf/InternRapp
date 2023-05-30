@@ -131,34 +131,34 @@ Avec le programme &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt;, Realdolm
     <value>acADDemICT Junior Track</value>
   </data>
   <data name="addButton" xml:space="preserve">
-    <value>nouveau</value>
+    <value>Nouveau</value>
   </data>
   <data name="addDepartmentHeader" xml:space="preserve">
-    <value>ajouter un departement</value>
+    <value>Ajouter un departement</value>
   </data>
   <data name="addInternshipTitle" xml:space="preserve">
-    <value>ajouter un stage</value>
+    <value>Ajouter un stage</value>
   </data>
   <data name="addLanguageHeader" xml:space="preserve">
-    <value>ajouter une nouvelle langue</value>
+    <value>Ajouter une nouvelle langue</value>
   </data>
   <data name="addLocationHeader" xml:space="preserve">
-    <value>ajouter un lieu</value>
+    <value>Ajouter un lieu</value>
   </data>
   <data name="and" xml:space="preserve">
-    <value>en</value>
+    <value>En</value>
   </data>
   <data name="Bachelor" xml:space="preserve">
     <value>Bachelier</value>
   </data>
   <data name="cancelButtonText" xml:space="preserve">
-    <value>annuler</value>
+    <value>Annuler</value>
   </data>
   <data name="commentLabel" xml:space="preserve">
-    <value>commentaires</value>
+    <value>Informations complementaires concernant la mission de stage</value>
   </data>
   <data name="commentLabelErrorMessage" xml:space="preserve">
-    <value>Le commentaire ne pouvait pas etre vide ou superieur a 1000 caracteres</value>
+    <value>Le formulaire ne peut pas être vide ou dépasser 1000 caractères.</value>
   </data>
   <data name="COMPANY_DESCRIPTION" xml:space="preserve">
     <value>&lt;p&gt;Inetum-Realdolmen est membre du groupe europeen Inetum et compte environ 1 950 employes hautement qualifies aux Pays-Bas, en Belgique et au Luxembourg, au service de plus de 1 000 clients dans les domaines strategique, tactique et operationnel des TIC.&lt;/p&gt;
@@ -217,10 +217,10 @@ Avec le programme &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt;, Realdolm
     <value>Notre Vision &amp; Mission</value>
   </data>
   <data name="confirmDeleteMessage" xml:space="preserve">
-    <value>etes-vous sûr d'effacer?</value>
+    <value>Etes-vous sûr d'effacer?</value>
   </data>
   <data name="contentLabel" xml:space="preserve">
-    <value>contenu</value>
+    <value>Contenu</value>
   </data>
   <data name="currentCountOfStudentsErrorMessage" xml:space="preserve">
     <value>Saisir un nombre positif</value>
@@ -229,37 +229,37 @@ Avec le programme &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt;, Realdolm
     <value>Nombre d'etudiants qui effectueront ce stage</value>
   </data>
   <data name="delete" xml:space="preserve">
-    <value>supprimer</value>
+    <value>Supprimer</value>
   </data>
   <data name="deleteButton" xml:space="preserve">
-    <value>supprimer</value>
+    <value>Supprimer</value>
   </data>
   <data name="department" xml:space="preserve">
-    <value>departement</value>
+    <value>Departement</value>
   </data>
   <data name="departmentNameEmptyErrorMessage" xml:space="preserve">
-    <value>le nom du departement est obligatoire</value>
+    <value>Le nom du departement est obligatoire</value>
   </data>
   <data name="departmentNameExportOptionsErrorMessage" xml:space="preserve">
-    <value>le departement est tenu</value>
+    <value>Le departement est tenu</value>
   </data>
   <data name="departmentNameLabel" xml:space="preserve">
-    <value>departement</value>
+    <value>Departement</value>
   </data>
   <data name="departments" xml:space="preserve">
-    <value>departements</value>
+    <value>Departements</value>
   </data>
   <data name="descriptionLabel" xml:space="preserve">
-    <value>la description</value>
+    <value>Description de la mission de stage</value>
   </data>
   <data name="descriptionLabelErrorMessage" xml:space="preserve">
-    <value>La description du stage ne peut etre nulle et superieure a 1000 caracteres.</value>
+    <value>Le formulaire ne peut pas être vide ou dépasser 1000 caractères.</value>
   </data>
   <data name="editButton" xml:space="preserve">
-    <value>editer</value>
+    <value>Editer</value>
   </data>
   <data name="En" xml:space="preserve">
-    <value>l'anglais</value>
+    <value>L'anglais</value>
   </data>
   <data name="events" xml:space="preserve">
     <value>Evenements</value>
@@ -268,16 +268,16 @@ Avec le programme &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt;, Realdolm
     <value>Ceci est obligatoire</value>
   </data>
   <data name="exportButton" xml:space="preserve">
-    <value>l'exportation</value>
+    <value>L'exportation</value>
   </data>
   <data name="exportPopupHeader" xml:space="preserve">
     <value>Stages a l'exportation</value>
   </data>
   <data name="Fr" xml:space="preserve">
-    <value>français</value>
+    <value>Français</value>
   </data>
   <data name="FreeUsedPlacesLabel" xml:space="preserve">
-    <value>sieges libres/occupes</value>
+    <value>Nombre d'étudiants</value>
   </data>
   <data name="greaterThanMaxStudentsErrorMessage" xml:space="preserve">
     <value>Le nombre d'etudiants participant au stage ne doit pas depasser le nombre maximum autorise.</value>
@@ -286,13 +286,13 @@ Avec le programme &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt;, Realdolm
     <value>Vous devez saisir un nombre compris entre 0 et 15.</value>
   </data>
   <data name="internship" xml:space="preserve">
-    <value>stage</value>
+    <value>Stage</value>
   </data>
   <data name="internshipNameColumnLabel" xml:space="preserve">
-    <value>le nom de l'assignation</value>
+    <value>Le nom de l'assignation</value>
   </data>
   <data name="internships" xml:space="preserve">
-    <value>stages</value>
+    <value>Stages</value>
   </data>
   <data name="INTERNSHIP_ASSIGNMENT_TITLE" xml:space="preserve">
     <value>Description de la mission de stage</value>
@@ -319,67 +319,67 @@ Avec le programme &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt;, Realdolm
     <value>Liste technique et non technique des connaissances et competences que le stagiaire doit au moins avoir pour mener a bien la mission</value>
   </data>
   <data name="INTERNSHIP_NEED_TO_KNOW_TITLE" xml:space="preserve">
-    <value>Welke kennis en competenties dien je te hebben voor deze opdracht?</value>
+    <value>Quelles connaissances et compétences devez-vous avoir pour cette mission </value>
   </data>
   <data name="knowledgeToDevelopLabel" xml:space="preserve">
-    <value>des connaissances pour developper</value>
+    <value>Quelles connaissances acquerez-vous pendant la mission</value>
   </data>
   <data name="knowledgeToDevelopLabelErrorMessage" xml:space="preserve">
-    <value>les connaissances requises pour le stage ne peuvent etre nulles ou superieures a 1000 caracteres</value>
+    <value>Le formulaire ne peut pas être vide ou dépasser 1000 caractères.</value>
   </data>
   <data name="language" xml:space="preserve">
-    <value>langue</value>
+    <value>Langue</value>
   </data>
   <data name="languageCodeLabel" xml:space="preserve">
-    <value>code langue</value>
+    <value>Code langue</value>
   </data>
   <data name="languageCodeRequiredErrorMessage" xml:space="preserve">
-    <value>le code langue est requis</value>
+    <value>Le code langue est requis</value>
   </data>
   <data name="languageLabel" xml:space="preserve">
-    <value>langue</value>
+    <value>Langue</value>
   </data>
   <data name="languageNameLabel" xml:space="preserve">
-    <value> la langue</value>
+    <value>La langue</value>
   </data>
   <data name="languageNameRequiredErrorMessage" xml:space="preserve">
-    <value>le nom de la langue est obligatoire</value>
+    <value>Le nom de la langue est obligatoire</value>
   </data>
   <data name="locationCityLabel" xml:space="preserve">
-    <value>nouvel emplacement</value>
+    <value>Nouvel emplacement</value>
   </data>
   <data name="locationFieldEmptyMessage" xml:space="preserve">
-    <value>selectionnez un lieu, s'il vous plaît</value>
+    <value>Selectionnez un lieu, s'il vous plaît</value>
   </data>
   <data name="locationFieldLabel" xml:space="preserve">
-    <value>localisation</value>
+    <value>Localisation</value>
   </data>
   <data name="locationHouseNumberLabel" xml:space="preserve">
-    <value> du numero de maison</value>
+    <value>Du numero de maison</value>
   </data>
   <data name="locationLabel" xml:space="preserve">
-    <value>emplacement</value>
+    <value>Emplacement</value>
   </data>
   <data name="locations" xml:space="preserve">
     <value>Localisation des sites</value>
   </data>
   <data name="locationStreetNameLabel" xml:space="preserve">
-    <value> nom de la rue</value>
+    <value>La rue</value>
   </data>
   <data name="locationStreetRequiredErrorMessage" xml:space="preserve">
-    <value>le nom de la rue de l'emplacement est requis</value>
+    <value>Le nom de la rue de l'emplacement est requis</value>
   </data>
   <data name="locationZipCodeLabel" xml:space="preserve">
-    <value> code postal</value>
+    <value>Ccode postal</value>
   </data>
   <data name="locationZipCodeRequiredErrorMessage" xml:space="preserve">
-    <value>le code postal de la localite est requis</value>
+    <value>Le code postal de la localite est requis</value>
   </data>
   <data name="managerEmail" xml:space="preserve">
-    <value>courriel du directeur</value>
+    <value>Courriel du directeur</value>
   </data>
   <data name="managerEmailsLabel" xml:space="preserve">
-    <value>le(s) courriel(s) des responsables</value>
+    <value>Le courriel des responsables</value>
   </data>
   <data name="Master" xml:space="preserve">
     <value>Master</value>
@@ -397,57 +397,81 @@ Avec le programme &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt;, Realdolm
     <value>Saisir un nombre positif</value>
   </data>
   <data name="neededKnowledgeLabel" xml:space="preserve">
-    <value>connaissances minimales requises pour ces stages</value>
+    <value>Quelles connaissances devez-vous avoir pour cette mission</value>
   </data>
   <data name="neededKnowledgeLabelErrorMessage" xml:space="preserve">
-    <value>entrer les connaissances necessaires pour ces stages, s'il vous plaît</value>
+    <value>Entrer les connaissances necessaires pour ces stages, s'il vous plaît</value>
   </data>
   <data name="newInternShip" xml:space="preserve">
     <value>Nouveau stage</value>
   </data>
   <data name="Nl" xml:space="preserve">
-    <value>neerlandais</value>
+    <value>Néerlandais</value>
   </data>
   <data name="saveButtonText" xml:space="preserve">
-    <value>sauver</value>
+    <value>Sauver</value>
   </data>
   <data name="schoolyearErrorMessage" xml:space="preserve">
     <value>L'annee scolaire est obligatoire</value>
   </data>
   <data name="schoolYearLabel" xml:space="preserve">
-    <value>l'annee scolaire</value>
+    <value>L'annee scolaire</value>
   </data>
   <data name="titleContentLabel" xml:space="preserve">
-    <value>titre</value>
+    <value>Titre</value>
   </data>
   <data name="titleContentLabelErrorMessage" xml:space="preserve">
     <value>Le nom du stage ne peut etre vide</value>
   </data>
   <data name="trainingTypeLabel" xml:space="preserve">
-    <value>type de formation requise</value>
+    <value>Type de formation requise</value>
   </data>
   <data name="unitEmptyErrorMessage" xml:space="preserve">
     <value>L'unite est requise</value>
   </data>
   <data name="unitNameLabel" xml:space="preserve">
-    <value>departement</value>
+    <value>Departement</value>
   </data>
   <data name="TEMPLATE_TITLE" xml:space="preserve">
-    <value>Intetum-Realdolmen Livre de stage</value>
+    <value>Inetum-Realdolmen Livre de stage</value>
   </data>
   <data name="updateButtonText" xml:space="preserve">
-    <value>mise a jour</value>
+    <value>Mise a jour</value>
   </data>
   <data name="updateDepartmentHeader" xml:space="preserve">
-    <value>departement de la mise a jour</value>
+    <value>Departement de la mise a jour</value>
   </data>
   <data name="updateLanguageHeader" xml:space="preserve">
-    <value>mettre a jour la langue</value>
+    <value>Mettre a jour la langue</value>
   </data>
   <data name="updateLocationHeader" xml:space="preserve">
-    <value>mettre a jour l'emplacement</value>
+    <value>Mettre a jour l'emplacement</value>
   </data>
   <data name="users" xml:space="preserve">
     <value>Utilisateurs</value>
+  </data>
+  <data name="Hbo5" xml:space="preserve">
+    <value>Graduate</value>
+  </data>
+  <data name="PGCE" xml:space="preserve">
+    <value>Post graduate</value>
+  </data>
+  <data name="PHD" xml:space="preserve">
+    <value>Doctorat</value>
+  </data>
+  <data name="languageExport" xml:space="preserve">
+    <value>Sélectionne la langue pour laquelle il y a des stages disponibles dans cette langue</value>
+  </data>
+  <data name="titleContentTooltip" xml:space="preserve">
+    <value>Le nom du stage dans une langue spécifique</value>
+  </data>
+  <data name="emailLabel" xml:space="preserve">
+    <value>Courriel</value>
+  </data>
+  <data name="passwordLabel" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="RequiredTrainingText" xml:space="preserve">
+    <value>Le diplome requis pour ce stage est le suivant :</value>
   </data>
 </root>

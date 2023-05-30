@@ -1,4 +1,4 @@
-<div style="display: flex;justify-content: space-between;align-items: center; border: 5px solid whitesmoke;">
+<div  *ngIf="authService.IsAuthenticated;" style="display: flex;justify-content: space-between;align-items: center; border: 5px solid whitesmoke;">
               <div class="nav-item" style="align-items: flex-start;">
                 <a    href="https://bulma.io" >
                     <!-- <img
@@ -51,7 +51,7 @@
                       </intern-rapp-language-dropdown>
                      </div>
                      <div class="nav-item" style="align-items: flex-end;">
-                     <button  type="button" style="background-color:#00b5ad;border-radius: 20px;border:none;padding: 10px;">
+                     <button (click)="logout()" type="button" style="background-color:#00b5ad;border-radius: 20px;border:none;padding: 10px;">
                         <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp; Logout
                      </button>
                      </div>                  

@@ -130,34 +130,34 @@
     <value>acADDemICT Junior Track</value>
   </data>
   <data name="addButton" xml:space="preserve">
-    <value>nieuw</value>
+    <value>Nieuw</value>
   </data>
   <data name="addDepartmentHeader" xml:space="preserve">
-    <value>voeg een departement toe</value>
+    <value>Voeg een departement toe</value>
   </data>
   <data name="addInternshipTitle" xml:space="preserve">
     <value>Stage toevoegen</value>
   </data>
   <data name="addLanguageHeader" xml:space="preserve">
-    <value>voeg een nieuwe taal toe</value>
+    <value>Voeg een taal toe</value>
   </data>
   <data name="addLocationHeader" xml:space="preserve">
-    <value>een locatie toevoegen</value>
+    <value>Een locatie toevoegen</value>
   </data>
   <data name="and" xml:space="preserve">
-    <value>en</value>
+    <value>En</value>
   </data>
   <data name="Bachelor" xml:space="preserve">
     <value>Bachelor</value>
   </data>
   <data name="cancelButtonText" xml:space="preserve">
-    <value>annuleren</value>
+    <value>Annuleren</value>
   </data>
   <data name="commentLabel" xml:space="preserve">
-    <value>commentaar</value>
+    <value>Bijkomende informatie bij de stageopdracht</value>
   </data>
   <data name="commentLabelErrorMessage" xml:space="preserve">
-    <value>Het commentaar kan niet leeg zijn of groter dan 1000 tekens</value>
+    <value>Veld kan niet leeg zijn of meer dan 1000 tekens hebben.</value>
   </data>
   <data name="COMPANY_DESCRIPTION" xml:space="preserve">
     <value>&lt;p&gt;Inetum-Realdolmen is lid van de Europese Inetum Groep en bedient met ongeveer 1.950 hooggeschoolde medewerkers in de Benelux meer dan 1.000 klanten op strategisch, tactisch en operationeel ICT-vlak.&lt;/p&gt;
@@ -215,139 +215,139 @@ inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus onderst
     <value>Onze Visie &amp; Missie</value>
   </data>
   <data name="confirmDeleteMessage" xml:space="preserve">
-    <value>bent u zeker om te verwijderen?</value>
+    <value>bent u zeker of u dit wilt verwijderen?</value>
   </data>
   <data name="contentLabel" xml:space="preserve">
-    <value>inhoud</value>
+    <value>Inhoud</value>
   </data>
   <data name="currentCountOfStudentsErrorMessage" xml:space="preserve">
     <value>Vul een positief getal</value>
   </data>
   <data name="currentCountOfStudentsLabel" xml:space="preserve">
-    <value>Aantal studenten die de dit stage zullen doen</value>
+    <value>Aantal studenten reeds ingeschreven voor de stage</value>
   </data>
   <data name="delete" xml:space="preserve">
-    <value>verwijder</value>
+    <value>Verwijder</value>
   </data>
   <data name="deleteButton" xml:space="preserve">
-    <value>verwijderen</value>
+    <value>Verwijderen</value>
   </data>
   <data name="department" xml:space="preserve">
-    <value>departement</value>
+    <value>Departement</value>
   </data>
   <data name="departmentNameEmptyErrorMessage" xml:space="preserve">
-    <value>de departement naam is verplicht in te vullen</value>
+    <value>De naam van het departement is verplicht in te vullen</value>
   </data>
   <data name="departmentNameExportOptionsErrorMessage" xml:space="preserve">
-    <value>het departement is verplicht</value>
+    <value>Departement is verplicht</value>
   </data>
   <data name="departmentNameLabel" xml:space="preserve">
-    <value>departement</value>
+    <value>Departement</value>
   </data>
   <data name="departments" xml:space="preserve">
-    <value>departementen</value>
+    <value>Departementen</value>
   </data>
   <data name="descriptionLabel" xml:space="preserve">
-    <value>beschrijving</value>
+    <value>Beschrijving van de stageopdracht</value>
   </data>
   <data name="descriptionLabelErrorMessage" xml:space="preserve">
-    <value>De uitleg van opdracht mag niet leeg en langer dan 1000 karakters zijn</value>
+    <value>Veld mag niet leeg zijn en meer dan 1000 karakters bezitten</value>
   </data>
   <data name="editButton" xml:space="preserve">
-    <value>bijwerken</value>
+    <value>Bijwerken</value>
   </data>
   <data name="En" xml:space="preserve">
     <value>Engels</value>
   </data>
   <data name="events" xml:space="preserve">
-    <value>beurzen</value>
+    <value>Beurzen</value>
   </data>
   <data name="fieldRequiredErrorMessage" xml:space="preserve">
-    <value>Dit is verplicht in te vullen!</value>
+    <value>Dit is verplicht in te vullen</value>
   </data>
   <data name="exportButton" xml:space="preserve">
-    <value>exporteer</value>
+    <value>Exporteer</value>
   </data>
   <data name="exportPopupHeader" xml:space="preserve">
-    <value>exporteer opdrachten </value>
+    <value>Exporteer opdrachten </value>
   </data>
   <data name="Fr" xml:space="preserve">
     <value>Frans</value>
   </data>
   <data name="FreeUsedPlacesLabel" xml:space="preserve">
-    <value>vrij/bezet plaatsen</value>
+    <value>Studenten aantal</value>
   </data>
   <data name="greaterThanMaxStudentsErrorMessage" xml:space="preserve">
-    <value>Aantal toegelaten studenten mag niet meer dan maximaal toegelaten studenten zijn</value>
+    <value>Aantal toegelaten studenten mag niet meer dan het maximaal toegelaten aantal studenten zijn</value>
   </data>
   <data name="GreaterThanParamLimitError" xml:space="preserve">
-    <value>U moet een getal tussen 0 en 15 invoeren.</value>
+    <value>Getal moet tussen 0 en 15 zijn.</value>
   </data>
   <data name="internship" xml:space="preserve">
-    <value>stage</value>
+    <value>Stage</value>
   </data>
   <data name="internshipNameColumnLabel" xml:space="preserve">
-    <value>de  naam van de opdracht</value>
+    <value>Naam van de stageopdracht</value>
   </data>
   <data name="internships" xml:space="preserve">
     <value>Stages</value>
   </data>
   <data name="knowledgeToDevelopLabel" xml:space="preserve">
-    <value>kennis dat opgedaan zal worden</value>
+    <value>Welke kennis en competenties verwerf je tijdens de opdracht</value>
   </data>
   <data name="knowledgeToDevelopLabelErrorMessage" xml:space="preserve">
-    <value>de vereiste kennis mag niet leeg en groter zijn dan 1000 karakters</value>
+    <value>Veld mag niet leeg zijn en meer dan 1000 karakters bezitten</value>
   </data>
   <data name="language" xml:space="preserve">
-    <value>taal</value>
+    <value>Taal</value>
   </data>
   <data name="languageCodeLabel" xml:space="preserve">
-    <value>taalcode</value>
+    <value>Taalcode</value>
   </data>
   <data name="languageCodeRequiredErrorMessage" xml:space="preserve">
-    <value>de taalcode is verplicht.</value>
+    <value>De taalcode is verplicht.</value>
   </data>
   <data name="languageLabel" xml:space="preserve">
-    <value>taal</value>
+    <value>Taal</value>
   </data>
   <data name="languageNameLabel" xml:space="preserve">
-    <value>taal</value>
+    <value>Taal</value>
   </data>
   <data name="languageNameRequiredErrorMessage" xml:space="preserve">
     <value>De taal is verplicht om in te vullen</value>
   </data>
   <data name="locationCityLabel" xml:space="preserve">
-    <value> stad</value>
+    <value>Stad</value>
   </data>
   <data name="locationFieldEmptyMessage" xml:space="preserve">
-    <value>kies een locatie aub</value>
+    <value>Kies een locatie </value>
   </data>
   <data name="locationFieldLabel" xml:space="preserve">
-    <value>locatie</value>
+    <value>Locatie</value>
   </data>
   <data name="locationHouseNumberLabel" xml:space="preserve">
-    <value>huisnummer</value>
+    <value>Huisnummer</value>
   </data>
   <data name="locationLabel" xml:space="preserve">
-    <value>locatie</value>
+    <value>Locatie</value>
   </data>
   <data name="locations" xml:space="preserve">
-    <value>locaties</value>
+    <value>Locaties</value>
   </data>
   <data name="locationStreetNameLabel" xml:space="preserve">
-    <value> straatnaam </value>
+    <value>Straat</value>
   </data>
   <data name="locationStreetRequiredErrorMessage" xml:space="preserve">
-    <value> straatnaam is verplicht </value>
+    <value>De straat is verplicht </value>
   </data>
   <data name="locationZipCodeLabel" xml:space="preserve">
-    <value> postcode</value>
+    <value>Postcode</value>
   </data>
   <data name="locationZipCodeRequiredErrorMessage" xml:space="preserve">
-    <value> postcode is verplicht </value>
+    <value>Postcode is verplicht </value>
   </data>
   <data name="managerEmail" xml:space="preserve">
-    <value>email van manager</value>
+    <value>Email van manager</value>
   </data>
   <data name="managerEmailsLabel" xml:space="preserve">
     <value>De email van de managers</value>
@@ -368,58 +368,58 @@ inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus onderst
     <value>Vul een positief getal</value>
   </data>
   <data name="neededKnowledgeLabel" xml:space="preserve">
-    <value>minimum kennis om dit stage tot een goed einde te brengen</value>
+    <value>Welke kennis en competenties dien je te hebben voor deze opdracht</value>
   </data>
   <data name="neededKnowledgeLabelErrorMessage" xml:space="preserve">
-    <value>vul de minimum kennis in om dit stage tot een goed einde te brengen</value>
+    <value>Veld mag niet leeg zijn en meer dan 1000 karakters bezitten</value>
   </data>
   <data name="newInternShip" xml:space="preserve">
-    <value>nieuw stageopdracht</value>
+    <value>Nieuw stageopdracht</value>
   </data>
   <data name="Nl" xml:space="preserve">
     <value>Nederlands</value>
   </data>
   <data name="saveButtonText" xml:space="preserve">
-    <value>opslaan</value>
+    <value>Opslaan</value>
   </data>
   <data name="schoolyearErrorMessage" xml:space="preserve">
-    <value>de schooljaar is verplicht</value>
+    <value>Schooljaar is verplicht</value>
   </data>
   <data name="schoolYearLabel" xml:space="preserve">
-    <value>schooljaar</value>
+    <value>Schooljaar</value>
   </data>
   <data name="titleContentLabel" xml:space="preserve">
-    <value>titel</value>
+    <value>Titel stageopdracht</value>
   </data>
   <data name="titleContentLabelErrorMessage" xml:space="preserve">
-    <value>de naam van stage kan niet leeg zijn</value>
+    <value>Naam van de stage kan niet leeg zijn</value>
   </data>
   <data name="titleContentLabetitleContent" xml:space="preserve">
-    <value>titel</value>
+    <value>Titel stageopdracht</value>
   </data>
   <data name="trainingTypeLabel" xml:space="preserve">
-    <value>vereist type opleiding</value>
+    <value>Vereist type diploma</value>
   </data>
   <data name="unitEmptyErrorMessage" xml:space="preserve">
-    <value>de departement is verplicht</value>
+    <value>Departement is verplicht</value>
   </data>
   <data name="unitNameLabel" xml:space="preserve">
-    <value>afdeling</value>
+    <value>Departement</value>
   </data>
   <data name="TEMPLATE_TITLE" xml:space="preserve">
-    <value>Intetum-Realdolmen Stagebundel</value>
+    <value>Inetum-Realdolmen Stagebundel</value>
   </data>
   <data name="updateButtonText" xml:space="preserve">
-    <value>bijwerken</value>
+    <value>Bijwerken</value>
   </data>
   <data name="updateDepartmentHeader" xml:space="preserve">
-    <value>departement bijwerken</value>
+    <value>Departement bijwerken</value>
   </data>
   <data name="updateLanguageHeader" xml:space="preserve">
-    <value>taal bijwerken</value>
+    <value>Taal bijwerken</value>
   </data>
   <data name="updateLocationHeader" xml:space="preserve">
-    <value>pas locatie aan </value>
+    <value>Pas locatie aan </value>
   </data>
   <data name="users" xml:space="preserve">
     <value>Gebruikers</value>
@@ -450,5 +450,35 @@ inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus onderst
   </data>
   <data name="INTERNSHIP_LANGUAGE_TITLE" xml:space="preserve">
     <value>Stageopdracht beschikbaar in deze talen</value>
+  </data>
+  <data name="RequiredTrainingText" xml:space="preserve">
+    <value>Het minimale te behalen diploma voor deze stage is:</value>
+  </data>
+  <data name="Hbo5" xml:space="preserve">
+    <value>Graduaat</value>
+  </data>
+  <data name="PGCE" xml:space="preserve">
+    <value>Post graduaat</value>
+  </data>
+  <data name="PHD" xml:space="preserve">
+    <value>Doctoraat</value>
+  </data>
+  <data name="languageExport" xml:space="preserve">
+    <value>Hiermee kies je de taal waarvoor er stageodprachten in die taal beschikbaar zijn</value>
+  </data>
+  <data name="locationCityRequiredErrorMessage" xml:space="preserve">
+    <value>De stad is verplicht</value>
+  </data>
+  <data name="locationHouseNumberErrorMessage" xml:space="preserve">
+    <value>Huisnummer is verplicht</value>
+  </data>
+  <data name="titleContentTooltip" xml:space="preserve">
+    <value>Naam van de stage</value>
+  </data>
+  <data name="emailLabel" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="passwordLabel" xml:space="preserve">
+    <value>Wachtwoord</value>
   </data>
 </root>

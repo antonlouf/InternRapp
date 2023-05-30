@@ -4,18 +4,19 @@ import { PaginationFilterRequest } from '../entities/paginationFilterRequest';
 import { APIConfiguration } from '../configurations/APIConfiguration';
 import { ResourceItemPagingResponse } from '../entities/resourceItemPagingResponse';
 import { InternshipItem } from '../entities/internshipItem';
-import { catchError, retry } from 'rxjs';
+import { catchError, map, retry, tap } from 'rxjs';
 import { CreateInternship } from '../entities/createInternship';
 import { InternshipTranslationUpdateDto } from '../entities/internshipTranslationUpdateDto';
 import { InternshipDetailItem } from '../entities/internshipDetailItem';
 import { InternshipUpdateDto } from '../entities/internshipUpdateDto';
 import { ExportInternshipOptions } from '../entities/exportInternshipOptions';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InternshipService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private sanitizer:DomSanitizer) {}
   public entityTobeUpdated: InternshipDetailItem | undefined;
   private baseSuffixApi = '/api/InternShip';
   public filterAndPaginateLanguages(
@@ -57,7 +58,7 @@ export class InternshipService {
         retry(2)
       );
   }
-  public copyToNextYear(ids:number[]) {
+  public copyToNextYear(ids: number[]) {
     return this.http
       .post(
         APIConfiguration.baseString + `${this.baseSuffixApi}/copyToNextYear`,
@@ -99,28 +100,49 @@ export class InternshipService {
       );
   }
   deleteInternship(ids: number[]) {
-        const httpOptions = {
-          headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-          }),
-          body: JSON.stringify(ids),
-        };
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify(ids),
+    };
     return this.http.delete(
-      APIConfiguration.baseString + `${this.baseSuffixApi}`,httpOptions
+      APIConfiguration.baseString + `${this.baseSuffixApi}`,
+      httpOptions
     );
   }
   public exportInternships(filterCriteria: ExportInternshipOptions) {
-    let queryString = ""
+  
+
+    let queryString = '';
     for (let unit of filterCriteria.unitIds) {
-      queryString += `unitIds=${unit}`
-      if (filterCriteria.unitIds.indexOf(unit) < filterCriteria.unitIds.length - 1) {
-        queryString+="&"
+      queryString += `unitIds=${unit}`;
+      if (
+        filterCriteria.unitIds.indexOf(unit) <
+        filterCriteria.unitIds.length - 1
+      ) {
+        queryString += '&';
       }
     }
-    queryString+=`&schoolYear=${filterCriteria.schoolYear}&languageId=${filterCriteria.languageId}`
-      return this.http.get(
-        APIConfiguration.baseString + `${this.baseSuffixApi}/export?${queryString}`
-      );
+    queryString += `&schoolYear=${filterCriteria.schoolYear}&languageId=${filterCriteria.languageId}`;
+      return this.http
+        .get(
+          APIConfiguration.baseString +
+            `${this.baseSuffixApi}/export?${queryString}`,
+          { responseType: 'blob' }
+        )
+        .pipe(
+          tap((response: Blob) => {
+            const blob = new Blob([response], {
+              type: 'application/octet-stream',
+            });
+                      const linkElement = document.createElement('a');
+                      linkElement.href = window.URL.createObjectURL(blob);
+                      linkElement.download = 'internships.docx';
+                      linkElement.dispatchEvent(new MouseEvent('click'));
+          })
+        );
+    
+    };
   }
-  
-}
+

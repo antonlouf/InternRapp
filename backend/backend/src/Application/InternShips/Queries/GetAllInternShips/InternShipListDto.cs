@@ -12,6 +12,7 @@ public class InternShipListDto : IMapFrom<InternShip>
     public string UnitName { get; set; }
     public int MaxStudents { get; set; }
     public int CurrentCountOfStudents { get; set; }
+    public int? CreatorId{ get; set; }
 
     //public IList<TranslationDto> Translations { get; set; }
 

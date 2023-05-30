@@ -10,6 +10,8 @@ namespace backend.Domain.Entities;
 public class ApplicationUser:ISoftDeletable
 {
     public int Id { get; set; }
-    public Guid ObjectIdentifier { get; set; }
+   // public Guid ObjectIdentifier { get; set; }
     public string Email { get; set; }
+    public string Password { get; set; }
+    public Role Role { get; set; }
 }

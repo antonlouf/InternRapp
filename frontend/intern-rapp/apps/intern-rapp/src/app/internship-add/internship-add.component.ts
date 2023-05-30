@@ -101,7 +101,7 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
     closeOnNavigation: true,
     disableClose: false,
     hasBackdrop: true,
-    position: { top: '250px', right: '630px' },
+    position: { top: '250px', right: '40%' },
   };
   ngOnDestroy(): void {
     this.destrojSubj$.next(undefined);
@@ -148,7 +148,9 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
         [Validators.required]
       ),
     });
-
+    this.addInternshipForm?.valueChanges.subscribe(data => {
+      console.log(this.addInternshipForm?.getRawValue())
+    });
     this.languageObs$ = this.languageService
       .filterAndPaginateLanguages({
         filterString: '',
@@ -157,7 +159,9 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
       })
       .pipe(
         shareReplay(1),
-        map((data) => data.items)
+        map((data) => data.items),
+        take(1),
+        takeUntil(this.destrojSubj$)
       );
     this.locationObs$ = this.locationService
       .filterAndPaginateLocations$({
@@ -342,7 +346,7 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
         .subscribe();
     }
   
-    this.router.navigateByUrl('/internships', {onSameUrlNavigation:'reload'});
+    this.router.navigateByUrl('/', {onSameUrlNavigation:'reload'});
   }
   private mapToSubmittableNewInternshipObject() {
     const internShipToBeReturned: CreateInternship | undefined = {

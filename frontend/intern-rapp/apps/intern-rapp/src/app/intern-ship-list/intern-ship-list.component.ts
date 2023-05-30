@@ -45,6 +45,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ExportPopupOptionsComponent } from '../export-popup-options/export-popup-options.component';
 import { ExportInternshipOptions } from '../entities/exportInternshipOptions';
+import { AuthService } from '../services/auth-service.service';
+import { Role } from '../enums/role';
 
 @Component({
   selector: 'intern-rapp-intern-ship-list',
@@ -77,13 +79,13 @@ export class InternShipListComponent
   private destroySubj$ = new Subject<void>();
   private selectedIds: number[] = [];
   private exportSubj$ = new Subject<void>();
-  
   constructor(
     private internshipService: InternshipService,
     private unitService: DepartmentService,
     private languageService: LanguageService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public authService:AuthService
   ) {
     super();
   }
@@ -108,6 +110,7 @@ export class InternShipListComponent
       .getInternshipById(id as number)
       .pipe(
         tap((data) => {
+          debugger
           this.internshipService.entityTobeUpdated = data;
 
           this.router.navigateByUrl('internships/create', {
@@ -143,7 +146,9 @@ export class InternShipListComponent
     );
   }
   ngOnInit(): void {
-
+   const activeFilters: Record<string, unknown> = {};
+   activeFilters['schoolYear'] = this.calculateCurrentSchoolyear();
+   this.filterUpdated(activeFilters);
       this.exportSubj$
        .pipe(
          switchMap(() => {
@@ -288,6 +293,9 @@ export class InternShipListComponent
     this.filterUpdated(activeFilters);
   }
   public addToSelectedInternships(completed: boolean, id: number) {
+    console.log(completed);
+     console.log(id);
+    
     if (!completed) {
       this.selectedIds = this.selectedIds.filter((x) => x !== id);
       return;
@@ -299,6 +307,7 @@ export class InternShipListComponent
       // this.router.navigateByUrl('/internships', {
       //   onSameUrlNavigation: 'reload',
       // });
+     
     }),take(1),takeUntil(this.destroySubj$)).subscribe()
   }
   delete() {

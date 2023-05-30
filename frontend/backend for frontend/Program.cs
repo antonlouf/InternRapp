@@ -94,6 +94,7 @@ if (!builder.Environment.IsDevelopment())
     builder.Services.AddSpaStaticFiles(configuration =>
     {
         configuration.RootPath = "ClientApp/dist";
+        
     });
 }
 
@@ -118,12 +119,12 @@ app.UseRouting();
 
 app.UseCors();
 
-app.UseAuthentication();
-app.UseAuthorization();
+//app.UseAuthentication();
+//app.UseAuthorization();
 
 app.UseRewriter(new RewriteOptions().AddRedirect("/MicrosoftIdentity/Account/SignOut", "/"));
 
-app.UseBffAuthentication();
+//app.UseBffAuthentication();
 
 app.UseEndpoints(endpoints =>
 {

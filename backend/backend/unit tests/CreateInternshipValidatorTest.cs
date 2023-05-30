@@ -14,11 +14,12 @@ public class CreateInternshipValidatorTest
     public void SchoolYear_Empty_Should_Throw_Validation_Error()
     {
         var mockedDbContext = new Mock<IApplicationDbContext>();
+        
 
         var validator = new CreateInterShipCommandValidator(mockedDbContext.Object);
         var command = new CreateInternShipCommand()
         {
-
+            
             CurrentCountOfStudents = 10,
             Locations = new List<LocationDto>
                                                       {

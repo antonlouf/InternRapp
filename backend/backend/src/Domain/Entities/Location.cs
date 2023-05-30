@@ -15,5 +15,7 @@ public class Location:ISoftDeletable
     public int HouseNumber { get; set; }
     public string ZipCode { get; set; }
     public IList<InternShip> InternShips { get; set; }
+    public int? CreatorId { get; set; }
+    public ApplicationUser? Creator { get; set; }
 
 }

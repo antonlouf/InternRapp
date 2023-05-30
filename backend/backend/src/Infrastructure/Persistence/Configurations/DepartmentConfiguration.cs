@@ -21,5 +21,33 @@ public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
         builder.Property(x => x.ManagerEmails).UsePropertyAccessMode(PropertyAccessMode.PreferProperty).HasConversion(v => string.Join(',', v), x => x.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList());
         builder.HasMany(x => x.PrefaceTranslations).WithOne(x => x.Unit).OnDelete(DeleteBehavior.Cascade);
         builder.HasMany(x => x.Internships).WithOne(x => x.Unit).OnDelete(DeleteBehavior.Cascade);
+
+        //seeding
+        builder.HasData(new
+        {
+            Id = 1,
+            Name = "Microsoft Competence Center",
+            ManagerEmails = new List<string> { "anton.louf@student.ehb.be" },
+            IsDeleted = false,
+            LastModifiedDate = DateTime.UtcNow,
+            CreatedDate = DateTime.UtcNow,
+        }, new
+        {
+            Id = 2,
+            Name = "Java Competence Center",
+            ManagerEmails = new List<string> { "anton.louf@student.ehb.be" },
+            IsDeleted = false,
+            LastModifiedDate = DateTime.UtcNow,
+            CreatedDate = DateTime.UtcNow,
+        }, new
+        {
+            Id = 3,
+            Name = "Low Code",
+            ManagerEmails = new List<string> { "anton.louf@student.ehb.be" },
+            IsDeleted = false,
+            LastModifiedDate = DateTime.UtcNow,
+            CreatedDate = DateTime.UtcNow,
+        });
+        
     }
 }
