@@ -21,13 +21,13 @@ using DocumentFormat.OpenXml.Wordprocessing;
 namespace backend.Infrastructure.Persistence;
 public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
-    
+
 
     public ApplicationDbContext(
         DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
-       
+
 
     }
     public DbSet<Department> Departments => Set<Department>();
@@ -77,6 +77,26 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         }
 
         //seeding 
+        for (int i = 1; i <= 4; i++)
+        {
+            for (int y = 1; y <= 3; y++)
+            {
+                var standardInternShipLocation = new
+                {
+                    InternShipId = i,
+                    LocationsId = y,
+                    IsDeleted = false,
+                    LastModifiedDate = DateTime.UtcNow,
+                    CreatedDate = DateTime.UtcNow,
+                };
+                //InternShipLocations
+                builder.Entity<InternShipLocation>().HasData(standardInternShipLocation);
+            }
+        }
+
+
+        /*
+        
         var locationHuizingen = new
         {
             Id = 1,
@@ -153,9 +173,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             CreatedDate = DateTime.UtcNow,
         };
 
-
-        /*
-        var internRappTrnslNl = new InternShipContentTranslation
+        var internRappTrnslNl = new 
         {
             Id = 1,
             TitleContent = "InternRapp",
@@ -167,7 +185,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             InternShipId = 1,
         };
 
-        var mobileAppTrnsFr = new InternShipContentTranslation
+        var mobileAppTrnsFr = new 
         {
             Id = 2,
             TitleContent = "Mobile App",
@@ -179,7 +197,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             InternShipId = 2,
         };
 
-        var androidAppTrnslEng = new InternShipContentTranslation
+        var androidAppTrnslEng = new 
         {
             Id = 3,
             TitleContent = "Android App",
@@ -191,7 +209,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             InternShipId = 3,
         };
 
-        var internRapp = new InternShip
+        var internRapp = new 
         {
             Id = 1,
             CurrentCountOfStudents = 0,
@@ -202,7 +220,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             //LocationIds = new List<int> { locationGent.Id, locationHuizingen.Id }
         };
 
-        var mobileApp = new InternShip
+        var mobileApp = new 
         {
             Id = 2,
             CurrentCountOfStudents = 0,
@@ -213,7 +231,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             //LocationIds = new List<int> { locationGent.Id, locationHuizingen.Id }
         };
 
-        var androidApp = new InternShip
+        var androidApp = new 
         {
             Id = 3,
             CurrentCountOfStudents = 0,
@@ -224,31 +242,31 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             //LocationIds = new List<int> { locationGent.Id, locationHuizingen.Id}
         };
 
-        var internRappHuizingen = new InternShipLocation
+        var internRappHuizingen = new 
         {
             InternShipId = 1,
             LocationsId = 1,
         };
 
-        var internRappGent = new InternShipLocation
+        var internRappGent = new 
         {
             InternShipId = 1,
             LocationsId = 2,
         };
 
-        var internRappKontich = new InternShipLocation
+        var internRappKontich = new 
         {
             InternShipId = 1,
             LocationsId = 3,
         };
 
-        var mobileAppHuizingen = new InternShipLocation
+        var mobileAppHuizingen = new 
         {
             InternShipId = 2,
             LocationsId = 1,
         };
 
-        var microsoftPrefaceNl = new PrefaceTranslation
+        var microsoftPrefaceNl = new 
         {
             Id = 1,
             Content = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>Dit is een standaard descriptie horende bij een unit</p></body></html>",
@@ -256,7 +274,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             LanguageId = 1,
         };
 
-        var javaPrefaceFr = new PrefaceTranslation
+        var javaPrefaceFr = new 
         {
             Id = 2,
             Content = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>Ce ici c'est un description standard d un departement</p></body></html>",
@@ -264,14 +282,14 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             LanguageId = 3,
         };
 
-        var lowCodePrefaceEng = new PrefaceTranslation
+        var lowCodePrefaceEng = new 
         {
             Id = 3,
             Content = @"<html><body style=""font-family:Verdana; font-size:14.5px""><p>This is a standard description for a unit</p></body></html>",
             UnitId = 3,
             LanguageId = 2,
         };
-        */
+        
 
         var microsoftCompetence = new
         {
@@ -304,14 +322,15 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         };
 
         List<string> schoolyears = new List<string> { "2021-2022", "2022-2023", "2023-2024" };
+        */
 
+        /*
         //languages
         builder.Entity<Language>().HasData(langEng, langFr, langNl, langDe);
 
         //Locations
         builder.Entity<Location>().HasData(locationHuizingen, locationGent, locationKontich);
-
-        /*
+ 
         //InternShipLocations
         builder.Entity<InternShipLocation>().HasData(internRappHuizingen, internRappGent, internRappKontich, mobileAppHuizingen);
 
@@ -328,8 +347,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         builder.Entity<PrefaceTranslation>().HasData(microsoftPrefaceNl, javaPrefaceFr, lowCodePrefaceEng);
         */
 
-        
-
+        /*
         //loop to make new internships with different translations
         int trnslIndex = 1;
         string prefaceDescrNl = @"<p>Dit is een standaard descriptie horende bij een unit</p>";
@@ -432,7 +450,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
                 builder.Entity<PrefaceTranslation>().HasData(standardPrefaceTrnsl);
             }
         }
-        
+        */
     }
 
     private void HandleDelete()
@@ -450,7 +468,6 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             }
         }
     }
-
     private void HandleCreate()
     {
         var markedAsDeleted = ChangeTracker.Entries().Where(x => x.State == EntityState.Added);
@@ -475,7 +492,6 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             item.Property("LastModifiedDate").CurrentValue = DateTime.UtcNow;
         }
     }
-
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {

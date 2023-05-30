@@ -72,7 +72,8 @@ public class InternShipController : ControllerBase
 
         //Genereren van export doc
         Exporting exporting = new Exporting(dbContext);
-        return File(System.IO.File.OpenRead(exporting.GenerateWordDocFilePath(exportData, request)), "application/octet-stream", "internships.docx");
+        string exportPath = exporting.GenerateWordDocFilePath(exportData, request);
+        return File(System.IO.File.OpenRead(exportPath), "application/octet-stream", "internships.docx");
     }
 
     [HttpPut]

@@ -407,7 +407,7 @@ inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus onderst
     <value>afdeling</value>
   </data>
   <data name="TEMPLATE_TITLE" xml:space="preserve">
-    <value>Intetum-Realdolmen Stagebundel</value>
+    <value>Inetum-Realdolmen Stagebundel</value>
   </data>
   <data name="updateButtonText" xml:space="preserve">
     <value>bijwerken</value>
@@ -450,5 +450,8 @@ inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus onderst
   </data>
   <data name="INTERNSHIP_LANGUAGE_TITLE" xml:space="preserve">
     <value>Stageopdracht beschikbaar in deze talen</value>
+  </data>
+  <data name="RequiredTrainingText" xml:space="preserve">
+    <value>Het minimale te behalen diploma voor deze stage is:</value>
   </data>
 </root>

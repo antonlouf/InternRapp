@@ -22,6 +22,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace backend.Application.InternShips.Queries.GetExportInternShipData;
 public class GetExportInterShipQuery : IRequest<List<UnitExportDto>>
 {
@@ -61,7 +62,7 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
                     Language = _iMapper.Map<LanguageListDto>(unit.Language),
                 }).Single(),
                 InternShipsDtos = exportDto.Internships
-                .Where(intrshp => intrshp.Translations.Any(trnsl => request.LanguageId == trnsl.LanguageId)
+                .Where(intrshp => intrshp.Translations.Any(trnsl => request.LanguageId == trnsl.LanguageId) //check
                 && request.SchoolYear == intrshp.SchoolYear)
                 .Select(intrshp => new InternShipExportDto()
                 {
@@ -74,7 +75,8 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
                         Zipcode = loc.ZipCode
                     }).ToList(),
                     TrainingType = intrshp.RequiredTrainingType,
-                    Translation = intrshp.Translations.Select(trnslDto => new TranslationDto()
+                    Translation = intrshp.Translations.Where(trnsl => trnsl.LanguageId == request.LanguageId) //check
+                    .Select(trnslDto => new TranslationDto()
                     {
                         TranslationId = trnslDto.Id,
                         TitleContent = trnslDto.TitleContent,
@@ -103,10 +105,9 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
     }
 }
 
-public class Exporting 
+public class Exporting
 {
     private readonly IApplicationDbContext _dbContext;
-
     public Exporting(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
@@ -114,16 +115,24 @@ public class Exporting
 
     public string GenerateWordDocFilePath(List<UnitExportDto> unitExportList, InternshipExportRequestDto requestDto)
     {
-        //local setup
-        //string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        //string templatePath = Path.Combine(sCurrentDirectory, @"..\..\..\..\..\lib\template.docx");
-        //string resultPath = Path.Combine(sCurrentDirectory, $@"..\..\..\..\..\lib\ExportFiles\internships_{Guid.NewGuid()}.docx");
+        //env variabel uitlezen
+        string environmentVar = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        string templatePath;
+        string resultPath;
 
-        //online setup
-        string templatePath2 =  @"/home/site/wwwroot/wwwroot/lib/template.docx";
-        string resultPath2 = $@"/home/site/wwwroot/wwwroot/lib/ExportFiles/internships_{Guid.NewGuid()}.docx";
+        if (environmentVar == "Development")
+        {
+            string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            templatePath = Path.Combine(sCurrentDirectory, @"..\..\..\..\..\lib\template.docx");
+            resultPath = Path.Combine(sCurrentDirectory, $@"..\..\..\..\..\lib\ExportFiles\internships_{Guid.NewGuid()}.docx");
+        }
+        else
+        {
+            templatePath = @"/home/site/wwwroot/wwwroot/lib/template.docx";
+            resultPath = $@"/home/site/wwwroot/wwwroot/lib/ExportFiles/internships_{Guid.NewGuid()}.docx";
+        }
 
-        using (WordprocessingDocument document = WordprocessingDocument.CreateFromTemplate(templatePath2, false))
+        using (WordprocessingDocument document = WordprocessingDocument.CreateFromTemplate(templatePath, false))
         {
             var body = document.MainDocumentPart!.Document.Body;
             var allElements = body!.Elements().ToList();
@@ -131,22 +140,20 @@ public class Exporting
 
             //Resource content
             var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetName().Name == "WebUI").ToList();
+            var langCode = _dbContext.Languages.Where(lang => lang.Id == requestDto.LanguageId).Single().Code;
+            var webAssembly = Assembly.LoadFile(@$"{assemblies[0].Location}");
             ResourceManager rm;
-            try
-            {
-                var langCode = _dbContext.Languages.Where(lang => lang.Id == requestDto.LanguageId).Single().Code;
-                rm = new ResourceManager($"WebUI.Resources.{langCode}", Assembly.LoadFile(@$"{assemblies[0].Location}"));
-            }
-            catch (Exception)
-            {
-                rm = new ResourceManager("WebUI.Resources.en", Assembly.LoadFile(@$"{assemblies[0].Location}"));
-            }
+            var check = false;
 
-            //check if export file exists
-            if (File.Exists(resultPath2))
+            foreach (var resourceItem in webAssembly.GetManifestResourceNames())
             {
-                File.Delete(resultPath2);
+                if (resourceItem == $"WebUI.Resources.{langCode}.resources")
+                {
+                    check = true;
+                    continue;
+                }
             }
+            rm = check ? new ResourceManager($"WebUI.Resources.{langCode}", webAssembly) : new ResourceManager("WebUI.Resources.en", webAssembly);
 
             Dictionary<string, string> commonReplacements = new Dictionary<string, string>()
                  {
@@ -187,10 +194,10 @@ public class Exporting
             //remove old content table
             RemoveSdt(body);
 
-            document.SaveAs(resultPath2).Dispose();
+            document.SaveAs(resultPath).Dispose();
         }
 
-        return resultPath2;
+        return resultPath;
 
     }
     public string GetCombinedText(IEnumerable<Text> textElements)
@@ -369,7 +376,7 @@ public class Exporting
                               {"INTERNSHIP_LANGUAGE_TITLE", rm.GetString("INTERNSHIP_LANGUAGE_TITLE")},
                               {"INTERNSHIP_LANGUAGE_CONTENT", MakingListOfHTMl(internship.Languages)},
                               {"INTERNSHIP_COMMENTS_TITLE", rm.GetString("INTERNSHIP_COMMENTS_TITLE")},
-                              {"INTERNSHIP_COMMENTS_CONTENT", internship.Translation.Comment},
+                              {"INTERNSHIP_COMMENTS_CONTENT", rm.GetString("RequiredTrainingText")+ internship.TrainingType + internship.Translation.Comment},
                           }, ref chunkId);
 
                 unitElements.InsertRange(internshipStartPosition, internshipParagraphs); //toevoegen van internshipParagraaf lijst in unit paragrafen 
