@@ -12,6 +12,7 @@ public class LocationDto:IMapFrom<Location>
     public string Streetname { get; set; }
     public int Housenumber { get; set; }
     public string Zipcode { get; set; }
+    public int? CreatorId { get; set; }
 
     public void Mapping(Profile profile)
     {

@@ -22,17 +22,22 @@ public class UpdateInternShipCommand : IRequest
 public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternShipCommand>
 {
     private readonly IApplicationDbContext _dbContext;
-
-    public UpdateInternShipCommandHandler(IApplicationDbContext dbContext)
+    readonly ICurrentUserService _currentUser;
+    public UpdateInternShipCommandHandler(IApplicationDbContext dbContext,ICurrentUserService currentUser)
     {
         _dbContext = dbContext;
+        _currentUser = currentUser; 
     }
 
     protected async override Task Handle(UpdateInternShipCommand request, CancellationToken cancellationToken)
     {
+        var t=_currentUser.UserId;
+        Role role=(Role)int.Parse(_currentUser.Role);
         var convertedLocations = request.Locations.Select(x => new Location() { City = x.City, HouseNumber = x.Housenumber, Id = x.Id, StreetName = x.Streetname, ZipCode = x.Zipcode }).ToList();
         _dbContext.Locations.UpdateRange(convertedLocations);
         var internShip = await _dbContext.InternShips.Include(x=>x.Locations).Include(x=>x.Translations).SingleOrDefaultAsync(x => x.Id == request.InternShipId);
+        if (role != Role.Admin && internShip.CreatorId != int.Parse(_currentUser.UserId))
+            throw new UnauthorizedAccessException();
         internShip.MaxStudents = request.MaxCountOfStudents;
         internShip.SchoolYear = request.SchoolYear;
         internShip.RequiredTrainingType = request.TrainingType;

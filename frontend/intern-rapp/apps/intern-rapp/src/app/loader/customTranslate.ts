@@ -5,15 +5,9 @@ import { APIConfiguration } from '../configurations/APIConfiguration';
 export class customTranslate implements TranslateLoader{
 private baseSuffixApi="api/Language";
  constructor(private http: HttpClient){}
-    getTranslation(lang: string): Observable<unknown> {
-         const httpOptions = {
-           headers: new HttpHeaders({
-             path: `${this.baseSuffixApi}/${lang}`,
-             method: 'GET',
-           }),
-         };
-        return this.http.get(`${APIConfiguration.baseString}`,httpOptions)
+    getTranslation(lang: string): Observable<unknown> {      
+         return this.http.get(
+           `${APIConfiguration.baseString}/${this.baseSuffixApi}/${lang}`
+         );
     }
- 
- 
 }

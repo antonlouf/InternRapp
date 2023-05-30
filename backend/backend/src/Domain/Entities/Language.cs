@@ -13,7 +13,8 @@ public class Language:ISoftDeletable
     public string Name { get; set; }
     public IList<InternShipContentTranslation> InternshipTranslations{ get; set; }
     public IList<PrefaceTranslation> PrefaceTranslations { get; set; }
+    public int? CreatorId { get; set; }
+    public ApplicationUser? Creator { get; set; }
 
-    //public string CreatorEmail { get; set; }
 
 }

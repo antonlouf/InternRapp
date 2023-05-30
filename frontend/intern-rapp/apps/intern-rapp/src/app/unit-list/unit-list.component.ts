@@ -33,6 +33,7 @@ import { DepartmentUpdate } from '../entities/departmentUpdate';
 import { DepartmentItemDetail } from '../entities/departmentItemDetail';
 import { convertFormsArrayToObjectForUpdatedUnit } from '../preface-translation-form/buildFormGroupForPrefaceTranslation';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { AuthService } from '../services/auth-service.service';
 
 @Component({
   selector: 'intern-rapp-unit-list',
@@ -68,7 +69,8 @@ export class UnitListComponent
   private selectedIds: number[] = [];
   constructor(
     private unitService: DepartmentService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public authService:AuthService
   ) {
     super();
   }

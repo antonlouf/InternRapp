@@ -15,7 +15,8 @@ export class AcceptHeaderInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle( request.clone({
       setHeaders:{
-        'accept-language':this.localId
+        'accept-language': this.localId,
+        "authorization":`Bearer ${localStorage.getItem('access_token')}`
       }
     }));
   }

@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using GetAllQueryMinimal = backend.Application.Units.Queries.GetAllUnitsWithMinimalInfo.GetAllQuery;
 using GetAllQuery = backend.Application.Units.Queries.GetAllUnits.GetAllQuery;
 using CommonReadModels.Contracts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebUI.Controllers;
 [ApiController]
@@ -25,7 +26,7 @@ public class UnitController : ControllerBase
         _mediator = mediator;
     }
     //later to be adjusted dependent on what the situation should be see createunitcommand for more details!!
-    [HttpPost]
+    [HttpPost,Authorize(Roles = "Admin")]
     public async Task Create( CreateUnitCommand command)
     {
          await _mediator.Send(command);
@@ -58,7 +59,7 @@ public class UnitController : ControllerBase
         return Ok();
     }
 
-    [HttpDelete]
+    [HttpDelete,Authorize(Roles ="Admin")]
     public async Task<IActionResult> Delete([FromBody] List<int> ids)
     {
         await _mediator.Send(new DeleteUnitCommand() { Ids = ids });

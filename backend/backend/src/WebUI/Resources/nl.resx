@@ -472,4 +472,10 @@ inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus onderst
   <data name="titleContentTooltip" xml:space="preserve">
     <value>De naam van de stage in een specifieke taal</value>
   </data>
+  <data name="emailLabel" xml:space="preserve">
+    <value>e-mail</value>
+  </data>
+  <data name="passwordLabel" xml:space="preserve">
+    <value>wachtwoord</value>
+  </data>
 </root>

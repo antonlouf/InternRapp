@@ -45,6 +45,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ExportPopupOptionsComponent } from '../export-popup-options/export-popup-options.component';
 import { ExportInternshipOptions } from '../entities/exportInternshipOptions';
+import { AuthService } from '../services/auth-service.service';
+import { Role } from '../enums/role';
 
 @Component({
   selector: 'intern-rapp-intern-ship-list',
@@ -77,13 +79,13 @@ export class InternShipListComponent
   private destroySubj$ = new Subject<void>();
   private selectedIds: number[] = [];
   private exportSubj$ = new Subject<void>();
-  
   constructor(
     private internshipService: InternshipService,
     private unitService: DepartmentService,
     private languageService: LanguageService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public authService:AuthService
   ) {
     super();
   }

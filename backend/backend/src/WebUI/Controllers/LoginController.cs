@@ -41,6 +41,8 @@ public class LoginController : ControllerBase
                         new Claim(JwtRegisteredClaimNames.Exp, DateTime.UtcNow.AddHours(5).ToString()),
                         new Claim("id", $"{user.Id}"),
                         new Claim("Email", request.Email),
+                        new Claim("Role", ((int)user.Role).ToString()),
+
             };
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
         var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -48,7 +50,7 @@ public class LoginController : ControllerBase
             _configuration["Jwt:Issuer"],
             _configuration["Jwt:Audience"],
             claims,
-            expires: DateTime.UtcNow.AddMinutes(10),
+            expires: DateTime.UtcNow.AddDays(5),
             signingCredentials: signIn);
         var responseObject = new
         {
@@ -56,5 +58,20 @@ public class LoginController : ControllerBase
             user = user
         };
         return Ok(responseObject);
+    }
+    [HttpGet]
+    public  IActionResult GetCurrentUser()
+    {
+        var g = HttpContext.User.Claims.Select(x => x.Type).ToList();
+        var user = new 
+        { 
+            id = HttpContext.User.Claims.Where(x => x.Type == "id").Select(x=> int.Parse(x.Value)).SingleOrDefault(),
+            email = HttpContext.User.Claims.Where(x => x.Type == "Email").Select(x => x.Value).SingleOrDefault(),
+            role= HttpContext.User.Claims.Where(x => x.Type == "Role").Select(x => int.Parse(x.Value)).SingleOrDefault(),
+
+
+        };
+        
+        return Ok(user);
     }
 }

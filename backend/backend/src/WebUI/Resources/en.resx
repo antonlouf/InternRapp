@@ -258,6 +258,9 @@
   <data name="editButton" xml:space="preserve">
     <value>edit</value>
   </data>
+  <data name="emailLabel" xml:space="preserve">
+    <value>email</value>
+  </data>
   <data name="En" xml:space="preserve">
     <value>English</value>
   </data>
@@ -413,6 +416,9 @@
   </data>
   <data name="Nl" xml:space="preserve">
     <value>Dutch</value>
+  </data>
+  <data name="passwordLabel" xml:space="preserve">
+    <value>password</value>
   </data>
   <data name="PGCE" xml:space="preserve">
     <value>PGCE</value>

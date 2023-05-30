@@ -7,6 +7,7 @@ using backend.Application.InternShips.Queries.GetExportInternShipData;
 using backend.Application.InternShips.Queries.getFilteredInternShip;
 using backend.Application.InternShips.Queries.GetInternShipById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -79,7 +80,7 @@ public class InternShipController : ControllerBase
         });
         return Ok();
     }
-    [HttpDelete("{id:int}")]
+    [HttpDelete("{id:int}"),Authorize(Roles ="Admin")]
     public async Task<IActionResult> Delete([FromBody] List<int> ids)
     {
         await _mediator.Send(new DeleteInternshipCommand() { Ids=ids });

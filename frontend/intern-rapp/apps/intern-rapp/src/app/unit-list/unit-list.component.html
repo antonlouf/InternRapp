@@ -10,9 +10,9 @@
     <ng-template
     internRappItemsTmpl let-items 
     >
-    <div class="flex-row-above-list">
+    <div *ngIf="authService.currentUser.role===0" class="flex-row-above-list">
       <div>
-    <button mat-icon-button (click)="addDepartment()" class="align-right save-button-above-list">
+    <button  mat-icon-button (click)="addDepartment()" class="align-right save-button-above-list">
       <!-- <div class="flex-row center-flex-items" > -->
       <mat-icon>add</mat-icon>
       <!-- </div> -->

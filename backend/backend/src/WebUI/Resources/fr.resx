@@ -465,4 +465,10 @@ Avec le programme &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt;, Realdolm
   <data name="titleContentTooltip" xml:space="preserve">
     <value>Le nom du stage dans une langue spécifique</value>
   </data>
+  <data name="emailLabel" xml:space="preserve">
+    <value>courriel</value>
+  </data>
+  <data name="passwordLabel" xml:space="preserve">
+    <value>mot de passe</value>
+  </data>
 </root>
