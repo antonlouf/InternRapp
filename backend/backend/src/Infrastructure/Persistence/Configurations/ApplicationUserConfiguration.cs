@@ -21,14 +21,20 @@ public class ApplicationUserConfiguration : IEntityTypeConfiguration<Application
             Id = 1,
             Email = "recep@inetum-realdolmen.world",
             Password = "admin123",
-            Role = Role.Admin
+            Role = Role.Admin,
+            LastModifiedDate = DateTime.UtcNow,
+            CreatedDate = DateTime.UtcNow,
+            IsDeleted = false,
         },
          new
          {
              Id = 2,
              Email = "anton@inetum-realdolmen.world",
              Password = "admin123",
-             Role = Role.Worker
+             Role = Role.Worker,
+             LastModifiedDate = DateTime.UtcNow,
+             CreatedDate = DateTime.UtcNow,
+             IsDeleted = false,
          }
         );
 

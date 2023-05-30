@@ -51,7 +51,7 @@ export class ExportPopupOptionsComponent implements OnInit {
   ngOnInit(): void {
     this.exportOptionsForm = new FormGroup({
       languageId: new FormControl('', [Validators.required]),
-      unitIds: new FormControl('', [Validators.required]),
+      unitIds: new FormControl('',), 
       schoolYear: new FormControl('', [Validators.required]),
     });
     this.languageObs$ = this.languageService

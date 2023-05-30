@@ -21,14 +21,10 @@ using DocumentFormat.OpenXml.Wordprocessing;
 namespace backend.Infrastructure.Persistence;
 public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
-
-
     public ApplicationDbContext(
         DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
-
-
     }
     public DbSet<Department> Departments => Set<Department>();
     public DbSet<Location> Locations => Set<Location>();
@@ -57,7 +53,6 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             if (typeof(ISoftDeletable).IsAssignableFrom(entityType.ClrType))
             {
                 entityType.AddProperty("IsDeleted", typeof(bool));
-
 
                 // 2. Create the query filter
                 var parameter = Expression.Parameter(entityType.ClrType);
