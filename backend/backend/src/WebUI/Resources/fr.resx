@@ -433,7 +433,7 @@ Avec le programme &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt;, Realdolm
     <value>departement</value>
   </data>
   <data name="TEMPLATE_TITLE" xml:space="preserve">
-    <value>Intetum-Realdolmen Livre de stage</value>
+    <value>Inetum-Realdolmen Livre de stage</value>
   </data>
   <data name="updateButtonText" xml:space="preserve">
     <value>mise a jour</value>
@@ -470,5 +470,8 @@ Avec le programme &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt;, Realdolm
   </data>
   <data name="passwordLabel" xml:space="preserve">
     <value>mot de passe</value>
+  </data>
+	<data name="RequiredTrainingText" xml:space="preserve">
+    <value>Le diplome requis pour ce stage est le suivant :</value>
   </data>
 </root>

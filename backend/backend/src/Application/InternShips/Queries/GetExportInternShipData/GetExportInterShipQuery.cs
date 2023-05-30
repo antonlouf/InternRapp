@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata;
@@ -21,16 +22,19 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace backend.Application.InternShips.Queries.GetExportInternShipData;
 public class GetExportInterShipQuery : IRequest<List<UnitExportDto>>
 {
-    public InternshipExportRequestDto Dto { get; set; }
+    public List<int> UnitIds { get; set; }
+    public string SchoolYear { get; set; }
+    public int LanguageId { get; set; }
 }
 
 public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShipQuery, List<UnitExportDto>>
 {
     private readonly IApplicationDbContext _dbContext;
-    private IMapper _iMapper;
+    private readonly IMapper _iMapper;
 
     public GetExportInterShipQueryHandler(IApplicationDbContext dbContext, IMapper iMapper)
     {
@@ -43,14 +47,14 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
         var units = await _dbContext.Departments
             .Include(dept => dept.Internships)
             .ThenInclude(intrshp => intrshp.Locations)
-            .Where(unit => (request.Dto.UnitIds == null || request.Dto.UnitIds.Count == 0 || request.Dto.UnitIds.Contains(unit.Id))
-            && unit.Internships.Any(intrShps => intrShps.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId))
-            && unit.Internships.Any(intrShips => request.Dto.SchoolYear == intrShips.SchoolYear)) //filter op jaartal -- filteren op internships ipv units?
+            .Where(unit => (request.UnitIds == null || request.UnitIds.Count == 0 || request.UnitIds.Contains(unit.Id))
+            && unit.Internships.Any(intrShps => intrShps.Translations.Any(trnsl => request.LanguageId == trnsl.LanguageId))
+            && unit.Internships.Any(intrShips => request.SchoolYear == intrShips.SchoolYear))
 
             .Select(exportDto => new UnitExportDto()
             {
                 Name = exportDto.Name,
-                PrefaceDto = exportDto.PrefaceTranslations.Where(unit => unit.LanguageId == request.Dto.LanguageId) 
+                PrefaceDto = exportDto.PrefaceTranslations.Where(unit => unit.LanguageId == request.LanguageId)
                 .Select(unit => new PrefaceTranslationDto()
                 {
                     TranslationId = unit.Id,
@@ -58,11 +62,11 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
                     Language = _iMapper.Map<LanguageListDto>(unit.Language),
                 }).Single(),
                 InternShipsDtos = exportDto.Internships
-                .Where(intrshp => intrshp.Translations.Any(trnsl => request.Dto.LanguageId == trnsl.LanguageId)
-                && request.Dto.SchoolYear == intrshp.SchoolYear) //2de where conditie op schooljaar
+                .Where(intrshp => intrshp.Translations.Any(trnsl => request.LanguageId == trnsl.LanguageId) //check
+                && request.SchoolYear == intrshp.SchoolYear)
                 .Select(intrshp => new InternShipExportDto()
                 {
-                    SchoolYear = intrshp.SchoolYear, 
+                    SchoolYear = intrshp.SchoolYear,
                     Locations = intrshp.Locations.Select(loc => new LocationDto()
                     {
                         City = loc.City,
@@ -71,7 +75,8 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
                         Zipcode = loc.ZipCode
                     }).ToList(),
                     TrainingType = intrshp.RequiredTrainingType,
-                    Translation = intrshp.Translations.Select(trnslDto => new TranslationDto()
+                    Translation = intrshp.Translations.Where(trnsl => trnsl.LanguageId == request.LanguageId) //check
+                    .Select(trnslDto => new TranslationDto()
                     {
                         TranslationId = trnslDto.Id,
                         TitleContent = trnslDto.TitleContent,
@@ -95,44 +100,62 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
 
         }
 
-        //export
-        GenerateWordDoc(units /*new List<UnitExportDto>() { }*/, request.Dto);
-
         //return new List<UnitExportDto>() { };
         return units;
     }
+}
 
-    public void GenerateWordDoc(List<UnitExportDto> unitExportList, InternshipExportRequestDto requestDto)
+public class Exporting
+{
+    private readonly IApplicationDbContext _dbContext;
+    public Exporting(IApplicationDbContext dbContext)
     {
-        const string templatePath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\backend\lib\template.docx"; //-> docm
-        const string resultPath = @"C:\Users\ALFCP98\source\repos\InternRApp\backend\backend\backend\lib\internships.docx";
+        _dbContext = dbContext;
+    }
 
-        WordprocessingDocument document = WordprocessingDocument.CreateFromTemplate(templatePath);
-        var body = document.MainDocumentPart!.Document.Body;
-        var allElements = body!.Elements().ToList();
+    public string GenerateWordDocFilePath(List<UnitExportDto> unitExportList, InternshipExportRequestDto requestDto)
+    {
+        //env variabel uitlezen
+        string environmentVar = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        string templatePath;
+        string resultPath;
 
-        int altChunckId = 0;
-        
-        //Resource content
-        var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetName().Name == "WebUI").ToList();
-        ResourceManager rm;
-        try
+        if (environmentVar == "Development")
         {
+            string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            templatePath = Path.Combine(sCurrentDirectory, @"..\..\..\..\..\lib\template.docx");
+            resultPath = Path.Combine(sCurrentDirectory, $@"..\..\..\..\..\lib\ExportFiles\internships_{Guid.NewGuid()}.docx");
+        }
+        else
+        {
+            templatePath = @"/home/site/wwwroot/wwwroot/lib/template.docx";
+            resultPath = $@"/home/site/wwwroot/wwwroot/lib/ExportFiles/internships_{Guid.NewGuid()}.docx";
+        }
+
+        using (WordprocessingDocument document = WordprocessingDocument.CreateFromTemplate(templatePath, false))
+        {
+            var body = document.MainDocumentPart!.Document.Body;
+            var allElements = body!.Elements().ToList();
+            int altChunckId = 0;
+
+            //Resource content
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetName().Name == "WebUI").ToList();
             var langCode = _dbContext.Languages.Where(lang => lang.Id == requestDto.LanguageId).Single().Code;
-            rm = new ResourceManager($"WebUI.Resources.{langCode}", Assembly.LoadFile(@$"{assemblies[0].Location}"));
-        }
-        catch (Exception)
-        {
-            rm = new ResourceManager("WebUI.Resources.en", Assembly.LoadFile(@$"{assemblies[0].Location}"));
-        }
+            var webAssembly = Assembly.LoadFile(@$"{assemblies[0].Location}");
+            ResourceManager rm;
+            var check = false;
 
-       
-        if (File.Exists(resultPath))
-        {
-            File.Delete(resultPath);
-        }
+            foreach (var resourceItem in webAssembly.GetManifestResourceNames())
+            {
+                if (resourceItem == $"WebUI.Resources.{langCode}.resources")
+                {
+                    check = true;
+                    continue;
+                }
+            }
+            rm = check ? new ResourceManager($"WebUI.Resources.{langCode}", webAssembly) : new ResourceManager("WebUI.Resources.en", webAssembly);
 
-        Dictionary<string, string> commonReplacements = new Dictionary<string, string>()
+            Dictionary<string, string> commonReplacements = new Dictionary<string, string>()
                  {
                      {"TEMPLATE_TITLE", rm.GetString("TEMPLATE_TITLE")},
                      {"TEMPLATE_YEAR", requestDto.SchoolYear},
@@ -146,33 +169,35 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
                      {"ACADEMICT_DESCRIPTION", rm.GetString("ACADEMICT_DESCRIPTION")},
                  };
 
-        Replace(document, ref allElements, commonReplacements, ref altChunckId);
-        
-        ExtractParagraphs(allElements, "UNIT_TITLE", "UNIT_END", out var unitStartPosition, out var templateUnitParagraphs);
+            Replace(document, ref allElements, commonReplacements, ref altChunckId);
 
-        allElements.RemoveRange(unitStartPosition, templateUnitParagraphs.Count);
+            ExtractParagraphs(allElements, "UNIT_TITLE", "UNIT_END", out var unitStartPosition, out var templateUnitParagraphs);
 
-        InsertUnitParagraphs(document, ref allElements, unitExportList, templateUnitParagraphs, unitStartPosition, ref altChunckId, rm);
-        
-        List<string> toDeleteStrings = new List<string>() { "INTERNSHIP_END", "UNIT_END" };
-        DeleteParagraphs(ref allElements, toDeleteStrings);
+            allElements.RemoveRange(unitStartPosition, templateUnitParagraphs.Count);
 
-        //update index table 
-        document.MainDocumentPart!.DocumentSettingsPart!.Settings.Append(new UpdateFieldsOnOpen() { Val = true }); //dit update de velden maar toont nog steeds een update dialog
+            InsertUnitParagraphs(document, ref allElements, unitExportList, templateUnitParagraphs, unitStartPosition, ref altChunckId, rm);
 
-        body.RemoveAllChildren();
+            List<string> toDeleteStrings = new List<string>() { "INTERNSHIP_END", "UNIT_END" };
+            DeleteParagraphs(ref allElements, toDeleteStrings);
 
-        //insert allElements in body again
-        for (int i = 0; i < allElements.Count(); i++)
-        {
-            body.InsertAt(allElements[i], i);
+            //update index table 
+            document.MainDocumentPart!.DocumentSettingsPart!.Settings.Append(new UpdateFieldsOnOpen() { Val = true }); //dit update de velden maar toont nog steeds een update dialog
+
+            body.RemoveAllChildren();
+
+            //insert allElements in body again
+            for (int i = 0; i < allElements.Count(); i++)
+            {
+                body.InsertAt(allElements[i], i);
+            }
+
+            //remove old content table
+            RemoveSdt(body);
+
+            document.SaveAs(resultPath).Dispose();
         }
 
-        //remove old content table
-        RemoveSdt(body);
-
-        // Save Document
-        document.Clone(resultPath);
+        return resultPath;
 
     }
     public string GetCombinedText(IEnumerable<Text> textElements)
@@ -351,7 +376,7 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
                               {"INTERNSHIP_LANGUAGE_TITLE", rm.GetString("INTERNSHIP_LANGUAGE_TITLE")},
                               {"INTERNSHIP_LANGUAGE_CONTENT", MakingListOfHTMl(internship.Languages)},
                               {"INTERNSHIP_COMMENTS_TITLE", rm.GetString("INTERNSHIP_COMMENTS_TITLE")},
-                              {"INTERNSHIP_COMMENTS_CONTENT", internship.Translation.Comment},
+                              {"INTERNSHIP_COMMENTS_CONTENT", rm.GetString("RequiredTrainingText")+ internship.TrainingType + internship.Translation.Comment},
                           }, ref chunkId);
 
                 unitElements.InsertRange(internshipStartPosition, internshipParagraphs); //toevoegen van internshipParagraaf lijst in unit paragrafen 
@@ -535,5 +560,7 @@ public class GetExportInterShipQueryHandler : IRequestHandler<GetExportInterShip
             }
         }
     }
-
 }
+
+
+

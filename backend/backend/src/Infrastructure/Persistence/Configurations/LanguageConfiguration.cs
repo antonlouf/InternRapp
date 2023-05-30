@@ -20,5 +20,39 @@ public class LanguageConfiguration : IEntityTypeConfiguration<Language>
         builder.HasMany(x => x.PrefaceTranslations).WithOne(x => x.Language).OnDelete(DeleteBehavior.Cascade);
         builder.HasOne(x => x.Creator);
 
+        //seeding
+        builder.HasData(new
+        {
+            Id = 1,
+            Code = "nl",
+            Name = "Dutch",
+            IsDeleted = false,
+            LastModifiedDate = DateTime.UtcNow,
+            CreatedDate = DateTime.UtcNow,
+        }, new
+        {
+            Id = 2,
+            Code = "fr",
+            Name = "French",
+            IsDeleted = false,
+            LastModifiedDate = DateTime.UtcNow,
+            CreatedDate = DateTime.UtcNow,
+        }, new
+        {
+            Id = 3,
+            Code = "en",
+            Name = "English",
+            IsDeleted = false,
+            LastModifiedDate = DateTime.UtcNow,
+            CreatedDate = DateTime.UtcNow,
+        }, new
+        {
+            Id = 4,
+            Code = "de",
+            Name = "German",
+            IsDeleted = false,
+            LastModifiedDate = DateTime.UtcNow,
+            CreatedDate = DateTime.UtcNow,
+        });
     }
 }

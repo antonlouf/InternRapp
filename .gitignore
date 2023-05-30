@@ -301,3 +301,4 @@ Thumbs.db
 *WebUI.dll
 
 *.Infrastructure.ddl
+/backend/backend/src/Infrastructure/Properties/launchSettings.json
