@@ -19,7 +19,6 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): boolean {
       if (this.authService.IsAuthenticated) {
-        console.log(route)
       return true; // Allow access to the private route
     } else {
       this.router.navigateByUrl('/login'); // Redirect to the login page if the user is not authenticated

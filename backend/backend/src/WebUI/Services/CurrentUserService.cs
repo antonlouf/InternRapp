@@ -12,7 +12,7 @@ public class CurrentUserService : ICurrentUserService
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public string? UserId => _httpContextAccessor.HttpContext?.User?.Claims.Where(x => x.Type == "id").Select(x => x.Value).Single();
+    public string? UserId => _httpContextAccessor.HttpContext?.User?.Claims.Where(x => x.Type == "id").Select(x => x.Value).SingleOrDefault();
 
-    public string Role => _httpContextAccessor.HttpContext?.User?.Claims.Where(x=>x.Type=="Role").Select(x=>x.Value).Single();
+    public string Role => _httpContextAccessor.HttpContext?.User?.Claims.Where(x=>x.Type=="Role").Select(x=>x.Value).SingleOrDefault();
 }

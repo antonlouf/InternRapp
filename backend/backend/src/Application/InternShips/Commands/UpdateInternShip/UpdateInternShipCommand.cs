@@ -31,7 +31,6 @@ public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternSh
 
     protected async override Task Handle(UpdateInternShipCommand request, CancellationToken cancellationToken)
     {
-        var t=_currentUser.UserId;
         Role role=(Role)int.Parse(_currentUser.Role);
         var convertedLocations = request.Locations.Select(x => new Location() { City = x.City, HouseNumber = x.Housenumber, Id = x.Id, StreetName = x.Streetname, ZipCode = x.Zipcode }).ToList();
         _dbContext.Locations.UpdateRange(convertedLocations);
@@ -44,13 +43,17 @@ public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternSh
         internShip.Locations=null;
         internShip.UnitId = request.UnitId;
         internShip.CurrentCountOfStudents = request.CurrentCountOfStudents;
-        internShip.Translations = new List<InternShipContentTranslation>();
+        //internShip.Translations = new List<InternShipContentTranslation>();
         var ids=request.Versions.Select(x=>x.TranslationId).Where(x=>x!=null).ToList();
         var existingTranslationsTobeDeleted=internShip.Translations.Select(x => x.Id).Where(x => !ids.Contains(x)).ToList();
-        internShip.Translations.Where(x => existingTranslationsTobeDeleted.Contains(x.Id)).ToList().ForEach(x =>
+        if (existingTranslationsTobeDeleted.Any())
         {
-            internShip.Translations.Remove(x);
-        });
+            internShip.Translations.Where(x => existingTranslationsTobeDeleted.Contains(x.Id)).ToList().ForEach(x =>
+            {
+                internShip.Translations.Remove(x);
+            });
+        }
+    
 
 
         foreach (var sendedVersion in request.Versions)
@@ -58,16 +61,20 @@ public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternSh
             
             if (sendedVersion.TranslationId!=null)
             {
-                internShip.Translations.Add(new()
+                if(!internShip.Translations.Any(x => x.Id == sendedVersion.TranslationId))
                 {
-                    Id = (int)sendedVersion.TranslationId,
-                    LanguageId = sendedVersion.LanguageId,
-                    NeededKnowledge = sendedVersion.NeededKnowledge,
-                    KnowledgeToDevelop = sendedVersion.KnowledgeToDevelop,
-                    Comment = sendedVersion.Comment,
-                    Description = sendedVersion.Description,
-                    TitleContent = sendedVersion.TitleContent
-                });
+                    internShip.Translations.Add(new()
+                    {
+                        Id = (int)sendedVersion.TranslationId,
+                        LanguageId = sendedVersion.LanguageId,
+                        NeededKnowledge = sendedVersion.NeededKnowledge,
+                        KnowledgeToDevelop = sendedVersion.KnowledgeToDevelop,
+                        Comment = sendedVersion.Comment,
+                        Description = sendedVersion.Description,
+                        TitleContent = sendedVersion.TitleContent
+                    });
+                }
+              
             }
             else
             {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using backend.Domain.BaseDefinitions;
 
 namespace backend.Domain.Entities;
-public class InternShipContentTranslation
+public class InternShipContentTranslation:ISoftDeletable
 {
     public int Id { get; set; }
     public string TitleContent { get; set; }

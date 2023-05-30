@@ -39,7 +39,7 @@ export class AuthService {
         email: loginRequest.email,
         password: loginRequest.password
       }).pipe(tap(data => {
-        console.log(data)
+        
         localStorage.setItem('access_token', data.access_token)
         this.IsAuthenticated = true
         this.currentUser = data.user
