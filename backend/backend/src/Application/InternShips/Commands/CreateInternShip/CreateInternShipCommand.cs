@@ -25,17 +25,18 @@ public class CreateInternShipCommand:IRequest
 public class CreateInternShipCommandHandler : AsyncRequestHandler<CreateInternShipCommand>
 {
     private readonly IApplicationDbContext _dbContext;
-
-    public CreateInternShipCommandHandler(IApplicationDbContext dbContext)
+    private readonly ICurrentUserService _currentUser;
+    public CreateInternShipCommandHandler(IApplicationDbContext dbContext, ICurrentUserService currentUser)
     {
         _dbContext = dbContext;
+        _currentUser = currentUser;
     }
 
     protected async override Task Handle(CreateInternShipCommand request, CancellationToken cancellationToken)
     {
         var convertedLocations = request.Locations.Select(x => new Location() { City = x.City, HouseNumber = x.Housenumber, Id = x.Id, StreetName = x.Streetname, ZipCode = x.Zipcode }).ToList();
         _dbContext.Locations.AttachRange(convertedLocations);
-        var result = await _dbContext.InternShips.AddAsync(new() { MaxStudents = request.MaxCountOfStudents, RequiredTrainingType = request.TrainingType, Locations= convertedLocations, SchoolYear = request.SchoolYear, UnitId = request.UnitId,CurrentCountOfStudents=request.CurrentCountOfStudents });
+        var result = await _dbContext.InternShips.AddAsync(new() { MaxStudents = request.MaxCountOfStudents, RequiredTrainingType = request.TrainingType, Locations= convertedLocations, SchoolYear = request.SchoolYear, UnitId = request.UnitId,CurrentCountOfStudents=request.CurrentCountOfStudents,CreatorId=int.Parse(_currentUser.UserId) });
         result.Entity.Translations = new List<InternShipContentTranslation>();
         for (int i = 0; i < request.Versions.Count; i++)
         {

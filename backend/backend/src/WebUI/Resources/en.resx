@@ -146,6 +146,9 @@
   <data name="addLocationHeader" xml:space="preserve">
     <value>Add a location</value>
   </data>
+  <data name="af" xml:space="preserve">
+    <value>Graduate</value>
+  </data>
   <data name="and" xml:space="preserve">
     <value>And</value>
   </data>
@@ -279,14 +282,14 @@
   <data name="FreeUsedPlacesLabel" xml:space="preserve">
     <value>Student count</value>
   </data>
-  <data name="Graduate" xml:space="preserve">
-    <value>Graduate</value>
-  </data>
   <data name="greaterThanMaxStudentsErrorMessage" xml:space="preserve">
     <value>The count of students of the internship may not exceed the maxium </value>
   </data>
   <data name="GreaterThanParamLimitError" xml:space="preserve">
     <value>You must enter a number between 0 and 15.</value>
+  </data>
+  <data name="Hbo5" xml:space="preserve">
+    <value>Graduate</value>
   </data>
   <data name="internship" xml:space="preserve">
     <value>Internship</value>

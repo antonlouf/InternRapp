@@ -159,7 +159,9 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
       })
       .pipe(
         shareReplay(1),
-        map((data) => data.items)
+        map((data) => data.items),
+        take(1),
+        takeUntil(this.destrojSubj$)
       );
     this.locationObs$ = this.locationService
       .filterAndPaginateLocations$({
@@ -344,7 +346,7 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
         .subscribe();
     }
   
-    this.router.navigateByUrl('/internships', {onSameUrlNavigation:'reload'});
+    this.router.navigateByUrl('/', {onSameUrlNavigation:'reload'});
   }
   private mapToSubmittableNewInternshipObject() {
     const internShipToBeReturned: CreateInternship | undefined = {

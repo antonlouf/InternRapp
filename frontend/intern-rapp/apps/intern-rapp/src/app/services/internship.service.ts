@@ -4,18 +4,19 @@ import { PaginationFilterRequest } from '../entities/paginationFilterRequest';
 import { APIConfiguration } from '../configurations/APIConfiguration';
 import { ResourceItemPagingResponse } from '../entities/resourceItemPagingResponse';
 import { InternshipItem } from '../entities/internshipItem';
-import { catchError, retry } from 'rxjs';
+import { catchError, map, retry, tap } from 'rxjs';
 import { CreateInternship } from '../entities/createInternship';
 import { InternshipTranslationUpdateDto } from '../entities/internshipTranslationUpdateDto';
 import { InternshipDetailItem } from '../entities/internshipDetailItem';
 import { InternshipUpdateDto } from '../entities/internshipUpdateDto';
 import { ExportInternshipOptions } from '../entities/exportInternshipOptions';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InternshipService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private sanitizer:DomSanitizer) {}
   public entityTobeUpdated: InternshipDetailItem | undefined;
   private baseSuffixApi = '/api/InternShip';
   public filterAndPaginateLanguages(
@@ -111,6 +112,8 @@ export class InternshipService {
     );
   }
   public exportInternships(filterCriteria: ExportInternshipOptions) {
+  
+
     let queryString = '';
     for (let unit of filterCriteria.unitIds) {
       queryString += `unitIds=${unit}`;
@@ -122,9 +125,24 @@ export class InternshipService {
       }
     }
     queryString += `&schoolYear=${filterCriteria.schoolYear}&languageId=${filterCriteria.languageId}`;
-    return this.http.get(
-      APIConfiguration.baseString +
-        `${this.baseSuffixApi}/export?${queryString}`
-    );
+      return this.http
+        .get(
+          APIConfiguration.baseString +
+            `${this.baseSuffixApi}/export?${queryString}`,
+          { responseType: 'blob' }
+        )
+        .pipe(
+          tap((response: Blob) => {
+            const blob = new Blob([response], {
+              type: 'application/octet-stream',
+            });
+                      const linkElement = document.createElement('a');
+                      linkElement.href = window.URL.createObjectURL(blob);
+                      linkElement.download = 'internships.docx';
+                      linkElement.dispatchEvent(new MouseEvent('click'));
+          })
+        );
+    
+    };
   }
-}
+

@@ -110,6 +110,7 @@ export class InternShipListComponent
       .getInternshipById(id as number)
       .pipe(
         tap((data) => {
+          debugger
           this.internshipService.entityTobeUpdated = data;
 
           this.router.navigateByUrl('internships/create', {
@@ -292,6 +293,9 @@ export class InternShipListComponent
     this.filterUpdated(activeFilters);
   }
   public addToSelectedInternships(completed: boolean, id: number) {
+    console.log(completed);
+     console.log(id);
+    
     if (!completed) {
       this.selectedIds = this.selectedIds.filter((x) => x !== id);
       return;
@@ -303,6 +307,7 @@ export class InternShipListComponent
       // this.router.navigateByUrl('/internships', {
       //   onSameUrlNavigation: 'reload',
       // });
+     
     }),take(1),takeUntil(this.destroySubj$)).subscribe()
   }
   delete() {
