@@ -1,5 +1,5 @@
 
 
 export class APIConfiguration {
-  static baseString = 'https://localhost:7171';
+  static baseString = 'https://webui20230522143743.azurewebsites.net';
 }
