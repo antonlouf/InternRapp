@@ -52,6 +52,7 @@ public class CreateInternShipCommandHandler : AsyncRequestHandler<CreateInternSh
                 
             });
         }
+       
         await _dbContext.SaveChangesAsync(cancellationToken);
     }
 }

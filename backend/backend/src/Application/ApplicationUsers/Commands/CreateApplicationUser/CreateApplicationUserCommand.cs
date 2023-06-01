@@ -9,6 +9,7 @@ namespace backend.Application.ApplicationUsers.Commands.CreateApplicationUser;
 public class CreateApplicationUserCommand : IRequest
 {
     public string Email { get; set; }
+    public string Password{ get; set; }
 }
 public class CreateApplicationUserCommandHandler : AsyncRequestHandler<CreateApplicationUserCommand>
 {
@@ -24,7 +25,7 @@ public class CreateApplicationUserCommandHandler : AsyncRequestHandler<CreateApp
 
     protected override async Task Handle(CreateApplicationUserCommand request, CancellationToken cancellationToken)
     {
-        await _dbContext.ApplicationUsers.AddAsync(new() { Email = request.Email });
+        await _dbContext.ApplicationUsers.AddAsync(new() { Email = request.Email,Password=request.Password,Role=Role.Worker });
         await _dbContext.SaveChangesAsync(cancellationToken);
     }
 

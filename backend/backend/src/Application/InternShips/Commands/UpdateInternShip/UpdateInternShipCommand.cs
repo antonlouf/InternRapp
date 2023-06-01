@@ -31,7 +31,7 @@ public class UpdateInternShipCommandHandler : AsyncRequestHandler<UpdateInternSh
 
     protected async override Task Handle(UpdateInternShipCommand request, CancellationToken cancellationToken)
     {
-        Role role=(Role)int.Parse(_currentUser.Role);
+        Role role=(Role)Enum.Parse(typeof(Role),_currentUser.Role);
         var convertedLocations = request.Locations.Select(x => new Location() { City = x.City, HouseNumber = x.Housenumber, Id = x.Id, StreetName = x.Streetname, ZipCode = x.Zipcode }).ToList();
         _dbContext.Locations.UpdateRange(convertedLocations);
         var internShip = await _dbContext.InternShips.Include(x=>x.Locations).Include(x=>x.Translations).SingleOrDefaultAsync(x => x.Id == request.InternShipId);

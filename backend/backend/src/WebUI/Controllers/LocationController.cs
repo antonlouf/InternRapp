@@ -40,7 +40,7 @@ public class LocationController: ControllerBase
     [HttpPatch()]
     public async Task<IActionResult> UpdateLocation(UpdateLocationDto dto)
     {
-        await _mediator.Send(new UpdateLocationCommand() { Id=dto.Id,City=dto.City,Housenumber=dto.Housenumber,Streetname=dto.Streetname });
+        await _mediator.Send(new UpdateLocationCommand() { Id=dto.Id,City=dto.City,Housenumber=dto.Housenumber,Streetname=dto.Streetname,Zipcode=dto.Zipcode });
         return Ok();
     }
     [HttpDelete(),Authorize(Roles ="Admin")]

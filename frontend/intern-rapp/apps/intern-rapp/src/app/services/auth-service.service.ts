@@ -7,6 +7,7 @@ import { catchError, of, take, tap } from 'rxjs';
 import { LoginResponseDto } from '../entities/loginResponseDto';
 import { User } from '../entities/user';
 import { Router } from '@angular/router';
+import { RegistrationRequest } from '../entities/registrationRequest';
 
 @Injectable({
   providedIn: 'root',
@@ -51,5 +52,16 @@ export class AuthService {
     localStorage.removeItem('access_token')
     this.IsAuthenticated = false
     this.router.navigateByUrl("/login")
+  }
+  public register(registrationRequest:RegistrationRequest) {
+    return this.http
+      .post<LoginResponseDto>(`${APIConfiguration.baseString}/api/login/registration`, {
+        email: registrationRequest.email,
+        password: registrationRequest.password,
+        submitPassword: registrationRequest.submitPassword,
+      })
+      .pipe(
+        take(1)
+      );
   }
 }

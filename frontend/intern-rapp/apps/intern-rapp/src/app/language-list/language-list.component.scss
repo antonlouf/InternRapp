@@ -37,5 +37,12 @@
 }
 
 .align-right{
-margin-left: 97%;
+margin-left: 90%;
+}
+.flex-row-above-list {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    justify-content: flex-end;
+    margin-right: 5%;
 }

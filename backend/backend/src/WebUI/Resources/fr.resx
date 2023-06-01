@@ -474,4 +474,22 @@ Avec le programme &lt;strong&gt;acADDemICT Junior Track&lt;/strong&gt;, Realdolm
   <data name="RequiredTrainingText" xml:space="preserve">
     <value>Le diplome requis pour ce stage est le suivant :</value>
   </data>
+  <data name="EmailRegistrationLabel" xml:space="preserve">
+    <value>Courriel</value>
+  </data>
+  <data name="PasswordRegistrationLabel" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="RegistrationNavbarItem" xml:space="preserve">
+    <value>enregistrement</value>
+  </data>
+  <data name="SnackbarIntersnipCopyText" xml:space="preserve">
+    <value>Cela copie les stages sélectionnés pour l'année suivante.</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>version de la mission de stage</value>
+  </data>
+  <data name="SubmitPasswordRegistrationLabel" xml:space="preserve">
+    <value>Soumettre le mot de passe</value>
+  </data>
 </root>

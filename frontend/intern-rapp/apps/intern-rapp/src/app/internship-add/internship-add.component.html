@@ -119,10 +119,10 @@
 </div>
     </div>
   
-    <mat-tab-group style="width: 60%;margin-left: 20%;margin-top: 1%;" mat-align-tabs="center" backgroundColor="primary"
+    <mat-tab-group style="width: 80%;margin-left: 10%;margin-top: 1%;" mat-align-tabs="center" backgroundColor="primary"
         formArrayName="translateTabs">
-        <ng-container *ngFor="let tab of tabs; let i = index">
-            <mat-tab>
+        <ng-container *ngFor="let tab of tabs; let i = index;">
+            <mat-tab >
                 <ng-template mat-tab-label>
                     {{getFormGroupOutOfAbstractControl(tab).controls['languageCode'].value}}
                     <button mat-icon-button style="color:red;" (click)="deleteTranslation(getTranslationId(getFormGroupOutOfAbstractControl(tab)),i)">
@@ -145,7 +145,7 @@
 
 
   </mat-tab-group> -->
-  <button [disabled]="!this.addInternshipForm.valid||tabsArrayLength<1||tabIsInvalid" type="button" class="save-button" mat-icon-button  (click)="addInternship()">
+  <button [disabled]="this.addInternshipForm.invalid||tabsArrayLength<1||tabIsInvalid" type="button" class="save-button" mat-icon-button  (click)="addInternship()">
     <mat-icon>save</mat-icon>
 </button>
     </form>

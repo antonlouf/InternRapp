@@ -8,11 +8,16 @@ import { InternshipAddComponent } from './internship-add/internship-add.componen
 import { InternshipDetailItem } from './entities/internshipDetailItem';
 import { AuthGuard } from '../guards/authguard';
 import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 export const appRoutes: Route[] = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component:RegistrationComponent
   },
   {
     path: 'departments',

@@ -64,7 +64,7 @@ export class LanguageListComponent
     closeOnNavigation: true,
     disableClose: false,
     hasBackdrop: true,
-    position: { top: '250px', right: '1200px' },
+    position: { top: '10%', right: '35%' },
   };
   getGridItems$(
     paginationFilterRequest: PaginationFilterRequest
@@ -102,7 +102,7 @@ export class LanguageListComponent
           .afterClosed()
           .pipe(map((confirm) => (confirm ? id : undefined)));
       }),
-      filter((id) => !!id), //undefined checken
+      filter((id) => !!id),
       switchMap((id) => this.languageService.deleteLanguage(this.selectedIds))
     );
   }

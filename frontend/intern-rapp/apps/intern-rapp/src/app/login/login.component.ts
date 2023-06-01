@@ -50,4 +50,7 @@ export class LoginComponent implements OnInit {
       password: this.loginForm?.controls['password'].getRawValue(),
     }).subscribe()
   }
+  public register() {
+    this.router.navigateByUrl("/register")
+  }
 }

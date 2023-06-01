@@ -21,6 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="ApplicationUsers\Commands\NewFolder\" />
       <Folder Include="Common\FileGenerators\" />
       <Folder Include="Common\Security\" />
       <Folder Include="Languages\Common\" />
