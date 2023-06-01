@@ -10,18 +10,20 @@
 <ng-template
 internRappItemsTmpl let-items 
 >
-<button (click)="addLanguage()" class="align-right save-button-above-list"  >
-  <div class="flex-row center-flex-items" >
-    <div>    <mat-icon>add</mat-icon></div>
+<div class="flex-row-above-list ">
+  <div >
+    <button (click)="addLanguage()" class="align-right save-button-above-list">
+      <mat-icon>add</mat-icon>
+    </button>
     <!-- <div>{{'addButton'|translate}}</div> -->
   </div>
-    <div>
+    <div >
       <button *ngIf="authService.currentUser.role===0" mat-icon-button (click)="delete()" class="cancel-button" mat-fab color="primary"
         aria-label="Example icon button with a delete icon">
         <mat-icon>delete</mat-icon>
       </button>
     </div>
-</button>
+    </div>
   <mat-list >
   <div class="flex-row-columns">
     <div style="margin-left: 2%;">{{'languageCodeLabel'|translate}}</div>

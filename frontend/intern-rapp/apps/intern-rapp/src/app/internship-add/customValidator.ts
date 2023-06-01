@@ -3,7 +3,6 @@ import { AbstractControl, FormGroup, ValidatorFn } from "@angular/forms";
 export function islessThanOrEqualToMaxStudents(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     const value = control.value;
-    debugger;
     if (control.parent) {
       const parentFormGroup = control.parent as FormGroup;  
      if (value <= parentFormGroup.get('maxStudents')?.value) {

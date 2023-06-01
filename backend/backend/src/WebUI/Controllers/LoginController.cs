@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using CommonReadModels.Contracts;
 using backend.Application.ApplicationUsers.Queries.GetUserByUserNameAndPassword;
 using MediatR;
+using backend.Domain.Enums;
 
 namespace WebUI.Controllers;
 
@@ -41,7 +42,7 @@ public class LoginController : ControllerBase
                         new Claim(JwtRegisteredClaimNames.Exp, DateTime.UtcNow.AddHours(5).ToString()),
                         new Claim("id", $"{user.Id}"),
                         new Claim("Email", request.Email),
-                        new Claim("Role", ((int)user.Role).ToString()),
+                        new Claim(ClaimTypes.Role, user.Role.ToString()),
 
             };
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
@@ -67,7 +68,7 @@ public class LoginController : ControllerBase
         { 
             id = HttpContext.User.Claims.Where(x => x.Type == "id").Select(x=> int.Parse(x.Value)).SingleOrDefault(),
             email = HttpContext.User.Claims.Where(x => x.Type == "Email").Select(x => x.Value).SingleOrDefault(),
-            role= HttpContext.User.Claims.Where(x => x.Type == "Role").Select(x => int.Parse(x.Value)).SingleOrDefault(),
+            role= HttpContext.User.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => (int)Enum.Parse(typeof(Role),x.Value)).SingleOrDefault(),
 
 
         };

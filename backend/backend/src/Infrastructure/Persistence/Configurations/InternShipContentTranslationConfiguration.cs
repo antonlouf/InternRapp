@@ -14,8 +14,8 @@ public class InternShipContentTranslationConfiguration : IEntityTypeConfiguratio
     public void Configure(EntityTypeBuilder<InternShipContentTranslation> builder)
     {
         builder.HasKey(x => x.Id);
-        builder.Property(x => x.TitleContent).IsRequired().HasMaxLength(100);
-        builder.Property(x => x.Description).IsRequired().HasMaxLength(3000);
+        builder.Property(x => x.TitleContent).IsRequired().HasMaxLength(170);
+        builder.Property(x => x.Description).IsRequired().HasMaxLength(1000);
         builder.Property(x => x.KnowledgeToDevelop).IsRequired().HasMaxLength(1000);
         builder.Property(x => x.NeededKnowledge).IsRequired().HasMaxLength(1000);
         builder.Property(x => x.Comment).IsRequired().HasMaxLength(1000);
@@ -26,14 +26,7 @@ public class InternShipContentTranslationConfiguration : IEntityTypeConfiguratio
         {
             Id = 1,
             TitleContent = "Devops Factory – Project evaluation tool",
-            Description = @"<p>In de presalesfase van een klantproject is d&#39; het belangrijk om de risicos van het softwareproject te detecteren (risicos moeten voor de start van het project worden verminderd). Er zijn ook enkele vereisten met betrekking tot methodologie, gereedschap en technologie voordat een project kan worden uitgevoerd in ons DevOps-fabrieksmodel. Om hier een duidelijk beeld van te krijgen, moet een biedarchitect/-manager in de presalesfase een paar vragen beantwoorden (+/- 50, tegenwoordig in een Excel-bestand) die resulteren in een projecttype (type 1, 2 of 3). Als het resultaat type 3 is, kan het project niet worden ingevoerd in ons DevOps Factory-leveringsmodel. We willen een applicatie bouwen ter vervanging van ons Excel-bestand. Een niet-uitputtende lijst van vereisten om dit te realiseren omvat:</p>
-<ul>
-<li>Mogelijkheid om een nieuw project aan te maken en te beoordelen (vragen beantwoorden)</li>
-<li>Vragen toevoegen/wijzigen/verwijderen</li>
-<li>Samenvattingscherm met het resultaat en een overzicht van risicos op basis van de antwoorden op de vragen</li>
-<li>Mogelijkheid om de samenvatting te exporteren (pdf, excel, ...)</li>
-<li>Inloggen als biedarchitect, biedmanager, DevOps-fabriekscoach, team, ...</li>
-</ul>",
+            Description = @"<p>In de presalesfase van een klantproject is d&#39; het belangrijk om de risicos van het softwareproject te detecteren (risicos moeten voor de start van het project worden verminderd). Er zijn ook enkele vereisten met betrekking tot methodologie, gereedschap en technologie voordat een project kan worden uitgevoerd in ons DevOps-fabrieksmodel. Om hier een duidelijk beeld van te krijgen, moet een biedarchitect/-manager in de presalesfase een paar vragen beantwoorden (+/- 50, tegenwoordig in een Excel-bestand) die resulteren in een projecttype (type 1, 2 of 3). Als het resultaat type 3 is, kan het project niet worden ingevoerd in ons DevOps Factory-leveringsmodel. We willen een applicatie bouwen ter vervanging van ons Excel-bestand. Een niet-uitputtende lijst van vereisten om dit te realiseren omvat:</p>",
 
             KnowledgeToDevelop = @"<ul>
 <li>Het ontwerpen en ontwikkelen van een schaalbare applicatie</li>
@@ -45,14 +38,7 @@ public class InternShipContentTranslationConfiguration : IEntityTypeConfiguratio
     <li>Technische analyses en API-ontwerp</li>
     <li>Ontwikkeling van .NET Core-webapplicaties</li>
     <li>Testen</li>
-    <li>Documentatie</li>
-</ul>
-</li>
-<li>Cloud computing met Azure (hosting &amp; database)</li>
-<li>Entity Framework Core</li>
-<li>ASP .NET Core Web API</li>
-<li>ASP .NET MVC, Blazor</li>
-</ul>",
+    <li>Documentatie</li>",
             NeededKnowledge = @"<ul>
 <li>In staat zijn om zelfstandig te werken en problemen op te lossen onder wekelijkse begeleiding.</li>
 <li>Kennis van C#</li>
@@ -74,15 +60,7 @@ public class InternShipContentTranslationConfiguration : IEntityTypeConfiguratio
             Id = 2,
             TitleContent = "Devops Factory – Project evaluation tool",
             Description = @"<p>Dans la phase de pr&eacute;vente d&#39;un projet client, il est important de d&eacute;tecter les risques du projet logiciel (les risques doivent &ecirc;tre att&eacute;nu&eacute;s avant le d&eacute;but du projet). Il existe &eacute;galement des exigences en mati&egrave;re de m&eacute;thodologie, d&#39;outils et de technologie avant qu&#39;un projet puisse &ecirc;tre ex&eacute;cut&eacute; dans notre usine DevOps.<br />
-Pour avoir une vision claire de cela, dans la phase de pr&eacute;vente, un architecte/gestionnaire d&#39;offres doit r&eacute;pondre &agrave; quelques questions (+/- 50, actuellement dans un fichier Excel) qui donnent lieu &agrave; un &quot;type de projet&quot; (type 1, 2 ou 3). Si le r&eacute;sultat est de type 3, le projet ne peut pas &ecirc;tre int&eacute;gr&eacute; &agrave; notre mod&egrave;le de livraison de l&#39;usine DevOps. Nous souhaitons construire une application pour remplacer notre fichier Excel. Voici une liste non exhaustive des exigences :</p>
-<ul>
-<li>Possibilit&eacute; de cr&eacute;er un nouveau projet et d&#39;effectuer un d&eacute;pistage (r&eacute;pondre aux questions)</li>
-<li>Ajouter/mettre &agrave; jour/supprimer des questions et des r&eacute;ponses</li>
-<li>Attribuer un facteur de pond&eacute;ration aux questions qui influence le r&eacute;sultat (le type de projet : 1, 2 ou 3)</li>
-<li>&Eacute;cran de synth&egrave;se avec le r&eacute;sultat et un aper&ccedil;u des risques li&eacute;s aux r&eacute;ponses aux questions</li>
-<li>Possibilit&eacute; d&#39;exporter la synth&egrave;se (PDF, Excel, ...)</li>
-<li>Connexion en tant qu&#39;architecte/gestionnaire d&#39;offres, coach DevOps de l&#39;usine, &eacute;quipe, ...</li>
-</ul>",
+Pour avoir une vision claire de cela, dans la phase de pr&eacute;vente, un architecte/gestionnaire d&#39;offres doit r&eacute;pondre &agrave; quelques questions (+/- 50, actuellement dans un fichier Excel) qui donnent lieu &agrave; un &quot;type de projet&quot; (type 1, 2 ou 3). Si le r&eacute;sultat est de type 3, le projet ne peut pas &ecirc;tre int&eacute;gr&eacute; &agrave; notre mod&egrave;le de livraison de l&#39;usine DevOps. Nous souhaitons construire une application pour remplacer notre fichier Excel. Voici une liste non exhaustive des exigences :</p>",
             KnowledgeToDevelop = @"<ul>
 <li>Conception et d&eacute;veloppement d&#39;une application &eacute;volutive</li>
 <li>Conception d&#39;une application conviviale</li>
@@ -93,14 +71,7 @@ Pour avoir une vision claire de cela, dans la phase de pr&eacute;vente, un archi
     <li>Analyses techniques et conception d&#39;API</li>
     <li>D&eacute;veloppement d&#39;applications Web avec .NET Core</li>
     <li>Tests</li>
-    <li>Documentation</li>
-</ul>
-</li>
-<li>Cloud computing avec Azure (h&eacute;bergement et base de donn&eacute;es)</li>
-<li>Entity Framework Core</li>
-<li>ASP .NET Core Web API</li>
-<li>ASP .NET MVC, Blazor</li>
-</ul>",
+    <li>Documentation</li>",
             NeededKnowledge = @"<ul>
 <li>&Ecirc;tre capable de travailler et de r&eacute;soudre des probl&egrave;mes de mani&egrave;re autonome sous une supervision hebdomadaire.</li>
 <li>Connaissance du langage C#</li>
@@ -120,16 +91,7 @@ Pour avoir une vision claire de cela, dans la phase de pr&eacute;vente, un archi
     {
         Id = 3,
         TitleContent = "Devops Factory – Project evaluation tool",
-        Description = @"<p>In the presales phase of a customer project, it&rsquo;s important to detect the risks of the software project (risks needs to be mitigated before the start of the project). There are also some requirements about methodology, tooling &amp; technology before a project can be executed in our DevOps factory. To have a clear view on this, in presales phase, a bid architect/manager needs to answer a few questions (+/- 50, nowadays in an Excel file) which results in a &lsquo;project type&rsquo; (type 1, 2 or 3). If the result will be type 3, the project cannot be onboarded in our DevOps Factory delivery model. We want to build an application as a replacement of our Excel file. A non-exhaustive list of requirements:</p>
-<ul>
-<li>Possibility to create a new project &amp; screening (answering the questions)</li>
-<li>Add/update/delete questions, answers</li>
-<li>Giving questions weighting factor that influences the result (the type of project: 1,2 or 3)</li>
-<li>Summary screen with the result and an overview of risks related on the answers to the questions</li>
-<li>Possibility to export (pdf, excel,...) the summary</li>
-<li>Login as a bid architect, bid manager, DevOps factory coach, team,...</li>
-<li>...</li>
-</ul>",
+        Description = @"<p>In the presales phase of a customer project, it&rsquo;s important to detect the risks of the software project (risks needs to be mitigated before the start of the project). There are also some requirements about methodology, tooling &amp; technology before a project can be executed in our DevOps factory. To have a clear view on this, in presales phase, a bid architect/manager needs to answer a few questions (+/- 50, nowadays in an Excel file) which results in a &lsquo;project type&rsquo; (type 1, 2 or 3). If the result will be type 3, the project cannot be onboarded in our DevOps Factory delivery model. We want to build an application as a replacement of our Excel file. A non-exhaustive list of requirements:</p>",
         KnowledgeToDevelop = @"<ul>
 <li>Designing and developing a scalable application</li>
 <li>Designing a user-friendly application</li>
@@ -179,14 +141,7 @@ Pour avoir une vision claire de cela, dans la phase de pr&eacute;vente, un archi
     <li>Technische analyses en API-ontwerp</li>
     <li>Ontwikkeling van .NET Core-webapplicaties</li>
     <li>Testen</li>
-    <li>Documentatie</li>
-</ul>
-</li>
-<li>Cloud computing met Azure (hosting &amp; database)</li>
-<li>Entity Framework Core</li>
-<li>ASP .NET Core Web API</li>
-<li>ASP .NET MVC, Blazor</li>
-</ul>",
+    <li>Documentatie</li>",
         NeededKnowledge = @"<ul>
 <li>In staat zijn om zelfstandig te werken en problemen op te lossen onder wekelijkse begeleiding.</li>
 <li>Kennis van C#</li>
@@ -217,14 +172,7 @@ Pour avoir une vision claire de cela, dans la phase de pr&eacute;vente, un archi
     <li>Analyses techniques et conception d&#39;API</li>
     <li>D&eacute;veloppement d&#39;applications Web avec .NET Core</li>
     <li>Tests</li>
-    <li>Documentation</li>
-</ul>
-</li>
-<li>Cloud computing avec Azure (h&eacute;bergement et base de donn&eacute;es)</li>
-<li>Entity Framework Core</li>
-<li>ASP .NET Core Web API</li>
-<li>ASP .NET MVC, Blazor</li>
-</ul>",
+    <li>Documentation</li>",
         NeededKnowledge = @"<ul>
 <li>&Ecirc;tre capable de travailler et de r&eacute;soudre des probl&egrave;mes de mani&egrave;re autonome sous une supervision hebdomadaire.</li>
 <li>Connaissance du langage C#</li>
@@ -263,14 +211,7 @@ replacement of this Word document.<p>",
     <li>Technical analyses and API Desig</li>
     <li>Development van .NET Core Web applications</li>
     <li>Testing</li>
-    <li>Documentation</li>
-</ul>
-</li>
-<li>Cloud computing with Azure (hosting &amp; database)</li>
-<li>Entity Framework Core</li>
-<li>ASP .NET Core Web API</li>
-<li>ASP .NET MVC, Blazor</li>
-</ul>",
+    <li>Documentation</li>",
         NeededKnowledge = @"<ul>
 <li>Being able to work and solve problems independently under weekly guidance.</li>
 <li>C# knowledge</li>
@@ -290,7 +231,7 @@ replacement of this Word document.<p>",
     {
         Id = 7, 
         TitleContent = " R-Library",
-        Description = @"<p>In de Inetum-Realdolmen Project Factory (PF) ontwikkelen developers van Inetum Realdolmen software in opdracht van een klant. Al het development gebeurd in house, met de tooling van Inetum-Realdolmen. De klant krijgt dus zijn deliverable op&nbsp;bepaalde tijdstippen en hoeft geen volledig development team te hebben.&nbsp;</p><p>Om onze PF te ondersteunen, hebben enkele collega&rsquo;s een bibliotheek opgericht. Hier&nbsp;kunnen onze developers boeken uitlenen. Momenteel wordt het uitleen-gedrag&nbsp;bijgehouden op een blad papier. Alsook aanvragen om nieuwe boeken aan te kopen&nbsp;worden op papier bijgehouden. Dit is een bewuste keuze. Als we het uitleen-gedrag&nbsp;digitaliseren op basis van bestaande tools (Google Drive, SharePoint...) zorgt dit voor&nbsp;extra overhead, dit be&iuml;nvloedt de toegankelijkheid van de bibliotheek.</p><p>In deze stageopdracht is het de bedoeling om een App uit te werken om dit uitleengedrag te gaan beheren. Er zijn tal van uitbreidingsmogelijkheden (synchroniseren&nbsp;met een service, scannen van barcodes om te lenen/terug te brengen, aanvragen&nbsp;van boeken&hellip;). Hiervoor zal de student zelf kunnen kiezen welke functionaliteit er&nbsp;volbracht wordt, uiteraard in samenspraak met stagebegeleider en &lsquo;klant&rsquo;.</p><p>Er wordt verwacht van de student dat hij/zij deze opdracht opneemt in de mentaliteit&nbsp;van de PF. Dit wil zeggen dat wij, de developers, de klant zullen zijn. Hij/zij zal&nbsp;correct moeten schatten, implementeren en met iteraties werkende, kwaliteitsvolle&nbsp;software opleveren.&nbsp;Hierbij zal de student begeleiding beschikbaar hebben. In de PF zijn immers enkele&nbsp;ScrumMaster&rsquo;s, tal van developers en bovendien een Agile/SCRUM coach.</p>",
+        Description = @"<p>In de Inetum-Realdolmen Project Factory (PF) ontwikkelen developers van Inetum Realdolmen software in opdracht van een klant. Al het development gebeurd in house, met de tooling van Inetum-Realdolmen. De klant krijgt dus zijn deliverable op&nbsp;bepaalde tijdstippen en hoeft geen volledig development team te hebben.&nbsp;</p><p>Om onze PF te ondersteunen, hebben enkele collega&rsquo;s een bibliotheek opgericht. Hier&nbsp;kunnen onze developers boeken uitlenen. Momenteel wordt het uitleen-gedrag&nbsp;bijgehouden op een blad papier. Alsook aanvragen om nieuwe boeken aan te kopen&nbsp;worden op papier bijgehouden. Dit is een bewuste keuze. Als we het uitleen-gedrag&nbsp;digitaliseren op basis van bestaande tools (Google Drive, SharePoint...) zorgt dit voor&nbsp;extra overhead, dit be&iuml;nvloedt de toegankelijkheid van de bibliotheek.</p>",
         KnowledgeToDevelop = @"<p><u>Niet technisch</u>&nbsp;</p>
 <ul>
 	<li>Werken in de SCRUM methodologie</li>
@@ -338,10 +279,7 @@ replacement of this Word document.<p>",
         Id = 8, 
         TitleContent = " R-Library",
         Description = @"<p>Dans l&#39;Inetum-Realdolmen Project Factory (PF), les d&eacute;veloppeurs d&#39;Inetum-Realdolmen d&eacute;veloppent des logiciels sur demande d&#39;un client. Tout le d&eacute;veloppement se fait en interne, avec les outils d&#39;Inetum-Realdolmen. Ainsi, le client re&ccedil;oit ses livrables &agrave; des moments pr&eacute;cis et n&#39;a pas besoin d&#39;avoir une &eacute;quipe de d&eacute;veloppement compl&egrave;te.&nbsp;<br />
-Pour soutenir notre PF, certains coll&egrave;gues ont cr&eacute;&eacute; une biblioth&egrave;que. Nos d&eacute;veloppeurs peuvent y emprunter des livres. Actuellement, les emprunts sont enregistr&eacute;s sur une feuille de papier. De m&ecirc;me, les demandes d&#39;achat de nouveaux livres sont consign&eacute;es sur papier. C&#39;est un choix d&eacute;lib&eacute;r&eacute;. Si nous num&eacute;risons les emprunts &agrave; l&#39;aide d&#39;outils existants (Google Drive, SharePoint, etc.), cela entra&icirc;ne une surcharge suppl&eacute;mentaire, ce qui affecte l&#39;accessibilit&eacute; de la biblioth&egrave;que.&nbsp;<br />
-L&#39;objectif de ce stage est de d&eacute;velopper une application pour g&eacute;rer ces emprunts. Il existe de nombreuses possibilit&eacute;s d&#39;extension (synchronisation avec un service, num&eacute;risation de codes-barres pour emprunter/retourner, demandes de livres, etc.). L&#39;&eacute;tudiant pourra choisir lui-m&ecirc;me les fonctionnalit&eacute;s &agrave; impl&eacute;menter, en concertation avec le superviseur de stage et le &quot;client&quot;.&nbsp;<br />
-On attend de l&#39;&eacute;tudiant qu&#39;il aborde cette mission dans l&#39;&eacute;tat d&#39;esprit de la PF. Cela signifie que nous, les d&eacute;veloppeurs, serons le client. Il devra estimer correctement, impl&eacute;menter et livrer un logiciel fonctionnel et de qualit&eacute; par it&eacute;rations.&nbsp;<br />
-L&#39;&eacute;tudiant b&eacute;n&eacute;ficiera d&#39;un encadrement. En effet, la PF compte plusieurs Scrum Masters, de nombreux d&eacute;veloppeurs et un coach Agile/SCRUM.</p>",
+Pour soutenir notre PF, certains coll&egrave;gues ont cr&eacute;&eacute; une biblioth&egrave;que. Nos d&eacute;veloppeurs peuvent y emprunter des livres. Actuellement, les emprunts sont enregistr&eacute;s sur une feuille de papier. De m&ecirc;me, les demandes d&#39;achat de nouveaux livres sont consign&eacute;es sur papier. C&#39;est un choix d&eacute;lib&eacute;r&eacute;. Si nous num&eacute;risons les emprunts &agrave; l&#39;aide </p>",
         KnowledgeToDevelop = @"<p><u>Non technique:</u></p>
 <ul>
 	<li>Travailler selon la m&eacute;thodologie SCRUM</li>

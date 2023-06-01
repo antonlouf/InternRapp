@@ -16,7 +16,6 @@ public class PrefaceTranslationConfiguration : IEntityTypeConfiguration<PrefaceT
     {
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Content).IsRequired();
-
         //seeding
         builder.HasData(new
         {

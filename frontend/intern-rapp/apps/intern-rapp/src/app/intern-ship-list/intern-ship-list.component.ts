@@ -110,7 +110,6 @@ export class InternShipListComponent
       .getInternshipById(id as number)
       .pipe(
         tap((data) => {
-          debugger
           this.internshipService.entityTobeUpdated = data;
 
           this.router.navigateByUrl('internships/create', {

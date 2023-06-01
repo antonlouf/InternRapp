@@ -80,7 +80,7 @@ export class UnitListComponent
     closeOnNavigation: true,
     disableClose: false,
     hasBackdrop: true,
-    position: { top: '250px', right: '1200px' },
+    position: { top: '6%', right: '35%' },
   };
   getGridItems$(
     paginationFilterRequest: PaginationFilterRequest
