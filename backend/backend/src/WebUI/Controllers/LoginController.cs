@@ -11,6 +11,8 @@ using CommonReadModels.Contracts;
 using backend.Application.ApplicationUsers.Queries.GetUserByUserNameAndPassword;
 using MediatR;
 using backend.Domain.Enums;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using backend.Application.ApplicationUsers.Commands.CreateApplicationUser;
 
 namespace WebUI.Controllers;
 
@@ -59,6 +61,13 @@ public class LoginController : ControllerBase
             user = user
         };
         return Ok(responseObject);
+    }
+    [AllowAnonymous]
+    [HttpPost,Route("registration")]
+    public async Task<IActionResult> Register([FromBody] RegistrationRequestDto request)
+    {
+        await _mediator.Send(new CreateApplicationUserCommand() { Email=request.Email,Password=request.Password});
+        return Ok();
     }
     [HttpGet]
     public  IActionResult GetCurrentUser()

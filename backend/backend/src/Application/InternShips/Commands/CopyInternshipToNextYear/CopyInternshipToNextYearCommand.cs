@@ -36,6 +36,7 @@ public class CopyInternshipToNextYearCommandHandler : AsyncRequestHandler<CopyIn
             itemTobeAddedToNextYear.Translations.ToList().ForEach(x=>x.Id = 0);
             itemTobeAddedToNextYear.CreatorId = int.Parse(_currentUser.UserId);
             intershipsForTHeNextYear.Add(itemTobeAddedToNextYear);
+            
         }
         _dbContext.InternShips.AddRange(intershipsForTHeNextYear);
      

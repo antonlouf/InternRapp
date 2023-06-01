@@ -47,6 +47,8 @@ import { ExportPopupOptionsComponent } from '../export-popup-options/export-popu
 import { ExportInternshipOptions } from '../entities/exportInternshipOptions';
 import { AuthService } from '../services/auth-service.service';
 import { Role } from '../enums/role';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackbarComponent } from '../snackbar/snackbar.component';
 
 @Component({
   selector: 'intern-rapp-intern-ship-list',
@@ -65,6 +67,7 @@ import { Role } from '../enums/role';
     MatCheckboxModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSnackBarModule
   ],
   templateUrl: './intern-ship-list.component.html',
   styleUrls: ['./intern-ship-list.component.scss'],
@@ -85,7 +88,8 @@ export class InternShipListComponent
     private languageService: LanguageService,
     private router: Router,
     public dialog: MatDialog,
-    public authService:AuthService
+    public authService: AuthService,
+    private _snackBar: MatSnackBar
   ) {
     super();
   }
@@ -100,6 +104,11 @@ export class InternShipListComponent
   ngOnDestroy(): void {
     this.destroySubj$.next();
     this.destroySubj$.complete();
+  }
+  private openSnackBar() {
+    this._snackBar.openFromComponent(SnackbarComponent, {
+      duration: 10000,
+    });
   }
   public addInternship() {
     this.internshipService.entityTobeUpdated = undefined;
@@ -134,8 +143,10 @@ export class InternShipListComponent
           .pipe(map((confirm) => (confirm ? id : undefined)));
       }),
       filter((id) => !!id), //undefined checken
-      switchMap((id) => this.internshipService.deleteInternship(this.selectedIds ?? 0)),  
-    )
+      switchMap((id) =>
+        this.internshipService.deleteInternship(this.selectedIds ?? 0)
+      )
+    );
   }
   getGridItems$(
     paginationFilterRequest: PaginationFilterRequest
@@ -145,33 +156,31 @@ export class InternShipListComponent
     );
   }
   ngOnInit(): void {
-   const activeFilters: Record<string, unknown> = {};
-   activeFilters['schoolYear'] = this.calculateCurrentSchoolyear();
-   this.filterUpdated(activeFilters);
-      this.exportSubj$
-       .pipe(
-         switchMap(() => {
-           const dialogRef = this.dialog.open(
-             ExportPopupOptionsComponent,
-             this.popUpConfig
-           );
-           // dialogRef.componentInstance.title = 'internship';
-           return dialogRef
-             .afterClosed()
-             .pipe(
-               map(
-                 (confirm) =>
-                   (confirm as ExportInternshipOptions ) ?? undefined
-               )
-             );
-         }),
-         filter((id) => !!id), //undefined checken
-         switchMap((data) => this.internshipService.exportInternships(data)),
-         take(1),
-         takeUntil(this.destroySubj$)
-       )
-       .subscribe();
-  
+    const activeFilters: Record<string, unknown> = {};
+    activeFilters['schoolYear'] = this.calculateCurrentSchoolyear();
+    this.filterUpdated(activeFilters);
+    this.exportSubj$
+      .pipe(
+        switchMap(() => {
+          const dialogRef = this.dialog.open(
+            ExportPopupOptionsComponent,
+            this.popUpConfig
+          );
+          // dialogRef.componentInstance.title = 'internship';
+          return dialogRef
+            .afterClosed()
+            .pipe(
+              map(
+                (confirm) => (confirm as ExportInternshipOptions) ?? undefined
+              )
+            );
+        }),
+        filter((id) => !!id), //undefined checken
+        switchMap((data) => this.internshipService.exportInternships(data)),
+        take(1),
+        takeUntil(this.destroySubj$)
+      )
+      .subscribe();
 
     this.filters = [
       {
@@ -242,13 +251,12 @@ export class InternShipListComponent
     this.configureItems([this.configureDelete$()]);
   }
   private calculateCurrentSchoolyear() {
-    const date=new Date()
+    const date = new Date();
     const year = date.getFullYear();
-    const month = date.getMonth()
+    const month = date.getMonth();
     if (month <= 6) {
-      return `${year-1}-${year}`
-    }
-    else {
+      return `${year - 1}-${year}`;
+    } else {
       return `${year}-${year + 1}`;
     }
   }
@@ -293,8 +301,8 @@ export class InternShipListComponent
   }
   public addToSelectedInternships(completed: boolean, id: number) {
     console.log(completed);
-     console.log(id);
-    
+    console.log(id);
+
     if (!completed) {
       this.selectedIds = this.selectedIds.filter((x) => x !== id);
       return;
@@ -302,18 +310,24 @@ export class InternShipListComponent
     this.selectedIds.push(id);
   }
   public copyInternship() {
-    this.internshipService.copyToNextYear(this.selectedIds).pipe(tap(() => {
-      // this.router.navigateByUrl('/internships', {
-      //   onSameUrlNavigation: 'reload',
-      // });
-     
-    }),take(1),takeUntil(this.destroySubj$)).subscribe()
+    this.internshipService
+      .copyToNextYear(this.selectedIds)
+      .pipe(
+        tap(() => {
+          // this.router.navigateByUrl('/internships', {
+          //   onSameUrlNavigation: 'reload',
+          // });
+          this.openSnackBar()
+        }),
+        take(1),
+        takeUntil(this.destroySubj$)
+      )
+      .subscribe();
   }
   delete() {
     this.deleteSubject.next(0);
   }
   exportButtonHandler() {
-    this.exportSubj$.next()
-    
+    this.exportSubj$.next();
   }
 }

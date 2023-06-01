@@ -56,6 +56,7 @@ import {
   isLessThanOrEqualToParam,
   islessThanOrEqualToMaxStudents,
 } from './customValidator';
+import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 @Component({
   selector: 'intern-rapp-internship-add',
   standalone: true,
@@ -99,6 +100,7 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
   public locationObs$: Observable<LocationItem[]> | undefined;
   private languageObs$: Observable<LanguageItem[]> | undefined;
   private destrojSubj$ = new Subject();
+  private deleteTranslationSubj$ = new Subject();
   private popUpConfig = {
     width: '400px',
     closeOnNavigation: true,
@@ -149,7 +151,43 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
         [Validators.required]
       ),
     });
-    
+    this.deleteTranslationSubj$.pipe(
+      switchMap((data) => {
+        const dialogRef = this.dialog.open(
+          DeletePopupComponent,
+          this.popUpConfig
+        );
+        dialogRef.componentInstance.title = 'InternshipTranslation';
+        return dialogRef
+          .afterClosed()
+          .pipe(map((confirm) => (confirm ? data as {id:number,index:number}: undefined)));
+      }),
+      filter((id) => !!id), //undefined checken,
+      tap(data => {
+      if (data?.id   !== 0) {
+        (
+          this.addInternshipForm?.controls['translateTabs'] as FormArray
+        ).controls = this.tabs.filter(
+          (x) => x.getRawValue()['translationId'] !== data?.id
+        );
+      } else {
+        let controlTobeDeleted: AbstractControl<any, any>;
+        if (this.tabs !== undefined) {
+          controlTobeDeleted = this.tabs[data.index];
+        }
+        (
+          this.addInternshipForm?.controls['translateTabs'] as FormArray
+        ).controls = this.tabs.filter(
+          (x) =>
+            x.getRawValue()['languageCode'] !==
+            controlTobeDeleted.getRawValue()['languageCode']
+        );
+        }  
+        this.changeDetectorRef.markForCheck()
+      }),
+      take(1),
+      takeUntil(this.destrojSubj$)
+    ).subscribe();
     this.languageObs$ = this.languageService
       .filterAndPaginateLanguages({
         filterString: '',
@@ -383,27 +421,12 @@ export class InternshipAddComponent implements OnInit, OnDestroy {
     return internShipToBeReturned;
   }
   public deleteTranslation(id: number, index: number) {
-    if (id !== 0) {
-      (
-        this.addInternshipForm?.controls['translateTabs'] as FormArray
-      ).controls = this.tabs.filter(
-        (x) => x.getRawValue()['translationId'] !== id
-      );
-    } else {
-      let controlTobeDeleted: AbstractControl<any, any>;
-      if (this.tabs !== undefined) {
-        controlTobeDeleted = this.tabs[index];
-      }
-      (
-        this.addInternshipForm?.controls['translateTabs'] as FormArray
-      ).controls = this.tabs.filter(
-        (x) =>
-          x.getRawValue()['languageCode'] !==
-          controlTobeDeleted.getRawValue()['languageCode']
-      );
-    }
+    this.deleteTranslationSubj$.next({
+      id: id,
+      index:index
+    })
+    this.deleteTranslationSubj$
   }
-
   public getTranslationId(abstractControl: AbstractControl) {
     return (abstractControl as FormGroup).getRawValue()['translationId'];
   }

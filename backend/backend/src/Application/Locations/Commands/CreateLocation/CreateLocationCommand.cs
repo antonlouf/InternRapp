@@ -19,10 +19,11 @@ public class CreateLocationCommand: IRequest
 public class CreateLocationCommandHandler : AsyncRequestHandler<CreateLocationCommand>
 {
     private readonly IApplicationDbContext _dbContext;
-
-    public CreateLocationCommandHandler(IApplicationDbContext dbContext)
+    private readonly ICurrentUserService _currentUser;
+    public CreateLocationCommandHandler(IApplicationDbContext dbContext, ICurrentUserService currentUser)
     {
         _dbContext = dbContext;
+        _currentUser = currentUser;
     }
 
     protected override async Task Handle(CreateLocationCommand request, CancellationToken cancellationToken)
@@ -31,8 +32,10 @@ public class CreateLocationCommandHandler : AsyncRequestHandler<CreateLocationCo
             City = request.city, 
             StreetName = request.streetname, 
             HouseNumber = request.housenumber, 
-            ZipCode = request.zipcode
+            ZipCode = request.zipcode,
+            CreatorId=int.Parse(_currentUser.UserId)
         };
+
         await _dbContext.Locations.AddAsync(entityTobeAdded); 
         await _dbContext.SaveChangesAsync(cancellationToken);
     }

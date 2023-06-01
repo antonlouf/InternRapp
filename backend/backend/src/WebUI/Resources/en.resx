@@ -264,6 +264,9 @@
   <data name="emailLabel" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="EmailRegistrationLabel" xml:space="preserve">
+    <value>Email</value>
+  </data>
   <data name="En" xml:space="preserve">
     <value>English</value>
   </data>
@@ -299,6 +302,9 @@
   </data>
   <data name="internships" xml:space="preserve">
     <value>Internships</value>
+  </data>
+  <data name="InternshipTranslation" xml:space="preserve">
+    <value>internship translation</value>
   </data>
   <data name="INTERNSHIP_ASSIGNMENT_TITLE" xml:space="preserve">
     <value>Description of the assignment</value>
@@ -423,6 +429,9 @@
   <data name="passwordLabel" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="PasswordRegistrationLabel" xml:space="preserve">
+    <value>Password</value>
+  </data>
   <data name="PGCE" xml:space="preserve">
     <value>Post Graduate</value>
   </data>
@@ -431,6 +440,9 @@
   </data>
   <data name="q" xml:space="preserve">
     <value />
+  </data>
+  <data name="RegistrationNavbarItem" xml:space="preserve">
+    <value>Registration</value>
   </data>
   <data name="RequiredTrainingText" xml:space="preserve">
     <value>Required degree for this internship is:</value>
@@ -443,6 +455,12 @@
   </data>
   <data name="schoolYearLabel" xml:space="preserve">
     <value>School year</value>
+  </data>
+  <data name="SnackbarIntersnipCopyText" xml:space="preserve">
+    <value>This copies the selected internships to the next year</value>
+  </data>
+  <data name="SubmitPasswordRegistrationLabel" xml:space="preserve">
+    <value>Submit Password</value>
   </data>
   <data name="TEMPLATE_TITLE" xml:space="preserve">
     <value>Inetum-Realdolmen Bundle of Internships</value>

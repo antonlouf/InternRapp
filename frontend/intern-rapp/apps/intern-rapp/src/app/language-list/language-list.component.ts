@@ -102,7 +102,7 @@ export class LanguageListComponent
           .afterClosed()
           .pipe(map((confirm) => (confirm ? id : undefined)));
       }),
-      filter((id) => !!id), //undefined checken
+      filter((id) => !!id),
       switchMap((id) => this.languageService.deleteLanguage(this.selectedIds))
     );
   }

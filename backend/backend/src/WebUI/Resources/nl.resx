@@ -481,4 +481,22 @@ inzake ge&amp;iuml;ntegreerde oplossingen die de gehele ICT-levenscyclus onderst
   <data name="passwordLabel" xml:space="preserve">
     <value>Wachtwoord</value>
   </data>
+  <data name="EmailRegistrationLabel" xml:space="preserve">
+    <value>e-mail</value>
+  </data>
+  <data name="InternshipTranslation" xml:space="preserve">
+    <value>versie van de stageopdracht</value>
+  </data>
+  <data name="PasswordRegistrationLabel" xml:space="preserve">
+    <value>wachtwoord</value>
+  </data>
+  <data name="RegistrationNavbarItem" xml:space="preserve">
+    <value>registratie</value>
+  </data>
+  <data name="SnackbarIntersnipCopyText" xml:space="preserve">
+    <value>Dit kopieert de geselecteerde stages naar volgend jaar</value>
+  </data>
+  <data name="SubmitPasswordRegistrationLabel" xml:space="preserve">
+    <value>Bevestig Wachtwoord</value>
+  </data>
 </root>

@@ -14,5 +14,5 @@ public class CurrentUserService : ICurrentUserService
 
     public string? UserId => _httpContextAccessor.HttpContext?.User?.Claims.Where(x => x.Type == "id").Select(x => x.Value).SingleOrDefault();
 
-    public string Role => _httpContextAccessor.HttpContext?.User?.Claims.Where(x=>x.Type=="Role").Select(x=>x.Value).SingleOrDefault();
+    public string Role => _httpContextAccessor.HttpContext?.User?.Claims.Where(x=>x.Type==ClaimTypes.Role).Select(x=>x.Value).SingleOrDefault();
 }
