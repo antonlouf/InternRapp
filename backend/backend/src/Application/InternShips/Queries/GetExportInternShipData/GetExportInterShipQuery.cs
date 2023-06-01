@@ -123,8 +123,8 @@ public class Exporting
         if (environmentVar == "Development")
         {
             string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            templatePath = Path.Combine(sCurrentDirectory, @"..\..\..\..\..\lib\template.docx");
-            resultPath = Path.Combine(sCurrentDirectory, $@"..\..\..\..\..\lib\ExportFiles\internships_{Guid.NewGuid()}.docx");
+            templatePath = Path.Combine(sCurrentDirectory, @"..\..\..\wwwroot\lib\template.docx");
+            resultPath = Path.Combine(sCurrentDirectory, $@"..\..\..\wwwroot\lib\ExportFiles\internships_{Guid.NewGuid()}.docx");
         }
         else
         {

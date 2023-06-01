@@ -18,7 +18,7 @@ public class ExportService : BackgroundService
         if (environmentVar == "Development")
         {
             string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            exportDirectory = Path.Combine(sCurrentDirectory, $@"..\..\..\..\..\lib\ExportFiles\");
+            exportDirectory = Path.Combine(sCurrentDirectory, $@"..\..\..\wwwroot\lib\ExportFiles\");
         }
         else
         {
