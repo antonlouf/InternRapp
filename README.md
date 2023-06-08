@@ -22,14 +22,14 @@ De applicatie zelf wordt dan gebruikt door schoolcoordinatoren en realdolmen wer
 ## Used Technologies
 ENG
 
-The backend API was to be developed using **ASP.NET Core Entity Framework**, utilizing patterns such as **clean architecture** and **CQRS**. For data migration, we used the Fluent API with a SQL database.  
+The backend API was developed using **ASP.NET Core Entity Framework**, utilizing patterns such as **clean architecture** and **CQRS**. For data migration, we used the Fluent API with a SQL database.  
 For our frontend, we used the **NX framework** built on top of Angular. It was expected that we would use **observables**, which are similar to promises in JavaScript. 
 For authentication, we had to utilize the RealDolmen **Azure Active Directory**, meaning there would need to be a BFF proxy between these two layers. This proxy would track authorized individuals based on access tokens and cookies. 
 All of this together would then need to be published on **Azure** to be accessible from external sources.
 
 NL
 
-De backend Api zou gemaakt worden met **Asp.net core Entity Framework** gebruik makend van patronen als **clean architecture** en **cqrs**. Voor Data migratie maakte we gebruik van de Fluent API met een sql database.  
+De backend Api is gemaakt met **Asp.net core Entity Framework** gebruik makend van patronen als **clean architecture** en **cqrs**. Voor Data migratie maakte we gebruik van de Fluent API met een sql database.  
 Voor onze Frontend gebruikte we het **nx framework** dat bovenop Angular ligt. Hierbij werd verwacht dat we gebruik maakte van **observables** wat sterk lijkt op promises in javascript.
 Voor authenticatie moesten we gebruik maken van de realdolmen **azure active directory** dat wil zeggen dat tussen deze twee lagen dan een BFF proxy zou hebben moeten liggen die adhv access tokens en cookies bijhoudt welke persoon geautoriseerd is en welke niet. 
 Dit alles tezamen zou dan gepublished moeten worden op **azure** om aanspreekbaar te kunnen zijn van buitenaf. 
