@@ -1,12 +1,12 @@
 # InternRapp
 ENG
 
-This application is made in cooperation with Inetum-Realdolmen. This project was assignment to @recepp42 and myself during our internship at Inetum in 2022-2023. 
+This application is made in cooperation with Inetum-Realdolmen. This project was assigned to @recepp42 and myself during our internship at Inetum in 2022-2023. 
 During my 3 month intership at Realdolmen I learned how it was being in an coorperate envirement with the structure way of tackling such project that comes being inside a big cooperation like Realdolmen.
 
 Nl
 
-Deze applicatie is gemaakt in samenwerking met Inetum-Realdolmen. Dit project was een opdracht aan @Recep Gultekin en mijzelf tijdens onze stage bij Inetum in 2022-2023. 
+Deze applicatie is gemaakt in samenwerking met Inetum-Realdolmen. Dit project was toegediend aan @recepp42 en mijzelf tijdens onze stage bij Inetum in 2022-2023. 
 Tijdens mijn stage van 3 maanden bij Realdolmen heb ik geleerd hoe het is om te werken in een zakelijke omgeving en hoe er gestructureerd wordt omgegaan met dergelijke projecten binnen een grote organisatie als Realdolmen.
 ## The project
 ENG
