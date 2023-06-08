@@ -7,7 +7,7 @@ During my 3 month intership at Realdolmen I learned how it was being in an coorp
 Nl
 
 Deze applicatie is gemaakt in samenwerking met Inetum-Realdolmen. Dit project was toegediend aan @recepp42 en mijzelf tijdens onze stage bij Inetum in 2022-2023. 
-Tijdens mijn stage van 3 maanden bij Realdolmen heb ik geleerd hoe het is om te werken in een zakelijke omgeving en hoe er gestructureerd wordt omgegaan met dergelijke projecten binnen een grote organisatie als Realdolmen.
+Tijdens mijn 3 maanden lange stage heb ik geleerd hoe het is om te werken in een zakelijke omgeving en hoe er gestructureerd wordt omgegaan met dergelijke projecten binnen een grote organisatie als Realdolmen.
 ## The project
 ENG
 
